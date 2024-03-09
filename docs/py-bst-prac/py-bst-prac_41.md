@@ -1,10 +1,3 @@
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Python 最佳实践指南 »
-
 # 许可证
 
 本指南基于 [Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported license](https://creativecommons.org/licenses/by-nc-sa/3.0/) [https://creativecommons.org/licenses/by-nc-sa/3.0/] 的许可。

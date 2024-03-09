@@ -1,7 +1,5 @@
 # 第八章 异常
 
-# 第八章 异常
-
 > 来源：[`www.cnblogs.com/Marlowes/p/5428641.html`](http://www.cnblogs.com/Marlowes/p/5428641.html)
 > 
 > 作者：Marlowes

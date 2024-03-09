@@ -1,12 +1,3 @@
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Python 最佳实践指南 »
-
- # 社区
-
 ## BDFL
 
 Python 的创始人 Guido van Rossum 通常被称为 BDFL —— 生活的仁慈独裁者。

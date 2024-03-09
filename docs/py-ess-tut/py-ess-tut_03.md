@@ -1,7 +1,5 @@
 # 第三章 使用字符串
 
-# 第三章 使用字符串
-
 > 来源：[`www.cnblogs.com/Marlowes/p/5312236.html`](http://www.cnblogs.com/Marlowes/p/5312236.html)
 > 
 > 作者：Marlowes

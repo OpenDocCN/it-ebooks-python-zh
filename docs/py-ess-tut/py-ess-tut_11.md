@@ -1,7 +1,5 @@
 # 第十一章 文件和流
 
-# 第十一章 文件和流
-
 > 来源：[`www.cnblogs.com/Marlowes/p/5519591.html`](http://www.cnblogs.com/Marlowes/p/5519591.html)
 > 
 > 作者：Marlowes

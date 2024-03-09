@@ -1,9 +1,3 @@
-### Navigation
-
-*   index
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-
 # 关键时间点
 
 *   130306 增补监察 JS
@@ -29,11 +23,6 @@
 Brought to you by Read the Docs
 
 *   latest
-
-### Navigation
-
-*   index
-*   LovelyPython 09.08.27 documentation »
 
 # Index
 

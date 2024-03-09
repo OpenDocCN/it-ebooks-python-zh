@@ -1,7 +1,5 @@
 # 第十章 自带电池
 
-# 第十章 自带电池
-
 > 来源：[`www.cnblogs.com/Marlowes/p/5459376.html`](http://www.cnblogs.com/Marlowes/p/5459376.html)
 > 
 > 作者：Marlowes

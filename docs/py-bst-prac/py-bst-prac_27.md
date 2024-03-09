@@ -1,10 +1,3 @@
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Python 最佳实践指南 »
-
 # JSON
 
 [json](https://docs.python.org/2/library/json.html) [https://docs.python.org/2/library/json.html] 库可以自字符串或文件中解析 JSON。 该库解析 JSON 后将其转为 Python 字典或者列表。它也可以转换 Python 字典或列表为 JSON 字符串。

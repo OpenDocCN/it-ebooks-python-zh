@@ -1,7 +1,5 @@
 # 第七章 更加抽象
 
-# 第七章 更加抽象
-
 > 来源：[`www.cnblogs.com/Marlowes/p/5426233.html`](http://www.cnblogs.com/Marlowes/p/5426233.html)
 > 
 > 作者：Marlowes

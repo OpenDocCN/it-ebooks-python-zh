@@ -1,10 +1,3 @@
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-
 # ![rsticon](img/rst.png) 图书工程说明
 
 运用 [基于 Sphinx 的图书协同](http://code.google.com/p/openbookproject/wiki/FlowSphinx) [http://code.google.com/p/openbookproject/wiki/FlowSphinx] 流程和方式进行

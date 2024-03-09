@@ -1,15 +1,3 @@
-### 导航
-
-*   索引
-*   上一页 |
-*   Python 最佳实践指南 »
-
- # 风格指南指引
-
-所有文档都有一致的格式，以帮助更好地理解文档。为了使指导更容易消化，所有贡献都应适应风格指南的规则。
-
-本指南以 reStructuredText 形式编写。
-
 ## 关联
 
 尽量保持任何贡献与 本指南目的 相关。
@@ -153,11 +141,6 @@ Some Section
     Learn the Ultimate Answer to the Ultimate Question
     of Life, The Universe, and Everything 
 ``` © 版权所有 2014\. A <a href="http://kennethreitz.com/pages/open-projects.html">Kenneth Reitz</a> 工程。 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"> Creative Commons Share-Alike 3.0</a>.
-
-### 导航
-
-*   索引
-*   Python 最佳实践指南 »
 
 # 索引
 

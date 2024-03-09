@@ -1,10 +1,3 @@
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-
 # 作弊条儿
 
 *   概述
@@ -21,14 +14,6 @@
 Brought to you by Read the Docs
 
 *   latest
-
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   作弊条儿 »
 
 # 概述
 
@@ -58,15 +43,6 @@ Brought to you by Read the Docs
 
 *   latest
 
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   作弊条儿 »
-*   概述 »
-
 # PCS 0
 
 ## 概述
@@ -78,15 +54,6 @@ Brought to you by Read the Docs
 Brought to you by Read the Docs
 
 *   latest
-
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   作弊条儿 »
-*   概述 »
 
 # PCS 100
 
@@ -100,15 +67,6 @@ Brought to you by Read the Docs
 
 *   latest
 
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   作弊条儿 »
-*   概述 »
-
 # PCS 200
 
 ## 概述
@@ -120,15 +78,6 @@ Brought to you by Read the Docs
 Brought to you by Read the Docs
 
 *   latest
-
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   作弊条儿 »
-*   概述 »
 
 # PCS 300
 
@@ -142,15 +91,6 @@ Brought to you by Read the Docs
 
 *   latest
 
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   作弊条儿 »
-*   概述 »
-
 # PCS 400
 
 ## 概述
@@ -163,14 +103,6 @@ Brought to you by Read the Docs
 
 *   latest
 
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   作弊条儿 »
-
 # 推荐阅读
 
 © Copyright 2010, Zoom.Quiet. Last updated on 130306 09:15. Created using [Sphinx](http://sphinx.pocoo.org/) 1.1.3.
@@ -178,14 +110,6 @@ Brought to you by Read the Docs
 Brought to you by Read the Docs
 
 *   latest
-
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   作弊条儿 »
 
 # 小结
 

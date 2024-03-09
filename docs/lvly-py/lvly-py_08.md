@@ -1,10 +1,3 @@
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-
 # 许可证
 
 看出版社意见,以及社区意见,再定 - 初期,使用 [CC by-sa](http://creativecommons.org/licenses/by-sa/2.5/cn/) [http://creativecommons.org/licenses/by-sa/2.5/cn/]

@@ -1,7 +1,5 @@
 # 参考文献
 
-# 参考文献
-
 [1] Algorithmics, The Spirit of Computing, D. Harel, Y. Feldman，电子版。
 
 [2] Computational Thinking, J. M. Wing, CACM, Vol. 49, No. 3, 2006。

@@ -1,7 +1,5 @@
 # 第九章 魔法方法、属性和迭代器
 
-# 第九章 魔法方法、属性和迭代器
-
 > 来源：[`www.cnblogs.com/Marlowes/p/5437223.html`](http://www.cnblogs.com/Marlowes/p/5437223.html)
 > 
 > 作者：Marlowes

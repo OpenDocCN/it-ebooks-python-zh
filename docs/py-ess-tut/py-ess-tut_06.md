@@ -1,7 +1,5 @@
 # 第六章 抽象
 
-# 第六章 抽象
-
 > 来源：[`www.cnblogs.com/Marlowes/p/5351415.html`](http://www.cnblogs.com/Marlowes/p/5351415.html)
 > 
 > 作者：Marlowes

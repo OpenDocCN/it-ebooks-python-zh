@@ -1,10 +1,3 @@
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-
 # 实例故事
 
 *   实例故事
@@ -34,14 +27,6 @@
 Brought to you by Read the Docs
 
 *   latest
-
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   实例故事 »
 
 # 实例故事
 
@@ -83,14 +68,6 @@ Brought to you by Read the Docs
 Brought to you by Read the Docs
 
 *   latest
-
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   实例故事 »
 
 # CDays
 
@@ -139,15 +116,6 @@ Brought to you by Read the Docs
 Brought to you by Read the Docs
 
 *   latest
-
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   实例故事 »
-*   CDays »
 
 # CDay -5: Python 初体验和原始需求
 
@@ -330,15 +298,6 @@ Brought to you by Read the Docs
 
 *   latest
 
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   实例故事 »
-*   CDays »
-
 # CDay -4
 
 ## 需求
@@ -358,15 +317,6 @@ def index():
 Brought to you by Read the Docs
 
 *   latest
-
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   实例故事 »
-*   CDays »
 
 # CDay -3
 
@@ -388,15 +338,6 @@ Brought to you by Read the Docs
 
 *   latest
 
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   实例故事 »
-*   CDays »
-
 # CDay -2
 
 ## 需求
@@ -416,15 +357,6 @@ def index():
 Brought to you by Read the Docs
 
 *   latest
-
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   实例故事 »
-*   CDays »
 
 # CDay -1
 
@@ -446,15 +378,6 @@ Brought to you by Read the Docs
 
 *   latest
 
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   实例故事 »
-*   CDays »
-
 # CDay 0
 
 ## 需求
@@ -474,15 +397,6 @@ def index():
 Brought to you by Read the Docs
 
 *   latest
-
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   实例故事 »
-*   CDays »
 
 # CDay +1
 
@@ -504,15 +418,6 @@ Brought to you by Read the Docs
 
 *   latest
 
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   实例故事 »
-*   CDays »
-
 # CDay +2
 
 ## 需求
@@ -532,15 +437,6 @@ def index():
 Brought to you by Read the Docs
 
 *   latest
-
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   实例故事 »
-*   CDays »
 
 # CDay +3
 
@@ -562,15 +458,6 @@ Brought to you by Read the Docs
 
 *   latest
 
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   实例故事 »
-*   CDays »
-
 # CDay +N
 
 ## 需求
@@ -590,14 +477,6 @@ def index():
 Brought to you by Read the Docs
 
 *   latest
-
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   实例故事 »
 
 # KDays
 
@@ -632,15 +511,6 @@ Brought to you by Read the Docs
 
 *   latest
 
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   实例故事 »
-*   KDays »
-
 # KDay 0
 
 ## 需求
@@ -660,15 +530,6 @@ def index():
 Brought to you by Read the Docs
 
 *   latest
-
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   实例故事 »
-*   KDays »
 
 # KDay 1
 
@@ -690,15 +551,6 @@ Brought to you by Read the Docs
 
 *   latest
 
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   实例故事 »
-*   KDays »
-
 # KDay 2
 
 ## 需求
@@ -718,15 +570,6 @@ def index():
 Brought to you by Read the Docs
 
 *   latest
-
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   实例故事 »
-*   KDays »
 
 # KDay 3
 
@@ -748,15 +591,6 @@ Brought to you by Read the Docs
 
 *   latest
 
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   实例故事 »
-*   KDays »
-
 # KDay 4
 
 ## 需求
@@ -776,15 +610,6 @@ def index():
 Brought to you by Read the Docs
 
 *   latest
-
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   实例故事 »
-*   KDays »
 
 # KDay 5
 
@@ -806,15 +631,6 @@ Brought to you by Read the Docs
 
 *   latest
 
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   实例故事 »
-*   KDays »
-
 # KDay 6
 
 ## 需求
@@ -834,15 +650,6 @@ def index():
 Brought to you by Read the Docs
 
 *   latest
-
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   实例故事 »
-*   KDays »
 
 # KDay N
 

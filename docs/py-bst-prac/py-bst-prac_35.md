@@ -1,10 +1,3 @@
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Python 最佳实践指南 »
-
 # 介绍
 
 来自 [Python 官方网站](http://python.org/about/) [http://python.org/about/] 的介绍：

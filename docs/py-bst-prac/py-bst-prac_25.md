@@ -1,10 +1,3 @@
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Python 最佳实践指南 »
-
 # 图像处理
 
 多数图像处理与操作技术可以被两个库有效完成，它们是 Python Imaging Library (PIL)与 OpenSource Computer Vision (OpenCV)。

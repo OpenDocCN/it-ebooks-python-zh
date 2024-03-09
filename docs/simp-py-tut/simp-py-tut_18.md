@@ -1,7 +1,5 @@
 # 第十六章 接下来学习什么？
 
-# 第十六章 接下来学习什么？
-
 **目录表**
 
 *   图形软件
@@ -41,8 +39,6 @@
 
 # 探索更多内容
 
-# 探索更多内容
-
 *   **Python 标准库**是一个丰富的库，在大多数时候，你可以在这个库中找到你所需的东西。这被称为 Python 的“功能齐全”理念。我强烈建议你在开始开发大型 Python 程序之前浏览一下[Python 标准文档](http://docs.python.org)。
 
 *   [Python.org](http://www.python.org/)——Python 编程语言的官方主页。你可以在上面找到 Python 语言和解释器的最新版本。另外还有各种邮件列表活跃地讨论 Python 的各方面内容。
@@ -62,8 +58,6 @@
 *   [Lython](http://www.caddr.com/code/lython/)是 Python 语言的 Lisp 前段。它类似于普通的 Lisp 语言，会被直接编译为 Python 字节码，这意味着它能与我们普通的 Python 代码协同工作。
 
 *   另外还有很多很多的 Python 资源。其中比较有趣的有[Daily Python-URL!](http://www.pythonware.com/daily/)，它使你保持与 Python 的最新进展同步。另外还有[Vaults of Parnassus](http://www.vex.net/parnassus/)、[ONLamp.com Python DevCenter](http://www.onlamp.com/python/)、[dirtSimple.org](http://dirtsimple.org/)、[Python Notes](http://pythonnotes.blogspot.com/)等等。
-
-# 概括
 
 # 概括
 

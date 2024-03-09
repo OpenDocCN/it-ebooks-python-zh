@@ -1,18 +1,3 @@
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Python 最佳实践指南 »
-
- # 在 Mac OS X 上安装 Python
-
-最新版本的 Mac OX X, E1 Captian 上 **自带 Python 2.7**。
-
-你不必安装和配置即可直接使用 Python 进行开发。 话虽如此，我还是强烈建议各位，在正式开始 Python 应用开发前，安装接下来教程中所介绍的工具和库。 特别应该安装 Setuptools——它将简化安装和使用 Python 第三方库的流程。
-
-OS X 自带的 Python 版本更适合用于学习而不是开发。因为版本与 Python 官网发布的 [官方最新稳定版本](https://www.python.org/downloads/mac-osx/) [https://www.python.org/downloads/mac-osx/] 相比可能已经过时。
-
 ## 现在就开始吧！
 
 跟着我一起安装合适的 Python 吧。

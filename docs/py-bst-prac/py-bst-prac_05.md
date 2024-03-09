@@ -1,24 +1,3 @@
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Python 最佳实践指南 »
-
- # 在 Linux 上安装 Python
-
-最新版本的 CentOS, Fedora, Redhat 企业版(RHEL)和 Ubuntu **自带 Python 2.7**。
-
-想要获取已安装的 Python 版本号，可以通过终端运行命令：
-
-```py
-$ python --version 
-```
-
-部分旧版本的 RHEL 和 CentOS 系统自带 Python 2.4，该版本已不被目前的 Python 应用接受。幸运的是， Extra Packages for Enterprise Linux (epel, 企业版 Linux 的额外软件包)基于 Fedora 的版本提供高质量 的附加软件包，该仓库包含与系统自带的 Python 2.4 共同安装好的 Python 2.6。
-
-你不必安装和配置即可直接使用 Python 进行开发。话虽如此，我还是强烈建议各位，在正式开始 Python 应用 开发前，安装接下来教程中所介绍的工具和库。特别应该安装 Setuptools 和 pip，它们将简化安装和使用 Python 第三方库的流程。
-
 ## Setuptools & Pip
 
 [setuptools](https://pypi.python.org/pypi/setuptools) [https://pypi.python.org/pypi/setuptools] 和 [pip](https://pip.pypa.io/en/stable/) [https://pip.pypa.io/en/stable/] 是最重要的两个 Python 第三方软件包。一旦安装了它们，就可以通过一条指令下载、安装和卸载可获取到的 Python 应用包，还可以轻松地将这种网络安装的方式加入到自己开发的 Python 应用中。

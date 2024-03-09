@@ -1,7 +1,5 @@
 # 第二章 安装 Python
 
-# 第二章 安装 Python
-
 **目录表**
 
 *   Linux 和 BSD 用户
@@ -40,8 +38,6 @@ bash: python: command not found
 
 # Windows®用户
 
-# Windows®用户
-
 Windows®用户可以访问[Python.org/download](http://www.python.org/download/)，从网站上下载最新的版本（在写本书的时候，最新版本是[2.3.4](http://www.python.org/ftp/python/2.3.4/Python-2.3.4.exe)版）。它的大小大约是 9.4MB，与其他大多数语言相比是十分紧凑的。安装过程与其他 Windows 软件类似。
 
 提示 即便安装程序为你提供了不检查 可选 组件的选项，你也不要不作任何检查！有些组件对你很有用，特别是集成开发环境。
@@ -53,8 +49,6 @@ Windows®用户可以访问[Python.org/download](http://www.python.org/download/
 对于 Windows 2000、XP、2003，点击控制面板->系统->高级->环境变量。在“系统变量”表单中点击叫做**PATH**的变量，然后编辑这个变量，把**;C:\Python23**加到它的结尾。当然，是 Python 所在的正确目录名。
 
 对于较旧版本的 Windows，把下面这行加到文件 C:\AUTOEXEC.BAT 中：**PATH=%PATH%;C:\Python23**，然后重新启动系统。对于 Windows NT，则使用 AUTOEXEC.NT 文件。
-
-# 概括
 
 # 概括
 

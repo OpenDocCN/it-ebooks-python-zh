@@ -1,7 +1,5 @@
 # 第十三章 数据库支持
 
-# 第十三章 数据库支持
-
 > 来源：[`www.cnblogs.com/Marlowes/p/5537223.html`](http://www.cnblogs.com/Marlowes/p/5537223.html)
 > 
 > 作者：Marlowes

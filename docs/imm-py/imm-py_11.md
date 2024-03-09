@@ -1,5 +1,3 @@
-# 虚拟环境
-
 # 虚拟环境(virtualenv)
 
 ## 你听说过`virtualenv`吗？

@@ -1,10 +1,3 @@
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Python 最佳实践指南 »
-
 # 日志（Logging）
 
 [日志](https://docs.python.org/2/library/logging.html#module-logging) [https://docs.python.org/2/library/logging.html#module-logging] 模块自 2.3 版本开始便是 Python 标准库的一部分。它被简洁的描述在 [**PEP 282**](https://www.python.org/dev/peps/pep-0282) [https://www.python.org/dev/peps/pep-0282]。众所周知，除了 [基础日志指南](http://docs.python.org/howto/logging.html#logging-basic-tutorial) [http://docs.python.org/howto/logging.html#logging-basic-tutorial] 部分，该文档并不容易阅读。

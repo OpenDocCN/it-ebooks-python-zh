@@ -1,7 +1,5 @@
 # 第十二章 图形用户界面
 
-# 第十二章 图形用户界面
-
 > 来源：[`www.cnblogs.com/Marlowes/p/5520948.html`](http://www.cnblogs.com/Marlowes/p/5520948.html)
 > 
 > 作者：Marlowes

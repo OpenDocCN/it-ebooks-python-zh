@@ -1,7 +1,5 @@
 # 第五章 条件、循环和其他语句
 
-# 第五章 条件、循环和其他语句
-
 > 来源：[`www.cnblogs.com/Marlowes/p/5329066.html`](http://www.cnblogs.com/Marlowes/p/5329066.html)
 > 
 > 作者：Marlowes

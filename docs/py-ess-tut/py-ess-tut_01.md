@@ -1,7 +1,5 @@
 # 第一章 快速改造：基础知识
 
-# 第一章 快速改造：基础知识
-
 > 来源：[`www.cnblogs.com/Marlowes/p/5280405.html`](http://www.cnblogs.com/Marlowes/p/5280405.html)
 > 
 > 作者：Marlowes

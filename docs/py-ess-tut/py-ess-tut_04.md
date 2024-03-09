@@ -1,7 +1,5 @@
 # 第四章 字典：当索引不好用时
 
-# 第四章 字典：当索引不好用时
-
 > 来源：[`www.cnblogs.com/Marlowes/p/5320049.html`](http://www.cnblogs.com/Marlowes/p/5320049.html)
 > 
 > 作者：Marlowes

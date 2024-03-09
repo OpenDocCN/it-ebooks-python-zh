@@ -1,10 +1,3 @@
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-
 # 关于作者 s
 
 ## 组织

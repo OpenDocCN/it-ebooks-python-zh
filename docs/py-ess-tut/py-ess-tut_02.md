@@ -1,7 +1,5 @@
 # 第二章 列表和元组
 
-# 第二章 列表和元组
-
 > 来源：[`www.cnblogs.com/Marlowes/p/5293195.html`](http://www.cnblogs.com/Marlowes/p/5293195.html)
 > 
 > 作者：Marlowes

@@ -10,8 +10,6 @@
 
 我们将一一进行讨论。一旦你知道了使用列表推导式的诀窍，你就能轻易使用任意一种推导式了。
 
-# 列表推导式
-
 # 列表推导式（`list` comprehensions）
 
 列表推导式（又称列表解析式）提供了一种简明扼要的方法来创建列表。
@@ -47,8 +45,6 @@ for x in range(10):
 squared = [x**2 for x in range(10)] 
 ```
 
-# 字典推导式
-
 # 字典推导式（`dict` comprehensions）
 
 字典推导和列表推导的使用方法是类似的。这里有个我最近发现的例子：
@@ -73,8 +69,6 @@ mcase_frequency = {
 ```py
 {v: k for k, v in some_dict.items()} 
 ```
-
-# 集合推导式
 
 # 集合推导式（`set` comprehensions）
 

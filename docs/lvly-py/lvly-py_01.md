@@ -1,10 +1,3 @@
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-
 # 书前
 
 Contents:
@@ -33,14 +26,6 @@ Contents:
 Brought to you by Read the Docs
 
 *   latest
-
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   书前 »
 
 # 哲思自由软件图书序
 
@@ -73,14 +58,6 @@ Brought to you by Read the Docs
 Brought to you by Read the Docs
 
 *   latest
-
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   书前 »
 
 # preface by Guido van Rossum
 
@@ -127,14 +104,6 @@ Python 发明人、哲思社区顾问
 Brought to you by Read the Docs
 
 *   latest
-
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   书前 »
 
 # 书序
 
@@ -306,14 +275,6 @@ Brought to you by Read the Docs
 
 *   latest
 
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   书前 »
-
 # 前言
 
 如果以厨艺来作比喻的话:
@@ -438,14 +399,6 @@ Brought to you by Read the Docs
 Brought to you by Read the Docs
 
 *   latest
-
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   书前 »
 
 # 感谢
 

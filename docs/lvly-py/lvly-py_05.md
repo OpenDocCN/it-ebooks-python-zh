@@ -1,10 +1,3 @@
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-
 # 跋
 
 *   行者箴言
@@ -31,14 +24,6 @@ Brought to you by Read the Docs
 
 *   latest
 
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   跋 »
-
 # 行者箴言
 
 © Copyright 2010, Zoom.Quiet. Last updated on 130306 09:15. Created using [Sphinx](http://sphinx.pocoo.org/) 1.1.3.
@@ -46,14 +31,6 @@ Brought to you by Read the Docs
 Brought to you by Read the Docs
 
 *   latest
-
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   跋 »
 
 # 后记故事
 
@@ -371,14 +348,6 @@ Lawrence 的抗议  / 直到最后的救赎为止
 Brought to you by Read the Docs
 
 *   latest
-
-### Navigation
-
-*   index
-*   next |
-*   previous |
-*   LovelyPython 09.08.27 documentation »
-*   跋 »
 
 # Z 跋
 

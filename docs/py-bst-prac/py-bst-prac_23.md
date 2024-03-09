@@ -1,10 +1,3 @@
-### 导航
-
-*   索引
-*   下一页 |
-*   上一页 |
-*   Python 最佳实践指南 »
-
 # 速度
 
 CPython 作为最流行的 Python 环境，对于 CPU 密集型任务（CPU bound tasks）较慢，而 [PyPy](http://pypy.org) [http://pypy.org] 则较快。
