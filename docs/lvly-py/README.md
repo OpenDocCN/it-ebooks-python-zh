@@ -1,9 +1,3 @@
-### Navigation
-
-*   index
-*   next |
-*   LovelyPython 09.08.27 documentation »
-
 # 可爱的 Python
 
 ~ 首本原创中文 [Pythonic](http://wiki.woodpecker.org.cn/moin/PythonIc) [http://wiki.woodpecker.org.cn/moin/PythonIc] 体验入门图书

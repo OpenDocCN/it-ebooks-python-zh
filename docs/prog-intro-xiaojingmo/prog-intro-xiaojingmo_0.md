@@ -1,1 +1,0 @@
-![Cover image](img/Cover.jpg)

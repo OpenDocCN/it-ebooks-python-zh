@@ -1,7 +1,5 @@
 # Python 正则表达式操作指南
 
-# Python 正则表达式操作指南
-
 ## 出自 Ubuntu 中文
 
 原文出处：[`www.amk.ca/python/howto/regex/`](http://www.amk.ca/python/howto/regex/ "http://www.amk.ca/python/howto/regex/")
