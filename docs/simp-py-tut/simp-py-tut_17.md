@@ -39,7 +39,7 @@
 
 现在，你已经很深刻地理解了每一个语句块是通过它的缩进层次与其它块区分开来的。然而这在大多数情况下是正确的，但是并非 100％的准确。如果你的语句块只包含一句语句，那么你可以在条件语句或循环语句的同一行指明它。下面这个例子清晰地说明了这一点：
 
-```
+```py
 >>> flag = True
 >>> if flag: print 'Yes'
 ...
@@ -56,7 +56,7 @@ Yes
 
 通过列表综合，可以从一个已有的列表导出一个新的列表。例如，你有一个数的列表，而你想要得到一个对应的列表，使其中所有大于 2 的数都是原来的 2 倍。对于这种应用，列表综合是最理想的方法。
 
-```
+```py
 #!/usr/bin/python
 # Filename: list_comprehension.py
 
@@ -69,7 +69,7 @@ print listtwo
 
 ## 输出
 
-```
+```py
 $ python list_comprehension.py
 [6, 8] 
 ```
@@ -84,7 +84,7 @@ $ python list_comprehension.py
 
 当要使函数接收元组或字典形式的参数的时候，有一种特殊的方法，它分别使用`*`和`**`前缀。这种方法在函数需要获取可变数量的参数的时候特别有用。
 
-```
+```py
 >>> def powersum(power, *args):
 ...     '''Return the sum of each argument raised to specified power.'''
 ...     total = 0
@@ -106,7 +106,7 @@ $ python list_comprehension.py
 
 `lambda`语句被用来创建新的函数对象，并且在运行时返回它们。
 
-```
+```py
 #!/usr/bin/python
 # Filename: lambda.py
 
@@ -123,7 +123,7 @@ print twice(5)
 
 ## 输出
 
-```
+```py
 $ python lambda.py
 wordword
 10 
@@ -139,14 +139,14 @@ wordword
 
 `exec`语句用来执行储存在字符串或文件中的 Python 语句。例如，我们可以在运行时生成一个包含 Python 代码的字符串，然后使用`exec`语句执行这些语句。下面是一个简单的例子。
 
-```
+```py
 >>> exec 'print "Hello World"'
 Hello World 
 ```
 
 `eval`语句用来计算存储在字符串中的有效 Python 表达式。下面是一个简单的例子。
 
-```
+```py
 >>> eval('2*3')
 6 
 ```
@@ -157,7 +157,7 @@ Hello World
 
 `assert`语句用来声明某个条件是真的。例如，如果你非常确信某个你使用的列表中至少有一个元素，而你想要检验这一点，并且在它非真的时候引发一个错误，那么`assert`语句是应用在这种情形下的理想语句。当 assert 语句失败的时候，会引发一个`AssertionError`。
 
-```
+```py
 >>> mylist = ['item']
 >>> assert len(mylist) >= 1
 >>> mylist.pop()
@@ -174,7 +174,7 @@ AssertionError
 
 `repr`函数用来取得对象的规范字符串表示。反引号（也称转换符）可以完成相同的功能。注意，在大多数时候有`eval(repr(object)) == object`。
 
-```
+```py
 >>> i = []
 >>> i.append('item')
 >>> i

@@ -6,7 +6,7 @@
 
 让我们来试试使用 Twisted 的客户端。源码在[twisted-client-1/get-poetry.py](http://github.com/jdavisp3/twisted-intro/blob/master/twisted-client-1/get-poetry.py)。首先像前面一样要开启三个服务器：
 
-```
+```py
 python blocking-server/slowpoetry.py --port 10000 poetry/ecstasy.txt --num-bytes 30
 python blocking-server/slowpoetry.py --port 10001 poetry/fascination.txt
 python blocking-server/slowpoetry.py --port 10002 poetry/science.txt 
@@ -14,13 +14,13 @@ python blocking-server/slowpoetry.py --port 10002 poetry/science.txt
 
 并且运行客户端：
 
-```
+```py
 python twisted-client-1/get-poetry.py 10000 10001 10002 
 ```
 
 你会看到在客户端的命令行打印出：
 
-```
+```py
 Task 1: got 60 bytes of poetry from 127.0.0.1:10000
 Task 2: got 10 bytes of poetry from 127.0.0.1:10001
 Task 3: got 10 bytes of poetry from 127.0.0.1:10002
@@ -42,7 +42,7 @@ Got 3 poems in 0:00:10.134220
 
 可以看到，首先创建了一组[PoetrySocket](http://github.com/jdavisp3/twisted-intro/blob/master/twisted-client-1/get-poetry.py#L53)的实例。在 PoetrySocket 初始化时，其创建了一个网络 socket 作为自己的属性字段来连接服务器，并且选择了非阻塞模式：
 
-```
+```py
 self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 self.sock.connect(address)
 self.sock.setblocking(0) 
@@ -50,7 +50,7 @@ self.sock.setblocking(0)
 
 最终我们虽然会提高到不使用 socket 的抽象层次上，但这里我们仍然需要使用它。在创建完 socket 后，PoetrySocket 通过方法 addReader 将自己传递给 reactor：
 
-```
+```py
 # tell the Twisted reactor to monitor this socket for reading
 from twisted.internet import reactor
 reactor.addReader(self） 
@@ -64,7 +64,7 @@ reactor.addReader(self）
 
 使用接口的核心目的之一就是文档化。作为一个 python 程序员，你肯定知道[Duck Typing](http://en.wikipedia.org/wiki/Duck_typing)。（python 哲学思想：“如果看起来像鸭子，听起来像鸭子，就可以把它当作鸭子”。因此 python 对象的接口力求简单而且统一，类似其他语言中面向接口编程思想。） 翻阅 twisted.internet.interfaces 找到方法的 addReader 定义，它的定义在[IReactorFDSet](http://twistedmatrix.com/trac/browser/trunk/twisted/internet/interfaces.py)中可以找到：
 
-```
+```py
 def addReader(reader):
     """
     I add reader to the set of file descriptors to get read events for.
@@ -85,7 +85,7 @@ IReactorFDSet 是一个 Twisted 的 reactor 实现的接口。因此任何一个
 
 阅读接口模块我们可以看到下面这段代码：
 
-```
+```py
 class IReadDescriptor(IFileDescriptor):
     def doRead():
         """
@@ -97,7 +97,7 @@ class IReadDescriptor(IFileDescriptor):
 
 那在 PoetrySocket 中实现其它的回调函数呢？注意到 IReadDescriptor 是 IFileDescriptor 的一个子类。这也就意味任何一个实现 IReadDescriptor 都必须实现 IFileDescriptor。若是你仔细阅读代码会看到下面的内容：
 
-```
+```py
 class IFileDescriptor(ILoggingContext):
     """
     A file descriptor.
@@ -127,13 +127,13 @@ class IFileDescriptor(ILoggingContext):
 
 现在让我们运行一下这个客户端：
 
-```
+```py
 python twisted-client-1/get-poetry-broken.py 10000 10001 10002 
 ```
 
 我们出得到如同下面一样的输出：
 
-```
+```py
 Task 1: got 3003 bytes of poetry from 127.0.0.1:10000
 Task 3: got 653 bytes of poetry from 127.0.0.1:10002 
 Task 2: got 623 bytes of poetry from 127.0.0.1:10001

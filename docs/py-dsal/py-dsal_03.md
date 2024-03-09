@@ -34,7 +34,7 @@ It isimportant to note that we could have chosen to implement the stackusing a l
 
 注意，我们也可以选择列表的头（左侧）作为栈顶，这样，前面的 pop 和 append 方法就不能用了，而必须指定索引 0(列表的第一个项)以便对栈内数据操作。如下面代码段：
 
-```
+```py
 classStack:
 def __init__(self):
 self.items = []

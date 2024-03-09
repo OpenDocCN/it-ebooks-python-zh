@@ -14,7 +14,7 @@
 
 pickle 是标准库中的一个模块，还有跟它完全一样的叫做 cpickle，两者的区别就是后者更快。所以，下面操作中，不管是用 `import pickle`，还是用 `import cpickle as pickle`，在功能上都是一样的。
 
-```
+```py
 >>> import pickle
 >>> integers = [1, 2, 3, 4, 5]
 >>> f = open("22901.dat", "wb")
@@ -32,7 +32,7 @@ pickle 是标准库中的一个模块，还有跟它完全一样的叫做 cpickl
 
 下面换一种数据格式，并且做对比：
 
-```
+```py
 >>> import pickle
 >>> d = {}
 >>> integers = range(9999)
@@ -60,7 +60,7 @@ pickle 是标准库中的一个模块，还有跟它完全一样的叫做 cpickl
 
 存入文件，仅是一个目标，还有另外一个目标，就是要读出来，也称之为反序列化。
 
-```
+```py
 >>> integers = pickle.load(open("22901.dat", "rb"))
 >>> print integers
 [1, 2, 3, 4, 5] 
@@ -68,7 +68,7 @@ pickle 是标准库中的一个模块，还有跟它完全一样的叫做 cpickl
 
 就是前面存入的那个列表。再看看被以二进制存入的那个文件：
 
-```
+```py
 >>> f = open("22903.dat", "rb")
 >>> d = pickle.load(f)
 >>> print d
@@ -78,7 +78,7 @@ pickle 是标准库中的一个模块，还有跟它完全一样的叫做 cpickl
 
 还是有自己定义数据类型的需要，这种类型是否可以用上述方式存入文件并读出来呢？看下面的例子：
 
-```
+```py
 >>> import cPickle as pickle        #cPickle 更快
 >>> import StringIO                 #标准库中的一个模块，跟 file 功能类似，只不过是在内存中操作“文件”
 
@@ -132,7 +132,7 @@ sb.
 
 如果要从文件中读出来：
 
-```
+```py
 >>> file.seek(0)       #找到对应类型  
 >>> pybook2 = pickle.load(file)
 >>> pybook2.my_book()
@@ -146,7 +146,7 @@ pickle 模块已经表现出它足够好的一面了。不过，由于数据的�
 
 shelve 模块也是标准库中的。先看一下基本操作：写入和读取
 
-```
+```py
 >>> import shelve
 >>> s = shelve.open("22901.db")
 >>> s["name"] = "www.itdiffer.com"
@@ -158,7 +158,7 @@ shelve 模块也是标准库中的。先看一下基本操作：写入和读取
 
 以上完成了数据写入的过程。其实，这更接近数据库的样式了。下面是读取。
 
-```
+```py
 >>> s = shelve.open("22901.db")
 >>> name = s["name"]
 >>> print name
@@ -170,7 +170,7 @@ www.itdiffer.com
 
 当然，也可以用 for 语句来读：
 
-```
+```py
 >>> for k in s:
 ...     print k, s[k]
 ... 
@@ -184,7 +184,7 @@ name www.itdiffer.com
 
 但是，要小心坑：
 
-```
+```py
 >>> f = shelve.open("22901.db")
 >>> f["author"]
 ['qiwsir']
@@ -196,7 +196,7 @@ name www.itdiffer.com
 
 当试图修改一个已有键的值时，没有报错，但是并没有修改成功。要填平这个坑，需要这样做：
 
-```
+```py
 >>> f = shelve.open("22901.db", writeback=True)    #多一个参数 True
 >>> f["author"].append("Hetz")
 >>> f["author"]                   #没有坑了
@@ -206,7 +206,7 @@ name www.itdiffer.com
 
 还用 for 循环一下：
 
-```
+```py
 >>> f = shelve.open("22901.db")
 >>> for k,v in f.items():
 ...     print k,": ",v
@@ -262,7 +262,7 @@ MySQL 是一个使用非常广泛的数据库，很多网站都是用它。关�
 
 第一步，在 shell 端运行如下命令：
 
-```
+```py
 sudo apt-get install mysql-server 
 ```
 
@@ -272,7 +272,7 @@ sudo apt-get install mysql-server
 
 安装之后，运行：
 
-```
+```py
 service mysqld start 
 ```
 
@@ -280,7 +280,7 @@ service mysqld start
 
 默认的 MySQL 安装之后根用户是没有密码的，注意，这里有一个名词“根用户”，其用户名是：root。运行：
 
-```
+```py
 $mysql -u root 
 ```
 
@@ -290,7 +290,7 @@ $mysql -u root
 
 下面设置 Mysql 中的 root 用户密码了，否则，Mysql 服务无安全可言了。
 
-```
+```py
 mysql> GRANT ALL PRIVILEGES ON *.* TO root@localhost IDENTIFIED BY "123456"; 
 ```
 
@@ -302,14 +302,14 @@ mysql> GRANT ALL PRIVILEGES ON *.* TO root@localhost IDENTIFIED BY "123456";
 
 安装之后，就要运行它，并操作这个数据库。
 
-```
+```py
 $ mysql -u root -p
 Enter password: 
 ```
 
 输入数据库的密码，之后出现：
 
-```
+```py
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 373
 Server version: 5.5.38-0ubuntu0.14.04.1 (Ubuntu)
@@ -327,7 +327,7 @@ mysql>
 
 看到这个界面内容，就说明你已经进入到数据里面了。接下来就可以对这个数据进行操作。例如：
 
-```
+```py
 mysql> show databases;
 +--------------------+
 | Database           |
@@ -364,20 +364,20 @@ Python-MySQLdb 是一个接口程序，Python 通过它对 mysql 数据实现各
 
 ubuntu 下可以这么做：
 
-```
+```py
 sudo apt-get install build-essential Python-dev libmysqlclient-dev
 sudo apt-get install Python-MySQLdb 
 ```
 
 也可以用 pip 来安装：
 
-```
+```py
 pip install mysql-Python 
 ```
 
 安装之后，在 python 交互模式下：
 
-```
+```py
 >>> import MySQLdb 
 ```
 
@@ -387,14 +387,14 @@ pip install mysql-Python
 
 要先找到老婆，才能谈如何养育自己的孩子，同理连接数据库之先要建立数据库。
 
-```
+```py
 $ mysql -u root -p
 Enter password: 
 ```
 
 进入到数据库操作界面：
 
-```
+```py
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 373
 Server version: 5.5.38-0ubuntu0.14.04.1 (Ubuntu)
@@ -412,7 +412,7 @@ mysql>
 
 输入如下命令，建立一个数据库：
 
-```
+```py
 mysql> create database qiwsirtest character set utf8;
 Query OK, 1 row affected (0.00 sec) 
 ```
@@ -423,7 +423,7 @@ Query OK, 1 row affected (0.00 sec)
 
 数据库建立之后，就可以用 Python 通过已经安装的 mysqldb 来连接这个名字叫做 qiwsirtest 的库了。
 
-```
+```py
 >>> import MySQLdb
 >>> conn = MySQLdb.connect(host="localhost",user="root",passwd="123123",db="qiwsirtest",port=3306,charset="utf8") 
 ```
@@ -507,7 +507,7 @@ This must be a keyword parameter.
 
 因为直接操作数据部分，不是本教重点，但是关联到后面的操作，为了让读者在阅读上连贯，也快速地说明建立数据库表并输入内容。
 
-```
+```py
 mysql> use qiwsirtest;
 Database changed
 mysql> show tables;
@@ -518,14 +518,14 @@ Empty set (0.00 sec)
 
 下面就用如下命令建立一个数据表，这个数据表的内容就是上面所说明的。
 
-```
+```py
 mysql> create table users(id int(2) not null primary key auto_increment,username varchar(40),password text,email text)default charset=utf8;
 Query OK, 0 rows affected (0.12 sec) 
 ```
 
 建立的这个数据表名称是：users，其中包含上述字段，可以用下面的方式看一看这个数据表的结构。
 
-```
+```py
 mysql> show tables;
 +----------------------+
 | Tables_in_qiwsirtest |
@@ -537,7 +537,7 @@ mysql> show tables;
 
 查询显示，在 qiwsirtest 这个数据库中，已经有一个表，它的名字是：users。
 
-```
+```py
 mysql> desc users;
 +----------+-------------+------+-----+---------+----------------+
 | Field    | Type        | Null | Key | Default | Extra          |
@@ -556,14 +556,14 @@ mysql> desc users;
 
 如此就得到了一个空表。可以查询看看：
 
-```
+```py
 mysql> select * from users;
 Empty set (0.01 sec) 
 ```
 
 向里面插入点信息，就只插入一条吧。
 
-```
+```py
 mysql> insert into users(username,password,email) values("qiwsir","123123","qiwsir@gmail.com");
 Query OK, 1 row affected (0.05 sec)
 
@@ -582,7 +582,7 @@ mysql> select * from users;
 
 连接数据库，必须的。
 
-```
+```py
 >>> import MySQLdb
 >>> conn = MySQLdb.connect(host="localhost",user="root",passwd="123123",db="qiwsirtest",charset="utf8") 
 ```
@@ -596,7 +596,7 @@ Python 建立了与数据的连接，其实是建立了一个 `MySQLdb.connect()
 
 Python 和数据之间的连接建立起来之后，要操作数据库，就需要让 Python 对数据库执行 SQL 语句。Python 是通过游标执行 SQL 语句的。所以，连接建立之后，就要利用连接对象得到游标对象，方法如下：
 
-```
+```py
 >>> cur = conn.cursor() 
 ```
 
@@ -617,14 +617,14 @@ Python 和数据之间的连接建立起来之后，要操作数据库，就需�
 
 例如，要在数据表 users 中插入一条记录，使得:username="Python",password="123456",email="Python@gmail.com"，这样做：
 
-```
+```py
 >>> cur.execute("insert into users (username,password,email) values (%s,%s,%s)",("Python","123456","Python@gmail.com"))
 1L 
 ```
 
 没有报错，并且返回一个"1L"结果，说明有一 n 行记录操作成功。不妨用"mysql>"交互方式查看一下：
 
-```
+```py
 mysql> select * from users;
 +----+----------+----------+------------------+
 | id | username | password | email            |
@@ -638,13 +638,13 @@ mysql> select * from users;
 
 特别注意，通过"cur.execute()"对数据库进行操作之后，没有报错，完全正确，但是不等于数据就已经提交到数据库中了，还必须要用到"MySQLdb.connect"的一个属性：commit()，将数据提交上去，也就是进行了"cur.execute()"操作，要将数据提交，必须执行：
 
-```
+```py
 >>> conn.commit() 
 ```
 
 再到"mysql>"中运行"select * from users"试一试：
 
-```
+```py
 mysql> select * from users;
 +----+----------+----------+------------------+
 | id | username | password | email            |
@@ -659,7 +659,7 @@ mysql> select * from users;
 
 再尝试一下插入多条的那个命令"executemany(query,args)".
 
-```
+```py
 >>> cur.executemany("insert into users (username,password,email) values (%s,%s,%s)",(("google","111222","g@gmail.com"),("facebook","222333","f@face.book"),("github","333444","git@hub.com"),("docker","444555","doc@ker.com")))
 4L
 >>> conn.commit() 
@@ -667,7 +667,7 @@ mysql> select * from users;
 
 到"mysql>"里面看结果：
 
-```
+```py
 mysql> select * from users;
 +----+----------+----------+------------------+
 | id | username | password | email            |
@@ -690,7 +690,7 @@ mysql> select * from users;
 
 如果要从数据库中查询数据，也用游标方法来操作了。
 
-```
+```py
 >>> cur.execute("select * from users")    
 7L 
 ```
@@ -699,7 +699,7 @@ mysql> select * from users;
 
 要用到游标对象的 fetchall()、fetchmany(size=None)、fetchone()、scroll(value, mode='relative')等方法。
 
-```
+```py
 >>> cur.execute("select * from users")    
 7L
 >>> lines = cur.fetchall() 
@@ -707,7 +707,7 @@ mysql> select * from users;
 
 到这里，已经将查询到的记录赋值给变量 lines 了。如果要把它们显示出来，就要用到曾经学习过的循环语句了。
 
-```
+```py
 >>> for line in lines:
 ...     print line
 ... 
@@ -724,7 +724,7 @@ mysql> select * from users;
 
 只想查出第一条，可以吗？当然可以！看下面的：
 
-```
+```py
 >>> cur.execute("select * from users where id=1")
 1L
 >>> line_first = cur.fetchone()     #只返回一条
@@ -734,7 +734,7 @@ mysql> select * from users;
 
 为了对上述过程了解深入，做下面实验：
 
-```
+```py
 >>> cur.execute("select * from users")
 7L
 >>> print cur.fetchall()
@@ -747,7 +747,7 @@ mysql> select * from users;
 
 接着上面的操作，再打印一遍
 
-```
+```py
 >>> print cur.fetchall()
 () 
 ```
@@ -760,7 +760,7 @@ mysql> select * from users;
 
 下面还要实验，检验上面所说：
 
-```
+```py
 >>> cur.execute('select * from users')
 7L
 >>> print cur.fetchone() 
@@ -775,7 +775,7 @@ mysql> select * from users;
 
 那么，既然在操作存储在内存中的对象时候，游标会移动，能不能让游标向上移动，或者移动到指定位置呢？这就是那个 scroll()
 
-```
+```py
 >>> cur.scroll(1)
 >>> print cur.fetchone()
 (5L, u'github', u'333444', u'git@hub.com')
@@ -792,7 +792,7 @@ cur.scroll(n)，或者，cur.scroll(n,"relative")：意思是相对当前位置�
 
 特别提醒看官注意的是，在 Python 中，序列对象是的顺序是从 0 开始的。
 
-```
+```py
 >>> cur.scroll(2,"absolute")    #回到序号是 2,但指向第三条
 >>> print cur.fetchone()        #打印，果然是
 (3L, u'google', u'111222', u'g@gmail.com')
@@ -808,7 +808,7 @@ cur.scroll(n)，或者，cur.scroll(n,"relative")：意思是相对当前位置�
 
 至此，已经熟悉了 cur.fetchall() 和 cur.fetchone() 以及 cur.scroll() 几个方法，还有另外一个，接这上边的操作，也就是游标在序号是 1 的位置，指向了 tuple 的第二条
 
-```
+```py
 >>> cur.fetchmany(3)
 ((2L, u'Python', u'123456', u'python@gmail.com'), (3L, u'google', u'111222', u'g@gmail.com'), (4L, u'facebook', u'222333', u'f@face.book')) 
 ```
@@ -819,7 +819,7 @@ cur.scroll(n)，或者，cur.scroll(n,"relative")：意思是相对当前位置�
 
 不过，Python 总是能够为我们着想的，在连接对象的游标方法中提供了一个参数，可以实现将读取到的数据变成字典形式，这样就提供了另外一种读取方式了。
 
-```
+```py
 >>> cur = conn.cursor(cursorclass=MySQLdb.cursors.DictCursor)
 >>> cur.execute("select * from users")
 7L
@@ -829,7 +829,7 @@ cur.scroll(n)，或者，cur.scroll(n,"relative")：意思是相对当前位置�
 
 这样，在元组里面的元素就是一个一个字典：
 
-```
+```py
 >>> cur.scroll(0,"absolute")
 >>> for line in cur.fetchall():
 ...     print line["username"]
@@ -849,7 +849,7 @@ docker
 
 经过前面的操作，这个就比较简单了，不过需要提醒的是，如果更新完毕，和插入数据一样，都需要 commit() 来提交保存。
 
-```
+```py
 >>> cur.execute("update users set username=%s where id=2",("mypython"))
 1L
 >>> cur.execute("select * from users where id=2")
@@ -862,7 +862,7 @@ docker
 
 不过，要真的实现在数据库中更新，还要运行：
 
-```
+```py
 >>> conn.commit() 
 ```
 
@@ -870,7 +870,7 @@ docker
 
 应该还有个小尾巴，那就是当你操作数据完毕，不要忘记关门：
 
-```
+```py
 >>> cur.close()
 >>> conn.close() 
 ```
@@ -912,7 +912,7 @@ MongoDB 是其一，选择它，主要是因为我喜欢，否则我不会列入
 
 先演示在 ubuntu 系统中的安装过程：
 
-```
+```py
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
 echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list
 sudo apt-get update
@@ -945,7 +945,7 @@ sudo apt-get install mongodb-10gen
 
 在 shell 中，有一个全局变量 db，使用哪个数据库，那个数据库就会被复制给这个全局变量 db，如果那个数据库不存在，就会新建。
 
-```
+```py
 > use mydb
 switched to db mydb
 > db
@@ -954,14 +954,14 @@ mydb
 
 除非向这个数据库中增加实质性的内容，否则它是看不到的。
 
-```
+```py
 > show dbs;
 local    0.03125GB 
 ```
 
 向这个数据库增加点东西。mongodb 的基本单元是文档，所谓文档，就类似与 Python 中的字典，以键值对的方式保存数据。
 
-```
+```py
 > book = {"title":"from beginner to master", "author":"qiwsir", "lang":"python"}
 {
     "title" : "from beginner to master",
@@ -977,7 +977,7 @@ db 指向了数据库 mydb，books 是这个数据库里面的一个集合（类
 
 从上面操作，还发现一个有意思的地方，并没有类似 create 之类的命令，用到数据库，就通过 `use xxx`，如果不存在就建立；用到集合，就通过 `db.xxx` 来使用，如果没有就建立。可以总结为“随用随取随建立”。是不是简单的有点出人意料。
 
-```
+```py
 > show dbs
 local    0.03125GB
 mydb    0.0625GB 
@@ -991,20 +991,20 @@ mydb    0.0625GB
 
 要用 Python 来驱动 mongodb，必须要安装驱动模块，即 Pymongo，这跟操作 mysql 类似。安装方法，我最推荐如下：
 
-```
+```py
 $ sudo pip install Pymongo 
 ```
 
 如果顺利，就会看到最后的提示：
 
-```
+```py
 Successfully installed Pymongo
 Cleaning up... 
 ```
 
 如果不选择版本，安装的应该是最新版本的，我在本教程测试的时候，安装的是：
 
-```
+```py
 >>> import Pymongo
 >>> pymongo.version
 '3.0.1' 
@@ -1012,7 +1012,7 @@ Cleaning up...
 
 这个版本在后面给我挖了一个坑。如果读者要指定版本，比如安装 2.8 版本的，可以：
 
-```
+```py
 $ sudo pip install Pymongo==2.8 
 ```
 
@@ -1020,7 +1020,7 @@ $ sudo pip install Pymongo==2.8
 
 安装好之后，进入到 Python 的交互模式里面：
 
-```
+```py
 >>> import Pymongo 
 ```
 
@@ -1030,7 +1030,7 @@ $ sudo pip install Pymongo==2.8
 
 既然 Python 驱动 mongdb 的模块 Pymongo 业已安装完毕，接下来就是连接，也就是建立连接对象。
 
-```
+```py
 >>> pymongo.Connection("localhost",27017)
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
@@ -1043,7 +1043,7 @@ AttributeError: 'module' object has no attribute 'Connection'
 
 经验主义害死人。必须看看下面有哪些方法可以用：
 
-```
+```py
 >>> dir(pymongo)
 ['ALL', 'ASCENDING', 'CursorType', 'DESCENDING', 'DeleteMany', 'DeleteOne', 'GEO2D', 'GEOHAYSTACK', 'GEOSPHERE', 'HASHED', 'IndexModel', 'InsertOne', 'MAX_SUPPORTED_WIRE_VERSION', 'MIN_SUPPORTED_WIRE_VERSION', 'MongoClient', 'MongoReplicaSetClient', 'OFF', 'ReadPreference', 'ReplaceOne', 'ReturnDocument', 'SLOW_ONLY', 'TEXT', 'UpdateMany', 'UpdateOne', 'WriteConcern', '__builtins__', '__doc__', '__file__', '__name__', '__package__', '__path__', '_cmessage', 'auth', 'bulk', 'client_options', 'collection', 'command_cursor', 'common', 'cursor', 'cursor_manager', 'database', 'errors', 'get_version_string', 'has_c', 'helpers', 'ismaster', 'message', 'mongo_client', 'mongo_replica_set_client', 'monitor', 'monotonic', 'network', 'operations', 'periodic_executor', 'pool', 'read_preferences', 'response', 'results', 'server', 'server_description', 'server_selectors', 'server_type', 'settings', 'son_manipulator', 'ssl_context', 'ssl_support', 'thread_util', 'topology', 'topology_description', 'uri_parser', 'version', 'version_tuple', 'write_concern'] 
 ```
@@ -1052,7 +1052,7 @@ AttributeError: 'module' object has no attribute 'Connection'
 
 不过，我发现了它：MongoClient()
 
-```
+```py
 >>> client = pymongo.MongoClient("localhost", 27017) 
 ```
 
@@ -1060,32 +1060,32 @@ AttributeError: 'module' object has no attribute 'Connection'
 
 刚才已经建立了一个数据库 mydb，并且在这个库里面有一个集合 books，于是：
 
-```
+```py
 >>> db = client.mydb 
 ```
 
 或者
 
-```
+```py
 >>> db = client['mydb'] 
 ```
 
 获得数据库 mydb，并赋值给变量 db（这个变量不是 mongodb 的 shell 中的那个 db，此处的 db 就是 Python 中一个寻常的变量）。
 
-```
+```py
 >>> db.collection_names()
 [u'system.indexes', u'books'] 
 ```
 
 查看集合，发现了我们已经建立好的那个 books，于是在获取这个集合，并赋值给一个变量 books：
 
-```
+```py
 >>> books = db["books"] 
 ```
 
 或者
 
-```
+```py
 >>> books = db.books 
 ```
 
@@ -1095,7 +1095,7 @@ AttributeError: 'module' object has no attribute 'Connection'
 
 刚刚的 books 所引用的是一个 mongodb 的集合对象，它就跟前面学习过的其它对象一样，有一些方法供我们来驱使。
 
-```
+```py
 >>> type(books)
 <class 'pymongo.collection.Collection'>
 
@@ -1105,14 +1105,14 @@ AttributeError: 'module' object has no attribute 'Connection'
 
 这么多方法不会一一介绍，只是按照“增删改查”的常用功能，介绍几种。读者可以使用 help() 去查看每一种方法的使用说明。
 
-```
+```py
 >>> books.find_one()
 {u'lang': u'Python', u'_id': ObjectId('554f0e3cf579bc0767db9edf'), u'author': u'qiwsir', u'title': u'from beginner to master'} 
 ```
 
 提醒读者注意的是，如果你熟悉了 mongodb 的 shell 中的命令，跟 Pymongo 中的方法稍有差别，比如刚才这个，在 mongodb 的 shell 中是这样子的：
 
-```
+```py
 > db.books.findOne()
 {
     "_id" : ObjectId("554f0e3cf579bc0767db9edf"),
@@ -1128,7 +1128,7 @@ AttributeError: 'module' object has no attribute 'Connection'
 
 **新增和查询**
 
-```
+```py
 >>> b2 = {"title":"physics", "author":"Newton", "lang":"english"}
 >>> books.insert(b2)
 ObjectId('554f28f465db941152e6df8b') 
@@ -1136,21 +1136,21 @@ ObjectId('554f28f465db941152e6df8b')
 
 成功地向集合中增加了一个文档。得看看结果（我们就是充满好奇心的小孩子，我记得女儿小时候，每个给她照相，拍了一张，她总要看一看。现在我们似乎也是这样，如果不看看，总觉得不放心），看看就是一种查询。
 
-```
+```py
 >>> books.find().count()
 2 
 ```
 
 这是查看当前集合有多少个文档的方式，返回值为 2，则说明有两条文档了。还是要看看内容。
 
-```
+```py
 >>> books.find_one()
 {u'lang': u'python', u'_id': ObjectId('554f0e3cf579bc0767db9edf'), u'author': u'qiwsir', u'title': u'from beginner to master'} 
 ```
 
 这个命令就不行了，因为它只返回第一条。必须要：
 
-```
+```py
 >>> for i in books.find():
 ...     print i
 ... 
@@ -1162,7 +1162,7 @@ ObjectId('554f28f465db941152e6df8b')
 
 由于文档是键值对，也不一定每条文档都要结构一样，比如，也可以插入这样的文档进入集合。
 
-```
+```py
 >>> books.insert({"name":"Hertz"})
 ObjectId('554f2b4565db941152e6df8c')
 >>> for i in books.find():
@@ -1175,7 +1175,7 @@ ObjectId('554f2b4565db941152e6df8c')
 
 如果有多个文档，想一下子插入到集合中（在 mysql 中，可以实现多条数据用一条命令插入到表里面，还记得吗？忘了看上一节），可以这么做：
 
-```
+```py
 >>> n1 = {"title":"java", "name":"Bush"}
 >>> n2 = {"title":"fortran", "name":"John Warner Backus"}
 >>> n3 = {"title":"lisp", "name":"John McCarthy"}
@@ -1188,7 +1188,7 @@ ObjectId('554f2b4565db941152e6df8c')
 
 这样就完成了所谓的批量插入，查看一下文档条数：
 
-```
+```py
 >>> books.find().count()
 6 
 ```
@@ -1197,14 +1197,14 @@ ObjectId('554f2b4565db941152e6df8c')
 
 如果要查询，除了通过循环之外，能不能按照某个条件查呢？比如查找`'name'='Bush'`的文档：
 
-```
+```py
 >>> books.find_one({"name":"Bush"})
 {u'_id': ObjectId('554f30be65db941152e6df8d'), u'name': u'Bush', u'title': u'java'} 
 ```
 
 对于查询结果，还可以进行排序：
 
-```
+```py
 >>> for i in books.find().sort("title", pymongo.ASCENDING):
 ...     print i
 ... 
@@ -1218,7 +1218,7 @@ ObjectId('554f2b4565db941152e6df8c')
 
 这是按照"title"的值的升序排列的，注意 sort() 中的第二个参数，意思是升序排列。如果按照降序，就需要将参数修改为 `Pymongo.DESCEDING`，也可以指定多个排序键。
 
-```
+```py
 >>> for i in books.find().sort([("name",pymongo.ASCENDING),("name",pymongo.DESCENDING)]):
 ...     print i
 ... 
@@ -1236,7 +1236,7 @@ ObjectId('554f2b4565db941152e6df8c')
 
 对于已有数据，进行更新，是数据库中常用的操作。比如，要更新 name 为 Hertz 那个文档：
 
-```
+```py
 >>> books.update({"name":"Hertz"}, {"$set": {"title":"new physics", "author":"Hertz"}})
 {u'updatedExisting': True, u'connectionId': 4, u'ok': 1.0, u'err': None, u'n': 1}
 >>> books.find_one({"author":"Hertz"})
@@ -1258,7 +1258,7 @@ ObjectId('554f2b4565db941152e6df8c')
 
 删除可以用 remove() 方法：
 
-```
+```py
 >>> books.remove({"name":"Bush"})
 {u'connectionId': 4, u'ok': 1.0, u'err': None, u'n': 1}
 >>> books.find_one({"name":"Bush"})
@@ -1271,7 +1271,7 @@ ObjectId('554f2b4565db941152e6df8c')
 
 索引的目的是为了让查询速度更快，当然，在具体的项目开发中，要视情况而定是否建立索引。因为建立索引也是有代价的。
 
-```
+```py
 >>> books.create_index([("title", pymongo.DESCENDING),])
 u'title_-1' 
 ```
@@ -1300,7 +1300,7 @@ SQLite 也是一个关系型数据库，所以 SQL 语句，都可以在里面�
 
 由于 SQLite 数据库的驱动已经在 Python 里面了，所以，只要引用就可以直接使用
 
-```
+```py
 >>> import sqlite3
 >>> conn = sqlite3.connect("23301.db") 
 ```
@@ -1309,7 +1309,7 @@ SQLite 也是一个关系型数据库，所以 SQL 语句，都可以在里面�
 
 不妨到目录中看一看，是否存在了刚才建立的数据库文件。
 
-```
+```py
 /2code$ ls 23301.db
 23301.db 
 ```
@@ -1318,7 +1318,7 @@ SQLite 也是一个关系型数据库，所以 SQL 语句，都可以在里面�
 
 连接对象建立起来之后，就要使用连接对象的方法继续工作了。
 
-```
+```py
 >>> dir(conn)
 ['DataError', 'DatabaseError', 'Error', 'IntegrityError', 'InterfaceError', 'InternalError', 'NotSupportedError', 'OperationalError', 'ProgrammingError', 'Warning', '__call__', '__class__', '__delattr__', '__doc__', '__enter__', '__exit__', '__format__', '__getattribute__', '__hash__', '__init__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', 'close', 'commit', 'create_aggregate', 'create_collation', 'create_function', 'cursor', 'enable_load_extension', 'execute', 'executemany', 'executescript', 'interrupt', 'isolation_level', 'iterdump', 'load_extension', 'rollback', 'row_factory', 'set_authorizer', 'set_progress_handler', 'text_factory', 'total_changes'] 
 ```
@@ -1327,13 +1327,13 @@ SQLite 也是一个关系型数据库，所以 SQL 语句，都可以在里面�
 
 这步跟 mysql 也类似，要建立游标对象。
 
-```
+```py
 >>> cur = conn.cursor() 
 ```
 
 接下来对数据库内容的操作，都是用游标对象方法来实现了：
 
-```
+```py
 >>> dir(cur)
 ['__class__', '__delattr__', '__doc__', '__format__', '__getattribute__', '__hash__', '__init__', '__iter__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', 'arraysize', 'close', 'connection', 'description', 'execute', 'executemany', 'executescript', 'fetchall', 'fetchmany', 'fetchone', 'lastrowid', 'next', 'row_factory', 'rowcount', 'setinputsizes', 'setoutputsize'] 
 ```
@@ -1344,7 +1344,7 @@ SQLite 也是一个关系型数据库，所以 SQL 语句，都可以在里面�
 
 在 mysql 中，我们演示的是利用 mysql 的 shell 来创建的表。其实，当然可以使用 sql 语句，在 Python 中实现这个功能。这里对 sqlite 数据库，就如此操作一番。
 
-```
+```py
 >>> create_table = "create table books (title text, author text, lang text) "
 >>> cur.execute(create_table)
 <sqlite3.Cursor object at 0xb73ed5a0> 
@@ -1352,14 +1352,14 @@ SQLite 也是一个关系型数据库，所以 SQL 语句，都可以在里面�
 
 这样就在数据库 23301.db 中建立了一个表 books。对这个表可以增加数据了：
 
-```
+```py
 >>> cur.execute('insert into books values ("from beginner to master", "laoqi", "python")')
 <sqlite3.Cursor object at 0xb73ed5a0> 
 ```
 
 为了保证数据能够保存，还要（这是多么熟悉的操作流程和命令呀）：
 
-```
+```py
 >>> conn.commit()
 >>> cur.close()
 >>> conn.close() 
@@ -1373,7 +1373,7 @@ SQLite 也是一个关系型数据库，所以 SQL 语句，都可以在里面�
 
 存进去了，总要看看，这算强迫症吗？
 
-```
+```py
 >>> conn = sqlite3.connect("23301.db")
 >>> cur = conn.cursor()
 >>> cur.execute('select * from books')
@@ -1386,13 +1386,13 @@ SQLite 也是一个关系型数据库，所以 SQL 语句，都可以在里面�
 
 多增加点内容，以便于做别的操作：
 
-```
+```py
 >>> books = [("first book","first","c"), ("second book","second","c"), ("third book","second","python")] 
 ```
 
 这回来一个批量插入
 
-```
+```py
 >>> cur.executemany('insert into books values (?,?,?)', books)
 <sqlite3.Cursor object at 0xb73edea0>
 >>> conn.commit() 
@@ -1400,7 +1400,7 @@ SQLite 也是一个关系型数据库，所以 SQL 语句，都可以在里面�
 
 用循环语句打印一下查询结果：
 
-```
+```py
 >>> rows = cur.execute('select * from books')
 >>> for row in rows:
 ...     print row
@@ -1415,7 +1415,7 @@ SQLite 也是一个关系型数据库，所以 SQL 语句，都可以在里面�
 
 正如前面所说，在 cur.execute() 中，你可以写 SQL 语句，来操作数据库。
 
-```
+```py
 >>> cur.execute("update books set title='physics' where author='first'")
 <sqlite3.Cursor object at 0xb73edea0>
 >>> conn.commit() 
@@ -1423,7 +1423,7 @@ SQLite 也是一个关系型数据库，所以 SQL 语句，都可以在里面�
 
 按照条件查处来看一看：
 
-```
+```py
 >>> cur.execute("select * from books where author='first'")
 <sqlite3.Cursor object at 0xb73edea0>
 >>> cur.fetchone()
@@ -1434,7 +1434,7 @@ SQLite 也是一个关系型数据库，所以 SQL 语句，都可以在里面�
 
 在 sql 语句中，这也是常用的。
 
-```
+```py
 >>> cur.execute("delete from books where author='second'")
 <sqlite3.Cursor object at 0xb73edea0>
 >>> conn.commit()
@@ -1447,7 +1447,7 @@ SQLite 也是一个关系型数据库，所以 SQL 语句，都可以在里面�
 
 不要忘记，在你完成对数据库的操作是，一定要关门才能走人：
 
-```
+```py
 >>> cur.close()
 >>> conn.close() 
 ```
@@ -1490,13 +1490,13 @@ openpyl 模块是解决 Microsoft Excel 2007/2010 之类版本中扩展名是 Ex
 
 安装第三方库，当然用法力无边的 pip install
 
-```
+```py
 $ sudo pip install openpyxl 
 ```
 
 如果最终看到下面的提示，恭喜你，安装成功。
 
-```
+```py
 Successfully installed openpyxl jdcal
 Cleaning up... 
 ```
@@ -1505,19 +1505,19 @@ Cleaning up...
 
 第一步，当然是要引入模块，用下面的方式：
 
-```
+```py
 >>> from openpyxl import Workbook 
 ```
 
 接下来就用 `Workbook()` 类里面的方法展开工作：
 
-```
+```py
 >>> wb = Workbook() 
 ```
 
 请回忆 Excel 文件，如果想不起来，就打开 Excel，我们第一眼看到的是一个称之为工作簿(workbook)的东西，里面有几个 sheet，默认是三个，当然可以随意增删。默认又使用第一个 sheet。
 
-```
+```py
 >>> ws = wb.active 
 ```
 
@@ -1525,13 +1525,13 @@ Cleaning up...
 
 还可以在这个 sheet 后面追加：
 
-```
+```py
 >>> ws1 = wb.create_sheet() 
 ```
 
 甚至，还可以加塞：
 
-```
+```py
 >>> ws2 = wb.create_sheet(1) 
 ```
 
@@ -1539,7 +1539,7 @@ Cleaning up...
 
 在 Excel 文件中一样，创建了 sheet 之后，默认都是以"Sheet1"、"Sheet2"样子来命名的，然后我们可以给其重新命名。在这里，依然可以这么做。
 
-```
+```py
 >>> ws.title = "Python" 
 ```
 
@@ -1547,7 +1547,7 @@ ws 所引用的 sheet 对象名字就是"Python"了。
 
 此时，可以使用下面的方式从工作簿对象中得到 sheet
 
-```
+```py
 >>> ws01 = wb['Python']    #sheet 和工作簿的关系，类似键值对的关系
 >>> ws is ws01
 True 
@@ -1555,7 +1555,7 @@ True
 
 或者用这种方式
 
-```
+```py
 >>> ws02 = wb.get_sheet_by_name("Python")    #这个方法名字也太直接了，方法的参数就是 sheet 名字
 >>> ws is ws02
 True 
@@ -1563,7 +1563,7 @@ True
 
 整理一下到目前为止我们已经完成的工作：建立了工作簿(wb)，还有三个 sheet。还是显示一下比较好：
 
-```
+```py
 >>> print wb.get_sheet_names()
 ['Python', 'Sheet2', 'Sheet1'] 
 ```
@@ -1572,7 +1572,7 @@ Sheet2 这个 sheet 之所以排在了第二位，是因为在建立的时候，
 
 也可以用循环语句，把所有的 sheet 名字打印出来。
 
-```
+```py
 >>> for sh in wb:
 ...     print sh.title
 ... 
@@ -1591,7 +1591,7 @@ Sheet1
 
 对于 sheet，其中的 cell 是它的下级单位。所以，要得到某个 cell，可以这样：
 
-```
+```py
 b4 = ws['B4'] 
 ```
 
@@ -1601,26 +1601,26 @@ b4 = ws['B4']
 
 如果要给 B4 添加数据，可以这么做：
 
-```
+```py
 >>> ws['B4'] = 4444 
 ```
 
 因为 b4 引用了一个 cell 对象，所以可以利用这个对象的属性来查看其值：
 
-```
+```py
 >>> b4.value
 4444 
 ```
 
 要获得（或者建立并获得）某个 cell 对象，还可以使用下面方法：
 
-```
+```py
 >>> a1 = ws.cell("A1") 
 ```
 
 或者：
 
-```
+```py
 >>> a2 = ws.cell(row = 2, column = 1) 
 ```
 
@@ -1630,13 +1630,13 @@ b4 = ws['B4']
 
 就可以如同切片那样来操作：
 
-```
+```py
 >>> cells = ws["A1":"C3"] 
 ```
 
 可以用下面方法看看创建结果：
 
-```
+```py
 >>> tuple(ws.iter_rows("A1:C3"))
 ((<Cell python.A1>, <Cell Python.B1>, <Cell Python.C1>), 
  (<Cell python.A2>, <Cell Python.B2>, <Cell Python.C2>), 
@@ -1645,7 +1645,7 @@ b4 = ws['B4']
 
 这是按照横向顺序数过来来的，即 A1-B1-C1，然后下一横行。还可以用下面的循环方法，一个一个地读到每个 cell 对象：
 
-```
+```py
 >>> for row in ws.iter_rows("A1:C3"):
 ...     for cell in row:
 ...         print cell
@@ -1663,7 +1663,7 @@ b4 = ws['B4']
 
 也可以用 sheet 对象的 `rows` 属性，得到按照横向顺序依次排列的 cell 对象（注意观察结果，因为没有进行范围限制，所以是目前 sheet 中所有的 cell，前面已经建立到第四行了 B4，所以，要比上面的操作多一个 row）：
 
-```
+```py
 >>> ws.rows
 ((<Cell python.A1>, <Cell python.B1>, <Cell python.C1>), 
  (<Cell python.A2>, <Cell python.B2>, <Cell python.C2>), 
@@ -1673,7 +1673,7 @@ b4 = ws['B4']
 
 用 sheet 对象的 `columns` 属性，得到的是按照纵向顺序排列的 cell 对象（注意观察结果）：
 
-```
+```py
 >>> ws.columns
 ((<Cell python.A1>, <Cell python.A2>, <Cell python.A3>, <Cell python.A4>), 
  (<Cell python.B1>, <Cell python.B2>, <Cell python.B3>, <Cell python.B4>), 
@@ -1682,7 +1682,7 @@ b4 = ws['B4']
 
 不管用那种方法，只要得到了 cell 对象，接下来就可以依次赋值了。比如要将上面的表格中，依次填写上 1,2,3,...
 
-```
+```py
 >>> i = 1
 >>> for cell in ws.rows:
 ...     cell.value = i
@@ -1693,7 +1693,7 @@ b4 = ws['B4']
 
 报错了。什么错误。关键就是没有注意观察上面的结果。tuple 里面是以 tuple 为元素，再里面才是 cell 对象。所以，必须要“时时警醒”，常常谨慎。
 
-```
+```py
 >>> for row in ws.rows:
 ...     for cell in row:
 ...         cell.value = i
@@ -1703,7 +1703,7 @@ b4 = ws['B4']
 
 如此，就给每个 cell 添加了数据。查看一下，不过要换一个属性：
 
-```
+```py
 >>> for col in ws.columns:
 ...     for cell in col:
 ...         print cell.value
@@ -1728,7 +1728,7 @@ b4 = ws['B4']
 
 把辛苦工作的结果保存一下吧。
 
-```
+```py
 >>> wb.save("23401.xlsx") 
 ```
 
@@ -1742,7 +1742,7 @@ b4 = ws['B4']
 
 如果已经有一个 .xlsx 文件，要读取它，可以这样来做：
 
-```
+```py
 >>> from openpyxl import load_workbook
 >>> wb2 = load_workbook("23401.xlsx")
 >>> print wb2.get_sheet_names()

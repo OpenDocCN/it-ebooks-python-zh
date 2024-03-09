@@ -26,7 +26,7 @@
 
 章节标题：
 
-```
+```py
 #########
 章节 1
 ######### 
@@ -34,7 +34,7 @@
 
 页面标题：
 
-```
+```py
 ===================
 时间是种幻觉
 =================== 
@@ -42,14 +42,14 @@
 
 小节标题:
 
-```
+```py
 午餐时间加倍
 ------------------- 
 ```
 
 次小节标题:
 
-```
+```py
 非常深
 ~~~~~~~~~ 
 ```
@@ -64,7 +64,7 @@
 
 命令行例子：
 
-```
+```py
 .. code-block:: console
 
     $ run command --help
@@ -75,7 +75,7 @@
 
 Python 解释器例子：
 
-```
+```py
 Label the example::
 
 .. code-block:: python
@@ -85,7 +85,7 @@ Label the example::
 
 Python 例子：
 
-```
+```py
 Descriptive title::
 
 .. code-block:: python
@@ -98,7 +98,7 @@ Descriptive title::
 
 *   链接时最好使用众所周知的主题（比如一些合适的名词）：
 
-    ```
+    ```py
     Sphinx_ 通常用来文档化 Python。
 
     .. _Sphinx: http://sphinx.pocoo.org 
@@ -106,7 +106,7 @@ Descriptive title::
 
 *   最好使用带有内联链接的描述性标签，而不是单纯的链接:
 
-    ```
+    ```py
     阅读 `Sphinx 教程 <http://sphinx.pocoo.org/tutorial.html>`_ 
     ```
 
@@ -118,7 +118,7 @@ Descriptive title::
 
 要使引用标签更加清晰和独特，通常加上一个 `-ref` 后缀：
 
-```
+```py
 .. _some-section-ref:
 
 Some Section
@@ -131,7 +131,7 @@ Some Section
 
 注意:
 
-```
+```py
 .. note::
     The Hitchhiker’s Guide to the Galaxy has a few things to say
     on the subject of towels. A towel, it says, is about the most
@@ -140,7 +140,7 @@ Some Section
 
 警告:
 
-```
+```py
 .. warning:: DON'T PANIC 
 ```
 
@@ -148,7 +148,7 @@ Some Section
 
 请用 [todo 指示](http://sphinx.pocoo.org/ext/todo.html?highlight=todo#directive-todo) [http://sphinx.pocoo.org/ext/todo.html?highlight=todo#directive-todo] 来标记本指南中任何未完成的部分。避免使 要做的事 混乱，为未完的文档或者大量未完的小节使用单独的 `todo`。
 
-```
+```py
 .. todo::
     Learn the Ultimate Answer to the Ultimate Question
     of Life, The Universe, and Everything 

@@ -62,7 +62,7 @@
 
     值得注意的一件事是，在一个字符串中，行末的单独一个反斜杠表示字符串在下一行继续，而不是开始一个新的行。例如：
 
-    ```
+    ```py
     "This is the first sentence.\
     This is the second sentence." 
     ```
@@ -133,7 +133,7 @@
 
 如何编写 Python 程序 下面是保存和运行 Python 程序的标准流程。 1\. 打开你最喜欢的编辑器。 2\. 输入例子中的程序代码。 3\. 用注释中给出的文件名把它保存为一个文件。我按照惯例把所有的 Python 程序都以扩展名`.py`保存。 4\. 运行解释器命令**python program.py**或者使用 IDLE 运行程序。你也可以使用先前介绍的可执行的方法。
 
-```
+```py
 # Filename : var.py
 i = 5
 print i
@@ -147,7 +147,7 @@ print s
 
 （源文件：code/var.py）
 
-```
+```py
 $ python var.py
 5
 6
@@ -175,27 +175,27 @@ This is the second line.
 
 如果你想要在一个物理行中使用多于一个逻辑行，那么你需要使用分号（;）来特别地标明这种用法。分号表示一个逻辑行/语句的结束。例如：
 
-```
+```py
 i = 5
 print i 
 ```
 
 与下面这个相同：
 
-```
+```py
 i = 5;
 print i; 
 ```
 
 同样也可以写成：
 
-```
+```py
 i = 5; print i; 
 ```
 
 甚至可以写成：
 
-```
+```py
 i = 5; print i 
 ```
 
@@ -203,7 +203,7 @@ i = 5; print i
 
 下面是一个在多个物理行中写一个逻辑行的例子。它被称为**明确的行连接**。
 
-```
+```py
 s = 'This is a string. \
 This continues the string.'
 print s 
@@ -211,20 +211,20 @@ print s
 
 它的输出：
 
-```
+```py
 This is a string. This continues the string. 
 ```
 
 类似地，
 
-```
+```py
 print \
 i 
 ```
 
 与如下写法效果相同：
 
-```
+```py
 print i 
 ```
 
@@ -240,7 +240,7 @@ print i
 
 你需要记住的一样东西是错误的缩进会引发错误。例如：
 
-```
+```py
 i = 5
  print 'Value is', i # Error! Notice a single space at the start of the line
 print 'I repeat, the value is', i 
@@ -248,7 +248,7 @@ print 'I repeat, the value is', i
 
 当你运行这个程序的时候，你会得到下面的错误：
 
-```
+```py
  File "whitespace.py", line 4
     print 'Value is', i # Error! Notice a single space at the start of the line
     ^

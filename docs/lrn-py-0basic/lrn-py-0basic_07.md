@@ -18,7 +18,7 @@ Python 不是一个封闭的体系，是一个开放系统。开放系统的最�
 
 在本教程的《语句(1)》中，曾经介绍了 import 语句，有这样一个例子：
 
-```
+```py
 >>> import math
 >>> math.pow(3,2)
 9.0 
@@ -32,7 +32,7 @@ Python 不是一个封闭的体系，是一个开放系统。开放系统的最�
 
 但是，如果我自己写一个 `.py` 文件，是不是就能作为模块 import 过来呢？还不那么简单。必须得让 Python 解释器能够找到你写的模块。比如：在某个目录中，我写了这样一个文件：
 
-```
+```py
 #!/usr/bin/env Python
 # coding=utf-8
 
@@ -41,7 +41,7 @@ lang = "python"
 
 并把它命名为 pm.py，那么这个文件就可以作为一个模块被引入。不过由于这个模块是我自己写的，Python 解释器并不知道，我得先告诉它我写了这样一个文件。
 
-```
+```py
 >>> import sys
 >>> sys.path.append("~/Documents/VBS/StartLearningPython/2code/pm.py") 
 ```
@@ -50,7 +50,7 @@ lang = "python"
 
 上面那个一长串的地址，是 ubuntu 系统的地址格式，如果读者使用的 windows 系统，请写你所保存的文件路径。
 
-```
+```py
 >>> import pm
 >>> pm.lang
 'python' 
@@ -58,7 +58,7 @@ lang = "python"
 
 本来在 pm.py 文件中，有一个变量 `lang = "Python"`，这次它作为模块引入（注意作为模块引入的时候，不带扩展名），就可以通过模块名字来访问变量 `pm.py`，当然，如果不存在的属性这么去访问，肯定是要报错的。
 
-```
+```py
 >>> pm.xx
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
@@ -83,7 +83,7 @@ AttributeError: 'module' object has no attribute 'xx'
 
 为了便于比较，将 pm.py 文件进行改造，稍微复杂点。
 
-```
+```py
 #!/usr/bin/env Python
 # coding=utf-8
 
@@ -96,14 +96,14 @@ if __name__ == "__main__":
 
 如以前做的那样，可以用这样的方式：
 
-```
+```py
 $ Python pm.py
 python 
 ```
 
 但是，如果将这个程序作为模块，导入，会是这样的：
 
-```
+```py
 >>> import sys
 >>> sys.path.append("~/Documents/VBS/StarterLearningPython/2code/pm.py")
 >>> import pm
@@ -113,14 +113,14 @@ python
 
 因为这时候 pm.py 中的函数 lang() 就是一个属性：
 
-```
+```py
 >>> dir(pm)
 ['__builtins__', '__doc__', '__file__', '__name__', '__package__', 'lang'] 
 ```
 
 同样一个 .py 文件，可以把它当做程序来执行，还可以将它作为模块引入。
 
-```
+```py
 >>> __name__
 '__main__'
 >>> pm.__name__
@@ -137,7 +137,7 @@ python
 
 为了让我们自己写的模块能够被 Python 解释器知道，需要用 `sys.path.append("~/Documents/VBS/StarterLearningPython/2code/pm.py")`。其实，在 Python 中，所有模块都被加入到了 sys.path 里面了。用下面的方法可以看到模块所在位置：
 
-```
+```py
 >>> import sys
 >>> import pprint
 >>> pprint.pprint(sys.path)
@@ -159,7 +159,7 @@ python
 
 从中也发现了我们自己写的那个文件。凡在上面列表所包括位置内的 .py 文件都可以作为模块引入。不妨举个例子。把前面自己编写的 pm.py 文件修改为 pmlib.py，然后把它复制到`'/usr/lib/Python2.7/dist-packages` 中。（这是以 ubuntu 为例说明，如果是其它操作系统，读者用类似方法也能找到。）
 
-```
+```py
 $ sudo cp pm.py /usr/lib/python2.7/dist-packages/pmlib.py
 [sudo] password for qw: 
 
@@ -169,7 +169,7 @@ $ ls /usr/lib/python2.7/dist-packages/pm*
 
 文件放到了指定位置。看下面的：
 
-```
+```py
 >>> import pmlib
 >>> pmlib.lang
 <function lang at 0xb744372c>
@@ -189,7 +189,7 @@ $ ls /usr/lib/python2.7/dist-packages/pm*
 
 我以 ubuntu 为例，建立一个 Python 的目录，然后将我自己写的 .py 文件放到这里，并设置环境变量。
 
-```
+```py
 :~$ mkdir Python
 :~$ cd python
 :~/Python$ cp ~/Documents/VBS/StarterLearningPython/2code/pm.py mypm.py
@@ -199,7 +199,7 @@ mypm.py
 
 然后将这个目录 `~/Python`，也就是 `/home/qw/Python` 设置环境变量。
 
-```
+```py
 vim /etc/profile 
 ```
 
@@ -207,7 +207,7 @@ vim /etc/profile
 
 注意，我是在 `~/Python` 目录下输入 `Python`，进入到交互模式：
 
-```
+```py
 :~$ cd Python
 :~/python$ Python
 
@@ -244,13 +244,13 @@ vim /etc/profile
 
 最基本的、也是最常用的，还是可读性非常好的：
 
-```
+```py
 import modulename 
 ```
 
 例如：
 
-```
+```py
 >>> import pprint
 >>> a = {"lang":"Python", "book":"www.itdiffer.com", "teacher":"qiwsir", "goal":"from beginner to master"}
 >>> pprint.pprint(a)
@@ -268,13 +268,13 @@ import modulename
 
 还可以：
 
-```
+```py
 >>> from pprint import pprint 
 ```
 
 意思是从 `pprint` 模块中之将 `pprint()` 引入，然后就可以这样来应用它：
 
-```
+```py
 >>> pprint(a)
 {'book': 'www.itdiffer.com',
  'goal': 'from beginner to master',
@@ -284,7 +284,7 @@ import modulename
 
 再懒惰一些，可以：
 
-```
+```py
 >>> from pprint import * 
 ```
 
@@ -294,7 +294,7 @@ import modulename
 
 有时候引入的模块或者方法名称有点长，可以给它重命名。如：
 
-```
+```py
 >>> import pprint as pr
 >>> pr.pprint(a)
 {'book': 'www.itdiffer.com',
@@ -305,7 +305,7 @@ import modulename
 
 当然，还可以这样：
 
-```
+```py
 >>> from pprint import pprint as pt
 >>> pt(a)
 {'book': 'www.itdiffer.com',
@@ -320,7 +320,7 @@ import modulename
 
 继续以 pprint 为例，深入研究：
 
-```
+```py
 >>> import pprint
 >>> dir(pprint)
 ['PrettyPrinter', '_StringIO', '__all__', '__builtins__', '__doc__', '__file__', '__name__', '__package__', '_commajoin', '_id', '_len', '_perfcheck', '_recursion', '_safe_repr', '_sorted', '_sys', '_type', 'isreadable', 'isrecursive', 'pformat', 'pprint', 'saferepr', 'warnings'] 
@@ -328,14 +328,14 @@ import modulename
 
 对 dir() 并不陌生。从结果中可以看到 pprint 的属性和方法。其中有不少是双划线、电话线开头的。为了不影响我们的视觉，先把它们去掉。
 
-```
+```py
 >>> [ m for m in dir(pprint) if not m.startswith('_') ]
 ['PrettyPrinter', 'isreadable', 'isrecursive', 'pformat', 'pprint', 'saferepr', 'warnings'] 
 ```
 
 对这几个，为了能够搞清楚它们的含义，可以使用 `help()`，比如：
 
-```
+```py
 >>> help(isreadable)
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
@@ -344,13 +344,13 @@ NameError: name 'isreadable' is not defined
 
 这样做是错误的。知道错在何处吗？
 
-```
+```py
 >>> help(pprint.isreadable) 
 ```
 
 别忘记了，我前面是用 `import pprint` 方式引入模块的。
 
-```
+```py
 Help on function isreadable in module pprint:
 
 isreadable(object)
@@ -363,7 +363,7 @@ isreadable(object)
 
 在回头看看 `dir(pprint)` 的结果，关注一个：
 
-```
+```py
 >>> pprint.__all__
 ['pprint', 'pformat', 'isreadable', 'isrecursive', 'saferepr', 'PrettyPrinter'] 
 ```
@@ -376,7 +376,7 @@ isreadable(object)
 
 不知道读者是否能够记住看过的上述内容？反正我记不住。所以，我非常喜欢使用 dir() 和 help()，这也是本教程从开始到现在，乃至到以后，总在提倡的方式。
 
-```
+```py
 >>> print pprint.__doc__
 Support to pretty-print lists, tuples, & dictionaries recursively.
 
@@ -409,7 +409,7 @@ saferepr()
 
 还是使用 pm.py 那个文件，增加如下内容：
 
-```
+```py
 #!/usr/bin/env Python
 # coding=utf-8
 
@@ -423,7 +423,7 @@ def lang():
 
 在这个文件的开始部分，所有类和方法、以及 import 之前，写一个用三个引号包括的字符串。那就是文档。
 
-```
+```py
 >>> import sys
 >>> sys.path.append("~/Documents/VBS/StarterLearningPython/2code")
 >>> import pm
@@ -438,7 +438,7 @@ Python 的模块，不仅可以看帮助信息和文档，还能够查看源码�
 
 还是回头到 `dir(pprint)` 中找一找，有一个`__file__`，它就告诉我们这个模块的位置：
 
-```
+```py
 >>> print pprint.__file__
 /usr/lib/python2.7/pprint.pyc 
 ```
@@ -447,14 +447,14 @@ Python 的模块，不仅可以看帮助信息和文档，还能够查看源码�
 
 虽然是 .pyc 文件，但是不用担心，根据现实的目录，找到相应的 .py 文件即可。
 
-```
+```py
 $ ls /usr/lib/python2.7/pp*
 /usr/lib/python2.7/pprint.py  /usr/lib/python2.7/pprint.pyc 
 ```
 
 果然有一个 pprint.py。打开它，就看到源码了。
 
-```
+```py
 $ cat /usr/lib/python2.7/pprint.py
 
 ...
@@ -498,14 +498,14 @@ Python 标准库内容非常多，有人专门为此写过一本书。在本教�
 
 这是一个跟 Python 解释器关系密切的标准库，上一节中我们使用过 `sys.path.append()`。
 
-```
+```py
 >>> import sys
 >>> print sys.__doc__ 
 ```
 
 显示了 sys 的基本文档，看第一句话，概括了本模块的基本特点。
 
-```
+```py
 This module provides access to some objects used or maintained by the
 interpreter and to functions that interact strongly with the interpreter. 
 ```
@@ -518,14 +518,14 @@ sys.argv 是变量，专门用来向 Python 解释器传递参数，所以名曰
 
 先解释什么是命令行参数。
 
-```
+```py
 $ Python --version
 Python 2.7.6 
 ```
 
 这里的`--version` 就是命令行参数。如果你使用 `Python --help` 可以看到更多：
 
-```
+```py
 $ Python --help
 usage: Python [option] ... [-c cmd | -m mod | file | -] [arg] ...
 Options and arguments (and corresponding environment variables):
@@ -548,7 +548,7 @@ Options and arguments (and corresponding environment variables):
 
 `sys.arg` 在 Python 中的作用就是这样。通过它可以向解释器传递命令行参数。比如：
 
-```
+```py
 #!/usr/bin/env Python
 # coding=utf-8
 
@@ -561,7 +561,7 @@ print "The argument is: ", str(sys.argv)
 
 将上述代码保存，文件名是 22101.py（这名称取的，多么数字化）。然后如此做：
 
-```
+```py
 $ python 22101.py
 The file name:  22101.py
 The number of argument 1
@@ -575,7 +575,7 @@ The argument is:  ['22101.py']
 
 如果我们这样来试试，看看结果：
 
-```
+```py
 $ python 22101.py beginner master www.itdiffer.com
 The file name:  22101.py
 The number of argument 4
@@ -588,7 +588,7 @@ The argument is:  ['22101.py', 'beginner', 'master', 'www.itdiffer.com']
 
 这是一个方法，意思是退出当前的程序。
 
-```
+```py
 Help on built-in function exit in module sys:
 
 exit(...)
@@ -603,7 +603,7 @@ exit(...)
 
 从文档信息中可知，如果用 `sys.exit()` 退出程序，会返回 SystemExit 异常。这里先告知读者，还有另外一退出方式，是 `os._exit()`，这两个有所区别。后者会在后面介绍。
 
-```
+```py
 #!/usr/bin/env Python
 # coding=utf-8
 
@@ -618,7 +618,7 @@ for i in range(10):
 
 这段程序的运行结果就是：
 
-```
+```py
 $ python 22102.py
 0
 1
@@ -643,7 +643,7 @@ $ python 22102.py
 
 还记得 `print()` 吧，在这个学习过程中，用的很多。它的本质就是 `sys.stdout.write(object + '\n')`。
 
-```
+```py
 >>> for i in range(3):
 ...     print i
 ... 
@@ -660,7 +660,7 @@ $ python 22102.py
 
 造成上面输出结果在表象上如此差异，原因就是那个`'\n'`的有无。
 
-```
+```py
 >>> for i in range(3):
 ...     sys.stdout.write(str(i) + '\n')
 ... 
@@ -671,7 +671,7 @@ $ python 22102.py
 
 从这看出，两者是完全等效的。如果仅仅止于此，意义不大。关键是通过 sys.stdout 能够做到将输出内容从“控制台”转到“文件”，称之为重定向。这样也许控制台看不到（很多时候这个不重要），但是文件中已经有了输出内容。比如：
 
-```
+```py
 >>> f = open("stdout.md", "w")
 >>> sys.stdout = f
 >>> print "Learn Python: From Beginner to Master"
@@ -682,7 +682,7 @@ $ python 22102.py
 
 打开文件看看便知：
 
-```
+```py
 $ cat stdout.md
 Learn Python: From Beginner to Master 
 ```
@@ -695,7 +695,7 @@ Learn Python: From Beginner to Master
 
 在《字典(2)》中曾经对 copy 做了讲授，这里再次提出，即是复习，又是凑数，以显得我考虑到了这个常用模块，还有：
 
-```
+```py
 >>> import copy
 >>> copy.__all__
 ['Error', 'copy', 'deepcopy'] 
@@ -705,7 +705,7 @@ Learn Python: From Beginner to Master
 
 为了具体说明，看这样一个例子：
 
-```
+```py
 #!/usr/bin/env Python
 # coding=utf-8
 
@@ -734,7 +734,7 @@ print "original: %r\n slice: %r\n list(): %r\n copy(): %r\n deepcopy(): %r\n" % 
 
 保存并运行：
 
-```
+```py
 $ python 22103.py 
 original: ['foo', 17, 'abc']
  slice: ['foo', 17]
@@ -757,7 +757,7 @@ original: ['foo', 17, 'abc']
 
 os 模块提供了访问操作系统服务的功能，它所包含的内容比较多。
 
-```
+```py
 >>> import os
 >>> dir(os)
 ['EX_CANTCREAT', 'EX_CONFIG', 'EX_DATAERR', 'EX_IOERR', 'EX_NOHOST', 'EX_NOINPUT', 'EX_NOPERM', 'EX_NOUSER','EX_OK', 'EX_OSERR', 'EX_OSFILE', 'EX_PROTOCOL', 'EX_SOFTWARE', 'EX_TEMPFAIL', 'EX_UNAVAILABLE', 'EX_USAGE', 'F_OK', 'NGROUPS_MAX', 'O_APPEND', 'O_ASYNC', 'O_CREAT', 'O_DIRECT', 'O_DIRECTORY', 'O_DSYNC', 'O_EXCL', 'O_LARGEFILE', 'O_NDELAY', 'O_NOATIME', 'O_NOCTTY', 'O_NOFOLLOW', 'O_NONBLOCK', 'O_RDONLY', 'O_RDWR', 'O_RSYNC', 'O_SYNC', 'O_TRUNC', 'O_WRONLY', 'P_NOWAIT', 'P_NOWAITO', 'P_WAIT', 'R_OK', 'SEEK_CUR', 'SEEK_END', 'SEEK_SET', 'ST_APPEND', 'ST_MANDLOCK', 'ST_NOATIME', 'ST_NODEV', 'ST_NODIRATIME', 'ST_NOEXEC', 'ST_NOSUID', 'ST_RDONLY', 'ST_RELATIME', 'ST_SYNCHRONOUS', 'ST_WRITE', 'TMP_MAX', 'UserDict', 'WCONTINUED', 'WCOREDUMP', 'WEXITSTATUS', 'WIFCONTINUED', 'WIFEXITED', 'WIFSIGNALED', 'WIFSTOPPED', 'WNOHANG', 'WSTOPSIG', 'WTERMSIG', 'WUNTRACED', 'W_OK', 'X_OK', '_Environ', '__all__', '__builtins__', '__doc__', '__file__', '__name__', '__package__', '_copy_reg', '_execvpe', '_exists', '_exit', '_get_exports_list', '_make_stat_result', '_make_statvfs_result', '_pickle_stat_result', '_pickle_statvfs_result', '_spawnvef', 'abort', 'access', 'altsep', 'chdir', 'chmod', 'chown', 'chroot', 'close', 'closerange', 'confstr', 'confstr_names', 'ctermid', 'curdir', 'defpath', 'devnull', 'dup', 'dup2', 'environ', 'errno', 'error', 'execl', 'execle', 'execlp', 'execlpe', 'execv', 'execve', 'execvp', 'execvpe', 'extsep', 'fchdir', 'fchmod', 'fchown', 'fdatasync', 'fdopen', 'fork', 'forkpty', 'fpathconf', 'fstat', 'fstatvfs', 'fsync', 'ftruncate', 'getcwd', 'getcwdu', 'getegid', 'getenv', 'geteuid', 'getgid', 'getgroups', 'getloadavg', 'getlogin', 'getpgid', 'getpgrp', 'getpid', 'getppid', 'getresgid', 'getresuid', 'getsid', 'getuid', 'initgroups', 'isatty', 'kill', 'killpg', 'lchown', 'linesep', 'link', 'listdir', 'lseek', 'lstat', 'major', 'makedev', 'makedirs', 'minor', 'mkdir', 'mkfifo', 'mknod', 'name', 'nice', 'open', 'openpty', 'pardir', 'path', 'pathconf', 'pathconf_names', 'pathsep', 'pipe', 'popen', 'popen2', 'popen3', 'popen4', 'putenv', 'read', 'readlink', 'remove', 'removedirs', 'rename', 'renames', 'rmdir', 'sep', 'setegid', 'seteuid', 'setgid', 'setgroups', 'setpgid', 'setpgrp', 'setregid', 'setresgid', 'setresuid', 'setreuid', 'setsid', 'setuid', 'spawnl', 'spawnle', 'spawnlp', 'spawnlpe', 'spawnv', 'spawnve', 'spawnvp', 'spawnvpe', 'stat', 'stat_float_times', 'stat_result', 'statvfs', 'statvfs_result', 'strerror', 'symlink', 'sys', 'sysconf', 'sysconf_names', 'system', 'tcgetpgrp', 'tcsetpgrp', 'tempnam', 'times', 'tmpfile', 'tmpnam', 'ttyname', 'umask', 'uname', 'unlink', 'unsetenv', 'urandom', 'utime', 'wait', 'wait3', 'wait4', 'waitpid', 'walk', 'write'] 
@@ -771,7 +771,7 @@ os 模块提供了访问操作系统服务的功能，它所包含的内容比�
 
 首先建立一个文件，文件名为 22201.py，文件内容是：
 
-```
+```py
 #!/usr/bin/env python
 # coding=utf-8
 
@@ -780,21 +780,21 @@ print "This is a tmp file."
 
 然后将这个文件名称修改为其它的名称。
 
-```
+```py
 >>> import os
 >>> os.rename("22201.py", "newtemp.py") 
 ```
 
 注意，我是先进入到了文件 22201.py 的目录，然后进入到 Python 交互模式，所以，可以直接写文件名，如果不是这样，需要将文件名的路径写上。`os.rename("22201.py", "newtemp.py")`中，第一个文件是原文件名称，第二个是打算修改成为的文件名。
 
-```
+```py
 $ ls new*
 newtemp.py 
 ```
 
 查看，能够看到这个文件。并且文件内容可以用 `cat newtemp.py` 看看（这是在 ubuntu 系统，如果是 windows 系统，可以用其相应的编辑器打开文件看内容）。
 
-```
+```py
 Help on built-in function rename in module posix:
 
 rename(...)
@@ -807,7 +807,7 @@ rename(...)
 
 另外一个 os.remove()，首先看帮助信息，然后再实验。
 
-```
+```py
 Help on built-in function remove in module posix:
 
 remove(...)
@@ -818,35 +818,35 @@ remove(...)
 
 比较简单。那就测试一下。为了测试，先建立一些文件吧。
 
-```
+```py
 $ pwd
 /home/qw/Documents/VBS/StarterLearningPython/2code/rd 
 ```
 
 这是我建立的临时目录，里面有几个文件：
 
-```
+```py
 $ ls
 a.py  b.py  c.py 
 ```
 
 下面删除 a.py 文件
 
-```
+```py
 >>> import os
 >>> os.remove("/home/qw/Documents/VBS/StarterLearningPython/2code/rd/a.py") 
 ```
 
 看看删了吗？
 
-```
+```py
 $ ls
 b.py  c.py 
 ```
 
 果然管用呀。再来一个狠的：
 
-```
+```py
 >>> os.remove("/home/qw/Documents/VBS/StarterLearningPython/2code/rd")
 Traceback (most recent call last): 
   File "<stdin>", line 1, in <module>
@@ -861,7 +861,7 @@ OSError: [Errno 21] Is a directory: '/home/qw/Documents/VBS/StarterLearningPytho
 
 **os.listdir**：显示目录中的文件
 
-```
+```py
 Help on built-in function listdir in module posix:
 
 listdir(...)
@@ -877,7 +877,7 @@ entries '.' and '..' even if they are present in the directory.
 
 看完帮助信息，读者一定觉得这是一个非常简单的方法，不过，特别注意它返回的值是列表，还有就是如果文件夹中有那样的特殊格式命名的文件，不显示。在 linux 中，用 ls 命令也看不到这些隐藏的东东。
 
-```
+```py
 >>> os.listdir("/home/qw/Documents/VBS/StarterLearningPython/2code/rd")
 ['b.py', 'c.py']
 >>> files = os.listdir("/home/qw/Documents/VBS/StarterLearningPython/2code/rd")
@@ -892,7 +892,7 @@ c.py
 
 这两个函数怎么用？惟有通过 `help()` 看文档啦。请读者自行看看。我就不贴出来了，仅演示一个例子：
 
-```
+```py
 >>> cwd = os.getcwd()     #当前目录
 >>> print cwd
 /home/qw/Documents/VBS/StarterLearningPython/2code/rd
@@ -909,7 +909,7 @@ c.py
 
 `os.pardir` 的功能是获得父级目录，相当于`..`
 
-```
+```py
 >>> os.pardir
 '..' 
 ```
@@ -918,7 +918,7 @@ c.py
 
 废话少说，路子还是前面那样，就省略看帮助了，读者可以自己看。直接上例子：
 
-```
+```py
 >>> dir = os.getcwd()
 >>> dir
 '/home/qw/Documents/VBS/StarterLearningPython/2code/rd'
@@ -932,14 +932,14 @@ OSError: [Errno 39] Directory not empty: '/home/qw/Documents/VBS/StarterLearning
 
 什么时候都不能得意忘形，一定要谦卑。那就是从看文档开始一点一点地理解。不能像上面那样，自以为是、贸然行事。看报错信息，要删除某个目录，那个目录必须是空的。
 
-```
+```py
 >>> os.getcwd()                   
 '/home/qw/Documents/VBS/StarterLearningPython/2code' 
 ```
 
 这是当前目录，在这个目录下再建一个新的子目录：
 
-```
+```py
 >>> os.makedirs("newrd")
 >>> os.chdir("newrd")
 >>> os.getcwd()
@@ -948,7 +948,7 @@ OSError: [Errno 39] Directory not empty: '/home/qw/Documents/VBS/StarterLearning
 
 建立了一个。下面把这个删除了。这个是空的。
 
-```
+```py
 >>> os.listdir(os.getcwd())
 []
 >>> newdir = os.getcwd()
@@ -959,7 +959,7 @@ OSError: [Errno 39] Directory not empty: '/home/qw/Documents/VBS/StarterLearning
 
 按照上面的操作，在看当前工作目录：
 
-```
+```py
 >>> os.getcwd()
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
@@ -968,7 +968,7 @@ OSError: [Errno 2] No such file or directory
 
 目录被删了，当然没有啦。只能回到父级。
 
-```
+```py
 >>> os.chdir(os.pardir)
 >>> os.getcwd()
 '/home/qw/Documents/VBS/StarterLearningPython/2code' 
@@ -978,7 +978,7 @@ OSError: [Errno 2] No such file or directory
 
 补充一点，前面说的如果目录不空，就不能用 `os.removedirs()` 删除。但是，可以用模块 shutil 的 retree 方法。
 
-```
+```py
 >>> os.getcwd()
 '/home/qw/Documents/VBS/StarterLearningPython/2code'
 >>> os.chdir("rd")
@@ -997,7 +997,7 @@ OSError: [Errno 2] No such file or directory
 
 请读者注意的是，对于 os.makedirs() 还有这样的特点：
 
-```
+```py
 >>> os.getcwd()
 '/home/qw/Documents/VBS/StarterLearningPython/2code'
 >>> d0 = os.getcwd()
@@ -1018,7 +1018,7 @@ OSError: [Errno 2] No such file or directory
 
 不管是在什么操作系统，都能看到文件或者目录的有关属性，那么，在 os 模块中，也有这样的一个方法：`os.stat()`
 
-```
+```py
 >>> p = os.getcwd()    #当前目录
 >>> p
 '/home/qw/Documents/VBS/StarterLearningPython'
@@ -1036,21 +1036,21 @@ posix.stat_result(st_mode=33279, st_ino=67L, st_dev=26L, st_nlink=1, st_uid=0, s
 
 从结果中看，可能看不出什么来，先不用着急。这样的结果是对 computer 姑娘友好的，对读者可能不友好。如果用下面的方法，就友好多了：
 
-```
+```py
 >>> fi = os.stat(pf)
 >>> mt = fi[8] 
 ```
 
 fi[8] 就是 st_mtime 的值，它代表最后 modified（修改）文件的时间。看结果：
 
-```
+```py
 >>> mt
 1429580969 
 ```
 
 还是不友好。下面就用 time 模块来友好一下：
 
-```
+```py
 >>> import time
 >>> time.ctime(mt)
 'Tue Apr 21 09:49:29 2015' 
@@ -1066,7 +1066,7 @@ fi[8] 就是 st_mtime 的值，它代表最后 modified（修改）文件的时�
 
 读者如果使用某种 linux 系统，或者曾经用过 dos（恐怕很少），或者再 windows 里面用过 command，对敲命令都不陌生。通过命令来做事情的确是很酷的。比如，我是在 ubuntu 中，要查看文件和目录，只需要 `ls` 就足够了。我并不是否认图形界面，而是在某些情况下，还是离不开命令的，比如用程序来完成查看文件和目录的操作。所以，os 模块中提供了这样的方法，许可程序员在 Python 程序中使用操作系统的命令。（以下是在 ubuntu 系统，如果读者是 windows，可以将命令换成 DOS 命令。）
 
-```
+```py
 >>> p
 '/home/qw/Documents/VBS/StarterLearningPython'
 >>> command = "ls " + p
@@ -1076,7 +1076,7 @@ fi[8] 就是 st_mtime 的值，它代表最后 modified（修改）文件的时�
 
 为了输入方便，我采用了前面例子中已经有的那个目录，并且，用拼接字符串的方式，将要输入的命令（查看某文件夹下的内容）组装成一个字符串，赋值给变量 command，然后：
 
-```
+```py
 >>> os.system(command)
 01.md     101.md  105.md  109.md  113.md  117.md  121.md  125.md  129.md   201.md  205.md  209.md  213.md  217.md  221.md   index.md
 02.md     102.md  106.md  110.md  114.md  118.md  122.md  126.md  130.md   202.md  206.md  210.md  214.md  218.md  222.md   n001.md
@@ -1093,7 +1093,7 @@ fi[8] 就是 st_mtime 的值，它代表最后 modified（修改）文件的时�
 
 `os.system()` 是一个用途不少的函数。曾有一个朋友网上询问，用它来启动浏览器。不过，这个操作的确要非常仔细。为什么呢？演示一下就明白了。
 
-```
+```py
 >>> os.system("/usr/bin/firefox")
 
 (process:4002): GLib-CRITICAL **: g_slice_set_config: assertion 'sys_page_size == 0' failed
@@ -1106,7 +1106,7 @@ fi[8] 就是 st_mtime 的值，它代表最后 modified（修改）文件的时�
 
 凡事感觉麻烦的东西，必然有另外简单的来替代。于是又有了一个 webbrowser 模块。可以专门用来打开指定网页。
 
-```
+```py
 >>> import webbrowser
 >>> webbrowser.open("http://www.itdiffer.com")
 True 
@@ -1191,7 +1191,7 @@ True
 
 heapq 中的 heap 是堆，q 就是 queue（队列）的缩写。此模块包括：
 
-```
+```py
 >>> import heapq
 >>> heapq.__all__
 ['heappush', 'heappop', 'heapify', 'heapreplace', 'merge', 'nlargest', 'nsmallest', 'heappushpop'] 
@@ -1201,7 +1201,7 @@ heapq 中的 heap 是堆，q 就是 queue（队列）的缩写。此模块包括
 
 **heappush(heap, x)**：将 x 压入对 heap（这是一个列表）
 
-```
+```py
 Help on built-in function heappush in module _heapq:
 
 heappush(...)
@@ -1229,7 +1229,7 @@ heappush(...)
 
 承接上面的操作：
 
-```
+```py
 >>> heapq.heappop(heap)
 0
 >>> heap
@@ -1242,7 +1242,7 @@ heappush(...)
 
 如果已经建立了一个列表，利用 `heapify()` 可以将列表直接转化为堆。
 
-```
+```py
 >>> hl = [2, 4, 6, 8, 9, 0, 1, 5, 3]
 >>> heapq.heapify(hl)
 >>> hl
@@ -1251,7 +1251,7 @@ heappush(...)
 
 经过这样的操作，列表 hl 就变成了堆（注意观察堆的顺序，和列表不同），可以对 hl（堆）使用 heappop() 或者 heappush() 等函数了。否则，不可。
 
-```
+```py
 >>> heapq.heappop(hl)
 0
 >>> heapq.heappop(hl)
@@ -1265,7 +1265,7 @@ heappush(...)
 
 不要认为堆里面只能放数字，之所以用数字，是因为对它的逻辑结构比较好理解。
 
-```
+```py
 >>> heapq.heappush(hl, "q")
 >>> hl
 [2, 3, 5, 4, 9, 6, 8, 9, 'q']
@@ -1278,7 +1278,7 @@ heappush(...)
 
 是 heappop() 和 heappush() 的联合，也就是删除一个，同时加入一个。例如：
 
-```
+```py
 >>> heap
 [2, 4, 3, 9, 8]
 >>> heapq.heapreplace(heap, 3.14)
@@ -1301,7 +1301,7 @@ heappush(...)
 
 这个嘛，应该有办法。不过得想想了。读者在向下阅读的时候，能不能想出一个方法来？
 
-```
+```py
 >>> lst = [1, 2, 3]
 >>> lst.append(4)
 >>> lst
@@ -1314,26 +1314,26 @@ heappush(...)
 
 你或许还有别的方法。但是，Python 为我们提供了一个更简单的模块，来解决这个问题。
 
-```
+```py
 >>> from collections import deque 
 ```
 
 这次用这种引用方法，因为 collections 模块中东西很多，我们只用到 deque。
 
-```
+```py
 >>> lst
 [1, 2, 3, 4] 
 ```
 
 还是这个列表。试试分别从右边和左边增加数
 
-```
+```py
 >>> qlst = deque(lst) 
 ```
 
 这是必须的，将列表转化为 deque。deque 在汉语中有一个名字，叫做“双端队列”（double-ended queue）。
 
-```
+```py
 >>> qlst.append(5)        #从右边增加
 >>> qlst
 deque([1, 2, 3, 4, 5])
@@ -1344,7 +1344,7 @@ deque([7, 1, 2, 3, 4, 5])
 
 这样操作多么容易呀。继续看删除：
 
-```
+```py
 >>> qlst.pop()
 5
 >>> qlst
@@ -1357,7 +1357,7 @@ deque([1, 2, 3, 4])
 
 删除也分左右。下面这个，请读者仔细观察，更有点意思。
 
-```
+```py
 >>> qlst.rotate(3)
 >>> qlst
 deque([2, 3, 4, 1]) 
@@ -1373,7 +1373,7 @@ rotate() 的功能是将[1, 2, 3, 4]的首位连起来，你就想象一个圆�
 
 请原谅我的后现代注意超级抽象派作图方式。从图中可以看出，数列变成了[2, 3, 4, 1]。rotate() 作用就好像在拨转这个圆环。
 
-```
+```py
 >>> qlst
 deque([3, 4, 1, 2])
 >>> qlst.rotate(-1)
@@ -1399,7 +1399,7 @@ deque([4, 1, 2, 3])
 
 ### calendar
 
-```
+```py
 >>> import calendar
 >>> cal = calendar.month(2015, 1)
 >>> print cal
@@ -1418,7 +1418,7 @@ Mo Tu We Th Fr Sa Su
 
 返回 year 年年历，3 个月一行，间隔距离为 c。 每日宽度间隔为 w 字符。每行长度为 21* W+18+2* C。l 是每星期行数。
 
-```
+```py
 >>> year = calendar.calendar(2015)
 >>> print year
                                   2015
@@ -1463,7 +1463,7 @@ Mo Tu We Th Fr Sa Su      Mo Tu We Th Fr Sa Su      Mo Tu We Th Fr Sa Su
 
 判断是否为闰年，是则返回 true，否则 false.
 
-```
+```py
 >>> calendar.isleap(2000)
 True
 >>> calendar.isleap(2015)
@@ -1476,7 +1476,7 @@ False
 
 返回在 Y1，Y2 两年之间的闰年总数，包括 y1，但不包括 y2，这有点如同序列的切片一样。
 
-```
+```py
 >>> calendar.leapdays(2000,2004)
 1
 >>> calendar.leapdays(2000,2003)
@@ -1487,7 +1487,7 @@ False
 
 返回 year 年 month 月日历，两行标题，一周一行。每日宽度间隔为 w 字符。每行的长度为 7* w+6。l 是每星期的行数。
 
-```
+```py
 >>> print calendar.month(2015, 5)
       May 2015
 Mo Tu We Th Fr Sa Su
@@ -1502,7 +1502,7 @@ Mo Tu We Th Fr Sa Su
 
 返回一个列表，列表内的元素还是列表，这叫做嵌套列表。每个子列表代表一个星期，都是从星期一到星期日，如果没有本月的日期，则为 0。
 
-```
+```py
 >>> calendar.monthcalendar(2015, 5)
 [[0, 0, 0, 0, 1, 2, 3], [4, 5, 6, 7, 8, 9, 10], [11, 12, 13, 14, 15, 16, 17], [18, 19, 20, 21, 22, 23, 24], [25, 26, 27, 28, 29, 30, 31]] 
 ```
@@ -1513,7 +1513,7 @@ Mo Tu We Th Fr Sa Su
 
 返回一个元组，里面有两个整数。第一个整数代表着该月的第一天从星期几是（从 0 开始，依次为星期一、星期二，直到 6 代表星期日）。第二个整数是该月一共多少天。
 
-```
+```py
 >>> calendar.monthrange(2015, 5)
 (4, 31) 
 ```
@@ -1524,7 +1524,7 @@ Mo Tu We Th Fr Sa Su
 
 输入年月日，知道该日是星期几（注意，返回值依然按照从 0 到 6 依次对应星期一到星期六）。
 
-```
+```py
 >>> calendar.weekday(2015, 5, 4)    #星期一
 0
 >>> calendar.weekday(2015, 6, 4)    #星期四
@@ -1537,7 +1537,7 @@ Mo Tu We Th Fr Sa Su
 
 time 模块是常用的。
 
-```
+```py
 >>> import time
 >>> time.time()
 1430745298.391026 
@@ -1555,7 +1555,7 @@ time 模块是常用的。
 
 **localtime()**
 
-```
+```py
 >>> time.localtime()
 time.struct_time(tm_year=2015, tm_mon=5, tm_mday=4, tm_hour=21, tm_min=33, tm_sec=39, tm_wday=0, tm_yday=124, tm_isdst=0) 
 ```
@@ -1574,7 +1574,7 @@ time.struct_time(tm_year=2015, tm_mon=5, tm_mday=4, tm_hour=21, tm_min=33, tm_se
 | 7 | tm_yday | 一年中的第几天 |
 | 8 | tm_isdst | 夏令时 |
 
-```
+```py
 >>> t = time.localtime()
 >>> t[1]
 5 
@@ -1584,7 +1584,7 @@ time.struct_time(tm_year=2015, tm_mon=5, tm_mday=4, tm_hour=21, tm_min=33, tm_se
 
 其实，`time.localtime()` 不是没有参数，它在默认情况下，以 `time.time()` 的时间戳为参数。言外之意就是说可以自己输入一个时间戳，返回那个时间戳所对应的时间（按照公元和时分秒计时）。例如：
 
-```
+```py
 >>> time.localtime(100000)
 time.struct_time(tm_year=1970, tm_mon=1, tm_mday=2, tm_hour=11, tm_min=46, tm_sec=40, tm_wday=4, tm_yday=2, tm_isdst=0) 
 ```
@@ -1593,7 +1593,7 @@ time.struct_time(tm_year=1970, tm_mon=1, tm_mday=2, tm_hour=11, tm_min=46, tm_se
 
 localtime() 得到的是本地时间，如果要国际化，就最好使用格林威治时间。可以这样：
 
-```
+```py
 >>> import time
 >>> time.gmtime()
 time.struct_time(tm_year=2015, tm_mon=5, tm_mday=4, tm_hour=23, tm_min=46, tm_sec=34, tm_wday=0, tm_yday=124, tm_isdst=0) 
@@ -1605,14 +1605,14 @@ time.struct_time(tm_year=2015, tm_mon=5, tm_mday=4, tm_hour=23, tm_min=46, tm_se
 
 **asctime()**
 
-```
+```py
 >>> time.asctime()
 'Mon May  4 21:46:13 2015' 
 ```
 
 `time.asctime()` 的参数为空时，默认是以 `time.localtime()` 的值为参数，所以得到的是当前日期时间和星期。当然，也可以自己设置参数：
 
-```
+```py
 >>> h = time.localtime(1000000)
 >>> h
 time.struct_time(tm_year=1970, tm_mon=1, tm_mday=12, tm_hour=21, tm_min=46, tm_sec=40, tm_wday=0, tm_yday=12, tm_isdst=0)
@@ -1624,14 +1624,14 @@ time.struct_time(tm_year=1970, tm_mon=1, tm_mday=12, tm_hour=21, tm_min=46, tm_s
 
 **ctime()**
 
-```
+```py
 >>> time.ctime()
 'Mon May  4 21:52:22 2015' 
 ```
 
 在没有参数的时候，事实上是以 `time.time()` 的时间戳为参数。也可以自定义一个时间戳。
 
-```
+```py
 >>> time.ctime(1000000)
 'Mon Jan 12 21:46:40 1970' 
 ```
@@ -1644,7 +1644,7 @@ time.struct_time(tm_year=1970, tm_mon=1, tm_mday=12, tm_hour=21, tm_min=46, tm_s
 
 mktime() 也是以时间元组为参数，但是它返回的不是可读性更好的那种样式，而是：
 
-```
+```py
 >>> lt = time.localtime()
 >>> lt
 time.struct_time(tm_year=2015, tm_mon=5, tm_mday=5, tm_hour=7, tm_min=55, tm_sec=29, tm_wday=1, tm_yday=125, tm_isdst=0)
@@ -1692,7 +1692,7 @@ time.struct_time(tm_year=2015, tm_mon=5, tm_mday=5, tm_hour=7, tm_min=55, tm_sec
 
 简要列举如下：
 
-```
+```py
 >>> time.strftime("%y,%m,%d")
 '15,05,05'
 >>> time.strftime("%y/%m/%d")
@@ -1710,7 +1710,7 @@ time.struct_time(tm_year=2015, tm_mon=5, tm_mday=5, tm_hour=7, tm_min=55, tm_sec
 
 strptime() 的作用是将字符串转化为时间元组。请注意的是，其参数要指定两个，一个是时间字符串，另外一个是时间字符串所对应的格式，格式符号用上表中的。例如：
 
-```
+```py
 >>> today = time.strftime("%y/%m/%d")
 >>> today
 '15/05/05'
@@ -1734,7 +1734,7 @@ datetime 模块中有几个类：
 
 通过实例了解常用的属性：
 
-```
+```py
 >>> import datetime
 >>> today = datetime.date.today()
 >>> today
@@ -1743,7 +1743,7 @@ datetime.date(2015, 5, 5)
 
 这里其实生成了一个日期对象，然后操作这个对象的各种属性。用 print 语句，可以是视觉更佳：
 
-```
+```py
 >>> print today
 2015-05-05
 >>> print today.ctime()
@@ -1756,7 +1756,7 @@ time.struct_time(tm_year=2015, tm_mon=5, tm_mday=5, tm_hour=0, tm_min=0, tm_sec=
 
 特别注意，如果你妄图用 `datetime.date.year()`，是会报错的，因为 year 不是一个方法，必须这样行：
 
-```
+```py
 >>> print today.year
 2015
 >>> print today.month
@@ -1767,7 +1767,7 @@ time.struct_time(tm_year=2015, tm_mon=5, tm_mday=5, tm_hour=0, tm_min=0, tm_sec=
 
 进一步看看时间戳与格式化时间格式的转换
 
-```
+```py
 >>> to = today.toordinal()
 >>> to
 735723
@@ -1784,7 +1784,7 @@ time.struct_time(tm_year=2015, tm_mon=5, tm_mday=5, tm_hour=0, tm_min=0, tm_sec=
 
 还可以更灵活一些，修改日期。
 
-```
+```py
 >>> d1 = datetime.date(2015,5,1)
 >>> print d1
 2015-05-01
@@ -1797,7 +1797,7 @@ time.struct_time(tm_year=2015, tm_mon=5, tm_mday=5, tm_hour=0, tm_min=0, tm_sec=
 
 也要生成 time 对象
 
-```
+```py
 >>> t = datetime.time(1,2,3)
 >>> print t
 01:02:03 
@@ -1805,7 +1805,7 @@ time.struct_time(tm_year=2015, tm_mon=5, tm_mday=5, tm_hour=0, tm_min=0, tm_sec=
 
 它的常用属性：
 
-```
+```py
 >>> print t.hour
 1
 >>> print t.minute
@@ -1822,7 +1822,7 @@ None
 
 主要用来做时间的运算。比如：
 
-```
+```py
 >>> now = datetime.datetime.now()
 >>> print now
 2015-05-05 09:22:43.142520 
@@ -1832,7 +1832,7 @@ None
 
 对 now 增加 5 个小时
 
-```
+```py
 >>> b = now + datetime.timedelta(hours=5)
 >>> print b
 2015-05-05 14:22:43.142520 
@@ -1840,7 +1840,7 @@ None
 
 增加两周
 
-```
+```py
 >>> c = now + datetime.timedelta(weeks=2)
 >>> print c
 2015-05-19 09:22:43.142520 
@@ -1848,7 +1848,7 @@ None
 
 计算时间差：
 
-```
+```py
 >>> d = c - b
 >>> print d
 13 days, 19:00:00 
@@ -1866,14 +1866,14 @@ None
 
 urllib 模块用于读取来自网上（服务器上）的数据，比如不少人用 Python 做爬虫程序，就可以使用这个模块。先看一个简单例子：
 
-```
+```py
 >>> import urllib
 >>> itdiffer =  urllib.urlopen("http://www.itdiffer.com") 
 ```
 
 这样就已经把我的网站 www.itdiffer.comhref="http://www.itdiffer.com)首页的内容拿过来了，得到了一个类似文件的对象。接下来的操作跟操作一个文件一样（如果忘记了文件怎么操作，可以参考：[《文件(1)）
 
-```
+```py
 >>> print itdiffer.read()
 <!DOCTYPE HTML>
 <html>
@@ -1884,7 +1884,7 @@ urllib 模块用于读取来自网上（服务器上）的数据，比如不少�
 
 就这么简单，完成了对一个网页的抓取。当然，如果你真的要做爬虫程序，还不是仅仅如此。这里不介绍爬虫程序如何编写，仅说明 urllib 模块的常用属性和方法。
 
-```
+```py
 >>> dir(urllib)
 ['ContentTooShortError', 'FancyURLopener', 'MAXFTPCACHE', 'URLopener', '__all__', '__builtins__', '__doc__', '__file__', '__name__', '__package__', '__version__', '_asciire', '_ftperrors', '_have_ssl', '_hexdig', '_hextochr', '_hostprog', '_is_unicode', '_localhost', '_noheaders', '_nportprog', '_passwdprog', '_portprog', '_queryprog', '_safe_map', '_safe_quoters', '_tagprog', '_thishost', '_typeprog', '_urlopener', '_userprog', '_valueprog', 'addbase', 'addclosehook', 'addinfo', 'addinfourl', 'always_safe', 'base64', 'basejoin', 'c', 'ftpcache', 'ftperrors', 'ftpwrapper', 'getproxies', 'getproxies_environment', 'i', 'localhost', 'noheaders', 'os', 'pathname2url', 'proxy_bypass', 'proxy_bypass_environment', 'quote', 'quote_plus', 're', 'reporthook', 'socket', 'splitattr', 'splithost', 'splitnport', 'splitpasswd', 'splitport', 'splitquery', 'splittag', 'splittype', 'splituser', 'splitvalue', 'ssl', 'string', 'sys', 'test1', 'thishost', 'time', 'toBytes', 'unquote', 'unquote_plus', 'unwrap', 'url2pathname', 'urlcleanup', 'urlencode', 'urlopen', 'urlretrieve'] 
 ```
@@ -1909,7 +1909,7 @@ urlopen() 主要用于打开 url 文件，然后就获得指定 url 的数据，
 
 当得到了类文件对象之后，就可以对它进行操作。变量 itdiffer 引用了得到的类文件对象，通过它查看：
 
-```
+```py
 >>> dir(itdiffer)
 ['__doc__', '__init__', '__iter__', '__module__', '__repr__', 'close', 'code', 'fileno', 'fp', 'getcode', 'geturl', 'headers', 'info', 'next', 'read', 'readline', 'readlines', 'url'] 
 ```
@@ -1923,7 +1923,7 @@ urlopen() 主要用于打开 url 文件，然后就获得指定 url 的数据，
 
 简单举例：
 
-```
+```py
 >>> itdiffer.info()
 <httplib.HTTPMessage instance at 0xb6eb3f6c>
 >>> itdiffer.getcode()
@@ -1948,7 +1948,7 @@ url 对其中的字符有严格要求，不许可某些特殊字符，这就要�
 
 看例子就更明白了：
 
-```
+```py
 >>> du = "http://www.itdiffer.com/name=python book"
 >>> urllib.quote(du)
 'http%3A//www.itdiffer.com/name%3Dpython%20book'
@@ -1966,7 +1966,7 @@ url 对其中的字符有严格要求，不许可某些特殊字符，这就要�
 
 这不是重点，重点是看 url，它就是用 `+` 替代空格了。
 
-```
+```py
 >>> dup = urllib.quote_plus(du)
 >>> urllib.unquote_plus(dup)
 'http://www.itdiffer.com/name=Python book' 
@@ -1974,7 +1974,7 @@ url 对其中的字符有严格要求，不许可某些特殊字符，这就要�
 
 从解码效果来看，比较完美地逆过程。
 
-```
+```py
 >>> urllib.urlencode({"name":"qiwsir","web":"itdiffer.com"})
 'web=itdiffer.com&name=qiwsir' 
 ```
@@ -1985,7 +1985,7 @@ url 对其中的字符有严格要求，不许可某些特殊字符，这就要�
 
 虽然 urlopen() 能够建立类文件对象，但是，那还不等于将远程文件保存在本地存储器中，urlretrieve() 就是满足这个需要的。先看实例：
 
-```
+```py
 >>> import urllib
 >>> urllib.urlretrieve("http://www.itdiffer.com/images/me.jpg","me.jpg")
 ('me.jpg', <httplib.HTTPMessage instance at 0xb6ecb6cc>)
@@ -2005,7 +2005,7 @@ me.jpg 是一张存在于服务器上的图片，地址是：http://www.itdiffer
 
 函数执行完毕，返回的结果是一个元组(filename, headers)，filename 是保存到本地的文件名，headers 是服务器响应头信息。
 
-```
+```py
 #!/usr/bin/env Python
 # coding=utf-8
 
@@ -2024,7 +2024,7 @@ urllib.urlretrieve(url, local, go)
 
 这段程序就是要下载指定的图片，并且保存为本地指定位置的文件，同时要显示下载的进度。上述文件保存之后，执行，显示如下效果：
 
-```
+```py
 $ Python 22501.py 
 0.00%
 8.13%
@@ -2056,7 +2056,7 @@ urllib2 是另外一个模块，它跟 urllib 有相似的地方——都是对 
 
 所以，有时候两个要同时使用，urllib 模块和 urllib2 模块有的方法可以相互替代，有的不能。看下面的属性方法列表就知道了。
 
-```
+```py
 >>> dir(urllib2)
 ['AbstractBasicAuthHandler', 'AbstractDigestAuthHandler', 'AbstractHTTPHandler', 'BaseHandler', 'CacheFTPHandler', 'FTPHandler', 'FileHandler', 'HTTPBasicAuthHandler', 'HTTPCookieProcessor', 'HTTPDefaultErrorHandler', 'HTTPDigestAuthHandler', 'HTTPError', 'HTTPErrorProcessor', 'HTTPHandler', 'HTTPPasswordMgr', 'HTTPPasswordMgrWithDefaultRealm', 'HTTPRedirectHandler', 'HTTPSHandler', 'OpenerDirector', 'ProxyBasicAuthHandler', 'ProxyDigestAuthHandler', 'ProxyHandler', 'Request', 'StringIO', 'URLError', 'UnknownHandler', '__builtins__', '__doc__', '__file__', '__name__', '__package__', '__version__', '_cut_port_re', '_opener', '_parse_proxy', '_safe_gethostbyname', 'addinfourl', 'base64', 'bisect', 'build_opener', 'ftpwrapper', 'getproxies', 'hashlib', 'httplib', 'install_opener', 'localhost', 'mimetools', 'os', 'parse_http_list', 'parse_keqv_list', 'posixpath', 'proxy_bypass', 'quote', 'random', 'randombytes', 're', 'request_host', 'socket', 'splitattr', 'splithost', 'splitpasswd', 'splitport', 'splittag', 'splittype', 'splituser', 'splitvalue', 'sys', 'time', 'toBytes', 'unquote', 'unwrap', 'url2pathname', 'urlopen', 'urlparse', 'warnings'] 
 ```
@@ -2067,13 +2067,13 @@ urllib2 是另外一个模块，它跟 urllib 有相似的地方——都是对 
 
 正如前面区别 urllib 和 urllib2 所讲，利用 urllib2 模块可以建立一个 Request 对象。方法就是：
 
-```
+```py
 >>> req = urllib2.Request("http://www.itdiffer.com") 
 ```
 
 建立了 Request 对象之后，它的最直接应用就是可以作为 urlopen() 方法的参数
 
-```
+```py
 >>> response = urllib2.urlopen(req)
 >>> page = response.read()
 >>> print page 
@@ -2083,7 +2083,7 @@ urllib2 是另外一个模块，它跟 urllib 有相似的地方——都是对 
 
 但是，如果 Request 对象仅仅局限于此，似乎还没有什么太大的优势。因为刚才的访问仅仅是满足以 get 方式请求页面，并建立类文件对象。如果是通过 post 向某地址提交数据，也可以建立 Request 对象。
 
-```
+```py
 import urllib    
 import urllib2    
 
@@ -2103,20 +2103,20 @@ the_page = response.read()          #读取反馈的内容
 
 在网站中，有的会通过 User-Agent 来判断访问者是浏览器还是别的程序，如果通过别的程序访问，它有可能拒绝。这时候，我们编写程序去访问，就要设置 headers 了。设置方法是：
 
-```
+```py
 user_agent = 'Mozilla/4.0 (compatible; MSIE 5.5; Windows NT)'
 headers = { 'User-Agent' : user_agent } 
 ```
 
 然后重新建立 Request 对象：
 
-```
+```py
 req = urllib2.Request(url, data, headers) 
 ```
 
 再用 urlopen() 方法访问：
 
-```
+```py
 response = urllib2.urlopen(req) 
 ```
 
@@ -2169,7 +2169,7 @@ ElementTree 在标准库中有两种实现。一种是纯 Python 实现：xml.et
 
 如果读者使用的是 Python2.x，可以像这样引入模块：
 
-```
+```py
 try:
     import xml.etree.cElementTree as ET
 except ImportError:
@@ -2186,7 +2186,7 @@ except ImportError:
 
 这是一个 xml 树，只不过是用图来表示的，还没有用 ET 解析呢。把这棵树写成 xml 文档格式：
 
-```
+```py
 <bookstore>
     <book category="COOKING">
         <title lang="en">Everyday Italian</title> 
@@ -2211,13 +2211,13 @@ except ImportError:
 
 将 xml 保存为名为 22601.xml 的文件，然后对其进行如下操作：
 
-```
+```py
 >>> import xml.etree.cElementTree as ET 
 ```
 
 为了简化，我用这种方式引入，如果在编程实践中，推荐读者使用 try...except...方式。
 
-```
+```py
 >>> tree = ET.ElementTree(file="22601.xml")
 >>> tree
 <ElementTree object at 0xb724cc2c> 
@@ -2227,7 +2227,7 @@ except ImportError:
 
 在上述 xml 文档中，根元素是<bookstore>，它没有属性，或者属性为空。</bookstore>
 
-```
+```py
 >>> root = tree.getroot()      #获得根
 >>> root.tag
 'bookstore'
@@ -2237,7 +2237,7 @@ except ImportError:
 
 要想将根下面的元素都读出来，可以：
 
-```
+```py
 >>> for child in root:
 ...     print child.tag, child.attrib
 ... 
@@ -2248,7 +2248,7 @@ book {'category': 'WEB'}
 
 也可以这样读取指定元素的信息：
 
-```
+```py
 >>> root[0].tag
 'book'
 >>> root[0].attrib
@@ -2259,7 +2259,7 @@ book {'category': 'WEB'}
 
 再深点，就有感觉了：
 
-```
+```py
 >>> root[0][0].tag
 'title'
 >>> root[0][0].attrib
@@ -2270,7 +2270,7 @@ book {'category': 'WEB'}
 
 对于 ElementTree 对象，有一个 iter 方法可以对指定名称的子节点进行深度优先遍历。例如：
 
-```
+```py
 >>> for ele in tree.iter(tag="book"):        #遍历名称为 book 的节点
 ...     print ele.tag, ele.attrib
 ... 
@@ -2288,7 +2288,7 @@ title {'lang': 'en'} Learning XML
 
 如果不指定元素名称，就是将所有的元素遍历一边。
 
-```
+```py
 >>> for ele in tree.iter():
 ...     print ele.tag, ele.attrib
 ... 
@@ -2312,7 +2312,7 @@ price {}
 
 除了上面的方法，还可以通过路径，搜索到指定的元素，读取其内容。这就是 xpath。此处对 xpath 不详解，如果要了解可以到网上搜索有关信息。
 
-```
+```py
 >>> for ele in tree.iterfind("book/title"):
 ...     print ele.text
 ... 
@@ -2323,7 +2323,7 @@ Learning XML
 
 利用 findall() 方法，也可以是实现查找功能：
 
-```
+```py
 >>> for ele in tree.findall("book"):
 ...     title = ele.find('title').text
 ...     price = ele.find('price').text
@@ -2339,7 +2339,7 @@ Learning XML 39.95 {'lang': 'en'}
 
 除了读取有关数据之外，还能对 xml 进行编辑，即增删改查功能。还是以上面的 xml 文档为例：
 
-```
+```py
 >>> root[1].tag
 'book'
 >>> del root[1]
@@ -2354,7 +2354,7 @@ book
 
 的确如此，源文件没有变化，这就对了。因为至此的修改动作，还是停留在内存中，还没有将修改结果输出到文件。不要忘记，我们是在内存中建立的 ElementTree 对象。再这样做：
 
-```
+```py
 >>> import os
 >>> outpath = os.getcwd()
 >>> file = outpath + "/22601.xml" 
@@ -2362,7 +2362,7 @@ book
 
 把当前文件路径拼装好。然后：
 
-```
+```py
 >>> tree.write(file) 
 ```
 
@@ -2370,7 +2370,7 @@ book
 
 除了删除，也能够修改：
 
-```
+```py
 >>> for price in root.iter("price"):        #原来每本书的价格
 ...     print price.text
 ... 
@@ -2386,7 +2386,7 @@ book
 
 查看源文件：
 
-```
+```py
 <bookstore>
     <book category="COOKING">
         <title lang="en">Everyday Italian</title> 
@@ -2407,7 +2407,7 @@ book
 
 上面用 `del` 来删除某个元素，其实，在编程中，这个用的不多，更喜欢用 remove() 方法。比如我要删除 `price > 40` 的书。可以这么做：
 
-```
+```py
 >>> for book in root.findall("book"):
 ...     price = book.find("price").text
 ...     if float(price) > 40.0:
@@ -2418,7 +2418,7 @@ book
 
 于是就这样了：
 
-```
+```py
 <bookstore>
     <book category="COOKING">
         <title lang="en">Everyday Italian</title> 
@@ -2431,7 +2431,7 @@ book
 
 接下来就要增加元素了。
 
-```
+```py
 >>> import xml.etree.cElementTree as ET
 >>> tree = ET.ElementTree(file="22601.xml")
 >>> root = tree.getroot()
@@ -2449,7 +2449,7 @@ book
 
 查看源文件：
 
-```
+```py
 <bookstore>
     <book category="COOKING">
         <title lang="en">Everyday Italian</title> 
@@ -2514,7 +2514,7 @@ ET 里面的属性和方法不少，这里列出常用的，供使用中备查�
 > 
 > 使用 ElementTree，先将文件读入，解析成树，之后，根据路径，可以定位到树的每个节点，再对节点进行修改，最后直接将其输出.
 
-```
+```py
 #!/usr/bin/Python  
 # -*- coding=utf-8 -*-  
 # author : wklken@yeah.net  
@@ -2681,7 +2681,7 @@ if __name__ == "__main__":
 
 操作对象（原始 xml 文件）：
 
-```
+```py
 <?xml version="1.0" encoding="UTF-8"?>  
 <framework>  
     <processers>  
@@ -2709,7 +2709,7 @@ if __name__ == "__main__":
 
 执行程序之后，得到的结果文件：
 
-```
+```py
 <?xml version='1.0' encoding='utf-8'?>  
 <framework>  
     <processers>  
@@ -2766,7 +2766,7 @@ python 标准库中有 json 模块，主要是执行序列化和反序列化功�
 
 json 模块相对 xml 单纯了很多：
 
-```
+```py
 >>> import json
 >>> json.__all__
 ['dump', 'dumps', 'load', 'loads', 'JSONDecoder', 'JSONEncoder'] 
@@ -2774,7 +2774,7 @@ json 模块相对 xml 单纯了很多：
 
 **encoding: dumps()**
 
-```
+```py
 >>> data = [{"name":"qiwsir", "lang":("python", "english"), "age":40}]
 >>> print data
 [{'lang': ('python', 'english'), 'age': 40, 'name': 'qiwsir'}]
@@ -2785,7 +2785,7 @@ json 模块相对 xml 单纯了很多：
 
 encoding 的操作是比较简单的，请注意观察 data 和 data_json 的不同——lang 的值从元组编程了列表，还有不同：
 
-```
+```py
 >>> type(data_json)
 <type 'str'>
 >>> type(data)
@@ -2808,7 +2808,7 @@ encoding 的操作是比较简单的，请注意观察 data 和 data_json 的不
 
 decoding 的过程也像上面一样简单：
 
-```
+```py
 >>> new_data = json.loads(data_json)
 >>> new_data
 [{u'lang': [u'python', u'english'], u'age': 40, u'name': u'qiwsir'}] 
@@ -2833,7 +2833,7 @@ decoding 的过程也像上面一样简单：
 
 上面的 data 都不是很长，还能凑合阅读，如果很长了，阅读就有难度了。所以，json 的 dumps() 提供了可选参数，利用它们能在输出上对人更友好（这对机器是无所谓的）。
 
-```
+```py
 >>> data_j = json.dumps(data, sort_keys=True, indent=2)
 >>> print data_j
 [
@@ -2854,7 +2854,7 @@ decoding 的过程也像上面一样简单：
 
 如果数据不是很大，上面的操作足够了。但是，上面操作是将数据都读入内存，如果太大就不行了。怎么办？json 提供了 `load()` 和 `dump()` 函数解决这个问题，注意，跟上面已经用过的函数相比，是不同的，请仔细观察。
 
-```
+```py
 >>> import tempfile    #临时文件模块
 >>> data
 [{'lang': ('Python', 'english'), 'age': 40, 'name': 'qiwsir'}]
@@ -2871,7 +2871,7 @@ decoding 的过程也像上面一样简单：
 
 以下代码参考：[Json 概述以及 Python 对 json 的相关操作](http://www.cnblogs.com/coser/archive/2011/12/14/2287739.html)
 
-```
+```py
 #!/usr/bin/env Python
 # coding=utf-8
 
@@ -2942,7 +2942,7 @@ if __name__  == '__main__':
 
 一般情况，得到的码格式大概都是 zip 、 tar.zip、 tar.bz2 格式的压缩包。解压这些包，进入其文件夹，通常会看见一个 setup.py 的文件。如果是 Linux 或者 Mac(我是用 ubuntu，特别推荐哦)，就在这里运行 shell，执行命令：
 
-```
+```py
 Python setup.py install 
 ```
 
@@ -2960,13 +2960,13 @@ Python setup.py install
 
 Debian and Ubuntu:
 
-```
+```py
 sudo apt-get install Python-pip 
 ```
 
 Fedora and CentOS:
 
-```
+```py
 sudo yum install python-pip 
 ```
 
@@ -2984,13 +2984,13 @@ pip 安装好了。如果要安装第三方库，只需要执行 `pip install XX
 
 #### 安装
 
-```
+```py
 pip install requests 
 ```
 
 安装好之后，在交互模式下：
 
-```
+```py
 >>> import requests
 >>> dir(requests)
 ['ConnectionError', 'HTTPError', 'NullHandler', 'PreparedRequest', 'Request', 'RequestException', 'Response', 'Session', 'Timeout', 'TooManyRedirects', 'URLRequired', '__author__', '__build__', '__builtins__', '__copyright__', '__doc__', '__file__', '__license__', '__name__', '__package__', '__path__', '__title__', '__version__', 'adapters', 'api', 'auth', 'certs', 'codes', 'compat', 'cookies', 'delete', 'exceptions', 'get', 'head', 'hooks', 'logging', 'models', 'options', 'packages', 'patch', 'post', 'put', 'request', 'session', 'sessions', 'status_codes', 'structures', 'utils'] 
@@ -3000,20 +3000,20 @@ pip install requests
 
 #### get 请求
 
-```
+```py
 >>> r = requests.get("http://www.itdiffer.com") 
 ```
 
 得到一个请求的实例，然后：
 
-```
+```py
 >>> r.cookies
 <<class 'requests.cookies.RequestsCookieJar'>[]> 
 ```
 
 这个网站对客户端没有写任何 cookies 内容。换一个看看：
 
-```
+```py
 >>> r = requests.get("http://www.1world0x00.com")
 >>> r.cookies
 <<class 'requests.cookies.RequestsCookieJar'>[Cookie(version=0, name='PHPSESSID', value='buqj70k7f9rrg51emsvatveda2', port=None, port_specified=False, domain='www.1world0x00.com', domain_specified=False, domain_initial_dot=False, path='/', path_specified=True, secure=False, expires=None, discard=True, comment=None, comment_url=None, rest={}, rfc2109=False)]> 
@@ -3021,7 +3021,7 @@ pip install requests
 
 原来这样呀。继续，还有别的属性可以看看。
 
-```
+```py
 >>> r.headers
 {'x-powered-by': 'PHP/5.3.3', 'transfer-encoding': 'chunked', 'set-cookie': 'PHPSESSID=buqj70k7f9rrg51emsvatveda2; path=/', 'expires': 'Thu, 19 Nov 1981 08:52:00 GMT', 'keep-alive': 'timeout=15, max=500', 'server': 'Apache/2.2.15 (CentOS)', 'connection': 'Keep-Alive', 'pragma': 'no-cache', 'cache-control': 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0', 'date': 'Mon, 10 Nov 2014 01:39:03 GMT', 'content-type': 'text/html; charset=UTF-8', 'x-pingback': 'http://www.1world0x00.com/index.php/action/xmlrpc'}
 
@@ -3034,7 +3034,7 @@ pip install requests
 
 下面这个比较长，是网页的内容，仅仅截取显示部分：
 
-```
+```py
 >>> print r.text
 
 <!DOCTYPE html>
@@ -3055,7 +3055,7 @@ pip install requests
 
 请求发出后，requests 会基于 http 头部对相应的编码做出有根据的推测，当你访问 r.text 之时，requests 会使用其推测的文本编码。你可以找出 requests 使用了什么编码，并且能够使用 r.coding 属性来改变它。
 
-```
+```py
 >>> r.content
 '\xef\xbb\xbf\xef\xbb\xbf<!DOCTYPE html>\n<html lang="zh-CN">\n  <head>\n    <meta charset="utf-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>1world0x00sec</title>\n    <link rel="stylesheet" href="http://www.1world0x00.com/usr/themes/default/style.min.css">\n            <link ......
 
@@ -3066,7 +3066,7 @@ pip install requests
 
 requests 发送 post 请求，通常你会想要发送一些编码为表单的数据——非常像一个 html 表单。要实现这个，只需要简单地传递一个字典给 data 参数。你的数据字典在发出请求时会自动编码为表单形式。
 
-```
+```py
 >>> import requests
 >>> payload = {"key1":"value1","key2":"value2"}
 >>> r = requests.post("http://httpbin.org/post")
@@ -3075,7 +3075,7 @@ requests 发送 post 请求，通常你会想要发送一些编码为表单的�
 
 #### http 头部
 
-```
+```py
 >>> r.headers['content-type']
 'application/json' 
 ```
@@ -3084,7 +3084,7 @@ requests 发送 post 请求，通常你会想要发送一些编码为表单的�
 
 还能够自定义头部：
 
-```
+```py
 >>> r.headers['content-type'] = 'adad'
 >>> r.headers['content-type']
 'adad' 

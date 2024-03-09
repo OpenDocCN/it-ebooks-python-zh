@@ -12,7 +12,7 @@
 
 现在你已经知道如何创建和执行自己的程序(或脚本)了，也学会了怎么用`import`从外部模块获取函数并且为自己的程序所用：
 
-```
+```py
 >>> import math
 >>> math.sin(0)
 0.0 
@@ -24,7 +24,7 @@
 
 任何 Python 程序都可以作为模块导入。假设你写了一个代码清单 10-1 所示的程序，并且将它保存为`hello.py`文件(名字很重要)。
 
-```
+```py
 代码清单 10-1 一个简单的模块
 # hello.py
 print "Hello, world!" 
@@ -32,7 +32,7 @@ print "Hello, world!"
 
 程序保存的位置也很重要。下一节中你会了解更多这方面的知识，现在假设将它保存在`C:\python`(Windows)或者`~/python`(UNIX/Mac OS X)目录中，接着就可以执行下面的代码，告诉解释器在哪里寻找模块了(以 Windows 目录为例)：
 
-```
+```py
 >>> import sys
 >>> sys.path.append("c:/python") 
 ```
@@ -41,7 +41,7 @@ print "Hello, world!"
 
 我这里所做的知识告诉解释器：除了从默认的目录中寻找之外，还需要从目录`c:\python`中寻找模块。完成这个步骤之后，就能导入自己的模块了(存储在`c:\python\hello.py`文件中)：
 
-```
+```py
 >>> import hello
 Hello, world! 
 ```
@@ -50,7 +50,7 @@ Hello, world!
 
 如你所见，在导入模块的时候，其中的代码被执行了。不过，如果再次导入该模块，就什么都不会发生了：
 
-```
+```py
 >>> import hello
 >>> 
 ```
@@ -67,7 +67,7 @@ Hello, world!
 
 如果坚持重新载入模块，那么可以使用内建的`reload`函数。它带有一个参数(需要重新载入的模块)，并且返回重新载入的模块。如果你在程序运行的时候更改了模块并且希望将这些更改反应出来，那么这个功能会比较有用。要重新载入`hello`模块(只包含一个`print`语句)，可以像下面这样做：
 
-```
+```py
 >>> hello = reload(hello)
 Hello, world! 
 ```
@@ -88,7 +88,7 @@ Hello, world!
 
 注：如果希望模块能够像程序一样被执行(这里的程序是用于执行的，而不是真正作为模块使用的)，可以对 Python 解释器使用`-m`切换开关来执行程序。如果`progname.py`(注意后缀)文件和其他模块都已被安装(也就是导入了`progname`)，那么运行 python `-m progname args`命令就会运行带命令行参数`args`的`progname`程序。
 
-```
+```py
 代码清单 10-2 包含函数的简单模块
 # hello2.py
 def hello():
@@ -97,13 +97,13 @@ def hello():
 
 可以像下面这样导入：
 
-```
+```py
 >>> import hello2 
 ```
 
 模块就会被执行，这意味着`hello`函数在模块的作用域被定义了。因此可以通过以下方式来访问函数：
 
-```
+```py
 >>> hello2.hello()
 Hello, world! 
 ```
@@ -116,7 +116,7 @@ Hello, world!
 
 模块被用来定义函数、类和其他一些内容，但是有些时候(事实上是经常)，在模块中添加一些检查模块本身是否能正常工作的测试代码是很有用的。举例来说，假如想要确保`hello`函数正常工作，你可能会将`hello2`模块重写为新的模块——代码清单 10-3 中定义的`hello3`。
 
-```
+```py
 # hello3.py
 def hello():
     print "Hello, world!"
@@ -127,7 +127,7 @@ hello()
 
 这看起来是合理的，如果将它作为普通程序运行，会发现它能够正常工作。但如果将它作为模块导入，然后在其他程序中使用 hello 函数，测试代码就会被执行，就像本章实验开头的第一个`hello`模块一样：
 
-```
+```py
 >>> import hello3
 Hello, world!
 >>> hello3.hello.()
@@ -136,7 +136,7 @@ Hello, world！
 
 这个可不是你想要的。避免这种情况关键在于：“告知”模块本身是作为程序运行还是导入到其他程序。为了实现这一点，需要使用`__name__`变量：
 
-```
+```py
 >>> __name__
 '__main__'
 >>> hello3.__name__
@@ -145,7 +145,7 @@ Hello, world！
 
 如你所见，在“主程序”(包括解释器的交互式提示符在内)中，变量`__name__`的值是`'__main__'`。而在导入的模块中，这个值就被设定为模块的名字。因此，为了让模块的测试代码更加好用，可以将其放置在 if 语句中，如代码清单 10-4 所示。
 
-```
+```py
 代码清单 10-4 使用条件测试代码的模块 # hello4.py
 
 def hello():
@@ -159,7 +159,7 @@ if __name__ = '__main__':
 
 如果将它作为程序运行，`hello`函数会被执行。而作为模块导入时，它的行为就会像普通模块一样：
 
-```
+```py
 >>> import hello4
 >>> hello4.hello()
 Hello, world! 
@@ -167,7 +167,7 @@ Hello, world!
 
 如你所见，我将测试代码放在了`test`函数中，也可以直接将它们放入`if`语句。但是，将测试代码放入独立的`test`函数会更灵活，这样做即使在把模块导入其他程序之后，仍然可以对其进行测试：
 
-```
+```py
 >>> hello4.test()
 Hello, world! 
 ```
@@ -186,7 +186,7 @@ Hello, world!
 
 你可能记得，那些(成为搜索路径的)目录的列表可以在`sys`模块中的`path`变量中找到：
 
-```
+```py
 >>> import sys, pprint
 >>> pprint.pprint(sys.path)
 ['', '/usr/lib/python2.7', '/usr/lib/python2.7/plat-x86_64-linux-gnu', '/usr/lib/python2.7/lib-tk', '/usr/lib/python2.7/lib-old', '/usr/lib/python2.7/lib-dynload', '/usr/local/lib/python2.7/dist-packages', '/usr/lib/python2.7/dist-packages', '/usr/lib/python2.7/dist-packages/PILcompat', '/usr/lib/python2.7/dist-packages/gtk-2.0', '/usr/lib/python2.7/dist-packages/ubuntu-sso-client'] 
@@ -196,7 +196,7 @@ Hello, world!
 
 这是安装在 elementary OS 上的 Python2.7 的标准路径，不同的系统会有不同的结果。关键在于每个字符串都提供了一个放置模块的目录，解释器可以从这些目录中找到所需的模块。尽管这些目录都可以使用，但`site-packages`目录是最佳的选择，因为它就是用来做这些事情的。查看你自己的`sys.path`，找到`site-packages`目录，将代码清单 10-4 的模块存储在其中，要记得改名，比如改成`another_hello.py`，然后测试：
 
-```
+```py
 >>> import another_hello
 >>> another_hello.hello()
 Hello, world! 
@@ -224,7 +224,7 @@ Hello, world!
 
 在 UNIX 和 Mac OS X 中，你可以在一些每次登陆都要执行的 shell 文件内设置环境变量。如果你使用类似 bash 的 shell 文件，那么要设置的就是`.bashrc`，你可以在主目录中找到它。将下面的命令添加到这个文件中，从而将`~/python`加入到`PYTHONPATH`：
 
-```
+```py
 export PYTHON=$PYTHONPATH:~/python 
 ```
 
@@ -234,7 +234,7 @@ export PYTHON=$PYTHONPATH:~/python
 
 如果上面的方法不行，你可以编辑`autoexec.bat`文件，该文件可以在 C 盘的根目录下找到(假设是以标准模式安装的 Windows)。用记事本(或者 IDLE 编辑器)打开它，增加一行设置`PYTHONPATH`的内容。如果想要增加目录`C:\pyrhon`。可以像下面这样做：
 
-```
+```py
 set PYTHONPATH=%PYTHONPATH%;C:\python 
 ```
 
@@ -250,7 +250,7 @@ set PYTHONPATH=%PYTHONPATH%;C:\python
 
 为了组织好模块，你可以将它们分组为*包*(package)。包基本上就是另外一个类模块，有趣的地方就是它们能包含其他模块。当模块存储在文件中时(扩展名`.py`)，包就是模块所在的目录。为了让 Python 将其作为包对待，它必须包含一个命名为`__init__.py`的文件(模块)。如果将它作为普通模块导入的话，文件的内容就是包的内容。比如有个名为`constants`的包，文件`constants/__init__.py`包括语句`PI=3.14`，那么你可以像下面这么做：
 
-```
+```py
 import constants
 print constants.PI 
 ```
@@ -261,7 +261,7 @@ print constants.PI
 
 表 10-1 简单的包布局
 
-```
+```py
 ~/python/　　　　　　　　　　　　　　　　　PYTHONPATH 中的目录
 ~/python/drawing/　　　　　　　　　　　　　包目录(drawing 包)
 ~/python/drawing/__init__.py　　　　　　　 包代码(drawing 模块)
@@ -273,7 +273,7 @@ print constants.PI
 
 依照这个设置，下面的语句都是合法的：
 
-```
+```py
 import drawing                    # (1) Imports the drawing package
 import drawing.colors             # (2) Imports the colors module
 from drawing import shapes        # (3) Imports the shapes module 
@@ -289,7 +289,7 @@ from drawing import shapes        # (3) Imports the shapes module
 
 探究模块最直接的方式就是在 Python 解释器中研究它们。当然，要做的第一件事就是导入它。假设你听说有个叫做`copy`的标准模块：
 
-```
+```py
 >>> import copy 
 ```
 
@@ -299,7 +299,7 @@ from drawing import shapes        # (3) Imports the shapes module
 
 查看模块包含的内容可以使用`dir`函数，它会将对象的所有特性(以及模块的所有函数、类、变量等)列出。如果想要打印出`dir(copy)`的内容，你会看到一长串的名字(试试看)。一些名字以下划线开始，暗示(约定俗成)它们并不是为在模块外部使用而准备的。所以让我们用列表推导式(如果不记得如何使用了，请参见 5.6 节)过滤掉它们：
 
-```
+```py
 >>> [n for n in dir(copy) if not n.startswith("_")]
 ['Error', 'PyStringMap', 'copy', 'deepcopy', 'dispatch_table', 'error', 'name', 't', 'weakref'] 
 ```
@@ -310,21 +310,21 @@ from drawing import shapes        # (3) Imports the shapes module
 
 在上一节中，通过列表推导式所做的事情是推测我可能会在`copy`模块章看到什么。但是我们可以直接从列表本身获得正确答案。在完整的`dir(copy)`列表中，你可能注意到了`__all__`这个名字。这个变量包含一个列表，该列表与我之前通过列表推导式创建的列表很类似——除了这个列表在模块本身中已被默认设置。我们来看看它都包含哪些内容：
 
-```
+```py
 >>> copy.__all__
 ['Error', 'copy', 'deepcopy'] 
 ```
 
 我的猜测还不算太离谱吧。列表推导式得到的列表只是多出了几个我用不到的名字。但是`__all__`列表从哪来，它为什么会在那儿？第一个问题很容易回答。它是在`copy`模块内部被设置的，像下面这样(从`copy.py`直接复制而来的代码)：
 
-```
+```py
 __all__ =
 ["Error", "copy", "deepcopy"] 
 ```
 
 那么它为什么在那呢？它定义了模块的公有接口(public interface)。更准确地说，它告诉解释器：从模块导入所有名字代表什么含义。因此，如果你使用如下代码：
 
-```
+```py
 from copy import * 
 ```
 
@@ -336,7 +336,7 @@ from copy import *
 
 目前为止，你已经通过自己的创造力和 Python 的多个函数和特殊特性的知识探究了`copy`模块。对于这样的探究工作，交互式解释器是个非常强大的工具，而对该语言的精通程度决定了对模块探究的深度。不过，还有个标准函数能够为你提供日常所需的信息，这个函数叫做`help`。让我们先用`copy`函数试试：
 
-```
+```py
 >>> help(copy.copy)
 Help on function copy in module copy:
 
@@ -350,7 +350,7 @@ copy(x)
 
 事实上，前面的帮助文本是从`copy`函数的文档字符串中取出的。
 
-```
+```py
 >>> print copy.copy.__doc__
 Shallow copy operation on arbitrary Python objects.
 
@@ -363,7 +363,7 @@ Shallow copy operation on arbitrary Python objects.
 
 模块信息的自然来源当然是文件。我把对文档的讨论推后在这里，是因为自己先检查模块总是快一些。举例来说，你可能会问“`range`的参数是什么”。不用在 Python 数据或者标准 Python 文档中寻找有关`range`的描述，而是可以直接查看：
 
-```
+```py
 >>> print range.__doc__
 range(stop) -> list of integers
 range(start, stop[, step]) -> list of integers
@@ -385,7 +385,7 @@ These are exactly the valid indices for a list of 4 elements.
 
 真正的阅读不是问题，但是问题在于源代码在哪里。假设我们希望阅读标准模块`copy`的源代码，去哪里找呢？一种方案是检查`sys.pat`h，然后自己找，就像解释器做的一样。另外一种快捷的方法是检查模块的`__file__`属性：
 
-```
+```py
 >>> print copy.__file__
 C:\Python27\lib\copy.pyc 
 ```
@@ -408,7 +408,7 @@ C:\Python27\lib\copy.pyc
 
 表 10-2 `sys`模块中一些重要的函数和变量
 
-```
+```py
 argv　　　　　　　　　　　　　　　命令行参数，包括脚本名称
 exit([arg])　　　　　　　　　　　 退出当前的程序，可选参数为给定的返回值或者错误信息
 modules　　　　　　　　　　　　　 映射模块名字到载入模块的字典
@@ -433,7 +433,7 @@ stderr　　　　　　　　　　　　　　标准错误流——一个类�
 
 举例来说，我们思考一下反序打印参数的问题。当你通过命令行调用 Python 脚本时，可能会在后面加上一些参数——这就是*命令行参数*(command-line argument)。这些参数会放置在`sys.argv`列表中，脚本的名字为`sys.argv[0]`。反序打印这些参数很简单，如代码清单 10-5 所示。
 
-```
+```py
 # 代码清单 10-5 反序打印命令行参数
 
 import sys
@@ -445,13 +445,13 @@ print " ".join(args)
 
 正如你看到的，我对`sys.argv`进行了复制。你可以修改原始的列表，但是这样做通常是不安全的，因为程序的其他部分可能也需要包含原始参数的`sys.argv`。注意，我跳过了`sys.argv`的第一个元素，这是脚本的名字。我使用`args.reverse()`方法对列表进行反向排序，但是不能打印出这个操作结果的，这是个返回`None`的原地修改操作。下面是另外一种做法：
 
-```
+```py
 print " ".join(reversed(sys.argv[1:])) 
 ```
 
 最后，为了保证输出得更好，我使用了字符串方法`join`。让我们试试看结果如何(我使用的是 MS-DOS，在 UNIX Shell 下它也会工作的同样好)：
 
-```
+```py
 D:\Workspace\Basic tutorial>python Code10-5.py
 this is a test
 test a is this 
@@ -463,7 +463,7 @@ test a is this
 
 表 10-3 `os`模块中一些重要函数和变量
 
-```
+```py
 environ　　　　　　　　　　　　　　　　　　　　对环境变量进行映射
 system(command)　　　　　　　　　　　　　　    在子 shell 中执行操作系统命令
 sep　　　　　　　　　　　　　　　　　　　　　　路径中的分隔符
@@ -490,13 +490,13 @@ urandom(n)　　　　　　　　　　　　　　　　　　 返回 n 字节
 
 例如，有关启动网络浏览器的问题。`system`这个命令可以用来执行外部程序，这在可以通过命令行执行程序(或命令)的环境中很有用。例如在 UNIX 系统中，你可以用它来列出某个目录的内容以及发送 Email，等等。同时，它对在图形用户界面中启动程序也很有用，比如网络浏览器。在 UNIX 中，你可以使用下面的代码(假设`/usr/bin/firefox`路径下有一个浏览器)：
 
-```
+```py
 os.system("/usr/bin/firefox") 
 ```
 
 以下是 Windows 版本的调用代码(也同样假设使用浏览器的安装路径)：
 
-```
+```py
 os.system(r"C:\'Program Files'\'Mozilla Firefox'\firefox.exe") 
 ```
 
@@ -504,7 +504,7 @@ os.system(r"C:\'Program Files'\'Mozilla Firefox'\firefox.exe")
 
 另外一个可以更好地解决问题的函数是 Windows 特有的函数——`os.startfile`：
 
-```
+```py
 os.startfile(r"C:\Program Files\Mozilla Firefox\firefox.exe") 
 ```
 
@@ -516,7 +516,7 @@ os.startfile(r"C:\Program Files\Mozilla Firefox\firefox.exe")
 
 在大多数情况下，`os.system`函数很有用，但是对于启动浏览器这样特定的任务来说，还有更好的解决方案：`webbrowser`模块。它包括`open`函数，它可以自动启动 Web 浏览器访问给定的 URL。例如，如果希望程序使用 Web 浏览器打开 Python 的网站(启动新浏览器或者使用已经运行的浏览器)，那么可以使用以下代码：
 
-```
+```py
 import webbrowser
 webbrowser.open("http://www.python.org") 
 ```
@@ -525,13 +525,13 @@ webbrowser.open("http://www.python.org")
 
 第十一章将会介绍很多读写文件的知识，现在先做个简短的介绍。`fileinput`模块让你能够轻松地遍历文本文件的所有行。如果通过以下方式调用脚本(假设在 UNIX 命令行下)：
 
-```
+```py
 $ python some_script.py file1.txt file2.txt file3.txt 
 ```
 
 这样就可以以此对`file1.txt`到`file3.txt`文件中的所有行进行遍历了。你还能对提供给标准输入(`sys.stdin`，记得吗)的文本进行遍历。比如在 UNIX 的管道中，使用标准的 UNIX 命令`cat`：
 
-```
+```py
 $ cat file.txt | python some_script.py 
 ```
 
@@ -541,7 +541,7 @@ $ cat file.txt | python some_script.py
 
 表 10-4 fileinput 模块中重要的函数
 
-```
+```py
 input(files[, inplace[, backup]])　　　　　便于遍历多个输入流中的行
 filename()　　　　　　　　　　　　　　　　 返回当前文件的名称
 lineno()　　　　　　　　　　　　　　　　　 返回当前(累计)的行数
@@ -568,7 +568,7 @@ close()　　　　　　　　　　　　　　　　　　关闭序列
 
 为了演示`fileinput`的使用，我们假设已经编写了一个 Python 脚本，现在想要为其代码进行编号。为了让程序在完成代码行编号之后仍然能够正常运行，我们必须通过在每一行的右侧加上作为注释的行号来完成编号工作。我们可以使用字符串格式化来将代码行和注释排成一行。假设每个程序行最多有 45 个字符，然后把行号注释加在后面。代码清单 10-6 展示了使用`fileinput`以及`inplace`参数来完成这项工作的简单方法：
 
-```
+```py
 # 代码清单 10-6 为 Python 脚本添加行号
 
 #!/usr/bin/env python
@@ -584,13 +584,13 @@ import fileinput for line in fileinput.input(inplace=True):
 
 如果你像下面这样在程序本身上运行这个程序：
 
-```
+```py
 $ python numberline.py numberline.py 
 ```
 
 程序会变成类似于代码清单 10-7 那样。注意，程序本身已经被更改了，如果这样运行多次，最终会在每一行中添加多个行号。我们可以回忆一下之前的内容：`rstrip`是可以返回字符串副本的字符串方法，右侧的空格都被删除(请参见 3.4 节，以及附录 B 中的表 B-6)。
 
-```
+```py
 # 代码清单 10-7 为已编号的行进行编号
 
 #!/usr/bin/env python                         # 1
@@ -619,21 +619,21 @@ for line in fileinput.input(inplace=True):    # 8
 
 集合(set)在 Python2.3 才引入。`Set`类位于`sets`模块中。尽管可以在现在的代码中创建`Set`实例。但是除非想要兼容以前的程序，否则没有什么必要这样做。在 Python2.3 中，集合通过`set`类型的实例成为了语言的一部分，这意味着不需要导入`sets`模块——直接创建集合即可：
 
-```
+```py
 >>> set(range(10))
 set([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]) 
 ```
 
 集合是由序列(或者其他可迭代的对象)构建的。它们主要用于检查成员资格，因此副本是被忽略的：
 
-```
+```py
 >>> set(["fee", "fie", "foe"])
 set(['foe', 'fee', 'fie']) 
 ```
 
 除了检查成员资格外，还可以使用标准的集合操作(可能你是通过数学了解到的)，比如求并集和交集，可以使用方法，也可以使用对整数进行位操作时使用的操作(参见附录 B)。比如想要找出两个集合的并集，可以使用其中一个集合的`union`方法或者使用按位与(OR)运算符`"|"`：
 
-```
+```py
 >>> a = set([1, 2, 3])
 >>> b = set([2, 3, 4])
 >>> a.union(b)
@@ -644,7 +644,7 @@ set([1, 2, 3, 4])
 
 以下列出了一些其他方法和对应的运算符，方法的名称已经清楚地表明了其用途：
 
-```
+```py
 >>> c = a & b
 >>> c.issubset(a)
 True
@@ -676,7 +676,7 @@ False
 
 *注：如果需要一个函数，用于查找并且打印两个集合的并集，可以使用来自`set`类型的`union`方法的未绑定版本。这种做法很有用，比如结合`reduce`来使用：*
 
-```
+```py
 >>> mySets = [] >>> for i in range(10):
 ...     mySets.append(set(range(i, i + 5)))
 ...
@@ -686,7 +686,7 @@ set([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13])
 
 集合是可变的，所以不能用做字典中的键。另外一个问题就是集合本身只能包含不可变(可散列的)值，所以也就不能包含其他集合。在实际当中，集合的集合是很常用的，所以这个就是个问题了。幸好还有个`frozenset`类型，用于代表*不可变*(可散列)的集合：
 
-```
+```py
 >>> a = set()
 >>> b = set()
 >>> a.add(b)
@@ -708,7 +708,7 @@ set([frozenset([])])
 
 表 10-5 heapq 模块中重要的函数
 
-```
+```py
 heappush(heap, x)　　　　　　　　　　　　　　　　　　　　将 x 入堆
 heappop(heap)　　　　　　　　　　　　　　　　　　　　　　将堆中最小的元素弹出
 heapify(heap)　　　　　　　　　　　　　　　　　　　　　　将 heap 属性强制应用到任意一个列表
@@ -719,7 +719,7 @@ nsmallset(n, iter)　　　　　　　　　　　　　　　　　　　 返�
 
 `heappush`函数用于增加堆的项。注意，不能将它用于任何之前讲述的列表中，它只能用于通过各种堆函数建立的列表中。原因是元素的顺序很重要(尽管看起来是随意排列，元素并不是进行严格排序的)。
 
-```
+```py
 >>> from heapq import *
 >>> from random import shuffle
 >>> data = range(10)
@@ -739,7 +739,7 @@ nsmallset(n, iter)　　　　　　　　　　　　　　　　　　　 返�
 
 `heappop`函数弹出最小的元素，一般来说都是在索引 0 处的元素，并且会确保剩余元素中最小的那个占据这个位置(保持刚才提到的堆属性)。一般来说，尽管弹出列表的第一个元素并不是很有效率，但是在这里不是问题，因为`heappop`在“幕后”会做一些精巧的移位操作：
 
-```
+```py
 >>> heappop(heap)
 0
 >>> heappop(heap)
@@ -752,7 +752,7 @@ nsmallset(n, iter)　　　　　　　　　　　　　　　　　　　 返�
 
 `heapify`函数使用任意列表作为参数，并且通过尽可能少的移位操作，将其转换为合法的堆(事实上是应用了刚才提到的堆属性)。如果没有用`heappush`建立堆，那么在使用`heappush`和`heappop`前应该使用这个函数。
 
-```
+```py
 >>> heap = [5, 8, 0, 3, 6, 7, 9, 1, 4, 2]
 >>> heapify(heap)
 >>> heap
@@ -761,7 +761,7 @@ nsmallset(n, iter)　　　　　　　　　　　　　　　　　　　 返�
 
 `heapreplace`函数不像其他函数那么常用。它弹出堆的最小元素，并且将新元素推入。这样做比调用`heappop`之后再调用`heappush`更高效。
 
-```
+```py
 >>> heapreplace(heap, 0.5)
 0
 >>> heap
@@ -782,7 +782,7 @@ nsmallset(n, iter)　　　　　　　　　　　　　　　　　　　 返�
 
 双端队列通过可迭代对象(比如集合)创建，而且有些非常有用的方法，如下例所示：
 
-```
+```py
 >>> from collections import deque
 >>> q = deque(range(5))
 >>> q.append(5)
@@ -807,7 +807,7 @@ deque([3, 4, 0, 1, 2])
 
 `time`模块所包括的函数能够实现以下功能：获得当前时间、操作时间和日期、从字符串读取时间以及格式化时间为字符串。日期可以用实数(从“新纪元”的 1 月 1 日 0 点开始计算到现在的秒数，新纪元是一个与平台相关的年份，对 UNIX 来说是 1970 年)，或者是包含有 9 个整数的元组。这些整数的意义如表 10-6 所示，比如，元组：
 
-```
+```py
 (2008, 1, 21, 12, 2, 56, 0, 21, 0) 
 ```
 
@@ -815,7 +815,7 @@ deque([3, 4, 0, 1, 2])
 
 表 10-6 Python 日期元组的字段含义
 
-```
+```py
 0　　　　　　　　　　年　　　　　　　　　　比如 2000,2001 等等
 1　　　　　　　　　　月　　　　　　　　　　范围 1~12
 2　　　　　　　　　　日　　　　　　　　　　范围 1~31
@@ -831,13 +831,13 @@ deque([3, 4, 0, 1, 2])
 
 函数`time.asctime`将当前时间格式化为字符串，如下例所示：
 
-```
+```py
 >>> time.asctime() 'Fri May 13 17:35:56 2016' 
 ```
 
 表 10-7 `time`模块中重要的函数
 
-```
+```py
 asctime([tuple])　　　　　　　　　　　　　　　　　　　将时间元组转换为字符串
 localtime([secs])　　　　　　　　　　　　　　　　　　 将秒数转换为日期元组，以本地时间为准
 mktime(tuple)　　　　　　　　　　　　　　　　　　　　 将时间元组转换为本地时间
@@ -872,7 +872,7 @@ time()　　　　　　　　　　　　　　　　　　　　　　　　�
 
 表 10-8 random 模块中的一些重要的函数
 
-```
+```py
 random()　　　　　　　　　　　　　　　　　　　　　　　　　　返回 0&lt;n≤1 之间的随机实数 n
 getrandbits(n)　　　　　　　　　　　　　　　　　　　　　　　以长整型形式返回 n 个随机位
 uniform(a, b)　　　　　　　　　　　　　　　　　　　　　　　 返回随机实数 n，其中 a≤n&lt;b
@@ -898,7 +898,7 @@ sample(seq, n)　　　　　　　　　　　　　　　　　　　　　　
 
 下面介绍一些使用`random`模块的例子。这些例子将使用一些前文介绍的`time`模块中的函数。首先获得代表时间间隔(2008 年)限制的实数，这可以通过时间元组的方式来表示日期(使用-1 表示一周中的某天，一年中的某天和夏令时，以便让 Python 自己计算)，并且对这些元组调用`mktime`：
 
-```
+```py
 >>> from random import *
 >>> from time import *
 >>> date1 = (2008, 1, 1, 0, 0, 0, -1, -1, -1)
@@ -909,20 +909,20 @@ sample(seq, n)　　　　　　　　　　　　　　　　　　　　　　
 
 然后就能在这个范围内均一地生成随机数(不包括上限)：
 
-```
+```py
 >>> random_time = uniform(time1, time2) 
 ```
 
 然后，可以将数字转换为易读的日期形式：
 
-```
+```py
 >>> print asctime(localtime(random_time))
 Tue Oct 14 04:33:21 2008 
 ```
 
 在接下来的例子中，我们要求用户选择投掷的骰子数以及每个骰子具有的面数。投骰子机制可以由`randrange`和`for`循环实现：
 
-```
+```py
 #!/usr/bin/env python
 # coding=utf-8
 
@@ -938,7 +938,7 @@ print "The result is", result
 
 如果将代码存为脚本文件并且执行，那么会看到下面的交互操作：
 
-```
+```py
 How many dice? 3
 How many sides per die? 6
 The result is 11 
@@ -946,7 +946,7 @@ The result is 11
 
 接下来假设有一个新建的文本文件，它的每一行文本都代表一种运势，那么我们就可以使用前面介绍的`fileinput`模块将“运势”都存入列表中，再进行随机选择：
 
-```
+```py
 # fortunu.py
 
 import fileinput, random
@@ -957,14 +957,14 @@ print random.choice(fortunes)
 
 在 UNIX 中，可以对标准字典文件`/usr/dict/words`进行测试，以获得一个随机单词：
 
-```
+```py
 $ python Code.py /usr/dict/words
 Greyson 
 ```
 
 最后一个例子，假设你希望程序能够在每次敲击回车的时候都为自己发一张牌，同时还要确保不会获得相同的牌。首先要创建“一副牌”——字符串列表：
 
-```
+```py
 >>> values = range(1, 11) + "Jack Queen King".split()
 >>> suits = "diamonds clubs hearts spades".split()
 >>> deck = ["%s of %s" % (v, s) for v in values for s in suits] 
@@ -972,7 +972,7 @@ Greyson
 
 现在创建的牌还不太适合进行游戏，让我们来看看现在的牌：
 
-```
+```py
 >>> from pprint import pprint
 >>> pprint(deck[:12])
 ['1 of diamonds', '1 of clubs', '1 of hearts', '1 of spades', '2 of diamonds', '2 of clubs', '2 of hearts', '2 of spades', '3 of diamonds', '3 of clubs', '3 of hearts', '3 of spades'] 
@@ -980,7 +980,7 @@ Greyson
 
 太整齐了，对吧？不过，这个问题很容易解决：
 
-```
+```py
 >>> from random import shuffle
 >>> shuffle(deck)
 >>> pprint(deck[:12])
@@ -991,7 +991,7 @@ Greyson
 
 最后，为了让 Python 在每次按回车的时候都给你发一张牌，知道发完为止，那么只需要创建一个小的`while`循环即可。假设将建立牌的代码放在程序文件中，那么只需要在程序的结尾处加入下面这行代码：
 
-```
+```py
 while deck:
     raw_input(deck.pop()) 
 ```
@@ -1006,7 +1006,7 @@ while deck:
 
 `shelve.open`函数返回的对象并不是普通的映射，这一点尤其要注意，如下面的例子所示：
 
-```
+```py
 >>> import shelve
 >>> s = shelve.open("/home/marlowes/workspace/pycharm_Python/Basic_tutorial/test.dat")
 >>> s["x"] = ["a", "b", "c"]
@@ -1027,7 +1027,7 @@ while deck:
 
 为了正确地使用`shelve`模块修改存储的对象。必须将临时变量绑定到获得的副本上，并且在它被修改后重新存储这个副本(感谢 Luther Blissett 指出这个问题)：
 
-```
+```py
 >>> temp = s["x"]
 >>> temp.append("d")
 >>> s["x"] = temp
@@ -1041,7 +1041,7 @@ Python2.4 之后的版本还有个解决方法：将`open`函数的`writeback`�
 
 代码清单 10-8 给出了一个简单的使用 shelve 模块的数据库应用程序。
 
-```
+```py
 #!/usr/bin/env python
 # coding=utf-8
 
@@ -1107,7 +1107,7 @@ if __name__ == '__main__':
 
 接下来，我们测试一下这个数据库。下面是一个简单的交互过程：
 
-```
+```py
 Enter command(? for help): ?
 The available commands are:
 store   : Store information about a persoon
@@ -1123,7 +1123,7 @@ Phone: 001-160309 Enter command(? for help): quit
 
 交互的过程并不是十分有趣，使用普通的字典也能获得和`shelf`对象一样的效果。但是，我们现在退出程序，然后再重新启动它，看看发生了什么？也许第二天才重新启动它：
 
-```
+```py
 Enter command(? for help): lookup
 Enter ID number: 001 What would you like to know? (name, age, phone) name
 Name: Greyson
@@ -1184,13 +1184,13 @@ Enter command(? for help): quit
 
 在子模式后面加上问号，它就变成了可选项。它可能出现在匹配字符串中，但并非必需的。例如，下面这个(稍微有点难懂)模式：
 
-```
+```py
 r"(http://)?(www\.)?python\.org" 
 ```
 
 只能匹配下列字符串(而不会匹配其他的)：
 
-```
+```py
 "http://www.python.org"
 "http://python.org"
 "www.python.org"
@@ -1231,7 +1231,7 @@ r"(http://)?(www\.)?python\.org"
 
 表 10-9 `re`模块中一些重要的函数
 
-```
+```py
 compile(pattern[, flags])　　　　　　　　　　　　　　　根据包含正则表达式的字符串创建模式对象
 search(pattern， string[, flags])　　　　　　　　　　　在字符串中寻找模式
 match(pattern, string[, flags])　　　　　　　　　　　　在字符串的开始处匹配模式
@@ -1245,7 +1245,7 @@ escape(string)　　　　　　　　　　　　　　　　　　　　 将�
 
 函数`re.search`会在给定字符串中寻找第一个匹配给定正则表达式的子字符串。一旦找到子字符串，函数就会返回`MatchObject`(值为`True`)，否则返回`None`(值为`False`)。因为返回值的性质，所以该函数可以用在条件语句中，如下例所示：
 
-```
+```py
 if re.search(pat, string): print "Found it!" 
 ```
 
@@ -1257,7 +1257,7 @@ if re.search(pat, string): print "Found it!"
 
 函数`re.split`会根据模式的匹配项来分割字符串。它类似于字符串方法`split`，不过是用完整的正则表达式替代了固定的分隔符字符串。比如字符串方法`split`允许用字符串`","`的匹配项来分割字符串，而`re.split`则允许用任意长度的逗号和空格序列来分割字符串：
 
-```
+```py
 >>> import re
 >>> some_text = "alpha, beta,,,,gamma delta"
 >>> re.split("[, ]+", some_text)
@@ -1268,7 +1268,7 @@ if re.search(pat, string): print "Found it!"
 
 从上述例子可以看到，返回值是子字符串的列表。`maxsplit`参数表示字符串最多可以分割的次数：
 
-```
+```py
 >>> re.split("[, ]+", some_text, maxsplit=2)
 ['alpha', 'beta', 'gamma delta']
 >>> re.split("[, ]+", some_text, maxsplit=1)
@@ -1277,7 +1277,7 @@ if re.search(pat, string): print "Found it!"
 
 函数`re.findall`以列表形式返回给定模式的所有匹配项。比如，要在字符串中查找所有的单词，可以像下面这么做：
 
-```
+```py
 >>> pat = "[a-zA-Z]+"
 >>> text = '"Hm... Err -- are you sure?" he said, sounding insecure.'
 >>> re.findall(pat, text)
@@ -1286,7 +1286,7 @@ if re.search(pat, string): print "Found it!"
 
 或者查找标点符号：
 
-```
+```py
 >>> pat = r'[.?\-",]+'
 >>> re.findall(pat, text)
 ['"', '...', '--', '?"', ',', '.'] 
@@ -1296,7 +1296,7 @@ if re.search(pat, string): print "Found it!"
 
 函数`re.sub`的作用在于：使用给定的替换内容将匹配模式的子字符串(最左端并且非重叠的子字符串)替换掉。请思考下面的例子：
 
-```
+```py
 >>> pat = '{name}'
 >>> text = 'Dear {name}...'
 >>> re.sub(pat, "Mr. Greyson", text) 'Dear Mr. Greyson...' 
@@ -1306,7 +1306,7 @@ if re.search(pat, string): print "Found it!"
 
 `re.escape`是一个很实用的函数，它可以对字符串中所有可能被解释为正则运算符的字符进行转义的应用函数。如果字符串很长且包含很多特殊字符，而你又不想输入一大堆反斜线，或者字符串来自于用户(比如通过`raw_input`函数获取的输入内容)，且要用作正则表达式的一部分的时候，可以使用这个函数。下面的例子向你演示了该函数是如何工作的：
 
-```
+```py
 >>> re.escape("www.python.org")
 'www\\.python\\.org'
 >>> re.escape("But where is the ambiguity?")
@@ -1321,13 +1321,13 @@ if re.search(pat, string): print "Found it!"
 
 简而言之，组就是放置在圆括号内的子模式。组的序号取决于它左侧的括号数。组 0 就是整个模式，所以在下面的模式中：
 
-```
+```py
 "There (was a (wee) (cooper)) who (lived in Fyfe)" 
 ```
 
 包含下面这些组：
 
-```
+```py
 0 There was a wee cooper who lived in Fyfe
 1 was a wee cooper
 2 wee
@@ -1337,7 +1337,7 @@ if re.search(pat, string): print "Found it!"
 
 一般来说，如果组中包含诸如通配符或者重复运算符之类的特殊字符，那么你可能会对是什么与给定组实现了匹配感兴趣，比如在下面的模式中：
 
-```
+```py
 r"www\.(.+)\.com$" 
 ```
 
@@ -1347,7 +1347,7 @@ r"www\.(.+)\.com$"
 
 表 10-10 re 匹配对象的重要方法
 
-```
+```py
 group([group1, ...])　　　获取给定子模式(组)的匹配项
 start([group])　　　　　　返回给定组的匹配项的开始位置
 end([group])　　　　　　　返回给定组的匹配项的结束位置(和分片不一样，不包括组的结束位置)
@@ -1366,7 +1366,7 @@ span([group])　　　　　　 返回一个组的开始和结束位置
 
 请思考以下例子：
 
-```
+```py
 >>> m = re.match(r"www\.(.*)\..{3}", "www.python.org")
 >>> m.group(1)
 'python'
@@ -1384,7 +1384,7 @@ span([group])　　　　　　 返回一个组的开始和结束位置
 
 见证`re.sub`强大功能的最简单方式就是在替换字符串中使用组号。在替换内容中以`"\\n"`形式出现的任何转义序列都会被模式中与组 n 匹配的字符串替换掉。例如，假设要把`"*something*"`用`"<em>something</em>"`替换掉，前者是在普通文本文档(比如 Emaill)中进行强调的常见方法，而后者则是相应的 HTML 代码(用于网页)。我们首先建立正则表达式：
 
-```
+```py
 >>> emphasis_pattern = r"\*([^\*]+)\*" 
 ```
 
@@ -1392,7 +1392,7 @@ span([group])　　　　　　 返回一个组的开始和结束位置
 
 注：让正则表达式变得更加易读的方式是在`re`函数中使用`VERBOSE`标志。它允许在模式中添加空白(空白字符、`tab`、换行符，等等)，`re`则会忽略它们，除非将其放在字符类或者用反斜线转义。也可以在冗长的正则式中添加注释。下面的模式对象等价于刚才写的模式，但是使用了`VERBOSE`标志：
 
-```
+```py
 >>> emphasis_pattern = re.compile(r'''
 ...     \*        # Beginning emphasis tag -- an asterisk
 ...     (         # Begin group for capturing phrase
@@ -1404,7 +1404,7 @@ span([group])　　　　　　 返回一个组的开始和结束位置
 
 现在模式已经搞定，接下来就可以使用 re.sub 进行替换了：
 
-```
+```py
 >>> re.sub(emphasis_pattern, r"<em>\1</em>", "Hello, *world*!")
 'Hello, <em>world</em>!' 
 ```
@@ -1417,13 +1417,13 @@ span([group])　　　　　　 返回一个组的开始和结束位置
 
 重复运算符默认是贪婪(greedy)的，这意味着它会进行尽可能多的匹配。比如，假设我重写了刚才用到的程序，以使用下面的模式：
 
-```
+```py
 >>> emphasis_pattern = r"\*(.+)\*" 
 ```
 
 它会匹配星号加上一个或多个字符，再加上一个星号的字符串。听起来很完美吧？但实际上不是：
 
-```
+```py
 >>> re.sub(emphasis_pattern, r"<em>\1</em>", "*This* is *it*!")
 '<em>This* is *it</em>!' 
 ```
@@ -1434,7 +1434,7 @@ span([group])　　　　　　 返回一个组的开始和结束位置
 
 事实上非常简单，只要使用重复运算符的非贪婪版本即可。所有的重复运算符都可以通过在其后面加上一个问号变成非贪婪版本：
 
-```
+```py
 >>> emphasis_pattern = r"\*\*(.+?)\*\*"
 >>> re.sub(emphasis_pattern, r"<em>\1</em>", "**This** is **it**!")
 '<em>This</em> is <em>it</em>!' 
@@ -1446,7 +1446,7 @@ span([group])　　　　　　 返回一个组的开始和结束位置
 
 有没有尝试过将 Email 存为文本文件？如果有的话，你会看到文件的头部包含了一大堆与邮件内容无关的信息，如代码清单 10-9 所示。
 
-```
+```py
 #代码清单 10-9 一组(虚构的)Email 头部信息
  From foo@bar.baz Thu Dec 20 01:22:50 2008 Return-Path: <foo@bar.baz> Received: from xyzzy42.bar.com (xyzzy.bar.baz [123.456.789.42])
         by frozz.bozz.floop (8.9.3/8.9.3) with ESMTP id BAA25436 for <maguns@bozz.floop>: Thu 20 Dec 2004 01:22:50 +0100 (MET)
@@ -1469,7 +1469,7 @@ Foo Fie
 
 *注：这个问题也可以不使用正则表达式解决，可以使用`email`模块。*
 
-```
+```py
 # 代码清单 10-10 寻找 Email 发信人的程序
 
 # RegularExpression.py
@@ -1482,7 +1482,7 @@ for line in fileinput.input():
 
 可以像下面这样运行程序(假设邮件内容存储在文本文件`message.eml`中)：
 
-```
+```py
 $ python RegularExpression.py message.eml
 Foo Fie 
 ```
@@ -1501,7 +1501,7 @@ Foo Fie
 
 为了列出头部信息中所有的 Email 地址，需要建立只匹配 Email 地址的正则表达式。然后可以使用`findall`方法寻找每行出现的匹配项。为了避免重复，可以将地址保存在集合中(本章前面介绍过)。最后，取出所有的键，排序，并且打印出来：
 
-```
+```py
 import re import fileinput
 
 pat = re.compile(r"[a-z\-\.]+@[a-z\-\.]+", re.IGNORECASE)
@@ -1515,7 +1515,7 @@ for line in fileinput.input():
 
 运行程序的时候会输出如下结果(以代码清单 10-9 的邮件信息作为输入)：
 
-```
+```py
 Mr.Gumby@bar.baz
 foo@bar.baz
 foo@baz.com
@@ -1528,25 +1528,25 @@ magnus@bozz.floop
 
 *模板*是一种通过放入具体值从而得到某种已完成文本的文件。比如，你可能会有只需要插入收件人姓名的邮件模板。Python 有一种高级的模板机制：字符串格式化。但是使用正则表达式可以让系统更加高级。假设需要把所有`"[somethings]"`(字段)的匹配项替换为通过 Python 表达式计算出来的`something`结果，所以下面的字符串：
 
-```
+```py
 "The sum of 7 and 9 is [7 + 9]." 
 ```
 
 应该被翻译为如下形式：
 
-```
+```py
 "The sum of 7 and 9 is 16." 
 ```
 
 同时，还可以在字段内进行赋值，所以下面的字符串：
 
-```
+```py
 "[name='Mr. Gumby']Hello, [name]" 
 ```
 
 应该被翻译为如下形式：
 
-```
+```py
 "Hello, Mr. Gumby" 
 ```
 
@@ -1566,7 +1566,7 @@ magnus@bozz.floop
 
 代码清单 10-11 是一个简单的实现。
 
-```
+```py
 #!/usr/bin/env python # coding=utf-8
 
 # templates.py
@@ -1621,7 +1621,7 @@ Templates.py
 
 *注：在之前的 Python 中，将所有行放入列表，最后再联合要比下面这种方法更有效率：*
 
-```
+```py
 text = ""
 for line in fileinput.input():
     text += line 
@@ -1631,7 +1631,7 @@ for line in fileinput.input():
 
 好了，我只用 15 行代码(不包括空行和注释)就创建了一个强大的模板系统。希望读者已经认识到：使用标准库的时候，Python 有多么强大。下面，我们通过测试这个模板系统来结束本例。试着对代码清单 10-12 中的示例文本运行该系统。
 
-```
+```py
 # 代码清单 10-12 简单的模板示例
 [x = 2]
 [y = 3]
@@ -1640,7 +1640,7 @@ The sum of [x] and [y] is [x + y].
 
 应该会看到如下结果：
 
-```
+```py
 The sum of 2 and 3 is 5. 
 ```
 
@@ -1648,7 +1648,7 @@ The sum of 2 and 3 is 5.
 
 但是等等，它还能更好！因为使用了`fileinput`，我可以轮流处理几个文件。这意味着可以使用一个文件为变量定义值，而另一个文件作为插入这些值的模板。比如，代码清单 10-13 包含了定义文件，名为`magnus.txt`，而代码清单 10-14 则是模板文件，名为`template.txt`。
 
-```
+```py
 # 代码清单 10-13 一些模板定义
 [name     = "Magnus Lie Hetland"]
 [email = "magnus@foo.bar"]
@@ -1669,13 +1669,13 @@ Oscar Frozzbozz
 
 `import time`并不是赋值语句(而是准备处理的语句类型)，但是因为我不是过分挑剔的人，所以只用了`try/except`语句，使得程序支持任何可以配合`eval`或`exec`使用的语句和表达式。可以像下面这样运行程序(在 UNIX 命令行下)：
 
-```
+```py
 $ python templates.py magnus.txt template.txt 
 ```
 
 你将会看到类似以下内容的输出：
 
-```
+```py
 Dear Magnus Lie Hetland.
 
 I would like to learn how to program. I hear you use
@@ -1728,7 +1728,7 @@ Fooville, Wed May 18 20:58:58 2016 Oscar Frozzbozz
 
 ☑ 标准库：Python 包括了一些模块，总称为标准库。本章讲到了其中的很多模块，以下对其中一部分进行回顾。
 
-```
+```py
 ○ `sys`：通过该模块可以访问到多个和 Python 解释器联系紧密的变量和函数。
 
 ○ `os`：通过该模块可以访问到多个和操作系统联系紧密的变量和函数。
@@ -1754,7 +1754,7 @@ Fooville, Wed May 18 20:58:58 2016 Oscar Frozzbozz
 
 表 10-11 本章的新函数
 
-```
+```py
 dir(obj)        返回按字母顺序排序的属性名称列表
 help([obj])     提供交互式帮助或关于特定对象的交互式帮助信息
 reload(module)  返回已经导入模块的重新载入版本，该函数在 Python3.0 将要被废除 

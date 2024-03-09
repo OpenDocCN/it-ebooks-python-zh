@@ -18,7 +18,7 @@ Django 意外的和昆汀的电影重名。这大大提高了 Django 的知名�
 
 启动计算机中的 Python，尝试载入 Django 模块。如果可以成功载入，那么说明 Django 已经安装好：
 
-```
+```py
 import django print(django.VERSION)
 
 ```
@@ -33,14 +33,14 @@ import django print(django.VERSION)
 
 使用下面的命令创建项目：
 
-```
+```py
 django-admin.py startproject mysite
 
 ```
 
 在当前目录下，将生成 mysite 文件夹。其文件树结构如下:
 
-```
+```py
 mysite
 ├── manage.py
 └── mysite
@@ -55,7 +55,7 @@ mysite
 
 进入 mysite，启动服务器：
 
-```
+```py
 python manage.py runserver 8000
 
 ```
@@ -76,7 +76,7 @@ python manage.py runserver 8000
 
 我们需要一个指挥员，将 URL 对应分配给某个对象处理，这需要在 mysite/mysite 下的 urls.py 设定。Python 会根据该程序，将 URL 请求分给某个厨师。
 
-```
+```py
 mysite
 ├── manage.py
 └── mysite
@@ -91,7 +91,7 @@ mysite
 
 将 urls.py 修改为:
 
-```
+```py
 from django.conf.urls import patterns, include, url
 
 from django.contrib import admin
@@ -112,7 +112,7 @@ urlpatterns = patterns('',
 
 用以处理 HTTP 请求的这一对象还不存在，我们在 mysite/mysite 下创建 views.py，并在其中定义 first_page 函数:
 
-```
+```py
 # -*- coding: utf-8 -*-
 
 from django.http import HttpResponse def first_page(request): return HttpResponse("<p>世界好</p>")
@@ -131,7 +131,7 @@ from django.http import HttpResponse def first_page(request): return HttpRespons
 
 一个网站可能有多个功能。我们可以在 Django 下，以 app 为单位，模块化的管理，而不是将所有的东西都丢到一个文件夹中。在 mysite 下，运行 manange.py，创建新的 app：
 
-```
+```py
 $python manage.py startapp west
 
 ```
@@ -140,7 +140,7 @@ $python manage.py startapp west
 
 我们的根目录下，出现了一个新的叫做 west 的文件夹。
 
-```
+```py
 mysite/
 ├── manage.py
 ├── mysite
@@ -162,7 +162,7 @@ mysite/
 
 我们还需要修改项目设置，说明我们要使用 west。在 mysite/setting.py 中，在 INSTALLED_APPS 中，增加"west"：
 
-```
+```py
 INSTALLED_APPS = ( 'django.contrib.admin', 'django.contrib.auth', 'django.contrib.contenttypes', 'django.contrib.sessions', 'django.contrib.messages', 'django.contrib.staticfiles', 'west',
 )
 
@@ -178,7 +178,7 @@ INSTALLED_APPS = ( 'django.contrib.admin', 'django.contrib.auth', 'django.contri
 
 首先，修改 mysite/urls.py：
 
-```
+```py
 from django.conf.urls import patterns, include, url from django.contrib import admin
 admin.autodiscover()
 
@@ -196,7 +196,7 @@ urlpatterns = patterns('', # Examples:
 
 随后，我们创建 west/urls.py，添加内容：
 
-```
+```py
 from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('',
@@ -209,7 +209,7 @@ urlpatterns = patterns('',
 
 最后，在 west 下，修改 views.py 为:
 
-```
+```py
 # -*- coding: utf-8 -*-
 
 from django.http import HttpResponse def first_page(request): return HttpResponse("<p>西餐</p>")

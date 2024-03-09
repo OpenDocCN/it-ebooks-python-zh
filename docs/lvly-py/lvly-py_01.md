@@ -49,7 +49,7 @@ Brought to you by Read the Docs
 
 什么是自由软件？自由软件强调的是用户运行，学习，修改和发行软件的自由，而不是价格。具体来讲，自由软件赋予用户下面 4 个自由度:
 
-```
+```py
 0\. 出于任何目的，运行软件的自由。
 1\. 学习软件如何工作，以及为了满足自己的需要修改软件的自由。（显然，这个自由度的前提是能够访问软件的源代码）
 2\. 为了帮助你的邻居，将软件拷贝给他的自由。
@@ -140,7 +140,7 @@ Brought to you by Read the Docs
 
 [Python](http://python.org) [http://python.org] 是蕴含快乐编程思想的奇妙脚本语言,但是在中国程序员世界里并不为人所知,原因有很多; 本书试图使用一种比较草根的叙述形式来推广这一美好的语言, 决不教条或对比贬低其它"热门/主流"语言;-)
 
-```
+```py
 def foo():
     print "Love Python, Love FreeDome"
     print "E 文标点,.0123456789,中文标点,. "
@@ -245,7 +245,7 @@ SVN(Subversion) 是一个流行的非常强大的版本管理系统,使用手册
 
 使用有语法颜色的代码引用
 
-```
+```py
 def foo():
     print "Love Python, Love FreeDome"
     print "E 文标点,.0123456789,中文标点,. "
@@ -420,7 +420,7 @@ Brought to you by Read the Docs
 > > > *   精巧地址: [`bit.ly/aa0F`](http://bit.ly/aa0F)
 > > > *   样例
 
-```
+```py
 标题:[LovPy]PCS304 AbtEurasia 增补缺少的,,
 正文:
 现在内容:

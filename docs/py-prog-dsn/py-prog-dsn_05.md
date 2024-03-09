@@ -106,7 +106,7 @@
 
 【程序 4.1】tree1.py
 
-```
+```py
 print "   *  " 
 print "  ***  " 
 print " ***** " 
@@ -122,7 +122,7 @@ print "   #   "
 
 执行结果如下：
 
-```
+```py
  *   
   ***  
  ***** 
@@ -146,7 +146,7 @@ print "   #   "
 
 下面我们定义一个函数 treetop()，它的语句序列正是程序 4.1 中的重复代码。注意， 为了更直观地介绍函数定义及其调用，我们特意在 Python 交互环境 IDLE 中来展示有关内 容。
 
-```
+```py
 >>> def treetop():
     print "   *   " 
     print "  ***  " 
@@ -158,7 +158,7 @@ def 语句只是定义了新函数 treetop，并没有执行函数体中的语�
 
 > ① 如果读者自己在文本编辑器中键入这个程序，一定会使用“复制－粘贴”功能吧。
 
-```
+```py
 >>> treetop()
    *
   ***
@@ -168,7 +168,7 @@ def 语句只是定义了新函数 treetop，并没有执行函数体中的语�
 
 可见函数 treetop 正确地打印了树冠的一部分。 接下来定义画出整棵树的函数 tree：
 
-```
+```py
 >>> def tree():
     treetop() 
     treetop() 
@@ -179,7 +179,7 @@ def 语句只是定义了新函数 treetop，并没有执行函数体中的语�
 
 由于重复代码被函数调用 treetop 代替，这个版本显然比原先的版本简练许多，但程序的 功能完全是一样的，参见下面的运行结果：
 
-```
+```py
 >>> tree()
    *
   ***
@@ -198,7 +198,7 @@ def 语句只是定义了新函数 treetop，并没有执行函数体中的语�
 
 【程序 4.2】tree2.py
 
-```
+```py
 def treetop(): 
     print "   *   " 
     print "  ***  " 
@@ -217,13 +217,13 @@ tree()
 
 有的读者也许会问，程序 4.2 中的函数 tree 中，还存在三条重复出现的语句
 
-```
+```py
 print "   #" 
 ```
 
 为何不定义一个函数来避免重复呢？我们不妨再写一个新版本，读者看了之后自然明白这个 做法没什么好处。见下：
 
-```
+```py
 def treetop(): 
     print "   *" 
     print "  ***" 
@@ -254,7 +254,7 @@ tree()
 
 我们定义一个新函数 treetrunk，它的语句序列就是程序 4.2 的主函数中用于画树干的三条 print 语句。即：
 
-```
+```py
 def treetrunk(): 
     print "   #"
     print "   #"
@@ -265,7 +265,7 @@ def treetrunk():
 
 【程序 4.3】tree3.py
 
-```
+```py
 def treetop(): 
     print "   *" 
     print "  ***" 
@@ -290,7 +290,7 @@ main()
 
 【程序 4.4】tree4.py
 
-```
+```py
 def treetop1(): 
     print "   *" 
     print "  ***" 
@@ -321,7 +321,7 @@ main()
 
 【程序 4.5】tree5.py
 
-```
+```py
 def treetop1(): 
     print "   *" 
     print "  ***" 
@@ -353,7 +353,7 @@ main()
 
 此版本的执行结果如下：
 
-```
+```py
  *
   ***
  *****
@@ -384,7 +384,7 @@ main()
 
 下面我们设计一个通用的画树冠的函数 treetop(ch)，其中参数 ch 表示用来作画的 字符。为了控制树的形状，函数定义中使用了字符串格式化运算。
 
-```
+```py
 >>> def treetop(ch):
         print " %s" % (ch) 
         print " %s" % (3 * ch) 
@@ -394,7 +394,7 @@ main()
 
 在交互环境定义了函数 treetop(ch)后，我们接着来测试它的效果。下面是测试例子：
 
-```
+```py
 >>> treetop('*')
    *
   ***
@@ -416,7 +416,7 @@ AAAAAAA
 
 【程序 4.6】tree6.py
 
-```
+```py
 def treetop(ch):
     print " %s" % (ch) 
     print " %s" % (3 * ch) 
@@ -453,14 +453,14 @@ main()
 
 通过前面的例子，读者应该已经非常熟悉 Python 中函数定义的语法。在此总结如下：
 
-```
+```py
 def <函数名>(<形式参数>):
     <函数体> 
 ```
 
 其中函数名是标识符，命名必须符合 Python 标识符的规定；形式参数是用逗号分隔的变量名序列（可以为空）。函数体是语句序列，左端必须缩进一些空白。 一旦定义了一个函数，就可以在程序的任何地方调用这个函数。函数调用的语法如下：
 
-```
+```py
 <函数名>(<实际参数>) 
 ```
 
@@ -478,7 +478,7 @@ def <函数名>(<形式参数>):
 
 下面我们以程序 4.6 为例，具体描述函数调用过程。为了方便阅读，将程序 4.6 的主函 数 main 罗列在下面，整个程序从 main 开始执行。
 
-```
+```py
 def main():
     star_treetop() 
     treetrunk() 
@@ -495,7 +495,7 @@ def main():
 
 控制转到 star_treetop 后执行的第一条语句又是一个函数调用 treetop("*")， 于是 Python 又暂停执行 star_treetop，而将控制转到 treetop("*")。Python 检查 treetop 的定义后发现它有一个形式参数 ch，于是将函数调用 treetop("*")的实际参 数"*"传递给形式参数 ch，这相当于在 treetop 的函数体之前增加了一条赋值语句：
 
-```
+```py
 ch = "*" 
 ```
 
@@ -529,7 +529,7 @@ ch = "*"
 
 作为例子，我们再来研究用字符画树冠的问题。树冠是由两个三角形图案组成的，程序 4.2 或程序 4.6 中，函数 treetop 的功能就是用字符画三角形图案，只不过程序 4.2 固定用 字符"*"画画，程序 4.6 可以用任意字符画画。观察 treetop 的函数体，可见图案是由多 条 print 语句所打印的字符串拼成的，并且每条 print 所打印的字符串很有规律：每行中 "*"的个数是自顶向下分别是 1、3、5、7，而左边留的空格数自顶向下分别是 3、2、1、0。 对这些数字做一点分析，很容易得出规律：设树冠最宽处有 w 个"*"字符，则当某一行上要 画 c 个"*"时，该行左边留的空格数就是(w - c) / 2。根据这个规律，我们定义一个新的 treetop 函数，它具有两个参数：一个是画图所用字符 ch，另一个是树冠宽度 width（为 对称起见应该用奇数，此前例子都固定为 7）。显然这个新的 treetop 函数更加通用化，可 以用任意字符画任意宽度的树冠。
 
-```
+```py
 def treetop(ch,width):
     for c in range(1,width+1,2):
         print ((width–c)/2) * " " + c * ch 
@@ -537,7 +537,7 @@ def treetop(ch,width):
 
 下面我们在 Python 交互环境下定义这个函数，然后做一些测试。结果如下：
 
-```
+```py
 >>> treetop("*",7)
    *
   ***
@@ -558,7 +558,7 @@ TypeError: cannot concatenate 'str' and 'int' objects
 
 从上例可知，由于函数 treetop 有两个形式参数，因此调用该函数时必须传递两个实 际参数与之匹配。参数传递的效果相当于在 treetop 的函数体前面执行了两条赋值语句：
 
-```
+```py
 ch = ...
 width = ... 
 ```
@@ -567,7 +567,7 @@ width = ...
 
 例如我们定义一个显示身高体重信息的函数，然后调用之：
 
-```
+```py
 >>> def printInfo(height,weight): 
         print "Height:",height 
         print "Weight:",weight
@@ -582,7 +582,7 @@ Weight: 1.8
 
 函数调用时的参数传递通常采用上述“按位置匹配”的方式，但 Python 还提供另一种 参数传递方式——关键字参数。关键字参数形如“<形参名> = <实参值>”，即通过形式参数 的名字来指示为哪个形参传递什么值。例如：
 
-```
+```py
 >>> treetop(width = 11,ch = "A")
      A 
     AAA 
@@ -594,7 +594,7 @@ AAAAAAAAAAA
 
 关键字参数在某些场合用起来更方便。例如，如果一个函数有很多参数，但是调用时只 想为个别参数传递值，而其他参数采用缺省值，这是采用关键字参数就是必然的选择。下面 是一个简单的例子：
 
-```
+```py
 >>> def f(a,b=7,c=2):
         print a,b,c
 >>> f(2005)
@@ -617,7 +617,7 @@ AAAAAAAAAAA
 
 在一个函数中定义的变量称为局部变量（local variable），因为它们的作用域局限于该 函数的函数体，在函数外部是没有定义的。例如：
 
-```
+```py
 >>> def func(x,y):
         z = x + y print z
 >>> func(1,2)
@@ -626,7 +626,7 @@ AAAAAAAAAAA
 
 函数 func 中定义了局部变量 z。由于语句 print z 是 func 函数体内的语句，所以 可以访问 z。如果函数外部的 print 语句试图显示 z 的值，则会出错。例如接着上例继续 执行：
 
-```
+```py
 >>> print z
 Traceback (most recent call last):
 File "<pyshell#9>", line 1, in <module> print z
@@ -637,7 +637,7 @@ NameError: name 'z' is not defined
 
 函数的局部变量和形式参数仅在函数体内有定义，因此即使与函数外部的变量同名也不 会带来问题。例如我们接着上例继续执行语句：
 
-```
+```py
 >>> x = 1
 >>> z = 2
 >>> func(x,z)
@@ -652,7 +652,7 @@ NameError: name 'z' is not defined
 
 函数内部的变量具有局部性，这符合模块化编程思想的要求。作为一种模块化构件，函 数就像“黑盒”一样，其内部细节应该对外部不可见。同理，函数内部也不应直接使用外界 的东西。如果函数需要外界的数据，正确的做法是通过参数来传递给函数。也就是说，函数 的参数除了用于表示可变数据、增强函数的通用性之外，还应作为外界向函数传递数据（即使是一个固定不变的数据）的唯一渠道。下面是一个函数直接使用外界数据的例子：
 
-```
+```py
 >>> s = "hello"
 >>> def f():
         print s
@@ -662,7 +662,7 @@ hello
 
 这里，函数 f()的功能是打印变量 s 的值，但这个 s 并不是 f()自己的局部变量，而是 f() 外部的变量，相对于 f()可称为全局变量（global variable）。尽管这个用法在 Python 中是合 法的，但这不是好的编程风格。正确的做法是将变量 s 的值通过参数传递给 f()：
 
-```
+```py
 >>> s = "hello"
 >>> def f(x):
         print x
@@ -674,7 +674,7 @@ hello
 
 【程序 4.7】eg4_7.py
 
-```
+```py
 def f():
     global x 
     x = x + 1 
@@ -690,7 +690,7 @@ g()
 
 程序中定义了两个函数 f()和 g()，它们的函数体中都包含一条声明全局变量的语句： global x 意为本函数中所使用的 x 是在函数外部定义的全局变量。f()的功能是对全局变量 x 加 1，g()的功能是对全局变量 x 减 1。执行结果如下：
 
-```
+```py
 >>> import eg4_1
 1
 0 
@@ -708,7 +708,7 @@ g()
 
 在前面几章中，我们已多次使用过具有返回值的内建函数和库函数。例如，内建函数 len() 能够接收一个字符串，然后返回该字符串的长度；数学库中的函数 math.sqrt()接收一个 数值，并返回该数值的平方根。我们还看到，带有返回值的函数基本上可以当作一个值来看 待，可以和其他数据一起进行运算，构成表达式。例如：
 
-```
+```py
 (-b + math.sqrt(b*b – 4*a*c)) / 2*a 
 range(len("hello"))
 x = input("Enter a number:") 
@@ -716,7 +716,7 @@ x = input("Enter a number:")
 
 如何自定义带有返回值的函数呢？Python 语言提供了一条 return 语句用于从函数返 回值，用法如下：
 
-```
+```py
 def f():
 ...
 return <表达式 1>, ..., <表达式 n>
@@ -729,7 +729,7 @@ return <表达式 1>, ..., <表达式 n>
 
 例如，下面的函数实现了数学函数 f(x) = x2 的功能：
 
-```
+```py
 >>> def sq(x):
         return x * x
 >>> sq(2)
@@ -744,7 +744,7 @@ return <表达式 1>, ..., <表达式 n>
 
 再看一个例子，下面的 dist()函数能够计算平面上两点间的距离。我们将平面上的点 表示为由横坐标和纵坐标组成的元组(x,y)。根据数学中的距离公式，并利用上面的 sq() 函数，可以写出如下代码：
 
-```
+```py
 >>> import math
 >>> def dist(u,v):
         d = math.sqrt(sq(v[0]-u[0])+sq(v[1]-u[1])) return d
@@ -760,7 +760,7 @@ return <表达式 1>, ..., <表达式 n>
 
 如果函数返回值有多个，那么调用者需要使用多个变量来接收函数的返回值。例如下面 的函数 headtail()对一个列表取出头尾元素：
 
-```
+```py
 >>> def headtail(list):
     return list[0], list[len(list)-1]
 >>> headtail([1,2,3,4,5]) 
@@ -773,7 +773,7 @@ return <表达式 1>, ..., <表达式 n>
 
 一个元组。
 
-```
+```py
 >>> h,t = headtail([1,2,3,4,5])
 >>> print h,t 
 1 5
@@ -784,7 +784,7 @@ return <表达式 1>, ..., <表达式 n>
 
 函数中的 return 语句通常都出现在函数的末尾，因为函数一般都是执行完所有步骤 之后才能得出计算结果并返回。然而，有时我们希望在函数到达末尾之前就终止执行并返回， 例如当函数检测到不正确的数据时就没有必要继续执行，因为计算下去只能带来错误结果。 下面这个例子检查用户输入（要求是正数），如果不满足要求则退出函数，否则对用户数据 进行处理。代码如下：
 
-```
+```py
 >>> def f(x):
     if x <= 0:
         print "Positive numbers only, please." 
@@ -799,7 +799,7 @@ Positive numbers only, please.
 
 最后要说明一点，在 Python 中，任何函数无论是否包含 return 语句，总是要返回一个值的。如果包含 return 语句，自然就返回程序员指定的值；如果不含 return 语句， 则函数总是返回一个称为 None 的特殊对象。如果编程时忘记在函数中用 return 语句返回 值，而调用处又企图使用返回值，则可能出错。例如，假设上面定义的 dist()函数忘了最 后的 return 语句，我们看会带来什么后果：
 
-```
+```py
 >>> import math
 >>> def dist(u,v):
         d = math.sqrt(sq(v[0]-u[0])+sq(v[1]-u[1]))
@@ -827,7 +827,7 @@ TypeError: unsupported operand type(s) for +: 'int' and 'NoneType'
 
 > ① 程序算法实际上是一般的。将基准日期换成格里高利历的开始日（1582 年 10 月 15 日，星期五）后，很 容易扩展本程序的适用年份范围。
 
-```
+```py
 程序：calendar
 输入：公元年份 year（1900 以后）
 输出：year 年年历
@@ -840,7 +840,7 @@ TypeError: unsupported operand type(s) for +: 'int' and 'NoneType'
 
 根据 calendar 程序的规格说明，很容易设计一个简单的 IPO 模式的算法：首先从用户处 获得年份输入 year，然后计算该年份 1 月 1 日是星期几，最后按特定格式输出年历。我们用 伪代码来表示该算法，如下：
 
-```
+```py
 输入 year
 计算 year 年 1 月 1 日是星期几 输出年历 
 ```
@@ -849,20 +849,20 @@ TypeError: unsupported operand type(s) for +: 'int' and 'NoneType'
 
 首先，尽管第一个步骤“输入 year”看上去很容易用 input 语句实现，但我们仍然先 用一个顶层模块——函数 getYear()来表示该步骤的实现。函数 getYear()负责从用户 处获得输入并返回给主程序使用，因此我们将函数的返回值赋值给主程序变量 year。至此， 我们的 calendar 程序取得了第一个进展：
 
-```
+```py
 def main():
     year = getYear() 
 ```
 
 其次，计算 year 年 1 月 1 日是星期几，这个步骤不是那么显然，但我们仍然假设函数 firstDay()能够实现该步骤，这个函数以 year 作为输入，然后返回一个代表星期几的值（例如，用 0 表示星期天，用 1 到 6 分别表示星期一到星期六）。在主程序中添加一行调用 firstDay()的语句，并将函数返回值赋值给主程序变量 w，这时程序就进展到如下形式： def main():
 
-```
+```py
 year = getYear() w = firstDay(year) 
 ```
 
 最后一步是输出年历，仍然假设函数 printCalendar()能够实现该步骤，此函数需要用到的信息包括 year 和 w，无需提供返回值。在 main 中添加相应的函数调用语句之后，得到 calendar 程序的完整结构如下：
 
-```
+```py
 def main():
     year = getYear()
     w = firstDay(year) 
@@ -887,7 +887,7 @@ def main():
 
 首先看 getYear 函数。这个函数的功能只是输入年份数据，可以直接用 Python 的基本 语句实现，无需分解为新的功能模块。具体代码如下：
 
-```
+```py
 def getYear():
     print "This program prints the calendar of a given year." 
     year = input("Please enter the year (after 1900): ") 
@@ -900,7 +900,7 @@ def getYear():
 
 那么，从基准日到 year 年 1 月 1 日总共过了多少天呢？只需一点常识，就能得出下面 的公式：
 
-```
+```py
 (year – 1900) * 365 + k 
 ```
 
@@ -910,7 +910,7 @@ def getYear():
 
 返回所需的 k。于是可以设计 firstDay 函数如下：
 
-```
+```py
 def firstDay(year):
     k = leapyears(year)
     n = (year – 1900) * 365 + k 
@@ -919,7 +919,7 @@ def firstDay(year):
 
 最后考虑 printCalendar 函数的设计，该函数的任务是在合适的位置按日历格式显示一年 12 个月的日历。由于问题有点复杂，我们照例进行任务分解。12 个月的日历输出显然可以用一个 for 循环来实现，循环体是显示一个月日历的代码。每个月需要先打印标题（月份和星期的名称），然后再打印日期，假设函数 heading()和 oneMonth()分别执行这两个任务，则 printCalendar 的代码如下：
 
-```
+```py
 def printCalendar(year,w):
     print
     print "=========== " + str(year) + " =========="
@@ -941,7 +941,7 @@ def printCalendar(year,w):
 
 首先考虑函数 leapyears 的实现，该函数的功能是计算从 1900 到 year（不含）之间 的闰年个数。这可以用逐年检验的方法来实现①：对从 1900 到 year-1 的每一年，测试该 年是否闰年，如果是则为计数变量 count 加 1。于是得到如下代码：
 
-```
+```py
 def leapyears(year): count = 0
 for y in range(1900,year):
     if y%4 == 0 and (y%100 != 0 or y%400 == 0): 
@@ -953,7 +953,7 @@ for y in range(1900,year):
 
 再考虑函数 heading 的实现，该函数用于打印每个月日历的标题部分（月份和星期名 称）。我们将月份名称放在一个列表中，然后通过传递给 heading 函数的月份值作为索引 来查找月份名称。代码如下：
 
-```
+```py
 def heading(m):
     months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"]
     print " %s " % (months[m]) 
@@ -968,7 +968,7 @@ def heading(m):
 
 图 4.9 每个月的日历布局 由于问题有点复杂，我们再次分解任务，用三个子程序来实现 oneMonth()：days() 函数计算该月份的天数，layout()函数用于布置该月每一天在日历框架中的位置 ，printMonth()用于输出日历。即：
 
-```
+```py
 def oneMonth(year,month,first): 
     d = days(year,month)
     frame = layout(first,d) 
@@ -992,7 +992,7 @@ oneMonth 函数有三个参数：year 表示年份，month 表示月份，first 
 
 先考虑 days 函数的实现。我们将每个月的天数放在列表中，然后通过月份进行索引即 可得到该月天数。要注意有个特殊情形，即闰年 2 月份。这时应当为天数多加 1 天。代码如 下：
 
-```
+```py
 def days(y,m):
     month_days = [31,28,31,30,31,30,31,31,30,31,30,31]
     d = month_days[m]
@@ -1003,7 +1003,7 @@ def days(y,m):
 
 接着考虑函数 layout 的实现。本函数根据 first 和 d，将每一个日期填入日历框架（图 4.9）。
 
-```
+```py
 def layout(first,d): 
     frame = 42 * [""] 
     if first == 0:
@@ -1017,7 +1017,7 @@ def layout(first,d):
 
 最后实现 printMonth 函数。日历布局已经保存在列表 frame 之中，函数要做的事情就是将列表成员打印出来。其中的关键是掌握好换行的时机，采用了日历框架后这一点变得很简单，只需每输出 frame 的七个成员就换行一次。代码如下：
 
-```
+```py
 def printMonth(frame): 
     for i in range(42):
         print "%3s" % (frame[i]), 
@@ -1035,7 +1035,7 @@ def printMonth(frame):
 
 在模块化编程中，测试程序最适合采用单元测试技术，即先分别测试每一个小模块，然 后再逐步测试较大的模块，直至最后测试完整程序。以 calendar 程序为例，当我们实现了 days(y,m)函数后，就应该来测试此函数是否能完成预定的功能——返回 y 年 m+1 月有多 少天。我们可以将 days(y,m)的定义存入一个模块文件（假设文件名是 moduletest.py）， 然后导入该文件并测试函数。下面是测试 days 函数的一个会话过程：
 
-```
+```py
 >>> from moduletest import days
 >>> days(1900,0)
 31
@@ -1059,7 +1059,7 @@ def printMonth(frame):
 
 【程序 4.8】calendar.py
 
-```
+```py
 # calendar.py
 def getYear():
     print "This program prints the calendar of a given year." 
@@ -1168,13 +1168,13 @@ Python 模块很容易创建。只要使用任意的文本编辑器，键入一�
 
 为了使用 Python 模块中定义的对象，必须用 import 或 from 语句导入模块。import 的功能是导入模块整体，导入后为了访问模块定义的对象，必须在对象前加上模块名作为前 缀。例如，假设模块 mymod 中定义了我们需要用到的函数 func()，那么可以这样导入：
 
-```
+```py
 import mymod mymod.func() 
 ```
 
 另一种导入语句是 from 语句，用于导入模块中定义的特定名字（用*可以导入所有名字）。使用时不需要加上模块名作为限制。例如：
 
-```
+```py
 from mymod import func func() 
 ```
 
@@ -1196,14 +1196,14 @@ from mymod import func func()
 
 假设文件 b.py 中定义了一个函数 hello 给外部使用：
 
-```
+```py
 def hello(person):
     print "Hello", person 
 ```
 
 再假设 a.py 正好需要使用 hello()，为此可以在 a.py 中导入模块 b，然后调用 hello()：
 
-```
+```py
 import b
 b.hello("Lucy"') 
 ```
@@ -1222,7 +1222,7 @@ b.hello("Lucy"')
 
 如果想了解随着 Python 安装的标准库中有哪些模块，可以使用 Python 的联机帮助命令。 在 Python 解释器提示符下键入 help()，可以进入联机帮助环境：
 
-```
+```py
 >>> help()
 Welcome to Python 2.7! This is the online help utility.
 ......
@@ -1231,7 +1231,7 @@ help>
 
 省略号是 Python 打印的一些说明信息。help>是帮助系统的提示符，可以在这个提示符下 输入想了解的主题，Python 就会给出有关主题的信息。例如输入 modules 可以得到安装的 所有模块的信息：
 
-```
+```py
 help> modules
 Please wait a moment while I gather a list of all available modules... AppClass1 asynchat ftplib roller
 ......
@@ -1240,7 +1240,7 @@ help>
 
 输入某个模块的名字可以获得该模块的信息，例如：
 
-```
+```py
 help> math
 Help on built-in module math:
 NAME
@@ -1269,7 +1269,7 @@ Return the arc cosine (measured in radians) of x.
 
 导入的库。在 Python 中，混合式模块可以通过在程序入口前加上特定条件而实现。 如所熟知，我们一般都在程序文件的最后加上启动程序的一行语句：
 
-```
+```py
 main() 
 ```
 
@@ -1277,7 +1277,7 @@ main()
 
 Python 在导入一个模块的时候会执行模块中的每一行语句，执行函数定义语句 def 时 就创建相应的函数但并不执行，而最后遇到启动程序的 main 时就启动了整个程序。有时我 们希望导入模块时不要执行整个程序，例如交互环境下测试程序时，通常的做法是先导入模 块，需要执行代码时才去调用 main 或其他函数。要想只导入不执行，当然可以删掉程序入 口 main()，但这又会失去双击执行程序的可能。两全其美的做法是在主程序入口 main 之 前加个条件：
 
-```
+```py
 if <条件>:
     main() 
 ```
@@ -1286,7 +1286,7 @@ if <条件>:
 
 如果是用 import 导入模块，Python 会将该模块的一个特殊变量 name 的值设置为 模块的名字。例如：
 
-```
+```py
 >>> import math
 >>> print math.__name__
 math 
@@ -1296,7 +1296,7 @@ math
 
 但如果是直接执行模块（如双击模块文件图标等），Python 则将模块的特殊变 量 name 设置为字符串'main'。因此可以通过特殊变量 name 的值来判断模块是被 导入的还是被直接执行的。根据这个底层细节，我们可以将程序文件的最后一行改成：
 
-```
+```py
 if __name__ == ’__main__’:
     main() 
 ```
@@ -1329,7 +1329,7 @@ if __name__ == ’__main__’:
 
 11\. 为具有下列主函数的程序画出结构图的顶层。
 
-```
+```py
 def main():
     printIntro()
     length, width = getDimensions() 
@@ -1341,7 +1341,7 @@ def main():
 
 13\. 考虑函数：
 
-```
+```py
 def cube(x):
     answer = x * x * x 
     return answer 
@@ -1353,7 +1353,7 @@ def cube(x):
 
 （3）考虑下面这个程序片段：
 
-```
+```py
 answer = 4 
 result = cube(3)
 print answer, result 

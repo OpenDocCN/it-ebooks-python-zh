@@ -34,7 +34,7 @@
 
 完整的函数代码如下，其中的 doMath 是算法辅助函数，定义为两个操作数和一个操作符的计算。
 
-```
+```py
 from pythonds.basic.stack import Stack
 
 def postfixEval(postfixExpr):

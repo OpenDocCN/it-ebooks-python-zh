@@ -14,7 +14,7 @@
 
 使用 git 工具来获取 Dave 的最新示例代码。在 shell 或其它命令行上输入以下命令（假设已经安装 git）：
 
-```
+```py
 git clone git://github.com/jdavisp3/twisted-intro.git 
 ```
 
@@ -28,25 +28,25 @@ git clone git://github.com/jdavisp3/twisted-intro.git
 
 最简单的慢速诗歌服务器在[blocking-server/slowpoetry.py](http://github.com/jdavisp3/twisted-intro/blob/master/blocking-server/slowpoetry.py)中实现。你可用下面的方式来运行它。
 
-```
+```py
 python blocking-server/slowpoetry.py poetry/ecstasy.txt 
 ```
 
 上面这个命令将启动一个阻塞的服务器，其提供"Ecstasy"这首诗。现在我们来看看它的源码内容，正如你所见，这里面并没有使用任何 Twisted 的内容，只是最基本的 Socket 编程操作。它每次只发送一定字节数量的内容，而每次中间延时一段时间。默认的是每隔 0.1 秒发送 10 个比特，你可以通过`--delay`和 `--num-bytes`参数来设置。例如每隔 5 秒发送 50 比特：
 
-```
+```py
 python blocking-server/slowpoetry.py --num-bytes 50 –-delay 5 poetry/ecstasy.txt 
 ```
 
 当服务器启动时，它会显示其所监听的端口号。默认情况下，端口号是在可用端口号池中随机选择的。你可能想使用固定的端口号，那么无需更改代码，只需要在启动命令中作下修改就 OK 了，如下所示：
 
-```
+```py
 python blocking-server/slowpoetry.py --port 10000 poetry/ecstasy.txt 
 ```
 
 如果你装有 netcat 工具，可以用如下命令来测试你的服务器（也可以用 telnet）：
 
-```
+```py
 netcat localhost 10000 
 ```
 
@@ -60,7 +60,7 @@ netcat localhost 10000
 
 在示例代码中有一个可以从多个服务器中顺序（一个接一个）地下载诗歌的阻塞模式的客户端。下面让这个客户端执行三个任务，正如第一个部分图 1 描述的那样。首先我们启动三个服务器，提供三首不同的诗歌。在命令行中运行下面三条命令：
 
-```
+```py
 python blocking-server/slowpoetry.py --port 10000 poetry/ecstasy.txt --num-bytes 30
 python blocking-server/slowpoetry.py --port 10001 poetry/fascination.txt
 python blocking-server/slowpoetry.py --port 10002 poetry/science.txt 
@@ -70,13 +70,13 @@ python blocking-server/slowpoetry.py --port 10002 poetry/science.txt
 
 现在我们使用阻塞模式的客户端来获取诗歌，运行如下所示的命令：
 
-```
+```py
 python blocking-client/get-poetry.py 10000 10001 10002 
 ```
 
 如果你修改了上面服务口器的端口，你需要在这里相应的修改以保持一致。由于这个客户端采用的是阻塞模式，因此它会一首一首的下载，即只有在完成一首时才会开始下载另外一首。这个客户端会像下面这样打印出提示信息而不是将诗歌打印出来：
 
-```
+```py
 Task 1: get poetry from: 127.0.0.1:10000
 Task 1: got 3003 bytes of poetry from 127.0.0.1:10000 in 0:00:10.126361 
 Task 2: get poetry from: 127.0.0.1:10001 
@@ -92,13 +92,13 @@ Got 3 poems in 0:00:23.065661
 
 现在，我们来看看不用 Twisted 构建的异步模式的客户端。首先，我们先运行它试试。启动使用前面的三个端口来启动三个服务器。如果前面开启的还没有关闭，那就继续用它们好了。接下来，我们通过下面这段命令来启动我们的异步模式的客户端：
 
-```
+```py
 python async-client/get-poetry.py 10000 10001 10002 
 ```
 
 你或许会得到类似于下面的输出：
 
-```
+```py
 Task 1: got 30 bytes of poetry from 127.0.0.1:10000 
 Task 2: got 10 bytes of poetry from 127.0.0.1:10001
 Task 3: got 10 bytes of poetry from 127.0.0.1:10002

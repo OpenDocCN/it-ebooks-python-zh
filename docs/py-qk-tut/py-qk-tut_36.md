@@ -15,7 +15,7 @@
 
 1) 将内存中的对象转换成为文本流：
 
-```
+```py
 import pickle # define class
 class Bird(object):
     have_feather = True
@@ -30,7 +30,7 @@ picklestring = pickle.dumps(summer)   # serialize object
 
 当然，我们也可以使用 pickle.dump()的方法，将上面两部合二为一:
 
-```
+```py
  define class
 class Bird(object):
     have_feather = True
@@ -48,7 +48,7 @@ fn           = 'a.pkl' with open(fn, 'w') as f:                     # open file 
 
 此外，我们也可以使用 pickle.load()的方法，将上面步骤合并:
 
-```
+```py
 import pickle # define the class before unpickle
 class Bird(object):
     have_feather = True

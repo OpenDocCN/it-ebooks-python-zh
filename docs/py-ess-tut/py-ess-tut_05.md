@@ -20,7 +20,7 @@
 
 前面的章节中讲解过如何使用`print`来打印表达式——不管是字符串还是其他类型进行自动转换后的字符串。但是事实上打印多个表达式也是可行的，只要将它们用逗号隔开就好：
 
-```
+```py
 >>> print "Age", 19 
 Age 19 
 ```
@@ -29,7 +29,7 @@ Age 19
 
 *注：print 的参数并不能像我们预期那样构成一个元组：*
 
-```
+```py
 >>> 1, 2, 3 
 (1, 2, 3) 
 >>> print 1, 2, 3
@@ -40,7 +40,7 @@ Age 19
 
 如果想要同时输出文本和变量值，却又不希望使用字符串格式化的话，那这个特性就非常有用了：
 
-```
+```py
 >>> name = "XuHoo"
 >>> salutation = "Mr."
 >>> greeting = "Hello,"
@@ -57,7 +57,7 @@ Hello, Mr. XuHoo
 
 如果在结尾处加上逗号，那么接下来的语句会与前一条语句在同一行打印，例如：
 
-```
+```py
 print "Hello", print "world!"
 
 # 输出 Hello, world!(这只在脚本中起作用，而在交互式 Python 会话中则没有效果。在交互式会话中，所有的语句都会被单独执行(并且打印出内容)) 
@@ -67,7 +67,7 @@ print "Hello", print "world!"
 
 从模块导入函数的时候，通常可以使用以下几种方式：
 
-```
+```py
 import somemodule # or
 from somemodule import somefunction 
 # or
@@ -78,7 +78,7 @@ from somemodule import *
 
 只有确定自己想要从给定的模块导入所有功能时，才应该使用最后一个版本。但是如果两个模块都有`open`函数，那又该怎么办？只需要使用第一种方式导入，然后像下面这样使用函数：
 
-```
+```py
 import module1 import module2
 
 module1.open(...)
@@ -87,7 +87,7 @@ module2.open(...)
 
 但还有另外的选择：可以在语句末尾增加一个`as`子句，在该子句后给出想要使用的别名。例如为整个模块提供别名：
 
-```
+```py
 >>> import math as foobar 
 >>> foobar.sqrt(4) 
 2.0
@@ -112,7 +112,7 @@ from module2 import open as open2
 
 赋值语句的例子已经给过不少，其中包括对变量和数据结构成员的(比如列表中的位置和分片以及字典中的槽)赋值。但赋值的方法还不止这些。比如，多个赋值操作可以*同时*进行：
 
-```
+```py
 >>> x, y, z = 1, 2, 3
 >>> print x, y, z 1 2 3
 
@@ -122,7 +122,7 @@ from module2 import open as open2
 
 事实上，这里所做的事情叫做序列解包(sequence unpacking)或*递归解包*——将多个值的序列解开，然后放到变量的序列中。更形象一点的表示就是：
 
-```
+```py
 >>> values = 1, 2, 3
 >>> values
 (1, 2, 3) >>> x, y, z  = values >>> x 1
@@ -132,7 +132,7 @@ from module2 import open as open2
 
 当函数或者方法返回元组(或者其他序列或可迭代对象)时，这个特性尤其有用。假设需要获取(和删除)字典中任意的键-值对，可以使用`popitem`方法，这个方法将键-值作为元组返回。那么这个元组就可以直接赋值到两个变量中：
 
-```
+```py
 >>> scoundrel = {"name": "XuHoo", "girlfriend": "None"}  
 # =_=
 >>> key, value = scoundrel.popitem() 
@@ -142,7 +142,7 @@ from module2 import open as open2
 
 它允许函数返回一个以上的值并且打包成元组，然后通过一个赋值语句很容易进行访问。所解包的序列中的元素数量必须和放置在赋值符号=左边的变量数量完全一致，否则 Python 会在赋值时引发异常：
 
-```
+```py
 >>> x, y, z = 1, 2 Traceback (most recent call last):
   File "<stdin>", line 1, in <module> 
   ValueError: need more than 2 values to unpack 
@@ -158,7 +158,7 @@ from module2 import open as open2
 
 链式赋值(charned assignment)是将同一个值赋给多个变量的捷径。它看起来有些像上节中并行赋值，不过这里只处理一个值：
 
-```
+```py
 x = y = somefunction() # 和下面语句的效果是一样的：
 y = somefunction()
 x = y 
@@ -173,7 +173,7 @@ y = somefunction()
 
 这里没有将赋值表达式写为`x=x+1`，而是将表达式运算符(本例中是`±`)放置在赋值运算符`=`的左边，写成`x+=1`,。这种写法叫做增量赋值(augmented assignmnet)，对于`*`、`/`、`%`等标准运算符都适用：
 
-```
+```py
 >>> x = 2
 >>> x += 1
 >>> x *= 2
@@ -198,7 +198,7 @@ y = somefunction()
 
 块中的每行都应该缩进*同样的量*。下面的伪代码(并非真正 Python 代码)展示了缩进的工作方法：
 
-```
+```py
 this is a line
 this is another line:
     this is another block
@@ -223,7 +223,7 @@ phew, there we escaped the inner block
 
 下面的值在作为布尔表达式的时候，会被解释器看做假(`False`)：
 
-```
+```py
 False    None    0    ""    ()    []    {} 
 ```
 
@@ -231,7 +231,7 @@ False    None    0    ""    ()    []    {}
 
 明白了吗？也就是说 Python 中的所有值都能被解释为真值，初次接触的时候可能会有些搞不明白，但是这点的确非常有用。“标准的”布尔值为`True`和`False`。在一些语言中(例如 C 和 Python2.3 以前的版本)，标准的布尔值为`0`(表示假)和`1`(表示真)。事实上，`True`和`False`只不过是`1`和`0`的一种“华丽”的说法而已——看起来不同，但作用相同。
 
-```
+```py
 >>> True
 True 
 >>> False
@@ -250,7 +250,7 @@ True
 
 布尔值`True`和`False`属于布尔类型，`bool`函数可以用来(和`list`、`str`以及`tuple`一样)转换其他值。
 
-```
+```py
 >>> bool("I think, therefore I am")
 True 
 >>> bool(19)
@@ -269,7 +269,7 @@ False
 
 真值可以联合使用(马上就要介绍)，但还是让我们先看看它们的作用。试着运行下面的脚本：
 
-```
+```py
 name = raw_input("What is your name? ") 
 if name.endswith("XuHoo"): 
     print "Hello, Mr.XuHoo" 
@@ -283,7 +283,7 @@ if name.endswith("XuHoo"):
 
 前一节的例子中，如果用户输入了以`XuHoo`作为结尾的名字，那么`name.endswit`方法就会返回真，使得`if`进入语句块，打印出问候语。也可以使用`else`子句增加一种选择(之所以叫做*子句*是因为它不是独立的语句，而只能作为`if`语句的一部分)。
 
-```
+```py
 name = raw_input("What is your name? ") 
 if name.endswith("XuHoo"): 
     print "Hello, Mr.XuHoo"
@@ -297,7 +297,7 @@ else:
 
 如果需要检查多个条件，就可以使用`elif`，它是`else if`的简写，也是`if`和`else`子句的联合使用，也就是具有条件的`else`子句。
 
-```
+```py
 name = input("Enter a number: ") 
 if num > 0: 
     print "The number is positive"
@@ -313,7 +313,7 @@ else:
 
 下面的语句中加入了一些不必要的内容。if 语句里面可以嵌套使用`if`语句，就像下面这样：
 
-```
+```py
 name = raw_input("What is your name? ") 
 if name.endswith("XuHoo"): 
     if name.startswith("Mr."): 
@@ -338,7 +338,7 @@ else:
 
 表 5-1 Python 中的比较运算符
 
-```
+```py
 x = y　　　　　　　　　　x 等于 y
 x < y　　　　　　   　　 x 小于 y
 x > y　　　　　　   　　 x 大于 y
@@ -369,7 +369,7 @@ x not in y　　　　　　　 x 不是 y 容器(例如，序列)的成员
 
 如果想要知道两个东西是否相等，应该使用相等运算符，即两个等号"=="：
 
-```
+```py
 >>> "foo" == "foo" True 
 >>> "foo" == "bar" False 
 # 相等运算符需要使用两个等号，如果使用一个等号会出现下面的情况
@@ -384,7 +384,7 @@ x not in y　　　　　　　 x 不是 y 容器(例如，序列)的成员
 
 这个运算符比较有趣。它看起来和`==`一样，事实上却不同：
 
-```
+```py
 >>> x = y = [1, 2, 3] 
 >>> z = [1, 2, 3] 
 >>> x == y
@@ -398,7 +398,7 @@ False
 
 这看起来有些不可理喻吧？看看这个例子：
 
-```
+```py
 >>> x = [1, 2, 3] 
 >>> y = [2, 4] 
 >>> x is not y
@@ -424,7 +424,7 @@ False # 显然，两个列表值等但是不等同。
 
 `in`运算符已经介绍过了(在 2.2.5 节)。它可以像其他比较运算符一样在条件语句中使用。
 
-```
+```py
 name = raw_input("What is your name? ") 
 if "s" in name: 
     print "Your name contains the letter 's'."
@@ -436,7 +436,7 @@ else:
 
 字符串可以按照字母顺序排列进行比较。
 
-```
+```py
 >>> "alpha" < "beta" True 
 ```
 
@@ -444,7 +444,7 @@ else:
 
 如果字符串內包括大写字母，那么结果就会有点乱(实际上，字符是按照本身的顺序值排列的。一个字母的顺序值可以用`ord`函数查到，`ord`函数与`chr`函数功能相反)。如果要忽略大小写字母的区别，可以使用字符串方法`upper`和`lower`(请参见第三章)。
 
-```
+```py
 >>> "FnOrD".lower() == "Fnord".lower()
 True # 其他的序列也可以用同样的方式进行比较，不过比较的不是字符而是其他类型的元素。
 >>> [1, 2] < [2 ,1]
@@ -457,7 +457,7 @@ True
 
 返回布尔值的对象已经介绍过许多(事实上，所有值都可以解释为布尔值，所有的表达式也都返回布尔值)。但有时想要检查一个以上的条件。例如，如果需要编写读取数字并且判断该数字是否位于 1~10 之间(也包括 10)的程序，可以像下面这样做：
 
-```
+```py
 number = input("Enter a number between 1 and 10: ") 
 if number <= 10: 
     if number >= 1: 
@@ -479,7 +479,7 @@ else:
 
 `and`运算符就是所谓的布尔运算符。它连接两个布尔值，并且在两者都为真时返回真，否则返回假。与它同类的还有两个运算符，`or`和`not`。使用这三个运算符就可以随意结合真值。
 
-```
+```py
 if ((cash > price) or customer_has_good_credit) and not out_of_stock:
     give_goods() 
 ```
@@ -490,7 +490,7 @@ if ((cash > price) or customer_has_good_credit) and not out_of_stock:
 
 这有什么用呢？它主要是避免了无用地执行代码，可以作为一种技巧使用，假设用户应该输入他/她的名字，但也可以选择什么都不输入，这时可以使用默认值`"<unknown>"`。可以使用`if`语句，但是可以很简洁的方式：
 
-```
+```py
 name = raw_input("Please enter your name: ") or "<unknown>" 
 ```
 
@@ -498,7 +498,7 @@ name = raw_input("Please enter your name: ") or "<unknown>"
 
 这类短路逻辑可以用来实现 C 和 Java 中所谓的三元运算符(或条件运算符)。在 Python2.5 中有一个内置的条件表达式，像下面这样：
 
-```
+```py
 a if b else c 
 ```
 
@@ -508,14 +508,14 @@ a if b else c
 
 `if`语句有个非常有用的“近亲”，它的工作方式多少有点像下面这样(伪代码)：
 
-```
+```py
 if not condition:
     crash program 
 ```
 
 究竟为什么会需要这样的代码呢？就是因为与其让程序在晚些时候崩溃，不如在错误条件出现时直接让它崩溃。一般来说，你可以要求某些条件必须为真(例如，在检查函数参数的属性时，或者作为初期测试和调试过程中的辅助条件)。语句中使用的关键字是`assert`。
 
-```
+```py
 >>> age = 10
 >>> assert 0 < age < 100
 >>> age = -1
@@ -528,7 +528,7 @@ if not condition:
 
 条件后可以添加字符串，用来解释断言：
 
-```
+```py
 >>> age = -1
 >>> assert 0 < age < 100, "The age must be realistic" 
     Traceback (most recent call last):
@@ -540,7 +540,7 @@ if not condition:
 
 现在你已经知道当条件为真(或假)时如何执行了，但是怎么才能重复执行多次呢？例如，需要实现一个每月提醒你付房租的程序，但是就我们目前学习到的知识而言，需要向下面这样编写程序(伪代码)：
 
-```
+```py
 发邮件
 等一个月
 发邮件
@@ -552,7 +552,7 @@ if not condition:
 
 但是如果想让程序继续执行直到认为停止它呢？比如想像下面这样做(还是伪代码)：
 
-```
+```py
 当我们没有停止时：
     发邮件
     等一个月 
@@ -560,7 +560,7 @@ if not condition:
 
 或者换个简单些的例子。假设想要打印 1~100 的所有数字，就得再次用这个笨方法：
 
-```
+```py
 print 1
 print 2
 print 3 
@@ -575,7 +575,7 @@ print 100
 
 为了避免上例中笨重的代码，可以像下面这样做：
 
-```
+```py
 x = 1
 while x <= 100
     print x
@@ -584,7 +584,7 @@ while x <= 100
 
 那么 Python 里面应该如何写呢？你猜对了，就像上面那样。不是很复杂吧？一个循环就可以确保用户输入了名字：
 
-```
+```py
 name = ""
 while not name:
     name = raw_input("Please enter your name: ") 
@@ -603,7 +603,7 @@ while not name:
 
 这个时候可以使用`for`语句：
 
-```
+```py
 words = ["this", "is", "an", "ex", "parrot"] 
 for word in words: 
     print word 
@@ -631,7 +631,7 @@ for number in range(1, 100):
 
 一个简单的`for`语句就能遍历字典的所有键，就像遍历访问序列一样：
 
-```
+```py
 d = {"x": 1, "y": 2, "z": 3} 
 for key in d: 
     print key, "corresponds to", d[key] 
@@ -639,7 +639,7 @@ for key in d:
 
 在 Python2.2 之前，还只能用`keys`等字典方法来获取键(因为不允许直接迭代字典)。如果只需要值，可以使用`d.values`替代`d.keys`。`d.items`方法会将键-值对作为元组返回，`for`循环的一大好处就是可以循环中使用序列解包：
 
-```
+```py
 for key, value in d.items(): 
     print key, "corrsponds", value 
 ```
@@ -654,7 +654,7 @@ for key, value in d.items():
 
 程序可以同时迭代两个系列。比如有下面两个列表：
 
-```
+```py
 names = ["XuHoo", "Marlowes", "GuoYing", "LeiLa"]
 ages = [19, 19, 22, 22] 
 # 如果想要打印名字和对应的年龄，可以像下面这样做:
@@ -666,7 +666,7 @@ for i in range(len(names)):
 
 而內建的`zip`函数就可以用来进行并行迭代，可以把两个序列“压缩”在一起，然后返回一个元组的列表：
 
-```
+```py
 >>> zip(names, ages)
 [("XuHoo", 19), ("Marlowes", 19), ("GuoYing", 22), ("LeiLa", 22)] 
 # 现在我可以在循环中解包元组:
@@ -684,7 +684,7 @@ for name, age in zip(names, ages):
 
 有些时候想要迭代访问序列中的对象，同时还要获取当前对象的索引。例如，在一个字符串列表中替换所有包含`"xxx"`的子字符。实现的方法肯定有很多，假设你想像下面这样做：
 
-```
+```py
 for string in strings: if "xxx" in string:
         index = strings.index(string)  
         # Search for the string in the list of strings
@@ -699,7 +699,7 @@ index = 0 for string in strings:
 
 方法有些笨，不过可以接受。另一种方法是使用內建的`enumerate`函数：
 
-```
+```py
 for index, string in enumerate(strings): 
     if "xxx" in string:
         strings[index] = "[censored]" 
@@ -711,7 +711,7 @@ for index, string in enumerate(strings):
 
 让我们看看另外两个有用的函数：`reversed`和`sorted`。它们同列表的`reverse`和`sort`(`sorted`和`sort`使用同样的参数)方法类似，但作用于任何序列或可迭代对象上，不是原地修改对象，而是返回翻转或排序后的版本：
 
-```
+```py
 >>> sorted([4, 3, 6, 8, 3])
 [3, 3, 4, 6, 8] 
 >>> sorted("Hello, world!")
@@ -732,7 +732,7 @@ for index, string in enumerate(strings):
 
 结束(跳出)循环可以使用`break`语句。假设需要寻找 100 以内的最大平方数，那么程序可以开始从 100 往下迭代到 0.当找到一个平方数时就不需要继续循环了，所以可以跳出循环：
 
-```
+```py
 from math import sqrt 
     for n in range(99, 0, -1):
         root = sqrt(n) 
@@ -742,7 +742,7 @@ from math import sqrt
 
 如果执行这个程序的话，会打印出`81`，然后程序停止。注意，上面的代码中`range`函数增加了第三个参数——表示*步长*，步长表示每对相邻数字之间的差别。将其设置为负值的话就会想例子中一样反向迭代。它也可以用来跳过数字：
 
-```
+```py
 >>> range(0, 10, 2)
 [0, 2, 4, 6, 8] 
 ```
@@ -751,7 +751,7 @@ from math import sqrt
 
 `continue`语句比`break`语句用得要少得多。它会让当前的迭代结束，“跳”到下一轮循环的开始。它最基本的意思是“跳过剩余的循环体，但是不结束循环”。当循环体很大而且很复杂的时候，这会很有用，有些时候因为一些原因可能会跳过它——这个时候可以使用`continue`语句：
 
-```
+```py
 for x in seq: 
     if condition1:
     continue
@@ -778,7 +778,7 @@ for x in seq:
 
 Python 中的`while`和`for`循环非常灵活，但一旦使用`while`语句就会遇到一个需要更多功能的问题。如果需要当用户在提示符下输入单词时做一些事情，并且在用户不输入单词后结束循环。可以使用下面的方法：
 
-```
+```py
 word = "dummy"
 while word:
     # 处理 word
@@ -794,7 +794,7 @@ Please enter a word:
 
 代码按要求的方式工作(大概还能做些比直接打印出单词更有用的工作)。但是代码有些丑。在进入循环之前需要给 word 赋一个哑值(未使用的)。使用哑值(dummy value)就是工作没有尽善尽美的标志。让我们试着避免它：
 
-```
+```py
 word = raw_input("Please enter a word: ") 
 # 处理 word
 while word: 
@@ -817,7 +817,7 @@ while True:
 
 当在循环内使用`break`语句时，通常是因为“找到”了某物或者因为某事“发生”了。在跳出是做一些事情是很简单的(比如`print n`)，但是有些时候想要在没有跳出之前做些事情。那么怎么判断呢？可以使用布尔变量，再循环前将其设定为`False`，跳出后设定为`True`。然后再使用`if`语句查看循环是否跳出了：
 
-```
+```py
 broke_out = False for x in seq:
     do_something(x) 
     if condition(x):
@@ -843,14 +843,14 @@ else:
 
 *列表推导式*(list comprehension)是利用其他列表创建新列表(类似于数学术语中的集合推导式)的一种方法。它的工作方式类似于`for`循环，也很简单：
 
-```
+```py
 >>> [x*x for x in range(10)]
 [0, 1, 4, 9, 16, 25, 36, 49, 64, 81] 
 ```
 
 列表有`range(10)`中每个 x 的平方组成。太容易了？如果只想打印出那些能被 3 整除的平方数呢？那么可以使用模除运算符——`y%3`，当数字可以被 3 整除时返回 0(注意，`x`能被 3 整除时，`x`的平方必然也可以被 3 整除)。这个语句可以通过增加一个`if`部分添加到列表推导式中：
 
-```
+```py
 >>> [x*x for x in range(10) if x % 3 == 0]
 [0, 9, 36, 81] 
 # 也可以增加更多 for 语句的部分:
@@ -874,7 +874,7 @@ print result
 
 男孩/女孩名字对的例子其实效率不高，因为它会检查每个可能的配对。Python 有很多解决这个问题的方法，下面的方法是 Alex Martelli 推荐的：
 
-```
+```py
 girls = ["alice", "bernice", "clarice"]
 boys = ["chris", "arnold", "bob"]
 letterGirls = {} 
@@ -893,7 +893,7 @@ print [b+"+"+g for b in boys for g in letterGirls[b[0]]]
 
 有的时候，程序什么事情都不用做吗。这种情况不多，但是一旦出现，就应该让`pass`语句出马了。
 
-```
+```py
 >>> pass
 >>> 
 ```
@@ -902,7 +902,7 @@ print [b+"+"+g for b in boys for g in letterGirls[b[0]]]
 
 那么究竟为什么使用一个什么都不做的语句？它可以在代码中做占位符使用。比如程序需要一个`if`语句，然后进行测试，但是缺少其中一个语句块的代码，考虑下面的情况：
 
-```
+```py
 if name == "Ralph Auldus Melish": 
     print "Welcome!"
 elif name == "End": 
@@ -926,7 +926,7 @@ elif name == "Bill Gates":
 
 一般来说，Python 会删除那些不再使用的对象(因为使用者不会再通过任何变量或数据结构引用它们)：
 
-```
+```py
 >>> scoundrel = {"age": 42, "first name": "Robin", "last name": "of Locksley"} >>> robin = scoundrel >>> scoundrel
 {'last name': 'of Locksley', 'first name': 'Robin', 'age': 42} 
 >>> robin
@@ -938,7 +938,7 @@ elif name == "Bill Gates":
 
 另外一个方法就是使用`del`语句(我们在第二章和第四章里面用来删除序列和字典元素的语句)，它不仅会移除一个对象的引用，也会移除那个名字本身。
 
-```
+```py
 >>> x = 1
 >>> del x 
 >>> x
@@ -969,14 +969,14 @@ Traceback (most recent call last):
 
 执行一个字符串的语句是`exec`(在 Python3.0 中，`exec`是一个函数而不是语句)：
 
-```
+```py
 >>> exec "print 'Hello, world!'" 
 Hello, world! 
 ```
 
 但是，使用简单形式的`exec`语句绝不是好事。很多情况下可以给它提供命名空间——可以放置变量的地方。你想这样做，从而使代码不会干扰命名空间(也就是改变你的变量)，比如，下面的代码中使用了名称`sqrt`：
 
-```
+```py
 >>> from math import sqrt 
 >>> exec "sqrt = 1"
 >>> sqrt(4)
@@ -991,7 +991,7 @@ Traceback (most recent call last):
 
 可以通过增加 `in<scope>` 来实现，其中`<scope>`就是起到放置代码字符串命名空间作用的字典。
 
-```
+```py
 >>> from math import sqrt 
 >>> scope = {} 
 >>> exec "sqrt = 1" in scope 
@@ -1004,7 +1004,7 @@ Traceback (most recent call last):
 
 注意，如果需要将`scope`打印出来的话，会看到其中包含很多东西，因为內建的`__builtins__`字典自动包含所有的內建函数和值：
 
-```
+```py
 >>> len(scope) 2
 >>> scope.keys()
 ['__builtins__', 'sqrt'] 
@@ -1014,7 +1014,7 @@ Traceback (most recent call last):
 
 `eval`(用于“求值”)是类似于`exec`的內建函数。`exec`语句会执行一系列*Python 语句*，而`eval`会计算*Python 表达式*(以字符串形式书写)，并且返回结果值。(`exec`语句并不返回任何对象，因为它本身就是语句)例如，可以使用下面的代码创建一个 Python 计算器：
 
-```
+```py
 >>> eval(raw_input("Enter an arithmetic expression: "))
 Enter an arithmetic expression: 6 + 18 * 2
 42 
@@ -1030,7 +1030,7 @@ Enter an arithmetic expression: 6 + 18 * 2
 
 给`exec`或者`eval`语句提供命名空间时，还可以在真正使用命名空间前放置一些值进去：
 
-```
+```py
 >>> scope = {} 
 >>> scope["x"] = 2
 >>> scope["y"] = 3
@@ -1074,7 +1074,7 @@ Enter an arithmetic expression: 6 + 18 * 2
 
 表 5-2 本章的新函数
 
-```
+```py
 chr(n)                                 当传入序号 n 时，返回 n 所代表的包含一个字符的字符串(0≤n&lt;256)。
 eval(source[, globals[, locals]])      将字符串作为表达式计算，并且返回值。
 enumerate(seq)                         产生用于迭代的(索引，值)对。

@@ -6,7 +6,7 @@
 
 “在美国，所有人喝到的可乐的都是一样的，无论是总统或者是流浪汉”。波普艺术家 Andy Warhol 如是说。如果用编程的语言来表达 Andy 的思想，那么我想可能用**类（class）**这个概念最为合适。
 
-```
+```py
 class CocaCola():
     it_taste = 'So good!'
 coke_for_bum = CocaCola()
@@ -17,7 +17,7 @@ print(coke_for_president.it_taste)
 
 运行结果：
 
-```
+```py
 >>> So good!
 >>> So good!
 ```
@@ -32,7 +32,7 @@ print(coke_for_president.it_taste)
 
 对于可乐来讲，只要是同一个品牌的可乐，他们就有着同样的成分，这被称之为配方（formula）。就像是工厂进行批量生产时所遵循的统一标准，正是因为有着同样的配方，所有可口可乐才能达到一样的口味。我们用 Python 中的类来表达这件事：
 
-```
+```py
 class CocaCola:
     formula = ['caffeine','sugar','water','soda']
 ```
@@ -47,7 +47,7 @@ class CocaCola:
 
 我们继续按照定义好的配方(类)来生产可乐。当然，按照这个配方，无论生产多少瓶可乐，它们的味道都是一样的。
 
-```
+```py
 coke_for_me = CocaCola()
 coke_for_you = CocaCola()
 ```
@@ -56,7 +56,7 @@ coke_for_you = CocaCola()
 
 在左边我们创建一个变量，右边写上类的名称，这样看起来很像是赋值的行为，我们称之为类的实例化。而被实例化后的对象，我们称之为**实例(instance)**，或者说是类的实例。对于可乐来说，按照配方把可乐生产出来的过程就是实例化的过程。
 
-```
+```py
 print(CocaCola.formula)
 print(coke_for_me.formula)
 print(coke_for_you.formula)
@@ -64,7 +64,7 @@ print(coke_for_you.formula)
 
 运行结果：
 
-```
+```py
 >>> ['caffeine','sugar','water','soda']
 >>> ['caffeine','sugar','water','soda']
 >>> ['caffeine','sugar','water','soda']
@@ -76,13 +76,13 @@ print(coke_for_you.formula)
 
 **类的属性会被所有类的实例共享**，所以当你在类的实例后面再点上 `.` ,索引用的属性值是完全一样的。
 
-```
+```py
 print(CocaCola.formula)
 print(coke_for_me.formula)
 print(coke_for_you.formula)
 ```
 
-```
+```py
 >>> ['caffeine','sugar','water','soda']
 >>> ['caffeine','sugar','water','soda']
 >>> ['caffeine','sugar','water','soda']
@@ -92,14 +92,14 @@ print(coke_for_you.formula)
 
 类的属性与正常的变量并无区别，你可以试着这样来感受一下：
 
-```
+```py
 for element in coke_for_me.formula:
     print(element)
 ```
 
 运行结果：
 
-```
+```py
 >>> caffeine
 >>> sugar
 >>> water
@@ -118,7 +118,7 @@ for element in coke_for_me.formula:
 
 同样的配方，不一样的名称，就带来了不同的效果。这说明生产的过程中有必要做一些独有的本地化调整：
 
-```
+```py
 class CocaCola:
     formula = ['caffeine','sugar','water','soda']
 coke_for_China = CocaCola()
@@ -128,7 +128,7 @@ print(coke_for_China.local_logo)          #打印实例属性引用结果
 
 运行结果：
 
-```
+```py
 >>> 可口可乐
 ```
 
@@ -146,7 +146,7 @@ print(coke_for_China.local_logo)          #打印实例属性引用结果
 
 类的实例可以引用属性，但我们更早了解到的是类的实例可以使用方法这件事（见第三章：字符串的方法)。方法就是函数，但我们把这个函数称之为**方法(Method)**。方法是供实例使用的，因此我们还可以称之为**实例方法(Instance Method)**。当你掉喝一瓶可乐的时候，你会从咖啡因和大量的糖分中获得能量，如果使用类的方法来表示可乐的这个“功能”的话，那应该是这样的：
 
-```
+```py
 class CocaCola:
     formula = ['caffeine','sugar','water','soda']
     def drink(self):
@@ -157,7 +157,7 @@ coke.drink()
 
 运行结果：
 
-```
+```py
 >>> Energy!
 ```
 
@@ -167,7 +167,7 @@ coke.drink()
 
 我知道你现在的关注点一定在这个奇怪的地方——似乎没有派上任何用场的 `self` 参数。我们来说明一下原理，其实很简单，我们不妨修改一下代码:
 
-```
+```py
 class CocaCola:
     formula = ['caffeine','sugar','water','soda']
     def drink(coke):    # HERE！
@@ -179,7 +179,7 @@ coke.drink()
 
 运行结果：
 
-```
+```py
 >>> Energy!
 ```
 
@@ -187,7 +187,7 @@ coke.drink()
 
 再进一步说，一旦一个类被实例化，那么我们其实可以同样使用原来的方式：
 
-```
+```py
 coke = CocaCola
 coke.drink() == CocaCola.drink(coke) #左右两边的写法完全一致
 ```
@@ -198,7 +198,7 @@ coke.drink() == CocaCola.drink(coke) #左右两边的写法完全一致
 
 和函数一样，类的方法也能有属于自己的参数，我们先来试着在 `.drink()` 方法上做些改动：
 
-```
+```py
 class CocaCola:
     formula = ['caffeine','sugar','water','soda']
     def drink(self,how_much):      
@@ -214,7 +214,7 @@ ice_coke.drink('a sip')
 
 运行结果：
 
-```
+```py
 >>> Cool~
 ```
 
@@ -224,7 +224,7 @@ Python 的类中存在一些方法，被称为"魔术方法"，`_init_()` 就是
 
 `__init()` 的神奇之处就在于，如果你在类里定义了它，在创建实例的时候它就能帮你自动地处理很多事情——比如新增实例属性。在上面的代码中，我们创建了一个实例属性，但那是在定义完类之后再做的，这次我们一步到位：
 
-```
+```py
 class CocaCola():
     formula = ['caffeine','sugar','water','soda']
     def __init__(self):
@@ -239,7 +239,7 @@ print(coke.local_logo)
 
 运行结果：
 
-```
+```py
 >>> 可口可乐
 ```
 
@@ -247,7 +247,7 @@ print(coke.local_logo)
 
 `_init_()` 方法可以给类的使用提供极大的灵活性。试试看下面的代码会发生什么：
 
-```
+```py
 class CocaCola:
     formula = ['caffeine','sugar','water','soda']
     def __init__(self):
@@ -263,7 +263,7 @@ coke = CocaCola()
 
 除了必写的 self 参数之外，`_init()` 同样可以有自己的参数，同时也不需要这样`obj.init()`的方式来调用（因为是自动执行），而是在实例化的时候往类后面的括号中放进参数，相应的所有参数都会传递到这个特殊的 `init_()` 方法中，和函数的参数的用法完全相同。
 
-```
+```py
 class CocaCola:
     formula = ['caffeine','sugar','water','soda']
     def __init__(self,logo_name):
@@ -278,7 +278,7 @@ coke.local_logo
 
 运行结果：
 
-```
+```py
 >>> 可口可乐
 ```
 
@@ -292,7 +292,7 @@ coke.local_logo
 
 现在我们使用[可口可乐官方网站上最新的配方](http://www.coca-colaproductfacts.com/en/coca-cola-products/coca-cola/)来重新定义这个类：
 
-```
+```py
 class CocaCola:
     calories    = 140
     sodium      = 45
@@ -318,7 +318,7 @@ class CocaCola:
 
 所有的子品类都会继承可口可乐的品牌，Python 中类自然也有对应的概念，叫做**类的继承 (inheritance)**，我们拿无咖可乐（CAFFEINE-FREE）作为例子：
 
-```
+```py
 class CaffeineFree(CocaCola):
     caffeine = 0
     ingredients =  [
@@ -342,7 +342,7 @@ coke_a.drink()
 
 > Q1：类属性如果被重新赋值，是否会影响到类属性的引用？
 
-```
+```py
 class TestA:
     attr = 1
 obj_a = TestA()
@@ -353,7 +353,7 @@ print(obj_a.attr)
 
 > Q2：实例属性如果被重新赋值，是否会影响到类属性的引用？
 
-```
+```py
 class TestA:
     attr = 1
 obj_a = TestA()
@@ -366,7 +366,7 @@ print(obj_b.attr)
 
 > Q3：类属性实例属性具有相同的名称，那么 `.` 后面引用的将会是什么？
 
-```
+```py
 class TestA:
     attr = 1
     def __init__(self):
@@ -379,14 +379,14 @@ print(obj_b.attr)
 
 也许运行完上面三段代码，你会有一些初步的结论，但是更为直接的解释，全部隐藏在类的特殊属性 `_dict` 中。`dict_` 是一个类的特殊属性，它是一个字典，用于储存类或者实例的属性。即使你不去定义它，它也会存在于每一个类中，是默认隐藏的。我们以问题 3 中的代码为背景，在下面添加上这两行：
 
-```
+```py
 print(TestA.__dict__)
 print(obj_a.__dict__)
 ```
 
 我们可以看到这样的结果：
 
-```
+```py
 {'__module__': '__main__', '__doc__': None, '__dict__': <attribute '__dict__' of 'TestA' objects>, '__init__': <function TestA.__init__ at 0x1007fc7b8>, 'attr': 1, '__weakref__': <attribute '__weakref__' of 'TestA' objects>}
 
 {'attr': 42}
@@ -402,7 +402,7 @@ print(obj_a.__dict__)
 
 现在试着敲下这几行代码:
 
-```
+```py
 obj1 = 1
 obj2 = 'String!'
 obj3 = []
@@ -415,7 +415,7 @@ Python 中任何种类的对象都是类的实例，上面的这些类型被称�
 
 如果你安装了 Beautifulsoup4 这个第三方的库，你可以试着这样:
 
-```
+```py
 from bs4 import Beautifulsoup
 soup = BeautifulSoup
 print(type(soup))
@@ -472,7 +472,7 @@ print(type(soup))
 
 在开始之前先来处理一下词库，我们使用的随机姓名的词库来自于某输入法的姓名词库解析后的结果，现在分成两个文件，一个是常见姓氏，一个是常见的名。使用 open 函数打开这两个文件，将其中的文字添加进列表中。我们获取全部的常见姓氏，后面的姓名只获取 5000 个即可，否则太占内存。
 
-```
+```py
 ln_path = '/Users/Hou/Desktop/last_name.txt'
 fn_path = '/Users/Hou/Desktop/first_name.txt'
 fn  = []
@@ -500,7 +500,7 @@ print(ln2)
 
 完成后看起来应该像这样（当然比这个要长很多很多）：
 
-```
+```py
 fn = ('李', '王', '张', '刘')
 ln1 = ('娉', '览', '莱', '屹'）
 ln2 = ('治明', '正顺', '书铎'）
@@ -508,7 +508,7 @@ ln2 = ('治明', '正顺', '书铎'）
 
 现在开始我们可以来定义父类 FakeUser 了：
 
-```
+```py
 import random
 class FakeUser:
     def fake_name(self,one_word=False,two_words=False):
@@ -526,7 +526,7 @@ class FakeUser:
 
 接下来是定义子类：
 
-```
+```py
 class SnsUser(FakeUser):
     def get_followers(self,few=True,a_lot=False):
         if few:
@@ -544,7 +544,7 @@ user_b.get_followers(few=True)
 
 到了这里，我们创建的类已经可以正常使用了。我们的目的是批量制造假的填充数据，但是这样使用比起手工添加，效果并好不到哪去，因此在原有的代码上，我们要做一些小的调整，把所有的 print 替换成 yield 并在其上方加上一层循环，然后神奇的事情就这样发生了，我们就可以像 range 函数一样使用方法了：
 
-```
+```py
 class FakeUser():
     def fake_name(self,amount=1,one_word=False,two_words=False):
         n = 0
@@ -596,14 +596,14 @@ for gender in user_a.fake_gender(30):
 
 如果你并不清楚你的安装路径，你可以尝试使用如下方式搞清楚它究竟在哪里：
 
-```
+```py
 import sys
 print(sys.path)
 ```
 
 打印出来的会是一个列表，列表中的第四个将是你的库安装路径所在，因此你也可以直接这么做：
 
-```
+```py
 import sys
 print(sys.path[3])
 ```

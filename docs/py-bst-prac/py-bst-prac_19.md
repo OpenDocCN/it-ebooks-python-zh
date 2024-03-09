@@ -17,7 +17,7 @@ Python 数据库 API（DB-API）定义了一个 Python 数据库访问模块的�
 
 [SQLAlchemy](http://www.sqlalchemy.org/) [http://www.sqlalchemy.org/] 是一个流行的数据库工具。不像很多 数据库库，它不仅提供一个 ORM 层，而且还有一个通用 API 来编写避免 SQL 的数据库无关代码。
 
-```
+```py
 $ pip install sqlalchemy 
 ```
 

@@ -26,7 +26,7 @@ Twisted 支持若干种能解决这个问题的协议：XML-RPC, Perspective Bro
 
 新的服务器实现代码在[twisted-server-1/transformedpoetry.py](http://github.com/jdavisp3/twisted-intro/blob/master/twisted-server-1/transformedpoetry.py#L1)中。首先，我们定义了一个 TransformService 类：
 
-```
+```py
 class TransformService(object):
     def cummingsify(self, poem):
         return poem.lower() 
@@ -36,7 +36,7 @@ class TransformService(object):
 
 下面看看 factory 的实现代码：
 
-```
+```py
 class TransformFactory(ServerFactory):
     protocol = TransformProtocol
     def __init__(self, service):
@@ -61,7 +61,7 @@ factory 提供了一个 transform 的函数，protocol 就是用它来处理客�
 
 下面是协议实现代码：
 
-```
+```py
 class TransformProtocol(NetstringReceiver):
     def stringReceived(self, request):
         if '.' not in request: # bad request
@@ -86,19 +86,19 @@ class TransformProtocol(NetstringReceiver):
 
 我们会在下一个部分来实现相应的客户端，这里使用一个简单的脚本来实现客户端，代码位于[twisted-server-1/transform-test](https://github.com/jdavisp3/twisted-intro/blob/master/twisted-server-1/transform-test)中。如果你运行服务器端于 11000 端口：
 
-```
+```py
 python twisted-server-1/transformedpoetry.py --port 11000 
 ```
 
 相应的运行脚本为：
 
-```
+```py
 ./twisted-server-1/transform-test 11000 
 ```
 
 那么你会看到如下输出（经过 netstring 编码）：
 
-```
+```py
 15:here is my poem, 
 ```
 

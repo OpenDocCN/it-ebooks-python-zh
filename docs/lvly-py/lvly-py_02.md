@@ -53,7 +53,7 @@ Brought to you by Read the Docs
 
 学习的阶级 从低到高应该是:
 
-```
+```py
 不知己不知 < 不知己知 < 知己知 < 知己不知
 ```
 
@@ -163,7 +163,7 @@ Brought to you by Read the Docs
 
 那么...
 
-```
+```py
 侧有咖啡,后宝石；还是灵蟒最贴心！
 最贴心,不费心, 用好还要想清楚.
 想清楚,就清楚, 一切清楚才清爽！
@@ -316,7 +316,7 @@ OK!轻松的开始,但是,你知道,你同时也获得了免费的绝对强大�
 
 ## 练习
 
-```
+```py
 @route('%s/'%ini.urlprefix)
 def index():
     __urlog("INFO","idx++")
@@ -345,7 +345,7 @@ Brought to you by Read the Docs
 
 ## 练习
 
-```
+```py
 @route('%s/'%ini.urlprefix)
 def index():
     __urlog("INFO","idx++")
@@ -374,7 +374,7 @@ Brought to you by Read the Docs
 
 ## 练习
 
-```
+```py
 @route('%s/'%ini.urlprefix)
 def index():
     __urlog("INFO","idx++")
@@ -403,7 +403,7 @@ Brought to you by Read the Docs
 
 ## 练习
 
-```
+```py
 @route('%s/'%ini.urlprefix)
 def index():
     __urlog("INFO","idx++")
@@ -432,7 +432,7 @@ Brought to you by Read the Docs
 
 ## 练习
 
-```
+```py
 @route('%s/'%ini.urlprefix)
 def index():
     __urlog("INFO","idx++")
@@ -461,7 +461,7 @@ Brought to you by Read the Docs
 
 ## 练习
 
-```
+```py
 @route('%s/'%ini.urlprefix)
 def index():
     __urlog("INFO","idx++")
@@ -490,7 +490,7 @@ Brought to you by Read the Docs
 
 ## 练习
 
-```
+```py
 @route('%s/'%ini.urlprefix)
 def index():
     __urlog("INFO","idx++")
@@ -519,7 +519,7 @@ Brought to you by Read the Docs
 
 ## 练习
 
-```
+```py
 @route('%s/'%ini.urlprefix)
 def index():
     __urlog("INFO","idx++")
@@ -548,7 +548,7 @@ Brought to you by Read the Docs
 
 ## 练习
 
-```
+```py
 @route('%s/'%ini.urlprefix)
 def index():
     __urlog("INFO","idx++")
@@ -577,7 +577,7 @@ Brought to you by Read the Docs
 
 ## 练习
 
-```
+```py
 @route('%s/'%ini.urlprefix)
 def index():
     __urlog("INFO","idx++")
@@ -647,7 +647,7 @@ Brought to you by Read the Docs
 
 ## 练习
 
-```
+```py
 @route('%s/'%ini.urlprefix)
 def index():
     __urlog("INFO","idx++")
@@ -676,7 +676,7 @@ Brought to you by Read the Docs
 
 ## 练习
 
-```
+```py
 @route('%s/'%ini.urlprefix)
 def index():
     __urlog("INFO","idx++")
@@ -705,7 +705,7 @@ Brought to you by Read the Docs
 
 ## 练习
 
-```
+```py
 @route('%s/'%ini.urlprefix)
 def index():
     __urlog("INFO","idx++")
@@ -734,7 +734,7 @@ Brought to you by Read the Docs
 
 ## 练习
 
-```
+```py
 @route('%s/'%ini.urlprefix)
 def index():
     __urlog("INFO","idx++")
@@ -763,7 +763,7 @@ Brought to you by Read the Docs
 
 ## 练习
 
-```
+```py
 @route('%s/'%ini.urlprefix)
 def index():
     __urlog("INFO","idx++")
@@ -792,7 +792,7 @@ Brought to you by Read the Docs
 
 ## 练习
 
-```
+```py
 @route('%s/'%ini.urlprefix)
 def index():
     __urlog("INFO","idx++")
@@ -821,7 +821,7 @@ Brought to you by Read the Docs
 
 ## 练习
 
-```
+```py
 @route('%s/'%ini.urlprefix)
 def index():
     __urlog("INFO","idx++")
@@ -850,7 +850,7 @@ Brought to you by Read the Docs
 
 ## 练习
 
-```
+```py
 @route('%s/'%ini.urlprefix)
 def index():
     __urlog("INFO","idx++")

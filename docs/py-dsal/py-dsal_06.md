@@ -34,7 +34,7 @@ The Python code in ActiveCode 6 implements the Divide by 2algorithm. The functio
 
 算法的 Python 代码如下，函数 divideBy2（）的参数是一个十进制整数，连续被 2 除。第 7 行使用了 python 操作符%取得余数。第 8 把得到的余数压栈，当商是 0 的时候，11-13 行形成一个二进制字符串。11 行是建立空串，二进制位被从栈中一个一个被弹出，同时被追加到空字符串的右端(append)，最终返回一个二进制字符串。
 
-```
+```py
 from pythonds.basic.stack import Stack
 
  def divideBy2(decNumber):
@@ -74,7 +74,7 @@ The function divideBy2 can be modified to accept not only a decimalvalue but als
 
 函数 divideBy2 修改一下能用于转换其他进制，“除二取余法”就得改成“除基取余法”了，新函数名为 baseConverter，代码如下。第一个参数是任意二进制整数，第二个参数是 2 到 16 之间的基数，余数仍被压栈，直到商为 0。从左到右的字符串生成过程也是一样的。不过当基数超过 10 以后，问题就来了，因为栈内的余数是 2 位的十进制数！
 
-```
+```py
  from pythonds.basic.stackimport Stack
 
 def baseConverter(decNumber,base):

@@ -33,7 +33,7 @@
 
 如果读者使用 Ubuntu 或者 Debian，可以这样来安装：
 
-```
+```py
 sudo apt-get install Python-numpy Python-scipy Python-matplotlib ipython ipython-notebook Python-pandas Python-sympy Python-nose 
 ```
 
@@ -45,7 +45,7 @@ sudo apt-get install Python-numpy Python-scipy Python-matplotlib ipython ipython
 
 在科学计算中，业界比较喜欢使用 ipython notebook，前面已经安装。在 shell 中执行
 
-```
+```py
 ipython notebook --pylab=inline 
 ```
 
@@ -71,13 +71,13 @@ Ipython Notebook 是一个非常不错的编辑器，执行之后，直接显示
 
 除了在网页中之外，如果你已经喜欢上了 Python 的交互模式，特别是你用的计算机中有一个 shell 的东西，更是棒了。于是可以：
 
-```
+```py
 $ ipython 
 ```
 
 进入了一个类似于 Python 的交互模式中，如下所示：
 
-```
+```py
 In [1]: print "hello, pandas"
 hello, pandas
 
@@ -188,7 +188,7 @@ DataFrame 是一种二维的数据结构，非常接近于电子表格或者类�
 
 下面的演示，是在 Python 交互模式下进行，读者仍然可以在 ipython notebook 环境中测试。
 
-```
+```py
 >>> import pandas as pd 
 >>> from pandas import Series, DataFrame 
 
@@ -205,7 +205,7 @@ DataFrame 是一种二维的数据结构，非常接近于电子表格或者类�
 
 上面的数据显示中，columns 的顺序没有规定，就如同字典中键的顺序一样，但是在 DataFrame 中，columns 跟字典键相比，有一个明显不同，就是其顺序可以被规定，向下面这样做：
 
-```
+```py
 >>> f2 = DataFrame(data, columns=['name','price','marks']) 
 >>> f2 
        name     price  marks 
@@ -216,7 +216,7 @@ DataFrame 是一种二维的数据结构，非常接近于电子表格或者类�
 
 跟 Series 类似的，DataFrame 数据的索引也能够自定义。
 
-```
+```py
 >>> f3 = DataFrame(data, columns=['name', 'price', 'marks', 'debt'], index=['a','b','c','d']) 
 Traceback (most recent call last): 
   File "<stdin>", line 1, in <module> 
@@ -233,7 +233,7 @@ AssertionError
 
 报错了。这个报错信息就太不友好了，也没有提供什么线索。这就是交互模式的不利之处。修改之，错误在于 index 的值——列表——的数据项多了一个，data 中是三行，这里给出了四个项（['a','b','c','d']）。
 
-```
+```py
 >>> f3 = DataFrame(data, columns=['name', 'price', 'marks', 'debt'], index=['a','b','c']) 
 >>> f3 
        name      price  marks  debt 
@@ -246,7 +246,7 @@ c  facebook      7      800     NaN
 
 定义 DataFrame 的方法，除了上面的之外，还可以使用“字典套字典”的方式。
 
-```
+```py
 >>> newdata = {"lang":{"firstline":"python","secondline":"java"}, "price":{"firstline":8000}} 
 >>> f4 = DataFrame(newdata) 
 >>> f4 
@@ -257,7 +257,7 @@ secondline    java     NaN
 
 在字典中就规定好数列名称（第一层键）和每横行索引（第二层字典键）以及对应的数据（第二层字典值），也就是在字典中规定好了每个数据格子中的数据，没有规定的都是空。
 
-```
+```py
 >>> DataFrame(newdata, index=["firstline","secondline","thirdline"]) 
               lang     price 
 firstline     python   8000 
@@ -269,14 +269,14 @@ thirdline     NaN      NaN
 
 前面定义了 DataFrame 数据（可以通过两种方法），它也是一种对象类型，比如变量 f3 引用了一个对象，它的类型是 DataFrame。承接以前的思维方法：对象有属性和方法。
 
-```
+```py
 >>> f3.columns 
 Index(['name', 'price', 'marks', 'debt'], dtype=object) 
 ```
 
 DataFrame 对象的 columns 属性，能够显示素有的 columns 名称。并且，还能用下面类似字典的方式，得到某竖列的全部内容（当然包含索引）：
 
-```
+```py
 >>> f3['name'] 
 a       yahoo 
 b      google 
@@ -288,7 +288,7 @@ Name: name
 
 一直耿耿于怀没有数值的那一列，下面的操作是统一给那一列赋值：
 
-```
+```py
 >>> f3['debt'] = 89.2 
 >>> f3 
        name     price  marks  debt 
@@ -299,14 +299,14 @@ c  facebook     7        800  89.2
 
 除了能够统一赋值之外，还能够“点对点”添加数值，结合前面的 Series，既然 DataFrame 对象的每竖列都是一个 Series 对象，那么可以先定义一个 Series 对象，然后把它放到 DataFrame 对象中。如下：
 
-```
+```py
 >>> sdebt = Series([2.2, 3.3], index=["a","c"])    #注意索引 
 >>> f3['debt'] = sdebt 
 ```
 
 将 Series 对象(sdebt 变量所引用) 赋给 f3['debt']列，Pandas 的一个重要特性——自动对齐——在这里起做用了，在 Series 中，只有两个索引（"a","c"），它们将和 DataFrame 中的索引自动对齐。于是乎：
 
-```
+```py
 >>> f3 
        name  price  marks  debt 
 a     yahoo  9        200   2.2 
@@ -318,7 +318,7 @@ c  facebook  7        800   3.3
 
 还可以更精准的修改数据吗？当然可以，完全仿照字典的操作：
 
-```
+```py
 >>> f3["price"]["c"]= 300 
 >>> f3 
        name   price   marks  debt 
@@ -349,7 +349,7 @@ csv 是一种通用的、相对简单的文件格式，在表格类型的数据�
 
 从上述维基百科的叙述中，重点要解读出“字段间分隔符”“最常见的是逗号或制表符”，当然，这种分隔符也可以自行制定。比如下面这个我命名为 marks.csv 的文件，就是用逗号（必须是半角的）作为分隔符：
 
-```
+```py
 name,physics,python,math,english
 Google,100,100,25,12
 Facebook,45,54,44,88
@@ -365,7 +365,7 @@ Yahoo,54,452,26,100
 
 最简单、最直接的就是 open() 打开文件：
 
-```
+```py
 >>> with open("./marks.csv") as f:
 ...     for line in f:
 ...         print line
@@ -385,7 +385,7 @@ Yahoo,54,452,26,100
 
 Python 中还有一个 csv 的标准库，足可见 csv 文件的使用频繁了。
 
-```
+```py
 >>> import csv 
 >>> dir(csv)
 ['Dialect', 'DictReader', 'DictWriter', 'Error', 'QUOTE_ALL', 'QUOTE_MINIMAL', 'QUOTE_NONE', 'QUOTE_NONNUMERIC', 'Sniffer', 'StringIO', '_Dialect', '__all__', '__builtins__', '__doc__', '__file__', '__name__', '__package__', '__version__', 'excel', 'excel_tab', 'field_size_limit', 'get_dialect', 'list_dialects', 're', 'reader', 'reduce', 'register_dialect', 'unregister_dialect', 'writer'] 
@@ -393,7 +393,7 @@ Python 中还有一个 csv 的标准库，足可见 csv 文件的使用频繁了
 
 什么时候也不要忘记这种最佳学习方法。从上面结果可以看出，csv 模块提供的属性和方法。仅仅就读取本例子中的文件：
 
-```
+```py
 >>> import csv 
 >>> csv_reader = csv.reader(open("./marks.csv"))
 >>> for row in csv_reader:
@@ -412,7 +412,7 @@ Python 中还有一个 csv 的标准库，足可见 csv 文件的使用频繁了
 
 如果对上面的结果都有点不满意的话，那么看看 Pandas 的效果：
 
-```
+```py
 >>> import pandas as pd
 >>> marks = pd.read_csv("./marks.csv")
 >>> marks
@@ -427,7 +427,7 @@ Python 中还有一个 csv 的标准库，足可见 csv 文件的使用频繁了
 
 还有另外一种方法：
 
-```
+```py
 >>> pd.read_table("./marks.csv", sep=",")
        name  physics  python  math  english
 0    Google      100     100    25       12
@@ -438,14 +438,14 @@ Python 中还有一个 csv 的标准库，足可见 csv 文件的使用频繁了
 
 如果你有足够的好奇心来研究这个名叫 DataFrame 的对象，可以这样：
 
-```
+```py
 >>> dir(marks)
 ['T', '_AXIS_ALIASES', '_AXIS_NAMES', '_AXIS_NUMBERS', '__add__', '__and__', '__array__', '__array_wrap__', '__class__', '__contains__', '__delattr__', '__delitem__', '__dict__', '__div__', '__doc__', '__eq__', '__floordiv__', '__format__', '__ge__', '__getattr__', '__getattribute__', '__getitem__', '__getstate__', '__gt__', '__hash__', '__init__', '__iter__', '__le__', '__len__', '__lt__', '__module__', '__mul__', '__ne__', '__neg__', '__new__', '__nonzero__', '__or__', '__pow__', '__radd__', '__rdiv__', '__reduce__', '__reduce_ex__', '__repr__', '__rfloordiv__', '__rmul__', '__rpow__', '__rsub__', '__rtruediv__', '__setattr__', '__setitem__', '__setstate__', '__sizeof__', '__str__', '__sub__', '__subclasshook__', '__truediv__', '__weakref__', '__xor__', '_agg_by_level', '_align_frame', '_align_series', '_apply_broadcast', '_apply_raw', '_apply_standard', '_auto_consolidate', '_bar_plot', '_boolean_set', '_box_item_values', '_clear_item_cache', '_combine_const', '_combine_frame', '_combine_match_columns', '_combine_match_index', '_combine_series', '_combine_series_infer', '_compare_frame', '_consolidate_inplace', '_constructor', '_count_level', '_cov_helper', '_data', '_default_stat_axis', '_expand_axes', '_from_axes', '_get_agg_axis', '_get_axis', '_get_axis_name', '_get_axis_number', '_get_item_cache', '_get_numeric_data', '_getitem_array', '_getitem_multilevel', '_helper_csvexcel', '_het_axis', '_indexed_same', '_init_dict', '_init_mgr', '_init_ndarray', '_is_mixed_type', '_item_cache', '_ix', '_join_compat', '_reduce', '_reindex_axis', '_reindex_columns', '_reindex_index', '_reindex_with_indexers', '_rename_columns_inplace', '_rename_index_inplace', '_sanitize_column', '_series', '_set_axis', '_set_item', '_set_item_multiple', '_shift_indexer', '_slice', '_unpickle_frame_compat', '_unpickle_matrix_compat', '_verbose_info', '_wrap_array', 'abs', 'add', 'add_prefix', 'add_suffix', 'align', 'append', 'apply', 'applymap', 'as_matrix', 'asfreq', 'astype', 'axes', 'boxplot', 'clip', 'clip_lower', 'clip_upper', 'columns', 'combine', 'combineAdd', 'combineMult', 'combine_first', 'consolidate', 'convert_objects', 'copy', 'corr', 'corrwith', 'count', 'cov', 'cummax', 'cummin', 'cumprod', 'cumsum', 'delevel', 'describe', 'diff', 'div', 'dot', 'drop', 'drop_duplicates', 'dropna', 'dtypes', 'duplicated', 'fillna', 'filter', 'first_valid_index', 'from_csv', 'from_dict', 'from_items', 'from_records', 'get', 'get_dtype_counts', 'get_value', 'groupby', 'head', 'hist', 'icol', 'idxmax', 'idxmin', 'iget_value', 'index', 'info', 'insert', 'irow', 'iteritems', 'iterkv', 'iterrows', 'ix', 'join', 'last_valid_index', 'load', 'lookup', 'mad', 'max', 'mean', 'median', 'merge', 'min', 'mul', 'ndim', 'pivot', 'pivot_table', 'plot', 'pop', 'prod', 'product', 'quantile', 'radd', 'rank', 'rdiv', 'reindex', 'reindex_axis', 'reindex_like', 'rename', 'rename_axis', 'reorder_levels', 'reset_index', 'rmul', 'rsub', 'save', 'select', 'set_index', 'set_value', 'shape', 'shift', 'skew', 'sort', 'sort_index', 'sortlevel', 'stack', 'std', 'sub', 'sum', 'swaplevel', 'tail', 'take', 'to_csv', 'to_dict', 'to_excel', 'to_html', 'to_panel', 'to_records', 'to_sparse', 'to_string', 'to_wide', 'transpose', 'truncate', 'unstack', 'values', 'var', 'xs'] 
 ```
 
 一个一个浏览一下，通过名字可以直到那个方法或者属性的大概，然后就可以根据你的喜好和需要，试一试：
 
-```
+```py
 >>> marks.index
 Int64Index([0, 1, 2, 3], dtype=int64)
 >>> marks.columns
@@ -456,7 +456,7 @@ Index([name, physics, python, math, english], dtype=object)
 
 这几个是让你回忆一下上一节的。从 DataFrame 对象的属性和方法中找一个，再尝试：
 
-```
+```py
 >>> marks.sort(column="python")
        name  physics  python  math  english
 1  Facebook       45      54    44       88
@@ -467,7 +467,7 @@ Index([name, physics, python, math, english], dtype=object)
 
 按照竖列"Python"的值排队，结果也是很让人满意的。下面几个操作，也是常用到的，并且秉承了 Python 的一贯方法：
 
-```
+```py
 >>> marks[:1]
      name  physics  python  math  english
 0  Google      100     100    25       12
@@ -492,14 +492,14 @@ csv 是常用来存储数据的格式之一，此外常用的还有 MS excel 格
 
 在下面的结果中寻觅一下，有没有跟 excel 有关的方法？
 
-```
+```py
 >>> dir(pd)
 ['DataFrame', 'DataMatrix', 'DateOffset', 'DateRange', 'ExcelFile', 'ExcelWriter', 'Factor', 'HDFStore', 'Index', 'Int64Index', 'MultiIndex', 'Panel', 'Series', 'SparseArray', 'SparseDataFrame', 'SparseList', 'SparsePanel', 'SparseSeries', 'SparseTimeSeries', 'TimeSeries', 'WidePanel', '__builtins__', '__doc__', '__docformat__', '__file__', '__name__', '__package__', '__path__', '__version__', '_engines', '_sparse', '_tseries', 'concat', 'core', 'crosstab', 'datetime', 'datetools', 'debug', 'ewma', 'ewmcorr', 'ewmcov', 'ewmstd', 'ewmvar', 'ewmvol', 'fama_macbeth', 'groupby', 'info', 'io', 'isnull', 'lib', 'load', 'merge', 'notnull', 'np', 'ols', 'pivot', 'pivot_table', 'read_clipboard', 'read_csv', 'read_table', 'reset_printoptions', 'rolling_apply', 'rolling_corr', 'rolling_corr_pairwise', 'rolling_count', 'rolling_cov', 'rolling_kurt', 'rolling_max', 'rolling_mean', 'rolling_median', 'rolling_min', 'rolling_quantile', 'rolling_skew', 'rolling_std', 'rolling_sum', 'rolling_var', 'save', 'set_eng_float_format', 'set_printoptions', 'sparse', 'stats', 'tools', 'util', 'value_range', 'version'] 
 ```
 
 虽然没有类似 `read_csv()` 的方法（在网上查询，有的资料说有 `read_xls()` 方法，那时老黄历了），但是有 `ExcelFile` 类，于是乎：
 
-```
+```py
 >>> xls = pd.ExcelFile("./marks.xlsx")
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
@@ -510,7 +510,7 @@ ImportError: No module named openpyxl
 
 我这里少了一个模块，看报错提示， 用 pip 安装 openpyxl 模块：`sudo pip install openpyxl`。继续：
 
-```
+```py
 >>> xls = pd.ExcelFile("./marks.xlsx")
 >>> dir(xls)
 ['__class__', '__delattr__', '__dict__', '__doc__', '__format__', '__getattribute__', '__hash__', '__init__', '__module__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_parse_xls', '_parse_xlsx', 'book', 'parse', 'path', 'sheet_names', 'use_xlsx']
@@ -553,7 +553,7 @@ ImportError: No module named openpyxl
 
 虽然 yahoo 的世代渐行渐远，但她终究是值得记忆的。所以，我要演示如何下载 yahoo 财经栏目中的股票数据。
 
-```
+```py
 In [1]: import pandas 
 In [2]: import pandas.io.data
 
@@ -574,7 +574,7 @@ Date
 
 已经得到了一个 DataFrame 对象，就是前面已经下载并用 finace 变量引用的对象。
 
-```
+```py
 In[6]: import matplotlib.pyplot as plt
 In [7]: plt.plot(finace.index, finace["Open"])
 Out[]: [<matplotlib.lines.Line2D at 0xa88e5cc>]

@@ -38,7 +38,7 @@
 
 树的最后一个例子是网页，这面是用 HTML 写的一个简章网页，图 3 是文中 HTML 标志的结构关系：
 
-```
+```py
 <html 
       xml:lang="en" lang="en">
 <head>

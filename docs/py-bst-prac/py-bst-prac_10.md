@@ -33,7 +33,7 @@
 
 创建测试用例通过继承 [`unittest.TestCase`](http://docs.python.org/library/unittest.html#unittest.TestCase "(在 Python v2.7)") [http://docs.python.org/library/unittest.html#unittest.TestCase] 来实现.
 
-```
+```py
 import unittest
 
 def fun(x):
@@ -56,7 +56,7 @@ doctest 模块的用例相比之前的单元测试有所不同：它们通常不
 
 在函数中一个简单的 doctest:
 
-```
+```py
 def square(x):
     """Squares x.
 
@@ -81,13 +81,13 @@ if __name__ == '__main__':
 
 相比于 Python 标准的单元测试模块,py.test 是一个没有模板的选择。
 
-```
+```py
 $ pip install pytest 
 ```
 
 尽管这个测试工具功能完备，并且可扩展，但是它语法很简单。创建一个测试组件和写一个带有诸多函数的模块一样容易：
 
-```
+```py
 # content of test_sample.py
 def func(x):
     return x + 1
@@ -98,7 +98,7 @@ def test_answer():
 
 运行命令 py.test
 
-```
+```py
 $ py.test
 =========================== test session starts ============================
 platform darwin -- Python 2.7.1 -- pytest-2.2.1
@@ -126,7 +126,7 @@ test_sample.py:5: AssertionError
 
 nose 继承测试单元，能够使测试更加容易。
 
-```
+```py
 $ pip install nose 
 ```
 
@@ -138,7 +138,7 @@ nose 自动化测试发现并节省人工创建测试组件的麻烦。它也提
 
 tox 是自动化测试管理和针对多种解释器配置测试工具。
 
-```
+```py
 $ pip install tox 
 ```
 
@@ -152,13 +152,13 @@ Unittest2 是 Python2.7 中 unittest 模型的补丁，它的 API 有所改善�
 
 如果使用 Python2.6 版本或者以下，需要使用 pip 安装 unittest2。
 
-```
+```py
 $ pip install unittest2 
 ```
 
 将来你可能想要以 unittest 之名导入模块，目的是更容易地把代码移植到新的版本中。
 
-```
+```py
 import unittest2 as unittest
 
 class MyTest(unittest.TestCase):
@@ -175,7 +175,7 @@ class MyTest(unittest.TestCase):
 
 对于 Python 相对早的版本，如下操作：
 
-```
+```py
 $ pip install mock 
 ```
 
@@ -183,7 +183,7 @@ $ pip install mock
 
 例如，你可以对一个方法打猴子补丁：
 
-```
+```py
 from mock import MagicMock
 thing = ProductionClass()
 thing.method = MagicMock(return_value=3)
@@ -194,7 +194,7 @@ thing.method.assert_called_with(3, 4, 5, key='value')
 
 在测试环境下，对于模型中的 mock 类或对象，使用补丁修饰器。在下面这个例子中，一直返回相同结果的外部查询系统使用 mock 替换（但仅用在测试期间）。
 
-```
+```py
 def mock_search(self):
     class MockSearchQuerySet(SearchQuerySet):
         def __iter__(self):

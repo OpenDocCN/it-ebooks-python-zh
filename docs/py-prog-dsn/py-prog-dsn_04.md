@@ -34,7 +34,7 @@
 
 【程序 3.1】eg3_1.py
 
-```
+```py
 f = input("Temperature in degrees Farenheit: ") 
 c = (f – 32) * 5.0 / 9
 print "Temperature in degrees Celsius:", c 
@@ -64,7 +64,7 @@ print "Temperature in degrees Celsius:", c
 
 所有编程语言都提供了条件语句（if 语句），用来实现有条件地执行语句的功能。Python 语言的 if 语句有多种形式，最简单的形式是：
 
-```
+```py
 if <条件表达式>:
     <条件语句体> 
 ```
@@ -83,7 +83,7 @@ if 语句的语义很容易理解：首先计算 if 后面的条件表达式，�
 
 【程序 3.2】eg3_2.py
 
-```
+```py
 f = input("Temperature in degrees Farenheit: ") 
 c = (f – 32) * 5.0 / 9
 print "Temperature in degrees Celsius:", c if c > 35:
@@ -96,7 +96,7 @@ print "Warning: Heat Wave!"
 
 【程序 3.3】eg3_3.py
 
-```
+```py
 f = input("Temperature in degrees Farenheit: ") 
 c = (f – 32) * 5.0 / 9
 print "Temperature in degrees Celsius:", c if c &gt;= 35:
@@ -110,7 +110,7 @@ print "Warning: Cold Wave!"
 
 有时我们希望根据条件表达式的不同计算结果（True 或 False），分别执行两个不同的语 句序列，这时可以使用具有两个分支的条件语句形式，即 if-else 语句：
 
-```
+```py
 if <条件表达式>:
     <if-语句体> 
 else:
@@ -127,7 +127,7 @@ if-else 语句的语义是：首先计算条件表达式的值，如果结果为
 
 在使用两路分支的 if 语句时要注意：if 部分和 else 部分必须与一对非此即彼的条件相对 应，一个条件为真则另一个条件必为假，反之亦然。例如在程序 3.3 中，c>=35 和 c<=-6 就不是非此即彼的条件，因为还有既非酷热又非酷寒的第三种情形：-6 < c < 35。因此 在程序 3.3 中不能按如下方式使用 if 语句：
 
-```
+```py
 if c >= 35:
 print "Warning: Heat Wave!" else:
 print "Warning: Cold Wave!" 
@@ -139,7 +139,7 @@ print "Warning: Cold Wave!"
 
 如果我们还想进一步改进程序 3.3，使之在-6 < c < 35 的情况下也显示一些信息，这 就需要一个三路的分支结构。三路分支可以利用两个嵌套的 if-else 语句来实现：
 
-```
+```py
 if c &gt;= 35:
     print "Warning: Heat Wave!" 
 else:
@@ -159,7 +159,7 @@ else:
 
 Python 中有一个更好的做法来写多路分支的条件判断，即 if-elif-else 语句。这条语句在 形式上其实是将嵌套 if-else 语句中的 else 与后续的 if 合并成了一个 elif 子句，形如：
 
-```
+```py
 if <条件 1>:
     <情形 1 语句体>
 elif <条件 2>:
@@ -177,7 +177,7 @@ if-elif-else 语句的语义是：顺序计算每一个条件表达式，找到�
 
 【程序 3.4】eg3_4.py
 
-```
+```py
 f = input("Temperature in degrees Farenheit: ") 
 c = (f - 32) * 5.0 / 9
 print "Temperature in degrees Celsius:", c 
@@ -215,7 +215,7 @@ else:
 
 【程序 3.5】eg3_5.py
 
-```
+```py
 import math
 a, b, c = input("Enter the coefficients (a, b, c): ") 
 discRoot = math.sqrt(b * b - 4 * a * c)
@@ -226,7 +226,7 @@ print "The solutions are:", root1, root2
 
 本程序先由用户输入一元二次方程的三个系数，然后利用公式算出两个根，并显示结果。 这个版本看上去很直接了当，似乎符合预期的功能，但实际上这个版本很有问题。下面我们 来运行这个程序：
 
-```
+```py
 >>> import eg3_5
 Enter the coefficients (a, b, c): 1,2,3
 Traceback (most recent call last):
@@ -241,7 +241,7 @@ ValueError: math domain error
 
 【程序 3.6】eg3_6.py
 
-```
+```py
 import math
 a, b, c = input("Enter the coefficients (a, b, c): ") 
 discrim = b * b - 4 * a * c
@@ -258,7 +258,7 @@ else:
 
 下面分别测试程序 3.6 对两种情形的判别式的执行效果：
 
-```
+```py
 >>> import eg3_6
 Enter the coefficients (a, b, c): 1,2,3
 The equation has no real roots!
@@ -273,7 +273,7 @@ The solutions are: -1.0 -2.0
 
 很多时候要执行的语句实际上是函数调用②，被调用的函数可能是我们自己写的，也可 能是标准函数库里定义的。函数作为一个具有相对独立性的程序块，一般都有自己的错误检 测代码，并根据执行是否正常而返回不同的“错误码”给调用者。这样，函数的调用者可以 无条件地调用函数，然后根据函数返回的错误码来了解函数的执行情况，并基于此来决定下 一步行动。例如，假设有一个求平方根的函数 robustSqrt 在参数为负数时返回错误码-1（由 于实数的平方根总是正数，返回-1 就表明发生了异常）：
 
-```
+```py
 def robustSqrt(x): 
     if x < 0:
         return -1 
@@ -283,7 +283,7 @@ def robustSqrt(x):
 
 那我们就可以不必先检测判别式的正负，而是直接调用 robustSqrt，并通过它的返回值来检测 是否发生了异常。示例代码片段如下：
 
-```
+```py
 discRoot = robustSqrt(b * b – 4 * a * c) 
 if discRoot < 0:
     print "The equation has no real roots!" 
@@ -305,7 +305,7 @@ else:
 
 传统的错误检测方法是过去广泛使用的，这种做法有一个缺点：由于需要检测错误的地方非常多，最终导致程序中充斥着大量的错误检测代码，这些“喧宾夺主”的代码使得程序 控制结构复杂，程序逻辑难以理解，代码也难维护。例如，如果每次调用函数都要检测其返 回的错误码，会导致程序中存在大量如下形式的代码片段：
 
-```
+```py
 x = doOneThing() 
 if x == ERROR:
     异常处理代码
@@ -314,7 +314,7 @@ if x == ERROR:
 
 或者更简练（但更难读）地写成：
 
-```
+```py
 if doOneThing() == ERROR:
     异常处理代码
     ...... 
@@ -322,7 +322,7 @@ if doOneThing() == ERROR:
 
 假如我们解决某个问题的算法是顺序执行三个步骤，用三个函数调用表示如下：
 
-```
+```py
 doStep1() 
 doStep2() 
 doStep3() 
@@ -332,7 +332,7 @@ doStep3()
 
 错误检测代码之后，可能写出如下代码：
 
-```
+```py
 if doStep1() == ERROR： 
     错误处理代码 1
 elif doStep2() == ERROR:
@@ -359,7 +359,7 @@ elif doStep3() == ERROR:
 
 Python 语言也提供了这样的异常处理机制。在 Python 中，异常处理是通过一种特殊的控 制结构来实现的，即 try-except 结构。try 语句的最简单形式如下：
 
-```
+```py
 try:
     <语句块> 
 except:
@@ -372,7 +372,7 @@ except:
 
 我们前面所写的程序都没有使用异常处理，这时如果程序出现运行时错误，实际上会由 Python 进行缺省的异常处理。Python 所做的事情只是简单地中止程序运行，并显示一些错误 信息。例如：
 
-```
+```py
 >>> a = "Hello"
 >>> print a[5]
 Traceback (most recent call last): File "<stdin>", line 1, in <module>
@@ -385,7 +385,7 @@ IndexError: string index out of range
 
 Python 的缺省异常处理使应用程序中止，控制转给 Python 解释器。如果应用程序需要在 发生异常的情况下仍能正常结束，就需要使用 try-except 语句来自己捕获并处理异常。例如：
 
-```
+```py
 >>> a = "Hello"
 >>> try:
         print a[5] 
@@ -400,7 +400,7 @@ Index wrong!
 
 相对于错误检测代码，使用异常处理机制可以使程序的核心算法代码与错误处理代码相互分离，从而保持程序结构的清晰。如果要了解程序的主要算法，只需读 try 下面的语句块， 完全不会被繁杂的错误检测打扰。例如，如果用 try-except 语句来实现上一小节中的“三步 走”例子，只需用一个 except 子句来捕获 doStep1、doStep2 和 doStep3 等步骤可能抛出的各 种异常，代码形如：
 
-```
+```py
 try:
     doStep1() 
     doStep2() 
@@ -413,7 +413,7 @@ except:
 
 如果要做的事情步骤很多、流程很复杂，将所有代码堆积在 try 之下又会使程序结构不 清晰。这时可以利用模块化设计将程序逻辑表达为许多函数①，然后在 try 部分调用各函数， 形如：
 
-```
+```py
 def doMyJob(): 
     doStep1() 
     doStep2()
@@ -433,7 +433,7 @@ def doMyJob():
 
 > ① 见第四章。
 
-```
+```py
 try:
     <语句块>
 except <错误类型 1>:
@@ -451,7 +451,7 @@ except:
 
 【程序 3.7】eg3_7.py
 
-```
+```py
 import math 
 try:
     a, b, c = input("Enter the coefficients (a, b, c): ") 
@@ -465,7 +465,7 @@ except ValueError:
 
 程序 3.7 这个版本和程序 3.5 中的版本非常相似，只是在程序 3.5 所示的核心算法之外增 加了一个 try-except 结构。从而做到了既保持清晰的核心算法逻辑，又避免因判别式为负数 而导致程序崩溃。让我们再次以系数 1、2、3 来执行这个程序：
 
-```
+```py
 >>> import eg3_7
 Enter the coefficients (a, b, c): 1,2,3
 The equation has no real roots! 
@@ -479,7 +479,7 @@ The equation has no real roots!
 
 【程序 3.8】eg3_8.py
 
-```
+```py
 import math 
 try:
     a, b, c = input("Enter the coefficients (a, b, c): ") 
@@ -507,7 +507,7 @@ except:
 
 计算机是以一步一步执行指令的方式来解决问题的，程序员要做的事情就是将问题的解决方案表达成一步一步执行的指令序列。在解决问题的指令序列中，经常会遇到需要重复执 行的一组操作。例如，假设程序要求用户输入 5 个数据，怎么表达这个要求呢？一种方式是 将所有步骤罗列出来：
 
-```
+```py
 Step1：输入 1 个数据存入变量 a 
 Step2：输入 1 个数据存入变量 b 
 Step3：输入 1 个数据存入变量 c 
@@ -519,7 +519,7 @@ Step5：输入 1 个数据存入变量 e
 
 接用 100 行几乎相同的指令，并且命名 100 个变量来存储输入数据？这显然是非常笨拙的编 程方式。我们来看另一种表达方式：
 
-```
+```py
 Step1：输入 1 个数据存入集合 a
 Step2：如果已经输入了 5 个数据，就结束；否则转到 Step1。 
 ```
@@ -536,7 +536,7 @@ Step2：如果已经输入了 5 个数据，就结束；否则转到 Step1。
 
 最简单的循环是已知重复执行次数的循环。小学生经常有这样的“痛苦”时刻：因为一 个字（比如“烦”）写错了，被老师要求订正 10 遍。这时小学生没有捷径可走，只能在本子 上一遍一遍地写上 10 次。如果是命令计算机在屏幕上写 10 遍“烦”，是不是也只能用下面的 10 行指令来实现呢？
 
-```
+```py
 print "烦" 
 print "烦"
 ......
@@ -547,7 +547,7 @@ print "烦"
 
 for 语句的常用语法形式如下：
 
-```
+```py
 for <循环控制变量> in <序列>:
     <循环体> 
 ```
@@ -568,7 +568,7 @@ for 循环的循环次数显然是由序列中有多少成员（即序列长度�
 
 我们可以用下面的 for 语句来解决将“烦”字显示 10 遍的问题：
 
-```
+```py
 >>> for i in range(10):
 print "烦",
 烦 烦 烦 烦 烦 烦 烦 烦 烦 烦 
@@ -582,7 +582,7 @@ print "烦",
 
 【程序 3.9】eg3_9.py
 
-```
+```py
 n = input("Input a number: ") 
 sum = 0
 for i in range(1,n+1): 
@@ -592,7 +592,7 @@ print "The result is:",sum
 
 执行此程序，将得到如下输出：
 
-```
+```py
 >>> import eg3_9 
 Input a number: 100 
 The result is: 338350 
@@ -602,7 +602,7 @@ The result is: 338350
 
 for 语句是针对任意序列进行遍历来建立循环的，并非只能与 range(10)之类的数字序列 搭配构成计数器循环。例如，下面的代码针对一个杂乱数据项构成的列表进行遍历：
 
-```
+```py
 >>> data = ['Born on:','July',2,2005]
 >>> for d in data:
 ...     print d,
@@ -612,7 +612,7 @@ Born on: July 2 2005
 
 这里，数据列表的作用显然不是循环计数。当然，这种对数据列表的数据项进行遍历的 循环也可以转化成对数据列表的索引进行循环，代码如下：
 
-```
+```py
 >>> data = ['Born on:','July',2,2005]
 >>> for i in range(len(data)): 
         print data[i],
@@ -620,7 +620,7 @@ Born on: July 2 2005
 ``` 显然这是不必要的。一般来说，直接对数据列表进行循环不但代码简单，执行效率也比针对 列表索引建立的循环要高。所以，如果没有必要，尽量不要使用 for 与 range 函数的搭配。
 
 下面我们看一个最好用列表索引来建立循环的例子：假如我们希望对 data 列表间隔着访 问其成员（比如每次跳过两个成员），而不是顺序遍历列表，这时就可以用 range 函数来建立 索引。代码如下： 
-```
+```py
 
 > > > data = ['Born on:','July',2,2005] for i in range(0,len(data),3): print data[i], Born on: 2005 ```
 
@@ -630,7 +630,7 @@ Born on: July 2 2005
 
 如：将列表中的每一个值都加 1。下面这个做法是错误的：
 
-```
+```py
 >>> data = [1,2,3,4,5]
 >>> for x in data:
         x = x + 1
@@ -644,7 +644,7 @@ Born on: July 2 2005
 
 值并不会导致该值的来源处发生改变。为了修改遍历的列表，可以使用列表索引来对列表的 相应位置赋值。代码如下：
 
-```
+```py
 >>> data = [1,2,3,4,5]
 >>> for i in range(len(data)): 
         data[i] = data[i] + 1
@@ -658,7 +658,7 @@ Born on: July 2 2005
 
 回顾第二章的内容，序列是由若干数据项组成的一个有序的集合体，列表、字符串和元 组都是序列。前面的例子中所用的序列都是列表，下面通过例子演示利用字符串或元组建立 循环。先看针对字符串的 for 循环，其作用是将一个字符串的每个字符分拆显示：
 
-```
+```py
 >>> for c in "Hello World!": 
         print c,
 H e l l o W o r l d ! 
@@ -668,7 +668,7 @@ H e l l o W o r l d !
 
 再看一个针对元组的 for 循环例子：
 
-```
+```py
 >>> for i in (1,2,3): 
         print i
 1
@@ -680,14 +680,14 @@ H e l l o W o r l d !
 
 字符串的列表等等。以“元组的列表”为例，即列表中每个成员是元组。由于控制循环的循 环控制变量每次取序列中的一个成员作为值，所以这种情况下循环控制变量所取的值是元组。 例如：
 
-```
+```py
 >>> for t in [(1,2),(3,4),(5,6)]:
         print t,t[0],t[1] 
 ```
 
 也可以用多个循环控制变量构成元组来建立 for 循环：
 
-```
+```py
 >>> for (x,y) in [(1,2),(3,4),(5,6)]:
         print x,y
 1 2
@@ -697,7 +697,7 @@ H e l l o W o r l d !
 
 此例中，第一次循环时执行的赋值是(x,y) = (1,2)，亦即 x 和 y 分别赋值 1 和 2。 最后看一个更复杂的序列：
 
-```
+```py
 >>> for ((a,b),c) in [([1,2],3),['XY',6]]:
         print a,b,c
 1 2 3
@@ -706,13 +706,13 @@ X Y 6
 
 这个 for 语句的第一次循环相当于先执行了赋值：
 
-```
+```py
 ((a,b),c) = ([1,2],3) 
 ```
 
 第二次循环相当于执行了赋值：
 
-```
+```py
 ((a,b),c) = ['XY',6] 
 ```
 
@@ -724,7 +724,7 @@ X Y 6
 
 for 循环要求预先确定循环的次数，但有很多问题难以预先确定循环次数，只知道在什么 条件下需要循环，这时可以使用 while 语句。Python 语言中 while 语句的常用格式是：
 
-```
+```py
 while <布尔表达式>:
     <循环体> 
 ```
@@ -743,7 +743,7 @@ while <布尔表达式>:
 
 考虑这样的应用：用户不断输入数据，程序得到数据后不断累加，最后算出输入数据的 总和。显然，这是一个“输入——累加”的反复循环的过程。由于用户输入数据的个数不是 预先给定的，故无法用 for 循环来实现，而 while 语句则能轻松解决这个问题。为了对循环进 行控制，我们每次循环前都询问用户是否还有新数据。这种通过与用户进行交互来决定是否 需要循环的模式称为交互式循环，可以用伪代码表达如下：
 
-```
+```py
 将循环控制变量 moredata 初始化为"yes"
 while moredata 值为"yes":
     获得用户输入的下一个数据
@@ -755,7 +755,7 @@ while moredata 值为"yes":
 
 【程序 3.10】eg3_10.py
 
-```
+```py
 sum = 0 moredata = "yes"
 while moredata[0] == "y":
     x = input("Input a number: ") 
@@ -766,7 +766,7 @@ print "The sum is", sum
 
 下面是这个程序的执行情况：
 
-```
+```py
 Input a number: 2
 More numbers? (yes/no) yes
 Input a number: 5
@@ -784,7 +784,7 @@ The sum is 15
 
 解决“输入数据求和”问题的更好方法是使用哨兵循环，即不断执行“输入——累加” 这个循环体，直至遇到一个称为“哨兵”的特殊数据值。任何值都可以当作哨兵，关键是它 必须与正常数据值相互区别。哨兵循环的一般模式如下：
 
-```
+```py
 前导输入
 while 不是哨兵： 
     处理数据 
@@ -801,7 +801,7 @@ while 不是哨兵：
 
 【程序 3.11】eg3_11.py
 
-```
+```py
 sum = 0
 x = input("Input a number (-1 to quit): ") 
 while x &gt;= 0:
@@ -812,7 +812,7 @@ print "The sum is", sum
 
 可见哨兵循环与交互式循环不同，不需要用户不停地回答 yes 来处理数据。下面是此程序的执行情况：
 
-```
+```py
 Input a number (-1 to quit): 2 
 Input a number (-1 to quit): 5 
 Input a number (-1 to quit): 8 
@@ -826,7 +826,7 @@ The sum is 15
 
 【程序 3.12】eg3_12.py
 
-```
+```py
 sum = 0
 x = raw_input("Input a number (&lt;Enter&gt; to quit): ") 
 while x != "":
@@ -837,7 +837,7 @@ print "The sum is", sum
 
 执行示例如下：
 
-```
+```py
 Input a number (<Enter> to quit): 2 
 Input a number (<Enter> to quit): 5 
 Input a number (<Enter> to quit): -8 
@@ -851,7 +851,7 @@ The sum is -1
 
 在哨兵循环模式中有一个容易犯错误的地方：当用户的前导输入本身就是哨兵，从而导致循环一次也不执行时，while 后面的语句可能没有预料这种情况，导致无法正确执行。例如， 我们将程序 3.11 改成计算平均值，算法基本不变：反复输入数据，在循环中累加数据总和 sum 及数据计数 count，当用户输入哨兵－1 时退出循环并计算平均值。代码如下：
 
-```
+```py
 sum = 0
 count = 0
 x = input("Input a number (-1 to quit): ") 
@@ -879,7 +879,7 @@ print "The average is", sum / count
 
 Python 语言没有提供类似 repeat-until 结构的语句，但我们不难用 while 来实现后测试循环：只要保证循环条件初始为 True，自然就会执行一次循环体，而后续循环由条件测试决定。 例如，假设程序要求用户输入一个正数，则可用下面的代码片段来检查输入合法性：
 
-```
+```py
 x = -1
 while x < 0:
 x = input("Please input a positive number: ") 
@@ -893,7 +893,7 @@ while 计数器循环
 
 虽然一般来说 for 语句用于固定次数的循环，while 语句用于不定次数的循环，但两者之 间并无本质不同，完全可以用 while 来实现固定次数的循环。为了循环 n 次，用 while 实现的 计数器循环模式如下：
 
-```
+```py
 计数器 count 置为 0 
 while count < n:
     处理代码
@@ -904,7 +904,7 @@ while count < n:
 
 例如，前面罚写 10 遍“烦”字的计数器循环，可以用 while 语句实现如下：
 
-```
+```py
 >>> i = 0
 >>> while i < 10:
         print "烦", 
@@ -916,7 +916,7 @@ while count < n:
 
 上面的 while 计数器循环模式是让计数器从小到大变化，同样常用的还有让计数器从大 到小变化的模式：
 
-```
+```py
 计数器 count 置为 n 
 while count > 0
     处理代码
@@ -925,7 +925,7 @@ while count > 0
 
 使用这种模式实现上面的例子，代码如下：
 
-```
+```py
 >>> i = 10
 >>> while i > 0:
         print "烦", i = i - 1
@@ -946,7 +946,7 @@ for 或 while 语句的循环体中可以使用 break 语句，其效果是终�
 
 break 语句经常与一个无穷循环搭配使用，因为按正常途径是跳不出无穷循环的，而用 break 则能以非正常方式跳出循环。例如，我们换一种方法来实现“输入合法性检查”，代码 如下：
 
-```
+```py
 >>> while True:
         x = input("Please input a positive number: ") 
         if x > 0: 
@@ -961,7 +961,7 @@ Please input a positive number: 2
 
 再看一个用 break 跳出 for 循环的例子：
 
-```
+```py
 >>> for i in range(10):
         print "烦"
         if i > 4: 
@@ -975,7 +975,7 @@ Please input a positive number: 2
 
 利用无穷循环和 break 搭配的结构同样可以实现前面介绍的哨兵循环，一般模式如下：
 
-```
+```py
 while True:
     输入下一个数据 x
     if x 是哨兵: 
@@ -993,7 +993,7 @@ for 或 while 语句的循环体中还可以使用 continue 语句，其作用�
 
 看一个简单例子：对数据列表中的奇数求和。算法很简单，只需逐个检查列表中的数据， 如果是奇数就加到总和上，如果是偶数就忽略之，直接去检查下一个数据。代码如下：
 
-```
+```py
 >>> a = [23,28,39,44,50,67,99]
 >>> sum = 0
 >>> for i in a:
@@ -1014,7 +1014,7 @@ for 或 while 语句的循环体中还可以使用 continue 语句，其作用�
 
 先考虑“一维”数据结构——由简单数据值构成的列表，为了遍历列表以处理其中数据， 我们需要一个循环。例如用一个循环来计算列表中所有数据之和：
 
-```
+```py
 >>> a = [1,2,3,4,5]
 >>> sum = 0
 >>> for i in a:
@@ -1025,7 +1025,7 @@ for 或 while 语句的循环体中还可以使用 continue 语句，其作用�
 
 但是一个循环不足以解决“二维”数据结构——如矩阵。第二章中介绍过，编程语言中 用“列表的列表”来表示矩阵。用一个循环可以每次取列表中的一个值来处理，但这个值本 身又是一个列表，因此又需要一个循环来遍历之。这样我们就得到一个嵌套的循环结构来处 理二维数据结构，如下面的代码所演示的那样：
 
-```
+```py
 >>> a = [[11,12,13,14],[21,22,23,24],[31,32,33,34]]
 >>> sum = 0
 >>> for i in a:
@@ -1039,7 +1039,7 @@ for 或 while 语句的循环体中还可以使用 continue 语句，其作用�
 
 当然，二维数据结构不一定都像矩阵这么整齐，每一行数据可能有长有短，因此在用嵌 套循环来遍历所有数据时，内循环的循环次数常常要根据外循环的循环控制变量值做相应调 整。作为例子，请看下面这个打印乘法口诀表的嵌套循环：
 
-```
+```py
 >>> for i in range(1,10):
         for j in range(1,i+1):
             print "%dx%d=%-2d" % (j,i,j*i), 
@@ -1063,7 +1063,7 @@ for 或 while 语句的循环体中还可以使用 continue 语句，其作用�
 
 3.4.3 节中介绍的 break 语句只能跳出包围它的那一层循环。在嵌套循环结构的情况下， 一条 break 语句虽然跳出了本层循环，但跳不出外层循环，因此控制仍然可能处于某个循环 体中。例如，我们改写打印乘法口诀表的程序，使得一部分乘式不显示。代码如下：
 
-```
+```py
 >>> for i in range(1,10):
         for j in range(1,i+1): 
             if j &gt; 4: break
@@ -1150,7 +1150,7 @@ goto 语句是有害的
 
 较老的编程语言（如 BASIC、Pascal 和 C 等）中提供了 goto 语句，这条语句的作用是将 控制直接转到程序中的指定位置。使用 goto 可能写出这样的代码：
 
-```
+```py
 ……
 ENTRY: count := 0; while count &lt; n do
 begin
@@ -1201,7 +1201,7 @@ goto 语句看上去用起来很直接、很方便，很多人在设计程序流
 
 策略 1：将每个数值与其他两个数值进行比较 由于最大值比其他所有数值都大，所以求最大值的最直接的思路就逐一检查 x1、x2 和 x3，看看哪个数值比另外两个数值大。又由于 x1、x2 和 x3 都有可能是最大值，我们可以用 一个三路分支的 if-elif 语句来求解：
 
-```
+```py
 if x1 >= x2 and x1 >= x3: 
     max = x1
 elif x2 >= x1 and x2 >= x3: 
@@ -1226,7 +1226,7 @@ else:
 
 我们很容易根据判定树作出程序的流程图，并进而转化成 if-else 语句：
 
-```
+```py
 if x1 &gt;= x2:
     if x1 &gt;= x3: 
         max = x1
@@ -1251,7 +1251,7 @@ else:
 
 将这个策略写成计算机算法，只需用一个变量（用 max 就好）来记录当前见过的最大值。 当处理完所有数据，max 中存放的就是全体数据中的最大值。下面的代码是三个数据的版本：
 
-```
+```py
 max = x1
 if x2 > max: 
     max = x2
@@ -1261,7 +1261,7 @@ if x3 > max:
 
 分析一下这个顺序处理策略可知，它只需要进行两次比较运算就能得到最大值，这一点和第二种策略一样。但是顺序处理策略的代码比第二种策略简单得多，不需要嵌套的 if 语句。 更重要的是，这个策略是可扩展的，能够推广到任意 n 个数据的情形而不降低效率。例如， 如果有 4 个数据，我们只需增加一行语句：
 
-```
+```py
 max = x1
 if x2 > max:
     max = x2 
@@ -1277,7 +1277,7 @@ if x4 > max:
 
 【程序 3.12】maxn.py
 
-```
+```py
 n = input("How many numbers? ") 
 max = input("Input a number: ")
 for i in range(n-1):
@@ -1293,7 +1293,7 @@ print "max =", max
 
 最后值得一提的是，Python 其实有一个内建函数 max，其功能就是返回若干个数据中的 最大值。如果使用这个函数，代码就简单到了极致，在交互环境下就能方便地解决问题：
 
-```
+```py
 >>> x1,x2,x3 = input("Input three numbers: ")
 >>> print "max =", max(x1,x2,x3) 
 ```
@@ -1324,7 +1324,7 @@ print "max =", max
 
 考虑用一个交互式循环来实现“yes or no”功能：程序询问用户一个问题，用户输入回 答。只要用户输入的字符串以“y”或者"Y"开头，就算该用户回答是 yes，程序再进行合适的 处理；否则就跳过处理过程。这个功能很容易用 while 循环语句实现：
 
-```
+```py
 answer = raw_input("Want to play?(yes or no) ") 
 while answer[0] == "y" or answer[0] == "Y":
     play()
@@ -1333,7 +1333,7 @@ while answer[0] == "y" or answer[0] == "Y":
 
 显然这里 while 语句中的条件表达式等同于自然语言中的“用户输入以 y 打头或者用户 输入以 Y 打头”。然而，自然语言一般不会这么罗嗦，更简洁的表达是“用户输入以 y 或 Y 打头”。可惜这种简明的表达在编程语言中常常是错误的，初学编程者受自然语言的影响，很 容易写出下面这样的布尔表达式：
 
-```
+```py
 while answer[0] == "y" or "Y": 
 ```
 
@@ -1343,7 +1343,7 @@ while answer[0] == "y" or "Y":
 
 Python 的这个特性对初学者来说是个潜在的陷阱，很容易犯错误。当然，Python 之所以 如此设计，也有它的理由，那就是布尔表达式可以用作控制结构，在某些情况下可以写出更 简明的代码。例如考虑这种需求：程序要求用户输入一个字符串，如果用户没有输入数据就 直接按了回车键，则程序采用缺省值"Python"。实现这种需求的代码如下：
 
-```
+```py
 ans = raw_input("What's your favorite? [Python] ") 
 if s != "":
     favorite = ans 
@@ -1353,7 +1353,7 @@ else:
 
 利用字符串可被 Python 解释为布尔值的特性，上面代码中 if 语句的条件可以简化成：
 
-```
+```py
 ans = raw_input("What's your favorite? [Python] ") 
 if ans:
     favorite = ans 
@@ -1363,7 +1363,7 @@ else:
 
 当用户直接按回车，则 ans 为空串，并被 Python 解释为 False，从而 favorite 被赋值为缺省值"Python"。再利用布尔运算 or 的计算捷径规则，代码可以进一步简化为：
 
-```
+```py
 ans = raw_input("What's your favorite? [Python] ") 
 favorite = ans or "Python" 
 ```
@@ -1372,7 +1372,7 @@ favorite = ans or "Python"
 
 顺便说一下，如果考虑到 ans 其实就是函数 raw_input 的返回值，这个例子最终可以精简 成一行代码：
 
-```
+```py
 favorite = raw_input("What's your favorite? [Python] ") or "Python" 
 ```
 

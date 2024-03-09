@@ -27,7 +27,7 @@
 
 你可以交互地使用解释器来计算例子中给出的表达式。例如，为了测试表达式`2 + 3`，使用交互式的带提示符的 Python 解释器：
 
-```
+```py
 >>> 2 + 3
 5
 >>> 3 * 5
@@ -109,7 +109,7 @@
 
 # 表达式
 
-```
+```py
 #!/usr/bin/python
 # Filename: expression.py
 
@@ -124,7 +124,7 @@ print 'Perimeter is', 2 * (length + breadth)
 
 ## 输出
 
-```
+```py
 $ python expression.py
 Area is 10
 Perimeter is 14 

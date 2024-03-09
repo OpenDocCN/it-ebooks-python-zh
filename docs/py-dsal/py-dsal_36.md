@@ -25,7 +25,7 @@
 
 `下面是实现``quickSort``的函数。它``调用了一个递归函数``quickSortHelper`. `quickSortHelper`.的基点和归并排序是一样的，如果列表的长度小于等于 1，它就是有序的，如果大于 1，它就要被切分并且递归排序。`Partition` `函数完成前面提到过的切分过程。`
 
-```
+```py
 def quickSort(alist):
    quickSortHelper(alist,0,len(alist)-1)
 

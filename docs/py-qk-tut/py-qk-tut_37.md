@@ -44,7 +44,7 @@ subprocess.check_output()
 
 这三个函数的使用方法相类似，我们以 subprocess.call()来说明:
 
-```
+```py
 import subprocess
 rc = subprocess.call(["ls","-l"])
 
@@ -54,7 +54,7 @@ rc = subprocess.call(["ls","-l"])
 
 可以通过一个 shell 来解释一整个字符串:
 
-```
+```py
 import subprocess
 out = subprocess.call("ls -l", shell=True)
 out = subprocess.call("cd ..", shell=True)
@@ -71,7 +71,7 @@ shell 命令中有一些是[shell 的内建命令](http://www.cnblogs.com/vamei/
 
 与上面的封装不同，Popen 对象创建后，主程序不会自动等待子进程完成。我们必须调用对象的 wait()方法，父进程才会等待 (也就是阻塞 block)：
 
-```
+```py
 import subprocess
 child = subprocess.Popen(["ping","-c","5","www.google.com"]) print("parent process")
 
@@ -81,7 +81,7 @@ child = subprocess.Popen(["ping","-c","5","www.google.com"]) print("parent proce
 
 对比等待的情况:
 
-```
+```py
 import subprocess
 child = subprocess.Popen(["ping","-c","5","www.google.com"])
 child.wait() print("parent process")
@@ -112,7 +112,7 @@ child.stderr
 
 我们可以在 Popen()建立子进程的时候改变标准输入、标准输出和标准错误，并可以利用 subprocess.PIPE 将多个子进程的输入和输出连接在一起，构成管道(pipe): 
 
-```
+```py
 import subprocess
 child1 = subprocess.Popen(["ls","-l"], stdout=subprocess.PIPE)
 child2 = subprocess.Popen(["wc"], stdin=child1.stdout,stdout=subprocess.PIPE)
@@ -127,7 +127,7 @@ subprocess.PIPE 实际上为文本流提供一个缓存区。child1 的 stdout �
 
 我们还可以利用 communicate()方法来使用 PIPE 给子进程输入: 
 
-```
+```py
 import subprocess
 child = subprocess.Popen(["cat"], stdin=subprocess.PIPE)
 child.communicate("vamei")

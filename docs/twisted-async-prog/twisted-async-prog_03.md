@@ -6,14 +6,14 @@
 
 最最简单的 twisted 程序就是下面的代码，其在`twisted-intro`目录中的[basic-twisted/simple.py](http://github.com/jdavisp3/twisted-intro/blob/master/basic-twisted/simple.py)中。
 
-```
+```py
 from twisted.internet import reactor
 reactor.run() 
 ```
 
 可以用下面的命令来运行它：
 
-```
+```py
 python basic-twisted/simple.py 
 ```
 
@@ -33,7 +33,7 @@ python basic-twisted/simple.py
 
 若使用其它的 reactor，需要在引入 twisted.internet.reactor 前安装它。下面是安装 pollreactor 的方法：
 
-```
+```py
 from twisted.internet import pollreactor
 pollreactor.install() 
 ```
@@ -42,7 +42,7 @@ pollreactor.install()
 
 下面是使用 pollreactor 重写上面的程序，可以在[basic-twisted/simple-poll.py](http://github.com/jdavisp3/twisted-intro/blob/master/basic-twisted/simple-poll.py)文件中找到：
 
-```
+```py
 from twited.internet import pollreactor
 pollreactor.install()
 from twisted.internet import reactor
@@ -57,7 +57,7 @@ reactor.run()
 
 我们得用 Twisted 来做什么吧。下面这段代码在 reactor 循环开始后向终端打印一条消息：
 
-```
+```py
 def hello():
     print 'Hello from the reactor loop!'
     print 'Lately I feel like I\'m stuck in a rut.'
@@ -69,7 +69,7 @@ reactor.run()
 
 这段代码可以在[basic-twisted/hello.py](http://github.com/jdavisp3/twisted-intro/blob/master/basic-twisted/hello.py)中找到。运行它，会得到如下结果：
 
-```
+```py
 Starting the reactor. 
 Hello from the reactor loop!
 Lately I feel like I'm stuck in a rut. 
@@ -83,7 +83,7 @@ Lately I feel like I'm stuck in a rut.
 
 我们可以通过下面这段代码来观察 Twisted 是如何调用我们代码的：
 
-```
+```py
 import traceback
 def stack():
     print 'The python stack:'
@@ -95,7 +95,7 @@ reactor.run()
 
 这段代码的文件是 [basic-twisted/stack.py](http://github.com/jdavisp3/twisted-intro/blob/master/basic-twisted/stack.py)。不出意外，它的输出是：
 
-```
+```py
 The python stack: 
 ... reactor.run() <-- This is where we called the reactor 
 ... ... <-- A bunch of Twisted function calls ... 
@@ -139,7 +139,7 @@ Twisted 并不是唯一使用回调的框架。许多历史悠久的框架都已
 
 下面是退出代码，代码文件是[basic-twisted/countdown.py](http://github.com/jdavisp3/twisted-intro/blob/master/basic-twisted/countdown.py)：
 
-```
+```py
 class Countdown(object):
 
     counter = 5
@@ -167,7 +167,7 @@ print 'Stop!'
 
 下面是上面程序的输出：
 
-```
+```py
 Start! 
 5 ... 
 4 ...
@@ -181,7 +181,7 @@ Stop!
 
 由于 Twisted 经常会在回调中结束调用我们的代码，因此你可能会想，如果我们的回调函数中出现异常会发生什么状况。（Dave 的意思是说，在结束我们的回调函数后会再次回到 Twisted 代码中，若在我们的回调中发生异常，那是不是异常会跑到 Twisted 代码中，而造成不可想象的后果 ）让我们来试试，在[basic-twisted/exception.py](http://github.com/jdavisp3/twisted-intro/blob/master/basic-twisted/exception.py)中的程序会在一个回调函数中引发一个异常，但是这不会影响下一个回调：
 
-```
+```py
 def falldown():
     raise Exception('I fall down.')
 
@@ -200,7 +200,7 @@ reactor.run()
 
 当你在命令行中运时，会有如下的输出：
 
-```
+```py
 Starting the reactor. Traceback (most recent call last):
 ... # I removed most of the traceback
 exceptions.Exception: I fall down.

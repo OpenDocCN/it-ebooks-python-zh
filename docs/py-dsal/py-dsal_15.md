@@ -89,27 +89,27 @@ class Printer:
 
 Task 类代表一个打印任务。产生任务时，构造函数提供一个 1-20 之间的随机数，代表任务的纸张数。要用到 random 模块的`randrange` 方法
 
-```
+```py
 >>> importrandom
 ```
 
-```
+```py
 >>> random.randrange(1,21)
 ```
 
-```
+```py
 18
 ```
 
-```
+```py
 >>> random.randrange(1,21)
 ```
 
-```
+```py
 8
 ```
 
-```
+```py
 >>> 
 ```
 
@@ -141,7 +141,7 @@ class Task:
 
 模拟程序([*Listing 4*](http://interactivepython.org/courselib/static/pythonds/BasicDS/queues.html#lst-qumainsim))用来实现上面所述的算法。printQueue 对象是队列的抽象数据类型的实例，一个布尔值辅助函数，newPrintTask 用来决定是否有新任务产生，我们再次使用了 random 模块 randrange 方法返回一个 1-180 之间的随机数。打印任务每 180 秒到来一次，我们从一个范围内的随机整数中产生 180 的方法模拟随机事件（32 行）。这个模拟功能允许我们设置总时间和打印机的打印速度。
 
-```
+```py
 frompythonds.basic.queueimport Queue
 
 importrandom
@@ -236,7 +236,7 @@ Average Wait  18.17 secs 0 tasks remaining.
 
 附完整代码:
 
-```
+```py
 from pythonds.basic.queue import Queue
 
 import random

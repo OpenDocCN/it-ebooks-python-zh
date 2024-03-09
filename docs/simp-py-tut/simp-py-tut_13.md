@@ -50,7 +50,7 @@
 
 一个尽可能简单的类如下面这个例子所示。
 
-```
+```py
 #!/usr/bin/python
 # Filename: simplestclass.py
 
@@ -65,7 +65,7 @@ print p
 
 ## 输出
 
-```
+```py
 $ python simplestclass.py
 <__main__.Person instance at 0xf6fcb18c> 
 ```
@@ -84,7 +84,7 @@ $ python simplestclass.py
 
 我们已经讨论了类/对象可以拥有像函数一样的方法，这些方法与函数的区别只是一个额外的`self`变量。现在我们来学习一个例子。
 
-```
+```py
 #!/usr/bin/python
 # Filename: method.py
 
@@ -102,7 +102,7 @@ p.sayHi()
 
 ## 输出
 
-```
+```py
 $ python method.py
 Hello, how are you? 
 ```
@@ -119,7 +119,7 @@ Hello, how are you?
 
 `__init__`方法在类的一个对象被建立时，马上运行。这个方法可以用来对你的对象做一些你希望的 初始化 。注意，这个名称的开始和结尾都是双下划线。
 
-```
+```py
 #!/usr/bin/python
 # Filename: class_init.py
 
@@ -139,7 +139,7 @@ p.sayHi()
 
 ## 输出
 
-```
+```py
 $ python class_init.py
 Hello, my name is Swaroop 
 ```
@@ -166,7 +166,7 @@ Hello, my name is Swaroop
 
 对象的变量 由类的每个对象/实例拥有。因此每个对象有自己对这个域的一份拷贝，即它们不是共享的，在同一个类的不同实例中，虽然对象的变量有相同的名称，但是是互不相关的。通过一个例子会使这个易于理解。
 
-```
+```py
 #!/usr/bin/python
 # Filename: objvar.py
 
@@ -223,7 +223,7 @@ swaroop.howMany()
 
 ## 输出
 
-```
+```py
 $ python objvar.py
 (Initializing Swaroop)
 Hi, my name is Swaroop.
@@ -275,7 +275,7 @@ I am the last one.
 
 现在，我们将学习一个例子程序。
 
-```
+```py
 #!/usr/bin/python
 # Filename: inherit.py
 
@@ -326,7 +326,7 @@ for member in members:
 
 ## 输出
 
-```
+```py
 $ python inherit.py
 (Initialized SchoolMember: Mrs. Shrividya)
 (Initialized Teacher: Mrs. Shrividya)

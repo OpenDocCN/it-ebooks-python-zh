@@ -56,7 +56,7 @@ getcwd()
 
 比如说我们要新建目录 new：
 
-```
+```py
 import os
 os.mkdir('/home/vamei/new')
 
@@ -74,7 +74,7 @@ move(*src, dst*)
 
 比如我们想复制文件 a.txt:
 
-```
+```py
 import shutil
 shutil.copy('a.txt', 'b.txt')
 

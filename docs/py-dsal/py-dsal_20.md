@@ -26,7 +26,7 @@
 
 代码段是算法的实现，基数可以是 2-16 之间的整数。
 
-```
+```py
 def toStr(n,base):
    convertString = "0123456789ABCDEF"
    ifn<base:
@@ -52,7 +52,7 @@ print(toStr(1453,16))
 
 假设我们要把上节递归调用中的 toStr 和 convertString 换一下位置，就要修改算法，把字符串压栈，以优先做递归调用。这个修改后的算法如下：
 
-```
+```py
 frompythonds.basic.stackimportStack
 
 rStack = Stack()

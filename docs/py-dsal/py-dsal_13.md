@@ -8,7 +8,7 @@
 
 **Listing 1**
 
-```
+```py
 class Queue:
     def __init__(self):
         self.items = []

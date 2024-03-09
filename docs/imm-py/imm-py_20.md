@@ -25,7 +25,7 @@ Python 中的 ctypes 模块可能是 Python 调用 C 方法中最简单的一种
 
 实现两数求和的 C 代码，保存为 add.c
 
-```
+```py
 //sample C file to add 2 numbers - int and floats
 
 #include <stdio.h>
@@ -46,7 +46,7 @@ float add_float(float num1, float num2){
 
 接下来将 C 文件编译为.so 文件(windows 下为 DLL)。下面操作会生成 adder.so 文件
 
-```
+```py
 #For Linux
 $  gcc -shared -Wl,-soname,adder -o adder.so -fPIC add.c
 
@@ -56,7 +56,7 @@ $ gcc -shared -Wl,-install_name,adder.so -o adder.so -fPIC add.c
 
 现在在你的 Python 代码中来调用它
 
-```
+```py
 from ctypes import *
 
 #load the shared object file
@@ -77,7 +77,7 @@ print "Sum of 5.5 and 4.1 = ", str(add_float(a, b))
 
 输出如下
 
-```
+```py
 Sum of 4 and 5 = 9
 Sum of 5.5 and 4.1 =  9.60000038147 
 ```
@@ -100,7 +100,7 @@ Python 开发者一般不会采用这种方法，因为大多数情况它会带�
 
 example.c 文件中的 C 代码包含了不同的变量和函数
 
-```
+```py
 #include <time.h>
 double My_variable = 3.0;
 
@@ -125,7 +125,7 @@ char *get_time() {
 
 编译它
 
-```
+```py
 unix % swig -python example.i
 unix % gcc -c example.c example_wrap.c \
     -I/usr/local/include/python2.1
@@ -134,7 +134,7 @@ unix % ld -shared example.o example_wrap.o -o _example.so
 
 最后，Python 的输出
 
-```
+```py
 >>> import example
 >>> example.fact(5)
 120
@@ -161,7 +161,7 @@ Python/C API 可能是被最广泛使用的方法。它不仅简单，而且可�
 
 来看一下我们要实现的效果，这里演示了用 Python 调用 C 扩展的代码
 
-```
+```py
 #Though it looks like an ordinary python import, the addList module is implemented in C
 import addList
 
@@ -173,7 +173,7 @@ print "Sum of List - " + str(l) + " = " +  str(addList.add(l))
 
 接下来我们看看如何用 C 编写 addList 模块，这可能看起来有点让人难以接受，但是一旦你了解了这之中的各种组成，你就可以一往无前了。
 
-```
+```py
 //Python.h has all the required function definitions to manipulate the Python objects
 #include <Python.h>
 
@@ -240,7 +240,7 @@ PyMODINIT_FUNC initaddList(void){
 
 函数 addList_add 接受的参数类型为 PyObject 类型结构(同时也表示为元组类型，因为 Python 中万物皆为对象，所以我们先用 PyObject 来定义)。传入的参数则通过 pyarg_parsetuple()来解析。第一个参数是被解析的参数变量。第二个参数是一个字符串，告诉我们如何去解析元组中每一个元素。字符串的第 n 个字母正是代表着元组中第 n 个参数的类型。例如，"i"代表整形，"s"代表字符串类型, "O"则代表一个 Python 对象。接下来的参数都是你想要通过 PyArg_ParseTuple()函数解析并保存的元素。这样参数的数量和模块中函数期待得到的参数数量就可以保持一致，并保证了位置的完整性。例如，我们想传入一个字符串，一个整数和一个 Python 列表，可以这样去写
 
-```
+```py
 int n;
 char *s;
 PyObject* list;
@@ -255,7 +255,7 @@ PyArg_ParseTuple(args, "siO", &n, &s, &list);
 
 现在我们已经编写完 C 模块了。将下列代码保存为 setyp.py
 
-```
+```py
 #build the modules
 
 from distutils.core import setup, Extension
@@ -266,7 +266,7 @@ setup(name='addList', version='1.0',  \
 
 并且运行
 
-```
+```py
 python setup.py install 
 ```
 
@@ -274,7 +274,7 @@ python setup.py install
 
 在一番辛苦后，让我们来验证下我们的模块是否有效
 
-```
+```py
 #module that talks to the C code
 import addList
 
@@ -284,7 +284,7 @@ print "Sum of List - " + str(l) + " = " +  str(addList.add(l))
 
 输出结果如下
 
-```
+```py
 Sum of List - [1, 2, 3, 4, 5] = 15 
 ```
 

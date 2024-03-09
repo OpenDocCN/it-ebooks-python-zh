@@ -52,7 +52,7 @@
 
 在 Python 3.4 之后，安装好 Python 环境就可以直接支持 pip，你可以在终端/命令行里输入这句检查一下：
 
-```
+```py
 pip --version
 ```
 
@@ -66,7 +66,7 @@ pip --version
 
 在安装好 pip 之后，以后安装库，只需要在命令行里面输入：
 
-```
+```py
 pip3 install PackageName
 ```
 
@@ -76,13 +76,13 @@ pip3 install PackageName
 
 > 注：如果你想安装到 python 2 中，需要把 python3 换成 python
 
-```
+```py
 python3 -m pip install PackageName
 ```
 
 如果遇到权限问题，可以输入：
 
-```
+```py
 sudo pip install PackageName
 ```
 
@@ -92,7 +92,7 @@ sudo pip install PackageName
 
 再介绍几个 pip 的常用指令：
 
-```
+```py
 pip install --upgrade pip                  #升级 pip
 pip uninstall flask                        #卸载库
 pip list                                   #查看已安装库
@@ -100,7 +100,7 @@ pip list                                   #查看已安装库
 
 异常情况：安装某些库的时候，可能会遇到所依赖的另一个库还没安装，导致无法安装成功的情况，这时候的处理原则就是：缺啥装啥，举个例子，如果出现这样的错误提示：
 
-```
+```py
 danbao$ scrapy version -v 
 :0: UserWarning: You do not have a working installation of the service_identity module: 'No module named service_identity'.  Please install it from <https://pypi.python.org/pypi/service_identity> and make sure all of its dependencies are satisfied.  Without the service_identity module and a recent enough pyOpenSSL to support it, Twisted can perform only rudimentary TLS client hostname verification.  Many valid certificate/hostname mappings may be rejected.
 Scrapy  : 0.24.6 
@@ -112,7 +112,7 @@ Python  : 2.7.9 (default, May 27 2015, 22:47:13) - [GCC 4.2.1 Compatible Apple L
 
 这时候的解决方法是：
 
-```
+```py
 pip install service_identity
 ```
 
@@ -130,7 +130,7 @@ pip install service_identity
 
 1.  到命令行输入：
 
-    ```
+    ```py
     pip3 install wheel
     ```
 
@@ -138,7 +138,7 @@ pip install service_identity
 
 2.  从资源管理器中确认你下载的.whl 类文件的路径，然后在命令行继续输入：
 
-    ```
+    ```py
     cd C:\download
     ```
 
@@ -146,7 +146,7 @@ pip install service_identity
 
     然后再在命令行继续输入：
 
-    ```
+    ```py
     pip3 install xxx.whl
     ```
 
@@ -156,7 +156,7 @@ pip install service_identity
 
 1.  解压包，进入解压好的文件夹，通常会看见一个 setup.py 的文件。从资源管理器中确认你下载的文件的路径，打开命令行（cmd），输入：
 
-    ```
+    ```py
     cd C:\download
     ```
 
@@ -164,7 +164,7 @@ pip install service_identity
 
 2.  然后在命令行中继续输入：
 
-    ```
+    ```py
     python3 setup.py install
     ```
 

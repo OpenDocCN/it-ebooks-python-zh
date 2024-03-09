@@ -8,14 +8,14 @@
 想象下当你有两个相关操作，你想让它们结对执行，然后在它们俩中间放置一段代码。
 上下文管理器就是专门让你做这个事情的。举个例子：
 
-```
+```py
 with open('some_file', 'w') as opened_file:
     opened_file.write('Hola!') 
 ```
 
 上面这段代码打开了一个文件，往它里面写入了一些数据，然后关闭了它。如果在往文件写数据时发生异常，它会尝试去关闭文件。上面那段代码与这一段是等价的：
 
-```
+```py
 file = open('some_file', 'w')
 try:
     file.write('Hola!')
@@ -36,7 +36,7 @@ finally:
 一个上下文管理器的类，最起码要定义`__enter__`和`__exit__`方法。
 让我们来构造我们自己的文件开启的上下文管理器，并学习下基础知识。
 
-```
+```py
 class File(object):
     def __init__(self, file_name, method):
         self.file_obj = open(file_name, method)
@@ -48,7 +48,7 @@ class File(object):
 
 通过定义`__enter__`和`__exit__`方法，我们可以在`with`语句里使用它。我们来试试：
 
-```
+```py
 with File('demo.txt', 'w') as opened_file:
     opened_file.write('Hola!') 
 ```
@@ -73,7 +73,7 @@ with File('demo.txt', 'w') as opened_file:
 
 那如果我们的文件对象抛出一个异常呢？万一我们尝试访问文件对象的一个不支持的方法。举个例子：
 
-```
+```py
 with File('demo.txt', 'w') as opened_file:
     opened_file.undefined_function('Hola!') 
 ```
@@ -87,7 +87,7 @@ with File('demo.txt', 'w') as opened_file:
 
 在我们的案例中，`__exit__`方法返回的是`None`(如果没有`return`语句那么方法会返回`None`)。因此，`with`语句抛出了那个异常。
 
-```
+```py
 Traceback (most recent call last):
   File "<stdin>", line 2, in <module>
 AttributeError: 'file' object has no attribute 'undefined_function' 
@@ -95,7 +95,7 @@ AttributeError: 'file' object has no attribute 'undefined_function'
 
 我们尝试下在`__exit__`方法中处理异常：
 
-```
+```py
 class File(object):
     def __init__(self, file_name, method):
         self.file_obj = open(file_name, method)
@@ -124,7 +124,7 @@ with File('demo.txt', 'w') as opened_file:
 Python 有个`contextlib`模块专门用于这个目的。我们可以使用一个生成器函数来实现一个上下文管理器，而不是使用一个类。
 让我们看看一个基本的，没用的例子：
 
-```
+```py
 from contextlib import contextmanager
 
 @contextmanager
@@ -145,7 +145,7 @@ OK 啦！这个实现方式看起来更加直观和简单。然而，这个方�
 
 那现在我们既然知道了所有这些，我们可以用这个新生成的上下文管理器了，像这样：
 
-```
+```py
 with open_file('some_file') as f:
     f.write('hola!') 
 ```

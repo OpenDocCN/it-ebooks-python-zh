@@ -24,13 +24,13 @@ Read the Docs 是一个流行的社区项目，存放着开源软件的文档。
 
 **pydoc** 是一个在你安装 Python 时跟着安装的工具。它允许你在 shell 中快速检索和查找文档。比如，如果你需要对 [`time`](http://docs.python.org/library/time.html#module-time "(在 Python v2.7)") [http://docs.python.org/library/time.html#module-time] 模块的进行快速回顾，查看文档就是像下面这么简单：
 
-> ```
+> ```py
 > $ pydoc time 
 > ```
 
 上面的命令和打开 Python REPL 然后运行下面指令是基本等价的：
 
-> ```
+> ```py
 > >>> help(time) 
 > ```
 

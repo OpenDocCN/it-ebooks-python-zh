@@ -14,7 +14,7 @@
 
 通过使用客户端从测试服务器抓取一首诗, 这个例子既测试了诗歌客户端又测试了服务器. 为了提供一个可供测试的诗歌服务器, 我们在测试案例中实现 [setUp](https://github.com/jdavisp3/twisted-intro/blob/master/tests/test_poetry.py#L70)方法:
 
-```
+```py
 class PoetryTestCase(TestCase):
 
     def setUp(self):
@@ -26,7 +26,7 @@ class PoetryTestCase(TestCase):
 
 这个 `setUp` 方法用一首测试诗建立诗歌服务器,然后监听一个随机开放端口.我们保存了端口号,以便实际测试需要时可以利用.当然测试结束时我们会用 [tearDown](https://github.com/jdavisp3/twisted-intro/blob/master/tests/test_poetry.py#L76) 清除测试服务器:
 
-```
+```py
 def tearDown(self):
     port, self.port = self.port, None
     return port.stopListening() 
@@ -34,7 +34,7 @@ def tearDown(self):
 
 [test_client](https://github.com/jdavisp3/twisted-intro/blob/master/tests/test_poetry.py#L80)把我们带到了第一个测试, 用 `get_poetry` 从测试服务器获取诗歌并且验证这就是我们所期望的诗歌:
 
-```
+```py
 def test_client(self):
     """The correct poem is returned by get_poetry."""
     d = get_poetry('127.0.0.1', self.portnum)
@@ -50,7 +50,7 @@ def test_client(self):
 
 我们的第二个测试, [test_failure](https://github.com/jdavisp3/twisted-intro/blob/master/tests/test_poetry.py#L91), 证实 `get_poetry` 如果不能连接到服务器会以适当的方式失败:
 
-```
+```py
 def test_failure(self):
     """The correct failure is returned by get_poetry when
     connecting to a port with no server."""
@@ -62,7 +62,7 @@ def test_failure(self):
 
 你可以用 trial 脚本自己运行这些测试,如下:
 
-```
+```py
 trial tests/test_poetry.py 
 ```
 

@@ -20,7 +20,7 @@
 
 下面的 shellSort 函数对每个增量值进行一次子表排序，最终使用插入排序完成
 
-```
+```py
 def shellSort(alist):
     sublistcount = len(alist)//2
     while sublistcount > 0:

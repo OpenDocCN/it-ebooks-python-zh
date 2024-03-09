@@ -14,7 +14,7 @@
 
 os.path 包主要是处理路径字符串，比如说'/home/vamei/doc/file.txt'，提取出有用信息。
 
-```
+```py
 import os.path
 path = '/home/vamei/doc/file.txt'
 
@@ -32,7 +32,7 @@ os.path.normpath(*path*)   # 去除路径 path 中的冗余。比如'/home/vam
 
 os.path 还可以查询文件的相关信息(metadata)。文件的相关信息不存储在文件内部，而是由操作系统维护的，关于文件的一些信息(比如文件类型，大小，修改时间)。
 
-```
+```py
 import os.path 
 path = '/home/vamei/doc/file.txt'
 
@@ -69,7 +69,7 @@ Filename Pattern Expression      Python Regular Expression
 
 我们可以用该命令找出/home/vamei 下的所有文件: 
 
-```
+```py
 import glob print(glob.glob('/home/vamei/*'))
 
 ```

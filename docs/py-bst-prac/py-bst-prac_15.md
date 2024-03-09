@@ -145,7 +145,7 @@ Gondor 有一个部署 [Django 工程](https://gondor.io/support/django/setup/) 
 
 这里有一些在 Jinja2 中重要的 html 标签：
 
-```
+```py
 {# 这是注释 #}
 
 {# 下一个标签是输出变量： #}
@@ -164,7 +164,7 @@ Gondor 有一个部署 [Django 工程](https://gondor.io/support/django/setup/) 
 
 下面列举的内容是一个使用 Tornado 的站点的例子。Tornado 用起来并没那么复杂。
 
-```
+```py
 # 导入 Jinja2
 from jinja2 import Environment, FileSystemLoader
 
@@ -204,7 +204,7 @@ if __name__ == "__main__":
 
 `base.html` 文件能够作为所有站点页面的基础，下面是实现的例子。
 
-```
+```py
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html lang="en">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -227,7 +227,7 @@ if __name__ == "__main__":
 
 接下来是我们的 site 页面（`site.html`），它由 Python app 载入，并扩展了 `base.html`。下面的内容区块会自动填充到 `base.html` 页面的相关区块中。
 
-```
+```py
 <!{% extends "base.html" %}
 {% block content %}
  <p class="important">
@@ -254,7 +254,7 @@ Chameleon 在 Python2.5 及以上版本（包括 3.x 和 pypy）都是可用的�
 
 从下面的例子中能很快学到基本的 TAL 语言的用法：
 
-```
+```py
 <html>
   <body>
   <h1>Hello, <span tal:replace="context.name">World</span>!</h1>
@@ -271,7 +271,7 @@ Chameleon 在 Python2.5 及以上版本（包括 3.x 和 pypy）都是可用的�
 
 用作文本插入的 <span tal:replace=”expression” /> 形式非常常见。如果在未渲染的模板中并不要求严格的合法性，你可以取而代之地使用更加简洁和可读的语法，它使用 ${expression} 的形式，就像下面这样：
 
-```
+```py
 <html>
   <body>
     <h1>Hello, ${world}!</h1>
@@ -294,7 +294,7 @@ Chameleon 在 Python2.5 及以上版本（包括 3.x 和 pypy）都是可用的�
 
 Mako 的一个模板例子如下：
 
-```
+```py
 <%inherit file="base.html"/>
 <%
     rows = [[v for v in range(0,10)] for row in range(0,10)]
@@ -316,7 +316,7 @@ Mako 的一个模板例子如下：
 
 要渲染一个非常基本的模板，你可以像下面这么做：
 
-```
+```py
 from mako.template import Template
 print(Template("hello ${data}!").render(data="world")) 
 ```

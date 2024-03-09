@@ -15,7 +15,7 @@ Cryptography 分为两个层，方法（recipes）层和危险底层（hazardous
 
 ### 安装
 
-```
+```py
 $ pip install cryptography 
 ```
 
@@ -23,7 +23,7 @@ $ pip install cryptography
 
 示例代码使用了高层的对称加密方法：
 
-```
+```py
 from cryptography.fernet import Fernet
 key = Fernet.generate_key()
 cipher_suite = Fernet(key)
@@ -37,13 +37,13 @@ plain_text = cipher_suite.decrypt(cipher_text)
 
 ### 安装
 
-```
+```py
 $ pip install pycrypto 
 ```
 
 ### 例子
 
-```
+```py
 from Crypto.Cipher import AES
 # Encryption
 encryption_suite = AES.new('This is a key123', AES.MODE_CBC, 'This is an IV456')

@@ -8,7 +8,7 @@
 
 首先，回忆一下根据位置传递：
 
-```
+```py
 def f(a,b,c): print a,b,c
 
 f(1,2,3)
@@ -27,7 +27,7 @@ f(1,2,3)
 
 在定义函数的时候，使用形如 a=19 的方式，可以给参数赋予默认值。如果该参数最终没有被传递值，将使用该默认值。
 
-```
+```py
 def f(a,b,c=10): print a,b,c
 
 f(3,2)
@@ -45,7 +45,7 @@ f(3,2,1)
 
 下面是包裹位置传递的例子：
 
-```
+```py
 def func(*name): print type(name) print name
 
 func(1,4,6)
@@ -57,7 +57,7 @@ func(5,6,7,1,2,3)
 
 下面是包裹关键字传递的例子：
 
-```
+```py
 def func(**dict): print type(dict) print dict
 
 func(a=1,b=9)
@@ -73,7 +73,7 @@ func(m=2,n=1,c=11)
 
 *和**在调用的时候的应用，主要是解包裹(unpacking), 下面为例：
 
-```
+```py
 def func(a,b,c): print a,b,c
 args = (1,3,4)
 func(*args)
@@ -84,7 +84,7 @@ func(*args)
 
 相应的，也存在对词典的解包裹，使用相同的 func 定义，然后：
 
-```
+```py
 dict = {'a':1,'b':2,'c':3}
 func(**dict)
 

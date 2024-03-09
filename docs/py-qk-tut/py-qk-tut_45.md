@@ -32,7 +32,7 @@ socket 接口是实际上是操作系统提供的系统调用。socket 的使用
 
 ![复制代码](img/rdb_epub_4593197691164204437.jpg)
 
-```
+```py
 # Written by Vamei # Server side
 import socket
 
@@ -48,7 +48,7 @@ Yes'
 # accept and establish connection conn, addr =s.accept()
 # receive message request    = conn.recv(1024) 
 
-```
+```py
 print 'request is: ',request
 print 'Connected by', addr
 # send message
@@ -66,7 +66,7 @@ socket.socket()创建一个 socket 对象，并说明 socket 使用的是 IPv4(A
 
 ![复制代码](img/rdb_epub_4593197691164204437.jpg)
 
-```
+```py
 # Written by Vamei # Client side
 import socket
 
@@ -104,7 +104,7 @@ request-response cycle
 
 ![复制代码](img/rdb_epub_4593197691164204437.jpg)![](img/rdb_epub_2935892460472120675.jpg)![](img/rdb_epub_8686829306330710980.jpg)View Code
 
-```
+```py
 复制代码
 
 # Written by Vamei
@@ -171,7 +171,7 @@ while True:
 
 ![复制代码](img/rdb_epub_4593197691164204437.jpg)
 
-```
+```py
 HTTP/1.x 200 OK
 
 ```
@@ -184,7 +184,7 @@ HTTP/1.x 200 OK
 
 ![复制代码](img/rdb_epub_4593197691164204437.jpg)
 
-```
+```py
 Content-Type: text/html
 
 ```
@@ -201,7 +201,7 @@ Content-Type: text/html
 
 ![复制代码](img/rdb_epub_4593197691164204437.jpg)
 
-```
+```py
 GET /test.jpg HTTP/1.x
 Accept: text/*
 
@@ -221,7 +221,7 @@ Accept: text/*
 
 ![复制代码](img/rdb_epub_4593197691164204437.jpg)
 
-```
+```py
 127.0.0.1:8000
 
 ```
@@ -238,7 +238,7 @@ OK，我已经有了一个用 Python 实现的，并从 socket 写起的服务�
 
 ![复制代码](img/rdb_epub_4593197691164204437.jpg)
 
-```
+```py
 GET / HTTP/1.1
 Host: 127.0.0.1:8000
 User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:14.0) Gecko/20100101 Firefox/14.0.1
@@ -257,7 +257,7 @@ Connection: keep-alive
 
 ![复制代码](img/rdb_epub_4593197691164204437.jpg)
 
-```
+```py
 GET /test.jpg HTTP/1.1
 Host: 127.0.0.1:8000
 User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:14.0) Gecko/20100101 Firefox/14.0.1

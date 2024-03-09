@@ -352,7 +352,7 @@ col ==self.columnsInMaze-1 )
 
 完整代码：
 
-```
+```py
 import turtle
 
 PART_OF_PATH = 'O'

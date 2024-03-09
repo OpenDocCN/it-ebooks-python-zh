@@ -7,13 +7,13 @@
 
 **原型**
 
-```
+```py
  lambda 参数:操作(参数) 
 ```
 
 **例子**
 
-```
+```py
  add = lambda x, y: x + y
 
     print(add(3, 5))
@@ -24,7 +24,7 @@
 
 **列表排序**
 
-```
+```py
  a = [(1, 2), (4, 1), (9, 10), (13, -3)]
     a.sort(key=lambda x: x[1])
 
@@ -34,7 +34,7 @@
 
 **列表并行排序**
 
-```
+```py
  data = zip(list1, list2)
     data.sort()
     list1, list2 = map(lambda t: list(t), zip(*data)) 

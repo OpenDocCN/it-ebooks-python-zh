@@ -14,7 +14,7 @@
 
 ![复制代码](img/rdb_epub_4593197691164204437.jpg)
 
-```
+```py
 def line_conf():
     def line(x):
         return 2*x+1
@@ -40,7 +40,7 @@ line 函数定义了一条直线(y = 2x + 1)。可以看到，在 line_conf()中
 
 ![复制代码](img/rdb_epub_4593197691164204437.jpg)
 
-```
+```py
 def line_conf():
     def line(x):
         return 2*x+1
@@ -59,7 +59,7 @@ print(my_line(5))
 
 ![复制代码](img/rdb_epub_4593197691164204437.jpg)
 
-```
+```py
 def line_conf():
     b = 15
     def line(x):
@@ -79,7 +79,7 @@ print(my_line(5))
 
 一个函数和它的环境变量合在一起，就构成了一个闭包(closure)。在 Python 中，所谓的闭包是一个包含有环境变量取值的函数对象。环境变量取值被保存在函数对象的 __closure__ 属性中。比如下面的代码：
 
-```
+```py
 def line_conf():
     b = 15
     def line(x):
@@ -99,7 +99,7 @@ __closure__ 里包含了一个元组(tuple)。这个元组中的每个元素是 
 
 ![复制代码](img/rdb_epub_4593197691164204437.jpg)
 
-```
+```py
 def line_conf(a, b):
     def line(x):
         return ax + b

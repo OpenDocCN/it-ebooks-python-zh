@@ -23,7 +23,7 @@ Python 代码易读和易懂的其中一个原因是它的相对完整的代码�
 
 **糟糕**
 
-```
+```py
 def make_complex(*args):
     x, y = args
     return dict(**locals()) 
@@ -31,7 +31,7 @@ def make_complex(*args):
 
 **优雅**
 
-```
+```py
 def make_complex(x, y):
     return {'x': x, 'y': y} 
 ```
@@ -44,7 +44,7 @@ def make_complex(x, y):
 
 **糟糕**
 
-```
+```py
 print 'one'; print 'two'
 
 if x == 1: print 'one'
@@ -55,7 +55,7 @@ if <复杂的比较> and <其他复杂的比较>:
 
 **优雅**
 
-```
+```py
 print 'one'
 print 'two'
 
@@ -129,7 +129,7 @@ Python 对骇客来说是一个强有力的工具，它拥有非常丰富的钩�
 
 尽管如此，当一个函数在其正常过程中有多个主要出口点时，它会变得难以调试和返回其 结果，所以保持单个出口点可能会更好。这也将有助于提取某些代码路径，而且多个出口点 很有可能意味着这里需要重构。
 
-```
+```py
 def complex_function(a, b, c):
     if not a:
         return None  # 抛出一个异常可能会更好
@@ -157,26 +157,26 @@ def complex_function(a, b, c):
 
 如果你知道一个列表或者元组的长度，你可以将其解包并为它的元素取名。比如， `enumerate()` 会对 list 中的每个项提供包含两个元素的元组：
 
-```
+```py
 for index, item in enumerate(some_list):
     # 使用 index 和 item 做一些工作 
 ```
 
 你也能通过这种方式交换变量：
 
-```
+```py
 a, b = b, a 
 ```
 
 嵌套解包也能工作：
 
-```
+```py
 a, (b, c) = 1, (2, 3) 
 ```
 
 在 Python 3 中，扩展解包的新方法在 [**PEP 3132**](https://www.python.org/dev/peps/pep-3132) [https://www.python.org/dev/peps/pep-3132] 有介绍：
 
-```
+```py
 a, *rest = [1, 2, 3]
 # a = 1, rest = [2, 3]
 a, *middle, c = [1, 2, 3, 4]
@@ -187,7 +187,7 @@ a, *middle, c = [1, 2, 3, 4]
 
 如果你需要赋值（比如，在 解包（Unpacking） ）但不需要这个变量，请使用 `__`:
 
-```
+```py
 filename = 'foobar.txt'
 basename, __, ext = filename.rpartition('.') 
 ```
@@ -196,7 +196,7 @@ basename, __, ext = filename.rpartition('.')
 
 使用 Python 列表中的 `*` 操作符：
 
-```
+```py
 four_nones = [None] * 4 
 ```
 
@@ -204,7 +204,7 @@ four_nones = [None] * 4
 
 因为列表是可变的，所以 `*` 操作符（如上）将会创建一个包含 N 个且指向 *同一个* 列表的列表，这可能不是你想用的。取而代之，请使用列表解析：
 
-```
+```py
 four_lists = [[] for __ in xrange(4)] 
 ```
 
@@ -212,7 +212,7 @@ four_lists = [[] for __ in xrange(4)]
 
 创建字符串的一个常见习语是在空的字符串上使用 [`str.join()`](http://docs.python.org/library/stdtypes.html#str.join "(在 Python v2.7)") [http://docs.python.org/library/stdtypes.html#str.join] 。
 
-```
+```py
 letters = ['s', 'p', 'a', 'm']
 word = ''.join(letters) 
 ```
@@ -225,7 +225,7 @@ word = ''.join(letters)
 
 用如下代码举个例子：
 
-```
+```py
 s = set(['s', 'p', 'a', 'm'])
 l = ['s', 'p', 'a', 'm']
 
@@ -250,7 +250,7 @@ def lookup_list(l):
 
 又名 [**PEP 20**](https://www.python.org/dev/peps/pep-0020) [https://www.python.org/dev/peps/pep-0020], Python 设计的指导原则。
 
-```
+```py
 >>> import this
 The Zen of Python, by Tim Peters
 
@@ -301,13 +301,13 @@ Python 之禅 by Tim Peters
 
 你的 Python 代码遵循 PEP 8 通常是个好主意，当和其他开发者一起维护项目时， 这帮助使代码更加具有可持续性。这个命令行程序，[pep8](https://github.com/jcrocholl/pep8) [https://github.com/jcrocholl/pep8], 能够检查你的代码的一致性。在你的终端中运行下列命令：
 
-```
+```py
 $ pip install pep8 
 ```
 
 然后，对一个文件或者一系列的文件运行它，来获得任何违规行为的报告。
 
-```
+```py
 $ pep8 optparse.py
 optparse.py:69:11: E401 multiple imports on one line
 optparse.py:77:1: E302 expected 2 blank lines, found 1
@@ -321,13 +321,13 @@ optparse.py:544:21: W601 .has_key() is deprecated, use 'in'
 
 程序 [autopep8](https://pypi.python.org/pypi/autopep8/) [https://pypi.python.org/pypi/autopep8/] 能自动将代码格式化 成 PEP 8 风格。用以下指令安装此程序：
 
-```
+```py
 $ pip install autopep8 
 ```
 
 用以下指令格式化一个文件：
 
-```
+```py
 $ autopep8 --in-place optparse.py 
 ```
 
@@ -343,7 +343,7 @@ $ autopep8 --in-place optparse.py
 
 **糟糕**:
 
-```
+```py
 if attr == True:
     print 'True!'
 
@@ -353,7 +353,7 @@ if attr == None:
 
 **优雅**:
 
-```
+```py
 # 检查值
 if attr:
     print 'attr is truthy!'
@@ -373,7 +373,7 @@ Don’t use the [`dict.has_key()`](http://docs.python.org/library/stdtypes.html#
 
 **糟糕**:
 
-```
+```py
 d = {'hello': 'world'}
 if d.has_key('hello'):
     print d['hello']    # 打印 'world'
@@ -383,7 +383,7 @@ else:
 
 **优雅**:
 
-```
+```py
 d = {'hello': 'world'}
 
 print d.get('hello', 'default_value') # 打印 'world'
@@ -400,7 +400,7 @@ if 'hello' in d:
 
 **糟糕**:
 
-```
+```py
 # 过滤大于 4 的元素
 a = [3, 4, 5]
 b = []
@@ -411,7 +411,7 @@ for i in a:
 
 **优雅**:
 
-```
+```py
 a = [3, 4, 5]
 b = [i for i in a if i > 4]
 # Or:
@@ -420,7 +420,7 @@ b = filter(lambda x: x > 4, a)
 
 **糟糕**:
 
-```
+```py
 # 所有的列表成员都加 3
 a = [3, 4, 5]
 for i in range(len(a)):
@@ -429,7 +429,7 @@ for i in range(len(a)):
 
 **优雅**:
 
-```
+```py
 a = [3, 4, 5]
 a = [i + 3 for i in a]
 # Or:
@@ -438,7 +438,7 @@ a = map(lambda i: i + 3, a)
 
 使用 [`enumerate()`](http://docs.python.org/library/functions.html#enumerate "(在 Python v2.7)") [http://docs.python.org/library/functions.html#enumerate] 获得列表中的当前位置的计数。
 
-```
+```py
 a = [3, 4, 5]
 for i, item in enumerate(a):
     print i, item
@@ -456,7 +456,7 @@ for i, item in enumerate(a):
 
 **糟糕**:
 
-```
+```py
 f = open('file.txt')
 a = f.read()
 print a
@@ -465,7 +465,7 @@ f.close()
 
 **优雅**:
 
-```
+```py
 with open('file.txt') as f:
     for line in f:
         print line 
@@ -481,7 +481,7 @@ with open('file.txt') as f:
 
 **糟糕**:
 
-```
+```py
 my_very_big_string = """For a long time I used to go to bed early. Sometimes, \
  when I had put out my candle, my eyes would close so quickly that I had not even \
  time to say “I’m going to sleep.”"""
@@ -492,7 +492,7 @@ from some.deep.module.inside.a.module import a_nice_function, another_nice_funct
 
 **优雅**:
 
-```
+```py
 my_very_big_string = (
     "For a long time I used to go to bed early. Sometimes, "
     "when I had put out my candle, my eyes would close so quickly "

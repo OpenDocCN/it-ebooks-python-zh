@@ -30,7 +30,7 @@
 
 **Listing 2**
 
-```
+```py
 def preorder(tree):
     if tree:
         print(tree.getRootVal())
@@ -43,7 +43,7 @@ def preorder(tree):
 
 **Listing 3**
 
-```
+```py
 def preorder(self):
     print(self.key)
     if self.leftChild:
@@ -61,7 +61,7 @@ Listing4 中使用的 postorder 即后序遍历，与前序遍历很相近，�
 
 **Listing 5**
 
-```
+```py
 def postordereval(tree):
     opers = {'+':operator.add, '-':operator.sub, '*':operator.mul, '/':operator.truediv}
     res1 = None
@@ -96,7 +96,7 @@ def postordereval(tree):
 
 **Listing 7**
 
-```
+```py
 def printexp(tree):
   sVal = ""
   if tree:

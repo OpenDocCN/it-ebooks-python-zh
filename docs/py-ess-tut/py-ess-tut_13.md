@@ -30,7 +30,7 @@
 
 表 13-1 Python DB API 的模块特性
 
-```
+```py
 apilevel　　　　　　　　　　　所使用的 Python DB API 版
 threadsafety　　　　　　　　　模块的线程安全等级
 paramstyle　　　　　　　　　　在 SQL 查询中使用的参数风格 
@@ -50,7 +50,7 @@ API 级别(`apilevel`)是个字符串常量，提供正在使用的 API 版本�
 
 表 13-2 在 DB API 中使用的异常
 
-```
+```py
 异常　　　　　　　　　　超类　　　　　　　　　　描述
 StandardError　　　　　　　　　　　　　　　　　 所有异常的泛型基类
 Warning　　　　　　　　 StandardError　　　　　 在非致命错误发生时引发
@@ -71,7 +71,7 @@ NotSupportedError　　　 DatabaseError　　　　　 请求不支持的特性
 
 表 13-3 connect 函数的常用参数
 
-```
+```py
 参数名　　　　　　　　　　描述　　　　　　　　　　                  是否可选
 dsn　　　　　　　　　　　 数据源名称，给出该参数表示数据库依赖　　　否
 user　　　　　　　　　　　用户名　　　　　　　　　　　　　　　　　　是
@@ -86,7 +86,7 @@ database　　　　　　　　　数据库名　　　　 　　　　　　 �
 
 13-4 连接对象方法
 
-```
+```py
 close()　　　　　　　　　　　　　　　　　　　 关闭连接之后，连接对象和它的游标均不可用
 commit()　　　　　　　　　　　　　　　　　　　如果支持的话就提交挂事务，否则不做任何事
 rollback()　　　　　　　　　　　　　　　　　　回滚挂起的事务(可能不可用)
@@ -101,7 +101,7 @@ cursor()　　　　　　　　　　　　　　　　　　　返回连接的
 
 表 13-5 游标对象方法
 
-```
+```py
 callproc(name[, params])　　　　使用给定的名称和参数(可选)调用已命名的数据库程序
 close()　　　　　　　　　　　　 关闭游标之后，游标不可用
 execute(oper[, params])　　　　 执行 SQL 操作，可能使用参数
@@ -116,7 +116,7 @@ setoutputsize(size[, col])　　　为获取的大数据值设定缓冲区尺寸
 
 表 13-6 游标对象特性
 
-```
+```py
 description　　　　　　　　　 结果列描述的序列，只读
 rowcount　　　　　　　　　　　结果中的行数，只读
 arraysize　　　　　　　　　　 fetchmany 中返回的行数，默认为 1 
@@ -130,7 +130,7 @@ arraysize　　　　　　　　　　 fetchmany 中返回的行数，默认为
 
 表 13-7 DB API 构造函数和特殊值
 
-```
+```py
 Date(year, month, day)　　　　　　　　创建保存日期值的对象
 Time(hour, minute, second)　　　　　　创建保存时间值的对象
 Timestamp(y, mon, d, h, min, s)　　　 创建保存时间戳值的对象
@@ -163,14 +163,14 @@ ROWID　　　　　　　　　　　　　　　　 描述行 ID 列
 
 如果使用的 Python 版本较新，那么应该已经包含 PySQLite。接下来需要的可能就是数据库本身 SQLite 了(同样，它可能也包含在内了)。可以从 SQLite 的网站 [`sqlite.org`](http://sqlite.org) 下载源代码(确保得到的是已经完成自动代码生成的包)，按照 README 文件中的指导进行编译即可。在之后编译 PYSQLite 时，需要确保编译过程可以访问 SQLite 的库文件和 include 文件。如果已经在某些标准位置安装了 SQLite，那么可能 SQLite 发布版的安装脚本可以自己找到它，在这种情况下只需执行下面的命令：
 
-```
+```py
 python setup.py build
 python setup.py install 
 ```
 
 可以只用后一个命令，让编译自动进行。如果出现大量错误信息，可能是安装脚本找不到所需文件。确保你知道库文件和`include`文件安装到了哪里，将它们显式地提供给安装脚本。假设我在`/home/mlh/sqlite/current`目录中原地编译 SQLite，那么头文件和库文件应该可以在`/home/mlh/sqlite/current/src`和`/home/mlh/sqlite/current/build/lib`中找到。为了让安装程序能使用这些路径，需要编辑安装脚本`setup.py`。在这个文件中可以设定变量`include_dirs`和`library_dirs`：
 
-```
+```py
 include_dirs = ['/home/mlh/sqlite/current/src']
 include_dirs = ['/home/mlh/sqlite/current/build/lib'] 
 ```
@@ -181,26 +181,26 @@ include_dirs = ['/home/mlh/sqlite/current/build/lib']
 
 可以将 SQLite 作为名为`sqlite3`的模块导入(如果使用的是标准库中的模块)。之后就可以创建一个到数据库文件的连接——如果文件不存在就会被创建——通过提供一个文件名(可以是文件的绝对或者相对路径)：
 
-```
+```py
 >>> import sqlite3
 >>> conn =  sqlite3.connect("somedatabase.db") 
 ```
 
 之后就能获得连接的游标：
 
-```
+```py
 >>> curs = conn.cursor() 
 ```
 
 这个游标可以用来执行 SQL 查询。完成查询并且做出某些更改后确保已经进行了提交，这样才可以将这些修改真正地保存到文件中：
 
-```
+```py
 >>> conn.commit() 
 ```
 
 可以(而且是应该)在每次修改数据库后都进行提交，而不是仅仅在准备关闭时才提交，准备关闭数据库时，使用`close`方法：
 
-```
+```py
 >>> conn.close() 
 ```
 
@@ -210,7 +210,7 @@ include_dirs = ['/home/mlh/sqlite/current/build/lib']
 
 `ABBREV.txt`文件中的数据每行都有一个数据记录，字段以脱字符(`^`)进行分割。数字字段直接包含数字，而文本字段包括由波浪号(`~`)括起来的字符串值，下面是一个示例行，为了简短起见删除了一部分：
 
-```
+```py
 ~01252~^~CHEESE ... ,PAST PROCESS, ... ^~1 slice,  (3/4 oz)~⁰ 
 ```
 
@@ -226,7 +226,7 @@ include_dirs = ['/home/mlh/sqlite/current/build/lib']
 
 *注：也可以使用`curs.executemany`，然后提供一个从数据文件中提取的所有行的列表。这样做在本例中只会带来轻微的速度提升，但是如果使用通过网络连接的客户机/服务器 SQL 系统，则会大大地提高速度。*
 
-```
+```py
 import sqlite3
 def convert(value):
     if value.startwith("~"):
@@ -276,13 +276,13 @@ conn.close()
 
 使用数据库很简单。再说一次，需要创建连接并且获得该链接的游标。使用`execute`方法执行 SQL 查询，用`fetchall`等方法提取结果。代码清单 13-2 展示了一个将 SQL SELECT 条件查询作为命令行参数，之后按记录格式打印出返回行的小程序。可以用下面的命令尝试这个程序：
 
-```
+```py
 $ python food_query.py "kcal <= 100 AND fiber >= 10 ORDER BY sugar" 
 ```
 
 运行的时候可能注意到有个问题。第一行，生橘子皮(raw orange peel)看起来不含任何糖分(糖分值为 0)。这是因为在数据文件中这个字段丢失了。可以改进刚才的导入脚本检测条件，然后插入 None 来代替真实的值来表示丢失的数据。可以使用如下条件：
 
-```
+```py
 "kcal <= 100 AND fiber >= 10 AND sugar ORDER BY sugar" 
 ```
 
@@ -290,7 +290,7 @@ $ python food_query.py "kcal <= 100 AND fiber >= 10 ORDER BY sugar"
 
 *注：使用 ID 搜索特殊的食品项，比如用 08323 搜索 Cocoa Pebble 的时候可能会出现问题。原因在于 SQLite 以一种相当不标准的方式处理它的值。在其内部所有的值实际上都是字符串，一些转换和检查在数据库和 Python API 间进行。通常它工作得很顺利，但有时候也会出错，例如下面这种情况：如果提供值 08323，它会被解释为数字 8323，再转换为字符串"8323"——一个不存在的 ID。可能期待这里抛出异常或者其他什么错误信息，而不是这种毫无用处的非预期行为。但如果小心一些，一开始就用字符串"08323"来表示 ID，就可以工作正常了。*
 
-```
+```py
 import sqlite3 import sys
 
 conn = sqlite3.connect("foo.db")
@@ -327,7 +327,7 @@ for row in curs.fetchall():
 
 表 13-8 本章的新函数
 
-```
+```py
 connect(...)                        连接数据库，返回连接对象 
 ```
 

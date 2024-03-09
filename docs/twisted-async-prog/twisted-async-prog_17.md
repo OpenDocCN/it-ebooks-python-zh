@@ -10,7 +10,7 @@
 
 生成器(和迭代器)通常被用来代表以惰性方式创建的值序列. 看一下以下文件中的代码 [inline-callbacks/gen-1.py](https://github.com/jdavisp3/twisted-intro/blob/master/inline-callbacks/gen-1.py#L1):
 
-```
+```py
 def my_generator():
     print 'starting up'
     yield 1
@@ -28,7 +28,7 @@ for n in my_generator():
 
 以下自定义迭代器代码使上面的说法更加明显([inline-callbacks/gen-2.py](https://github.com/jdavisp3/twisted-intro/blob/master/inline-callbacks/gen-2.py#L1)):
 
-```
+```py
 def my_generator():
     print 'starting up'
     yield 1
@@ -65,7 +65,7 @@ while True:
 
 从 Python2.5 开始,生成器功能被扩展了.当你再次启动生成器时,可以给它发送信息,如 [inline-callbacks/gen-4.py](https://github.com/jdavisp3/twisted-intro/blob/master/inline-callbacks/gen-4.py#L1) 所示:
 
-```
+```py
 class Malfunction(Exception):
     pass
 
@@ -118,7 +118,7 @@ except StopIteration:
 
 考虑以下例程, 位于 [inline-callbacks/inline-callbacks-1.py](https://github.com/jdavisp3/twisted-intro/blob/master/inline-callbacks/inline-callbacks-1.py#L1):
 
-```
+```py
 from twisted.internet.defer import inlineCallbacks, Deferred
 
 @inlineCallbacks
@@ -172,7 +172,7 @@ OK,现在我们知道了 `inlineCallbacks` 修饰的函数是如何运行的,但
 
 让我们在新版本的诗歌客户端中加入 `inlineCallbacks`,你可以在 [twisted-client-7/get-poetry.py](https://github.com/jdavisp3/twisted-intro/blob/master/twisted-client-7/get-poetry.py#L1) 中查看源代码.也许你需要与客户端 6.0—— [twisted-client-6/get-poetry.py](https://github.com/jdavisp3/twisted-intro/blob/master/twisted-client-6/get-poetry.py#L151) 进行对比,它们的不同位于 [poetry_main](https://github.com/jdavisp3/twisted-intro/blob/master/twisted-client-7/get-poetry.py#L151):
 
-```
+```py
 def poetry_main():
     addresses = parse_args()
 
@@ -220,20 +220,20 @@ def poetry_main():
 
 我们以先前的方式测试新版客户端. 首先启动一个变换服务:
 
-```
+```py
 python twisted-server-1/tranformedpoetry.py --port 10001 
 ```
 
 然后启动两个诗歌服务器:
 
-```
+```py
 python twisted-server-1/fastpoetry.py --port 10002 poetry/fascination.txt
 python twisted-server-1/fastpoetry.py --port 10003 poetry/science.txt 
 ```
 
 现在可以运行新的客户端:
 
-```
+```py
 python twisted-client-7/get-poetry.py 10001 10002 10003 
 ```
 

@@ -15,26 +15,26 @@
 
 为了确保你当你使用 `pip install` 时是将包安装在激活的虚拟环境中，考虑在 `~/.bashrc` 文件中加上以下两行：
 
-```
+```py
 export PIP_REQUIRE_VIRTUALENV=true 
 ```
 
 在保存完这个修改以及使用 `source ~/.bashrc` 来 source 一下 `~/.bashrc` 文件后，如果你不在一个虚拟环境中，pip 就不会让你安装包。如果你试着在虚拟环境外使用 `pip install` ，pip 将会柔和地提示你需要一个激活的虚拟环境来安装包。
 
-```
+```py
 $ pip install requests
 Could not find an activated virtualenv (required). 
 ```
 
 你也可以通过编辑 `pip.conf` 或 `pip.ini`来做相同的配置。 :file:`pip.conf` 被 Unix 和 Mac OS X 操作系统使用，能够在这里找到：
 
-```
+```py
 $HOME/.pip/pip.conf 
 ```
 
 类似的， `pip.ini` 被 Windows 操作系统使用，能够在这里找到：
 
-```
+```py
 %HOME%\pip\pip.ini 
 ```
 
@@ -42,20 +42,20 @@ $HOME/.pip/pip.conf
 
 如果你早就拥有配置文件了，只需将下行添加到 `[global]` 设置下，即可要求一个激活的虚拟环境：
 
-```
+```py
 require-virtualenv = true 
 ```
 
 如果你没有配置文件，你需要创建一个新的，然后把下面几行添加到这个新文件中：
 
-```
+```py
 [global]
 require-virtualenv = true 
 ```
 
 当然，你也需要在全局范围内安装一些包（通常是在多个项目中都要一直用到的包），可以添加下面内容到 `~/.bashrc` 来完成：
 
-```
+```py
 gpip() {
  PIP_REQUIRE_VIRTUALENV="" pip "$@"
 } 
@@ -71,7 +71,7 @@ gpip() {
 
 在 UNIX 系统中，你可以添加以下两行到你的 `.bashrc` 或 `.bash_profile` 文件中。
 
-```
+```py
 export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache 
 ```
 
@@ -79,13 +79,13 @@ export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
 
 另一个进行相同配置的方法是通过 `pip.conf` 或 `pip.ini` 文件来做，这取决于你的系统。如果你用 Windows，就将下面一行添加到 `pip.ini` 文件中的 `[global]` 设置下：
 
-```
+```py
 download-cache = %HOME%\pip\cache 
 ```
 
 类似的，如果你使用 UNIX，就将下面一行添加到 `pip.conf` 文件中的 `[global]` 设置下：
 
-```
+```py
 download-cache = $HOME/.pip/cache 
 ```
 

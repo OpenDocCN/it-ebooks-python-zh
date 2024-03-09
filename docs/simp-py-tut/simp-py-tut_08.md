@@ -28,7 +28,7 @@
 
 `if`语句用来检验一个条件， 如果 条件为真，我们运行一块语句（称为 if-块 ）， 否则 我们处理另外一块语句（称为 else-块 ）。 else 从句是可选的。
 
-```
+```py
 #!/usr/bin/python
 # Filename: if.py
 
@@ -53,7 +53,7 @@ print 'Done'
 
 ## 输出
 
-```
+```py
 $ python if.py
 Enter an integer : 50
 No, it is a little lower than that
@@ -85,7 +85,7 @@ Done
 
 记住，`elif`和`else`部分是可选的。一个最简单的有效`if`语句是：
 
-```
+```py
 if True:
     print 'Yes, it is true' 
 ```
@@ -102,7 +102,7 @@ if True:
 
 只要在一个条件为真的情况下，`while`语句允许你重复执行一块语句。`while`语句是所谓 循环 语句的一个例子。`while`语句有一个可选的`else`从句。
 
-```
+```py
 #!/usr/bin/python
 # Filename: while.py
 
@@ -130,7 +130,7 @@ print 'Done'
 
 ## 输出
 
-```
+```py
 $ python while.py
 Enter an integer : 50
 No, it is a little lower than that.
@@ -162,7 +162,7 @@ else 块事实上是多余的，因为你可以把其中的语句放在同一块
 
 `for..in`是另外一个循环语句，它在一序列的对象上 递归 即逐一使用队列中的每个项目。我们会在后面的章节中更加详细地学习序列。
 
-```
+```py
 #!/usr/bin/python
 # Filename: for.py
 
@@ -174,7 +174,7 @@ else:
 
 ## 输出
 
-```
+```py
 $ python for.py
 1
 2
@@ -205,7 +205,7 @@ The for loop is over
 
 一个重要的注释是，如果你从`for`或`while`循环中 终止 ，任何对应的循环`else`块将**不**执行。
 
-```
+```py
 #!/usr/bin/python
 # Filename: break.py
 
@@ -221,7 +221,7 @@ print 'Done'
 
 ## 输出
 
-```
+```py
 $ python break.py
 Enter something : Programming is fun
 Length of the string is 18
@@ -247,7 +247,7 @@ Done
 
 我在这里输入的是我所写的一段小诗，称为**G2 的 Python 诗**：
 
-```
+```py
 Programming is fun
 When the work is done
 if you wanna make your work also fun:
@@ -260,7 +260,7 @@ if you wanna make your work also fun:
 
 `continue`语句被用来告诉 Python 跳过当前循环块中的剩余语句，然后 继续 进行下一轮循环。
 
-```
+```py
 #!/usr/bin/python
 # Filename: continue.py
 
@@ -278,7 +278,7 @@ while True:
 
 ## 输出
 
-```
+```py
 $ python continue.py
 Enter something : a
 Enter something : 12

@@ -27,7 +27,7 @@
 
 外部包含:
 
-```
+```py
 @route('%s/'%ini.urlprefix)
 def index():
     __urlog("INFO","idx++")
@@ -39,7 +39,7 @@ def index():
 
 中文的非等宽性导致这种字符艺术式的图表很难作！ 所以,使用列表也可以方便的生成表格:
 
-```
+```py
 .. list-table:: 实例
    :widths: 15 10 30
    :header-rows: 1
@@ -73,7 +73,7 @@ def index():
 
 使用 [reSTsections](http://sphinx.pocoo.org/rest.html#sections) [http://sphinx.pocoo.org/rest.html#sections]
 
-```
+```py
 共分 4 级
 大标题
 =======================

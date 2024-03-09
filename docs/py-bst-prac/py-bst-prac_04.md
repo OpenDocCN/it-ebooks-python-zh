@@ -15,13 +15,13 @@ Python 将安装到内含版本号信息的路径，例如 2.7 版本的 Python 
 
 把默认使用的 Python 版本路径加到 `PATH` 环境变量中，避免每次使用时都要冗余地写全 Python 解释器路径。假设安装路径是 `C:\Python27\`, 将这段加入到 `PATH` 中:
 
-```
+```py
 C:\Python27\;C:\Python27\Scripts\ 
 ```
 
 或在 `powershell` 中运行:
 
-```
+```py
 [Environment]::SetEnvironmentVariable("Path", "$env:Path;C:\Python27\;C:\Python27\Scripts\", "User") 
 ```
 

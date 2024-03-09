@@ -6,7 +6,7 @@
 
 因此，我们为诗歌下载客户端添加了一个假想的功能。设想一些计算机科学家发明了一种新诗歌关联算法，Byronification 引擎。这个漂亮的算法根据一首诗歌生成一首使用[Lord Byron](http://en.wikipedia.org/wiki/George_Gordon_Byron,_6th_Baron_Byron)风格的诗歌。另外，专家们提供了其 Python 的接口，即：
 
-```
+```py
 class IByronificationEngine(Interface): 
     def byronificate(poem):
         """
@@ -31,7 +31,7 @@ class IByronificationEngine(Interface):
 
 下面是同步模式的代码：
 
-```
+```py
 try:
     poem = get_poetry(host, port) # synchronous get_poetry
 except:
@@ -50,7 +50,7 @@ sys.exit()
 
 这段代码可能经过一些重构会更加简单，但已经足以说明上面的逻辑流程。我们想升级那些最近使用 deferred 的客户端来使用这个功能。但这部分内容我准备把它放在第十部分。现在，我们来考虑一下，用版本 3.1 来实现这个功能，最后一个没有使用 deferred 的客户端。假设我们无需考虑处理异常，那么只是改变一下 got_poem 回调即可：
 
-```
+```py
 def got_poem(poem):
     poems.append(byron_engine.byronificate(poem))
     poem_done() 
@@ -122,7 +122,7 @@ get_poetry 在中间，它知道要取一些诗歌，但并不知道如果得不
 
 在同步代码中，未处理的异常会导致解释器崩溃，在原始方式使用回调的代码中未处理异常会由 reactor 捕获并记录下来。那么未处理异常出现在 deferred 中会怎样呢？让我们来做个试验。运行[twisted-deferred/defer-unhandled.py](http://github.com/jdavisp3/twisted-intro/blob/master/twisted-deferred/defer-unhandled.py)试试。下面是输出：
 
-```
+```py
 Finished
 Unhandled error in Deferred:
 Traceback (most recent call last):
@@ -150,7 +150,7 @@ exceptions.Exception: oops
 
 上面讨论内容中的一个问题必须要清楚：你添加 callback 与 errback 到一个 defered 的顺序会决定这个 deferred 的的整体运行情况。另一个必须搞清楚的是：在一个 deferred 中 callback 与 errback 往往是成对出现。有四个方法可以向一个 deferred 的回调链中添加 callback/errback 对：
 
-```
+```py
 addCallbacks
 addCallback
 addErrback

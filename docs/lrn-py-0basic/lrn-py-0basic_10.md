@@ -73,7 +73,7 @@ Tornado 的官方网站：[`www.tornadoweb.org`](http://www.tornadoweb.org/en/la
 
 我在自己电脑中（是我目前使用的服务器），用下面方法安装，只需要一句话即可：
 
-```
+```py
 pip install tornado 
 ```
 
@@ -109,7 +109,7 @@ pip install tornado
 
 打开你写 Python 代码用的编辑器，不要问为什么，把下面的代码一个字不差地录入进去，并命名保存为 hello.py(目录自己任意定)。
 
-```
+```py
 #!/usr/bin/env Python
 #coding:utf-8
 
@@ -136,7 +136,7 @@ if __name__ == "__main__":
 
 进入到保存 hello.py 文件的目录，执行：
 
-```
+```py
 $ python hello.py 
 ```
 
@@ -148,7 +148,7 @@ $ python hello.py
 
 我在 ubuntu 的 shell 中还可以用下面方式运行：
 
-```
+```py
 $ curl http://localhost:8000/
 Hello, welcome you to read: www.itdiffer.com 
 
@@ -186,7 +186,7 @@ Qiwsir, welcome you to read: www.itdiffer.com
 
 ### 引入模块
 
-```
+```py
 import tornado.httpserver
 import tornado.ioloop
 import tornado.options
@@ -204,7 +204,7 @@ import tornado.web
 
 还有一个模块引入，是用 from...import 完成的
 
-```
+```py
 from tornado.options import define, options
 define("port", default=8000, help="run on the given port", type=int) 
 ```
@@ -213,7 +213,7 @@ define("port", default=8000, help="run on the given port", type=int)
 
 ### 定义请求-处理程序类
 
-```
+```py
 class IndexHandler(tornado.web.RequestHandler):
     def get(self):
         greeting = self.get_argument('greeting', 'Hello')
@@ -230,7 +230,7 @@ class IndexHandler(tornado.web.RequestHandler):
 
 用 `greeting = self.get_argument('greeting', 'Hello')` 的方式可以得到 url 中传递的参数，比如
 
-```
+```py
 $ curl http://localhost:8000/?greeting=Qiwsir
 Qiwsir, welcome you to read: www.itdiffer.com 
 ```
@@ -269,13 +269,13 @@ Qiwsir, welcome you to read: www.itdiffer.com
 
 下面这句是重点：
 
-```
+```py
 app = tornado.web.Application(handlers=[(r"/", IndexHandler)]) 
 ```
 
 将 tornado.web.Application 类实例化。这个实例化，本质上是建立了整个网站程序的请求处理集合，然后它可以被 HTTPServer 做为参数调用，实现 http 协议服务器访问。Application 类的`__init__`方法参数形式：
 
-```
+```py
 def __init__(self, handlers=None, default_host="", transforms=None,**settings):
     pass 
 ```
@@ -284,7 +284,7 @@ def __init__(self, handlers=None, default_host="", transforms=None,**settings):
 
 通过 handlers 传入的数值格式，一定要注意，在后面做复杂结构的网站是，这里就显得重要了。它是一个 list，list 里面的元素是 tuple，tuple 的组成包括两部分，一部分是请求路径，另外一部分是处理程序的类名称。注意请求路径可以用正则表达式书写(关于正则表达式，后面会进行简要介绍)。举例说明：
 
-```
+```py
 handlers = [
     (r"/", IndexHandlers),              #来自根路径的请求用 IndesHandlers 处理
     (r"/qiwsir/(.*)", QiwsirHandlers),  #来自 /qiwsir/ 以及其下任何请求（正则表达式表示任何字符）都由 QiwsirHandlers 处理
@@ -301,13 +301,13 @@ handlers = [
 
 实例化之后，Application 对象（用 app 做为标签的）就可以被另外一个类 HTTPServer 引用，形式为：
 
-```
+```py
 http_server = tornado.httpserver.HTTPServer(app) 
 ```
 
 HTTPServer 是 tornado.httpserver 里面定义的类。HTTPServer 是一个单线程非阻塞 HTTP 服务器，执行 HTTPServer 一般要回调 Application 对象，并提供发送响应的接口,也就是下面的内容是跟随上面语句的（options.port 的值在 IndexHandler 类前面通过 from...import.. 设置的）。
 
-```
+```py
 http_server.listen(options.port) 
 ```
 
@@ -319,7 +319,7 @@ http_server.listen(options.port)
 
 剩下最后一句了：
 
-```
+```py
 tornado.ioloop.IOLoop.instance().start() 
 ```
 
@@ -387,7 +387,7 @@ MVC 模式是一个非常好的软件架构模式，在网站开发中，也常�
 
 建立一个目录，在这个目录中建立一些子目录和文件。
 
-```
+```py
 /.
 |
 handlers
@@ -418,7 +418,7 @@ url.py
 
 **url.py** 文件
 
-```
+```py
 #!/usr/bin/env Python
 # coding=utf-8
 """
@@ -444,7 +444,7 @@ url.py 文件主要是设置网站的目录结构。`from handlers.index import 
 
 **application.py** 文件
 
-```
+```py
 #!/usr/bin/env Python
 # coding=utf-8
 
@@ -480,7 +480,7 @@ setting 引用了一个字典对象，里面约定了模板和静态文件的路
 
 这个文件的作用是将 tornado 服务器运行起来，并且囊括前面两个文件中的对象属性设置。
 
-```
+```py
 #!/usr/bin/env Python
 # coding=utf-8
 
@@ -534,7 +534,7 @@ if __name__ == "__main__":
 
 在上一节中已经建立的文件夹 methods 中建立一个文件 db.py，并且参考《mysql 数据库 (1)》的内容，分别建立起连接对象和游标对象。代码如下：
 
-```
+```py
 #!/usr/bin/env Python
 # coding=utf-8
 
@@ -563,7 +563,7 @@ cur = conn.cursor()    #游标对象
 
 先用 HTML 写好第一个界面。进入到 templates 文件，建立名为 index.html 的文件：
 
-```
+```py
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
@@ -614,7 +614,7 @@ cur = conn.cursor()    #游标对象
 
 第一种引入方法，是国际化的一种：
 
-```
+```py
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
 ```
 
@@ -622,7 +622,7 @@ cur = conn.cursor()    #游标对象
 
 当然，jQuery CDN 不止一个，比如官方网站的：
 
-```
+```py
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script> 
 ```
 
@@ -632,19 +632,19 @@ cur = conn.cursor()    #游标对象
 
 本来可以用下面的方法引入：
 
-```
+```py
 <script src="statics/js/jquery.min.js"></script> 
 ```
 
 如果这样写，也是可以的。但是，考虑到 tornado 的特点，用下面方法引入，更具有灵活性：
 
-```
+```py
 <script src="{{static_url("js/jquery.min.js")}}"></script> 
 ```
 
 不仅要引入 jquery，还需要引入自己写的 js 指令，所以要建立一个文件，我命名为 script.js，也同时引用过来。虽然目前这个文件还是空的。
 
-```
+```py
 <script src="{{static_url("js/script.js")}}"></script> 
 ```
 
@@ -656,7 +656,7 @@ cur = conn.cursor()    #游标对象
 
 用编辑器打开 statics/js/script.js 文件，如果没有就新建。输入的代码如下：
 
-```
+```py
 $(document).ready(function(){
     alert("good");
     $("#login").click(function(){
@@ -675,7 +675,7 @@ $(document).ready(function(){
 
 是否还记得在上一节中，在 url.py 文件中，做了这样的设置：
 
-```
+```py
 from handlers.index import IndexHandler    #假设已经有了
 
 url = [
@@ -685,7 +685,7 @@ url = [
 
 现在就去把假设有了的那个文件建立起来，即在 handlers 里面建立 index.py 文件，并写入如下代码：
 
-```
+```py
 #!/usr/bin/env Python
 # coding=utf-8
 
@@ -704,7 +704,7 @@ class IndexHandler(tornado.web.RequestHandler):
 
 至此，一个带有表单的 tornado 网站就建立起来了。读者可以回到上一级目录中，找到 server.py 文件，运行它：
 
-```
+```py
 $ python server.py
 Development server is running at http://127.0.0.1:8000
 Quit the server with Control-C 
@@ -762,7 +762,7 @@ ajax 是“Asynchronous Javascript and XML”（异步 JavaScript 和 XML）的�
 
 承接上一节的内容，要是用 ajax() 方法，需要修改 script.js 文件内容即可：
 
-```
+```py
 $(document).ready(function(){
     $("#login").click(function(){
         var user = $("#username").val();
@@ -799,7 +799,7 @@ jQuery 中的 ajax() 方法使用比较简单，正如上面代码所示，只�
 
 前端通过 ajax 技术，将数据已 json 格式传给了后端，并且指明了对象目录`"/"`，这个目录在 url.py 文件中已经做了配置，是由 handlers 目录的 index.py 文件的 IndexHandler 类来出来。因为是用 post 方法传的数据，那么在这个类中就要有 post 方法来接收数据。所以，要在 IndexHandler 类中增加 post()，增加之后的完善代码是：
 
-```
+```py
 #!/usr/bin/env Python
 # coding=utf-8
 
@@ -840,7 +840,7 @@ tornado.web.RequestHandler 的方法 write()，即上例中的 `self.write(usern
 
 首先，在 methods 目录中（已经有了一个 db.py）创建一个文件，我命名为 readdb.py，专门用来存储读数据用的函数（这种划分完全是为了明确和演示一些应用方法，读者也可以都写到 db.py 中）。这个文件的代码如下：
 
-```
+```py
 #!/usr/bin/env Python
 # coding=utf-8
 
@@ -857,7 +857,7 @@ def select_table(table, column, condition, value ):
 
 有了这段代码之后，就进一步改写 index.py 中的 post() 方法。为了明了，将 index.py 的全部代码呈现如下：
 
-```
+```py
 #!/usr/bin/env Python
 # coding=utf-8
 
@@ -920,7 +920,7 @@ class IndexHandler(tornado.web.RequestHandler):
 
 render() 方法能够告诉 tornado 读入哪个模板，插入其中的模板代码，并返回结果给浏览器。比如在 IndexHandler 类中 get() 方法里面的 `self.render("index.html")`，就是让 tornado 到 templates 目中找到名为 index.html 的文件，读出它的内容，返回给浏览器。这样用户就能看到 index.html 所规定的页面了。当然，在前面所写的 index.html 还仅仅是 html 标记，没有显示出所谓“模板”的作用。为此，将 index.html 和 index.py 文件做如下改造。
 
-```
+```py
 #!/usr/bin/env Python
 # coding=utf-8
 
@@ -938,7 +938,7 @@ index.py 文件中，只修改了 get() 方法，从数据库中读取用户名�
 
 提醒读者注意的是，在上面的代码中，我使用了 `mrd.select_columns(table="users",column="username")`，也就是说必须要在 methods 目录中的 readdb.py 文件中有一个名为 select_columns 的函数。为了使读者能够理解，贴出已经修改之后的 readdb.py 文件代码，比上一节多了函数 select_columns：
 
-```
+```py
 #!/usr/bin/env Python
 # coding=utf-8
 
@@ -959,7 +959,7 @@ def select_columns(table, column ):
 
 下面是 index.html 修改后的代码：
 
-```
+```py
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
@@ -991,7 +991,7 @@ def select_columns(table, column ):
 
 先修改 url.py 文件，在其中增加一些内容。完整代码如下：
 
-```
+```py
 #!/usr/bin/env Python
 # coding=utf-8
 """
@@ -1012,7 +1012,7 @@ url = [
 
 然后就建立 handlers/user.py 文件，内容如下：
 
-```
+```py
 #!/usr/bin/env Python
 # coding=utf-8
 
@@ -1030,7 +1030,7 @@ class UserHandler(tornado.web.RequestHandler):
 
 注意：上述的 user.py 代码为了简单突出本将要说明的，没有对 user_infos 的结果进行判断。在实际的编程中，这要进行判断或者使用 try...except。
 
-```
+```py
 $(document).ready(function(){
     $("#login").click(function(){
         var user = $("#username").val();
@@ -1054,7 +1054,7 @@ $(document).ready(function(){
 
 接下来是 user.html 模板。注意上面的代码中，user_infos 引用的对象不是一个字符串了，也就是传入模板的不是一个字符串，是一个元组。对此，模板这样来处理它。
 
-```
+```py
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
@@ -1083,7 +1083,7 @@ $(document).ready(function(){
 
 在模板的双大括号中，可以写类似 Python 的语句或者表达式。比如：
 
-```
+```py
 >>> from tornado.template import Template
 >>> print Template("{{ 3+4 }}").generate()
 7
@@ -1101,7 +1101,7 @@ py
 
 例如：
 
-```
+```py
 {{% if user=='qiwsir' %}}
     {{ user }}
 {{% end %}} 
@@ -1129,7 +1129,7 @@ Tornado 为你着想了，因为存在以上转义问题，而且会有粗心的
 
 自动转义是一个好事情，但是，有时候会不需要转义，比如想在模板中这样做：
 
-```
+```py
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
@@ -1157,7 +1157,7 @@ Tornado 为你着想了，因为存在以上转义问题，而且会有粗心的
 
 下面那一行，把整个源码都显示出来了。这就是因为自动转义的结果。这里需要的是不转义。于是可以将`{{ website }}`修改为：
 
-```
+```py
 {% raw website %} 
 ```
 
@@ -1167,7 +1167,7 @@ Tornado 为你着想了，因为存在以上转义问题，而且会有粗心的
 
 如果你要全转义，可以使用：
 
-```
+```py
 {% autoescape None %}
 {{ website }} 
 ```
@@ -1201,7 +1201,7 @@ Tornado 为你着想了，因为存在以上转义问题，而且会有粗心的
 
 先建立一个文件，命名为 base.html，代码如下：
 
-```
+```py
 <!DOCTYPE html>
 <html>
 <head>
@@ -1230,7 +1230,7 @@ Tornado 为你着想了，因为存在以上转义问题，而且会有粗心的
 
 index.html 代码如下：
 
-```
+```py
 {% extends "base.html" %}
 
 {% block header %}
@@ -1248,7 +1248,7 @@ index.html 代码如下：
 
 user.html 的代码如下：
 
-```
+```py
 {% extends "base.html" %}
 
 {% block header %}
@@ -1272,13 +1272,13 @@ user.html 的代码如下：
 
 基本上的流程已经差不多了，如果要美化前端，还需要使用 css，它的使用方法跟 js 类似，也是在静态目录中建立文件即可。然后把下面这句加入到 base.html 的 `<head></head>` 中：
 
-```
+```py
  <link rel="stylesheet" type="text/css" href="{{static_url("css/style.css")}}"> 
 ```
 
 当然，要在 style.css 中写一个样式，比如：
 
-```
+```py
 body {
     color:red;
 } 
@@ -1349,7 +1349,7 @@ tornado 提供另外一种安全的方法：set_secure_cookie() 和 get_secure_c
 
 要是用 set_secure_cookie() 方法设置 cookie，要先在 application.py 文件的 setting 中进行如下配置：
 
-```
+```py
 setting = dict(
     template_path = os.path.join(os.path.dirname(__file__), "templates"),
     static_path = os.path.join(os.path.dirname(__file__), "statics"),
@@ -1361,7 +1361,7 @@ setting = dict(
 
 因为 tornado 会将 cookie 值编码为 Base-64 字符串，并增加一个时间戳和一个 cookie 内容的 HMAC 签名。所以，cookie_secret 的值，常常用下面的方式生成（这是一个随机的字符串）：
 
-```
+```py
 >>> import base64, uuid
 >>> base64.b64encode(uuid.uuid4().bytes)
 'w8yZud+kRHiP9uABEXaQiA==' 
@@ -1371,7 +1371,7 @@ setting = dict(
 
 然后修改 index.py 中设置 cookie 那句话，变成：
 
-```
+```py
 self.set_secure_cookie(username,db_pwd) 
 ```
 
@@ -1385,7 +1385,7 @@ self.set_secure_cookie(username,db_pwd)
 
 这是不是就安全了。如果这样就安全了，你太低估黑客们的技术实力了，甚至于用户自己也会修改 cookie 值。所以，还不安全。所以，又有了 httponly 和 secure 属性，用来防范 cookie 投毒。设置方法是：
 
-```
+```py
 self.set_secure_cookie(username, db_pwd, httponly=True, secure=True) 
 ```
 
@@ -1411,7 +1411,7 @@ XSRF 的含义是 Cross-site request forgery，即跨站请求伪造，也称之
 
 在 application.py 文件中，使用 xsrf_cookies 参数开启 XSRF 保护。
 
-```
+```py
 setting = dict(
     template_path = os.path.join(os.path.dirname(__file__), "templates"),
     static_path = os.path.join(os.path.dirname(__file__), "statics"),
@@ -1422,7 +1422,7 @@ setting = dict(
 
 这样设置之后，Tornado 将拒绝请求参数中不包含正确的`_xsrf` 值的 post/put/delete 请求。tornado 会在后面悄悄地处理`_xsrf` cookies，所以，在表单中也要包含 XSRF 令牌以却表请求合法。比如 index.html 的表单，修改如下：
 
-```
+```py
 {% extends "base.html" %}
 
 {% block header %}
@@ -1445,7 +1445,7 @@ setting = dict(
 
 以下是 script.js 的代码
 
-```
+```py
  function getCookie(name){
     var x = document.cookie.match("\\b" + name + "=([^;]*)\\b");
     return x ? x[1]:undefined;
@@ -1498,7 +1498,7 @@ $(document).ready(function(){
 
 在 handler 目录中增加一个文件，名称是 base.py，代码如下：
 
-```
+```py
 #! /usr/bin/env python
 # coding=utf-8
 
@@ -1513,7 +1513,7 @@ class BaseHandler(tornado.web.RequestHandler):
 
 然后把 index.py 文件改写为：
 
-```
+```py
 #!/usr/bin/env Python
 # coding=utf-8
 
@@ -1566,7 +1566,7 @@ class ErrorHandler(BaseHandler):    #增加了一个专门用来显示错误的�
 
 接下来要对 user.py 文件也进行重写：
 
-```
+```py
 #!/usr/bin/env Python
 # coding=utf-8
 
@@ -1590,7 +1590,7 @@ class UserHandler(BaseHandler):
 
 application.py 中的 setting 也要做相应修改：
 
-```
+```py
 #!/usr/bin/env Python
 # coding=utf-8
 
@@ -1668,7 +1668,7 @@ application = tornado.web.Application(
 
 在 handlers 文件夹中建立一个文件，命名为 sleep.py
 
-```
+```py
 #!/usr/bin/env python
 # coding=utf-8
 
@@ -1707,7 +1707,7 @@ tornado 本来就是一个异步的服务框架，体现在 tornado 的服务器
 
 为了解决这个问题，tornado 提供了一套异步机制，就是异步装饰器 `@tornado.web.asynchronous`：
 
-```
+```py
 #!/usr/bin/env Python
 # coding=utf-8
 
@@ -1735,7 +1735,7 @@ class SleepHandler(BaseHandler):
 
 这还是执行简单逻辑，如果复杂了，不断地要进行“回调”，无法让逻辑顺利延续，那面会“眩晕”了。这种现象被业界成为“代码逻辑拆分”，打破了原有逻辑的顺序性。为了让代码逻辑不至于被拆分的七零八落，于是就出现了另外一种常用的方法：
 
-```
+```py
 #!/usr/bin/env Python
 # coding=utf-8
 

@@ -16,7 +16,7 @@
 
 在 [deferred-list/deferred-list-1.py](https://github.com/jdavisp3/twisted-intro/blob/master/deferred-list/deferred-list-1.py#L1) 中,可以找到如下代码:
 
-```
+```py
 from twisted.internet import defer
 
 def got_results(res):
@@ -30,7 +30,7 @@ d.addCallback(got_results)
 
 如果运行它,将得到如下输出:
 
-```
+```py
 Empty List.
 Adding Callback.
 We got: [] 
@@ -45,7 +45,7 @@ We got: []
 
 下面看一下 [deferred-list/deferred-list-2.py](https://github.com/jdavisp3/twisted-intro/blob/master/deferred-list/deferred-list-2.py#L1):
 
-```
+```py
 from twisted.internet import defer
 
 def got_results(res):
@@ -62,7 +62,7 @@ d1.callback('d1 result')
 
 现在我们创建了包含一个 `deferred` 元素的 `DeferredList` 列表,得到如下输出:
 
-```
+```py
 One Deferred.
 Adding Callback.
 Firing d1.
@@ -77,7 +77,7 @@ We got: [(True, 'd1 result')]
 
 让我们向列表添加两个 `deferreds` ([deferred-list/deferred-list-3.py](https://github.com/jdavisp3/twisted-intro/blob/master/deferred-list/deferred-list-1.py#L3)):
 
-```
+```py
 from twisted.internet import defer
 
 def got_results(res):
@@ -97,7 +97,7 @@ d2.callback('d2 result')
 
 得到如下输出:
 
-```
+```py
 Two Deferreds.
 Adding Callback.
 Firing d1.
@@ -109,7 +109,7 @@ We got: [(True, 'd1 result'), (True, 'd2 result')]
 
 那么最终结果列表中的元素顺序如何? 考虑以下代码( [deferred-list/deferred-list-4.py](https://github.com/jdavisp3/twisted-intro/blob/master/deferred-list/deferred-list-4.py#L1)):
 
-```
+```py
 from twisted.internet import defer
 
 def got_results(res):
@@ -129,7 +129,7 @@ d1.callback('d1 result')
 
 这里我们先激发 `d2` 然后再激发 `d1`,注意构造参数中的 `deferred` 列表里 `d1`, `d2` 仍是原先的顺序.输出结果如下:
 
-```
+```py
 Two Deferreds.
 Adding Callback.
 Firing d2.
@@ -141,7 +141,7 @@ We got: [(True, 'd1 result'), (True, 'd2 result')]
 
 好了,那如果列表中一个或多个 `deferreds` 失败了怎么办呢? 上面结果中的 `True` 有什么用? 再看一个例子([deferred-list/deferred-list-5.py](https://github.com/jdavisp3/twisted-intro/blob/master/deferred-list/deferred-list-5.py#L1)):
 
-```
+```py
 from twisted.internet import defer
 
 def got_results(res):
@@ -159,7 +159,7 @@ d2.errback(Exception('d2 failure'))
 
 现在我们以正常结果激发 `d1`,以错误激发 `d2`.先暂时忽略 `consumerErrors` 选项,稍候介绍.这里是输出结果:
 
-```
+```py
 Firing d1.
 Firing d2 with errback.
 We got: [(True, 'd1 result'), (False, <twisted.python.failure.Failure <type 'exceptions.Exception'>>)] 
@@ -175,7 +175,7 @@ We got: [(True, 'd1 result'), (False, <twisted.python.failure.Failure <type 'exc
 
 现在让我们讨论一下被传入 `DeferredList` 的 `consumeErrors` 选项,如果我们运行以上相同代码而不传入此选项([deferred-list/deferred-list-6.py](https://github.com/jdavisp3/twisted-intro/blob/master/deferred-list/deferred-list-6.py#L1)),则得到以下输出:
 
-```
+```py
 Firing d1.
 Firing d2 with errback.
 We got: [(True, 'd1 result'), (False, >twisted.python.failure.Failure >type 'exceptions.Exception'<<)]
@@ -194,7 +194,7 @@ Failure: exceptions.Exception: d2 failure
 
 获取诗歌客户端 8.0 发布啦！客户端使用 `DeferredList` 去发现所有诗歌何时完成(或失败).新版客户端位于 [twisted-client-8/get-poetry.py](https://github.com/jdavisp3/twisted-intro/blob/master/twisted-client-8/get-poetry.py#L1). 同样,唯一的变化在于 [poetry_main](https://github.com/jdavisp3/twisted-intro/blob/master/twisted-client-8/get-poetry.py#L151), 我们来看一下重要的变化:
 
-```
+```py
 ...
 ds = []
 

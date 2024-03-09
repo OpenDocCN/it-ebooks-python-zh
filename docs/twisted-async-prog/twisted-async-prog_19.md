@@ -28,7 +28,7 @@ Twisted 是一个正在进展的项目,它的开发者会定期添加新的特�
 
 让我们看一些例程,来了解下取消 `deferreds` 的实际工作原理.注意为了运行这些列子以及本部分中的其他代码,你需要安装 Twisted 10.1.0 或更高 [版本](http://twistedmatrix.com/trac/wiki/Downloads) 考虑 [deferred-cancel/defer-cancel-1.py](https://github.com/jdavisp3/twisted-intro/blob/master/deferred-cancel/defer-cancel-1.py#L1)
 
-```
+```py
 from twisted.internet import defer
 
 def callback(res):
@@ -42,7 +42,7 @@ print 'done'
 
 伴随着新的取消特性, `Deferred` 类添加了一个名为 `cancel` 的新方法.上面代码创建了一个新的 `deferred`,添加了一个回调,然后取消了这个 `deferred` 而没有激发它.输出如下:
 
-```
+```py
 done
 Unhandled error in Deferred:
 Traceback (most recent call last):
@@ -51,7 +51,7 @@ Failure: twisted.internet.defer.CancelledError:
 
 OK,取消一个 `deferred` 看起来像使错误回调链运行,常规的回调根本没有被调用.同样注意到这个错误是: `twisted.internet.defer.CancelledError`,一个意味着 `deferred` 被取消的个性化异常(但请继续阅读).让我们添加一个错误回调,如 deferred-cancel/defer-cancel-2.py
 
-```
+```py
 from twisted.internet import defer
 
 def callback(res):
@@ -68,7 +68,7 @@ print 'done'
 
 得到以下输出:
 
-```
+```py
 errback got: [Failure instance: Traceback (failure with no frames): 
         <class 'twisted.internet.defer.CancelledError'>: ]
 done 
@@ -78,7 +78,7 @@ done
 
 OK,让我们试试激发 `deferred` 然后取消它,如 [deferred-cancel/defer-cancel-3.py](https://github.com/jdavisp3/twisted-intro/blob/master/deferred-cancel/defer-cancel-3.py#L1)
 
-```
+```py
 from twisted.internet import defer
 
 def callback(res):
@@ -96,7 +96,7 @@ print 'done'
 
 这里我们用常规 `callback` 方法激发 `deferred`,之后取消它.输出结果如下:
 
-```
+```py
 callback got: result
 done 
 ```
@@ -105,7 +105,7 @@ done
 
 如果我们在取消 `deferred` 之后激发它会怎样?参看 [deferred-cancel/defer-cancel-4.py](https://github.com/jdavisp3/twisted-intro/blob/master/deferred-cancel/defer-cancel-4.py#L1)
 
-```
+```py
 from twisted.internet import defer
 
 def callback(res):
@@ -123,7 +123,7 @@ print 'done'
 
 这种情况的输出如下:
 
-```
+```py
 errback got: [Failure instance: Traceback (failure with no frames): 
         <class 'twisted.internet.defer.CancelledError'>: ]
 done 
@@ -142,7 +142,7 @@ done
 
 这意味着我们可以随心所欲地取消一个 `deferred`,同时可以确定不会得到结果如果它还没有到来(甚至那些 **将要** 到来的).但是取消 `deferred` 可能并没有取消异步操作.终止一个异步操作需要一个上下文的具体行动.你可能需要关闭网络连接,回滚数据库事务,结束子进程,等等.由于 `deferred` 仅仅是一般目的的回调组织者,它怎么知道具体要做什么当你取消它时?或者,换种说法,它怎样将 `cancel` 请求传递给首先已经创建和返回了 `deferred` 的底层代码? 和我一起说:
 
-```
+```py
 I know, with a callback! 
 ```
 
@@ -150,7 +150,7 @@ I know, with a callback!
 
 好吧,首先看一下 [deferred-cancel/defer-cancel-5.py](https://github.com/jdavisp3/twisted-intro/blob/master/deferred-cancel/defer-cancel-5.py#L1)
 
-```
+```py
 from twisted.internet import defer
 
 def canceller(d):
@@ -172,7 +172,7 @@ print 'done'
 
 运行这个例子将产生如下输出:
 
-```
+```py
 I need to cancel this deferred: <Deferred at 0xb7669d2cL>
 errback got: [Failure instance: Traceback (failure with no frames): 
         <class 'twisted.internet.defer.CancelledError'>: ]
@@ -185,7 +185,7 @@ done
 
 我们目前看到的例子都没有实际的异步操作. 让我们构造一个调用异步操作的简单程序,之后我们将指出如何使那个操作可取消.参见代码 [deferred-cancel/defer-cancel-9.py](https://github.com/jdavisp3/twisted-intro/blob/master/deferred-cancel/defer-cancel-9.py#L1)
 
-```
+```py
 from twisted.internet.defer import Deferred
 
 def send_poem(d):
@@ -218,20 +218,20 @@ main()
 
 运行程序(适当延迟后)产生如下输出:
 
-```
+```py
 Sending poem
 I got a poem: Once upon a midnight dreary 
 ```
 
 10 秒钟后程序终止.现在来试试在诗歌被发送前取消 `deferred`.只需加入以下代码在 2 秒钟后取消(在 5 秒钟延迟发送诗歌之前):
 
-```
+```py
 reactor.callLater(2, d.cancel) # cancel after 2 seconds 
 ```
 
 完整的例子参见 [deferred-cancel/defer-cancel-10.py](https://github.com/jdavisp3/twisted-intro/blob/master/deferred-cancel/defer-cancel-10.py#L1)这将产生如下输出:
 
-```
+```py
 get_poem failed: [Failure instance: Traceback (failure with no frames): 
         <class 'twisted.internet.defer.CancelledError'>: ]
 Sending poem 
@@ -245,7 +245,7 @@ Sending poem
 
 这非常简单,更新后的代码参见 [deferred-cancel/defer-cancel-11.py](https://github.com/jdavisp3/twisted-intro/blob/master/deferred-cancel/defer-cancel-11.py#L1)所有相关变化都在 `get_poem` 函数中:
 
-```
+```py
 def get_poem():
     """Return a poem 5 seconds later."""
 
@@ -269,7 +269,7 @@ def get_poem():
 
 在这个新版本中,我们保存 `callLater` 的返回值以便能够在 `cancel` 回调中使用. `cancel` 回调的唯一工作是调用 `delayed_call.cancel()`. 但是正如之前讨论的,我们可以选择激发自定义的 `deferred`. 最新版本的程序产生如下输出:
 
-```
+```py
 get_poem failed: [Failure instance: Traceback (failure with no frames): 
         <class 'twisted.internet.defer.CancelledError'>: ] 
 ```
@@ -280,7 +280,7 @@ get_poem failed: [Failure instance: Traceback (failure with no frames):
 
 正如在简介中所讨论,诗歌代理服务器是实现取消的很好的候选者,因为这可以让我们取消诗歌下载如果事实证明没有人想要它(如客户端已经在我们发送诗歌前关闭了连接).版本 3.0 的代理位于 [twisted-server-4/poetry-proxy.py](https://github.com/jdavisp3/twisted-intro/blob/master/twisted-server-4/poetry-proxy.py#L1)实现了 `deferred` 取消. 变化首先位于 [PoetryProxyProtocol](https://github.com/jdavisp3/twisted-intro/blob/master/twisted-server-4/poetry-proxy.py#L52)
 
-```
+```py
 class PoetryProxyProtocol(Protocol):
 
     def connectionMade(self):
@@ -301,7 +301,7 @@ class PoetryProxyProtocol(Protocol):
 
 现在我们需要确保取消 `deferred` 将实际终止诗歌的下载. 所以我们需要改变 [ProxyService](https://github.com/jdavisp3/twisted-intro/blob/master/twisted-server-4/poetry-proxy.py#L105)
 
-```
+```py
 class ProxyService(object):
 
     poem = None # the cached poem
@@ -345,25 +345,25 @@ class ProxyService(object):
 
 让我们试试新的代理.首先启动一个慢速服务器.它需要很慢以便我们有时间取消:
 
-```
+```py
 python blocking-server/slowpoetry.py --port 10001 poetry/fascination.txt 
 ```
 
 现在可以启动代理(记住你需要 Twisted 10.1.0):
 
-```
+```py
 python twisted-server-4/poetry-proxy.py --port 10000 10001 
 ```
 
 现在我们可以用任何客户端从代理下载一首诗,或者仅使用 `curl`:
 
-```
+```py
 curl localhost:10000 
 ```
 
 几秒钟后,按 `Ctrl-C` 停止客户端或者 `curl` 进程. 在终端运行代理你将看到如下输出:
 
-```
+```py
 Fetching poem from server.
 Canceling poem download. 
 ```
@@ -382,7 +382,7 @@ Canceling poem download.
 
 我们可以用一个例子来说明.考虑代码 [deferred-cancel/defer-cancel-12.py](https://github.com/jdavisp3/twisted-intro/blob/master/deferred-cancel/defer-cancel-12.py#L1)
 
-```
+```py
 from twisted.internet import defer
 
 def cancel_outer(d):
@@ -420,7 +420,7 @@ print 'done'
 
 在这个例子中,我们创建了两个 `deferred`, `outer` 和 `inner`,并且有一个外部回调返回内部的 `deferred`. 首先,我们激发外部 `deferred`,然后取消它. 输出结果如下:
 
-```
+```py
 first outer callback, returning inner deferred
 canceling outer deferred.
 inner cancel callback.

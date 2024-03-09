@@ -84,7 +84,7 @@
 
 如果你想检查一下 Python 版本，打开终端，输入：
 
-```
+```py
 python3 --version
 ```
 
@@ -92,7 +92,7 @@ python3 --version
 
 如果你需要安装某个特定版本的 Python，在终端输入这一行就可以：
 
-```
+```py
 sudo apt-get install python3.5
 ```
 

@@ -8,7 +8,7 @@
 
 Python 中的错误之一是语法错误(syntax errors)，比如：
 
-```
+```py
 >>> for i in range(10)
   File "<stdin>", line 1
     for i in range(10)
@@ -26,7 +26,7 @@ SyntaxError: invalid syntax
 
 看一个异常（让 0 做分母了，这是小学生都相信会有异常的）：
 
-```
+```py
 >>> 1/0
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
@@ -53,7 +53,7 @@ ZeroDivisionError: integer division or modulo by zero
 
 #### NameError
 
-```
+```py
 >>> bar
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
@@ -64,7 +64,7 @@ Python 中变量需要初始化，即要赋值。虽然不需要像某些语言�
 
 #### ZeroDivisionError
 
-```
+```py
 >>> 1/0
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
@@ -75,7 +75,7 @@ ZeroDivisionError: integer division or modulo by zero
 
 #### SyntaxError
 
-```
+```py
 >>> for i in range(10)
   File "<stdin>", line 1
     for i in range(10)
@@ -87,7 +87,7 @@ SyntaxError: invalid syntax
 
 #### IndexError
 
-```
+```py
 >>> a = [1,2,3]
 >>> a[4]
 Traceback (most recent call last):
@@ -105,7 +105,7 @@ KeyError: 'java'
 
 #### IOError
 
-```
+```py
 >>> f = open("foo")
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
@@ -116,7 +116,7 @@ IOError: [Errno 2] No such file or directory: 'foo'
 
 #### AttributeError
 
-```
+```py
 >>> class A(object): pass
 ... 
 >>> a = A()
@@ -130,7 +130,7 @@ AttributeError: 'A' object has no attribute 'foo'
 
 其实，Python 内建的异常也不仅仅上面几个，上面只是列出常见的异常中的几个。比如还有：
 
-```
+```py
 >>> range("aaa")
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
@@ -143,7 +143,7 @@ TypeError: range() integer end argument expected, got str.
 
 在一段程序中，为了能够让程序健壮，必须要处理异常。举例：
 
-```
+```py
 #!/usr/bin/env Python
 # coding=utf-8
 
@@ -165,7 +165,7 @@ while 1:
 
 运行这段程序，显示如下过程：
 
-```
+```py
 $ python 21601.py 
 this is a division program.
 input 'c' continue, otherwise logout:c
@@ -194,7 +194,7 @@ except 后面也可以没有任何异常类型，即无异常参数。如果这�
 
 在 except 子句中，可以根据异常或者别的需要，进行更多的操作。比如：
 
-```
+```py
 #!/usr/bin/env Python
 # coding=utf-8
 
@@ -212,7 +212,7 @@ class Calculator(object):
 
 在这里，应用了一个函数 `eval()`，它的含义是：
 
-```
+```py
 eval(...)
     eval(source[, globals[, locals]]) -> value
 
@@ -226,14 +226,14 @@ eval(...)
 
 例如：
 
-```
+```py
 >>> eval("3+5")
 8 
 ```
 
 另外，在 except 子句中，有一个 `raise`，作为单独一个语句。它的含义是将异常信息抛出。并且，except 子句用了一个判断语句，根据不同的情况确定走不同分支。
 
-```
+```py
 if __name__ == "__main__":
     c = Calculator()
     print c.calc("8/0") 
@@ -241,7 +241,7 @@ if __name__ == "__main__":
 
 这时候 `is_raise = False`，则会：
 
-```
+```py
 $ python 21602.py 
 Traceback (most recent call last):
   File "21602.py", line 17, in <module>
@@ -254,7 +254,7 @@ ZeroDivisionError: integer division or modulo by zero
 
 如果将 `is_raise` 的值改为 True，就是这样了：
 
-```
+```py
 if __name__ == "__main__":
     c = Calculator()
     c.is_raise = True    #通过实例属性修改
@@ -263,7 +263,7 @@ if __name__ == "__main__":
 
 运行结果：
 
-```
+```py
 $ python 21602.py 
 zero can not be division.
 None 
@@ -285,7 +285,7 @@ try...except...是处理异常的基本方式。在原来的基础上，还可�
 
 处理多个异常，并不是因为同时报出多个异常。程序在运行中，只要遇到一个异常就会有反应，所以，每次捕获到的异常一定是一个。所谓处理多个异常的意思是可以容许捕获不同的异常，有不同的 except 子句处理。
 
-```
+```py
 #!/usr/bin/env Python
 # coding=utf-8
 
@@ -310,7 +310,7 @@ while 1:
 
 将上节的一个程序进行修改，增加了一个 except 子句，目的是如果用户输入的不是数字时，捕获并处理这个异常。测试如下：
 
-```
+```py
 $ python 21701.py 
 this is a division program.
 input 'c' continue, otherwise logout:c
@@ -333,7 +333,7 @@ $
 
 除了用多个 except 之外，还可以在一个 except 后面放多个异常参数，比如上面的程序，可以将 except 部分修改为：
 
-```
+```py
 except (ZeroDivisionError, ValueError):
     print "please input rightly."
     print "********************" 
@@ -341,7 +341,7 @@ except (ZeroDivisionError, ValueError):
 
 运行的结果就是：
 
-```
+```py
 $ python 21701.py 
 this is a division program.
 input 'c' continue, otherwise logout:c
@@ -364,7 +364,7 @@ $
 
 突然有一种想法，在对异常的处理中，前面都是自己写一个提示语，发现自己写的不如内置的异常错误提示更好。希望把它打印出来。但是程序还能不能中断。Python 提供了一种方式，将上面代码修改如下：
 
-```
+```py
 while 1:
     print "this is a division program."
     c = raw_input("input 'c' continue, otherwise logout:")
@@ -383,7 +383,7 @@ while 1:
 
 运行一下，看看提示信息。
 
-```
+```py
 $ python 21702.py 
 this is a division program.
 input 'c' continue, otherwise logout:c
@@ -410,7 +410,7 @@ $
 
 有了 `try...except...`，在一般情况下是够用的，但总有不一般的时候出现，所以，就增加了一个 else 子句。其实，人类的自然语言何尝不是如此呢？总要根据需要添加不少东西。
 
-```
+```py
 >>> try:
 ...     print "I am try"
 ... except:
@@ -424,7 +424,7 @@ I am else
 
 这段演示，能够帮助读者理解 else 的执行特点。如果执行了 try，则 except 被忽略，但是 else 被执行。
 
-```
+```py
 >>> try:
 ...     print 1/0
 ... except:
@@ -441,7 +441,7 @@ I am except
 
 在看下面的参考代码之前，读者是否可以先自己写一段呢？并调试一下，看看结果如何。
 
-```
+```py
 #!/usr/bin/env Python
 # coding=utf-8
 while 1:
@@ -460,7 +460,7 @@ while 1:
 
 先看运行结果：
 
-```
+```py
 $ python 21703.py
 the first number:2
 the second number:0        #异常，执行 except
@@ -484,7 +484,7 @@ $
 
 finally 子句，一听这个名字，就感觉它是做善后工作的。的确如此，如果有了 finally，不管前面执行的是 try，还是 except，它都要执行。因此一种说法是用 finally 用来在可能的异常后进行清理。比如：
 
-```
+```py
 >>> x = 10
 
 >>> try:
@@ -501,7 +501,7 @@ del x
 
 看一看 x 是否被删除？
 
-```
+```py
 >>> x
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
@@ -510,7 +510,7 @@ NameError: name 'x' is not defined
 
 当然，在应用中，可以将上面的各个子句都综合起来使用，写成如下样式：
 
-```
+```py
 try:
     do something
 except:
@@ -537,7 +537,7 @@ finally
 
 ### assert
 
-```
+```py
 >>> assert 1==1
 >>> assert 1==0
 Traceback (most recent call last):
@@ -551,7 +551,7 @@ assert，翻译过来是“断言”之意。assert 是一句等价于布尔真�
 
 assert 的应用情景就有点像汉语的意思一样，当程序运行到某个节点的时候，就断定某个变量的值必然是什么，或者对象必然拥有某个属性等，简单说就是断定什么东西必然是什么，如果不是，就抛出错误。
 
-```
+```py
 #!/usr/bin/env Python
 # coding=utf-8
 
@@ -574,7 +574,7 @@ class Account(object):
 
 上面的程序中，deposit() 和 withdraw() 方法的参数 amount 值必须是大于零的，这里就用断言，如果不满足条件就会报错。比如这样来运行：
 
-```
+```py
 if __name__ == "__main__":
     a = Account(1000)
     a.deposit(-10) 
@@ -582,7 +582,7 @@ if __name__ == "__main__":
 
 出现的结果是：
 
-```
+```py
 $ python 21801.py
 Traceback (most recent call last):
   File "21801.py", line 22, in <module>

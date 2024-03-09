@@ -16,7 +16,7 @@
 
 用于手动抛出异常。下面的语句抛出一个 ValueError 异常，该异常被 Python 的缺省异常处 理程序捕获：
 
-```
+```py
 >>> raise ValueError
 Traceback (most recent call last): File "&lt;stdin&gt;", line 1, in &lt;module&gt;
 ValueError 
@@ -24,7 +24,7 @@ ValueError
 
 除了错误类型，raise 语句还可以带有错误的描述信息：
 
-```
+```py
 >>> raise ValueError, "Wrong value!"
 Traceback (most recent call last): File "&lt;stdin&gt;", line 1, in &lt;module&gt;
 ValueError: Wrong value! 
@@ -32,7 +32,7 @@ ValueError: Wrong value!
 
 当然也可以由程序自己处理自己抛出的异常，例如
 
-```
+```py
 >>> try:
         raise ValueError 
     except ValueError:
@@ -44,14 +44,14 @@ Exception caught!
 
 前面程序例子中抛出的都是 Python 的内建异常，我们也可以定义自己的异常类型。为 此目的，需要了解 Python 的异常类 Exception 以及类、子类、继承等面向对象程序设计概念， 这些概念将在第 x 章中介绍。这里我们用下面的简单例子演示大致用法，以使读者先获得一 个初步印象：
 
-```
+```py
 >>> class MyException(Exception): 
         pass 
 ```
 
 这是一个类定义，它在 Python 内建的 Exception 类的基础上定义了我们自己的异常类 MyException。虽然语句 pass 表明我们并没有在 Exception 类的基础上添加任何东西，但 MyException 确实是一个新的异常类，完全可以像 Python 内建的各种异常一样进行抛出、捕 获。例如：
 
-```
+```py
 >>> try:
         raise MyException 
     except MyException:
@@ -65,7 +65,7 @@ MyException caught!
 
 Python 的异常处理还允许我们用 try-finally 语句来指定这样的代码：不管是否发生异常，这 些代码都必须执行。这种机制可以用来完成出错后的扫尾工作。例如：
 
-```
+```py
 >>> try:
         x = input("Enter a number: ") 
         print x
@@ -78,7 +78,7 @@ This is final!
 
 本例中，我们为 x 输入了一个正常数值 123，故 try 语句块没有发生异常，显示 123 后 又执行了最后的 print 语句。为什么不写成如下形式呢？
 
-```
+```py
 x = input("Enter a number: ") 
 print x
 print "This is final!" 
@@ -86,7 +86,7 @@ print "This is final!"
 
 区别在于，当发生错误时，这种写法就有可能未执行最后的 print 语句，而 try-finally 的写法则在发生异常的情况下也会确保执行最后的 print 语句。例如我们再次执行上面的语 句：
 
-```
+```py
 >>> try:
         x = input("Enter a number: ") 
         print x
@@ -175,19 +175,19 @@ NameError: name 'abc' is not defined
 
 Tkinter 构件对象有很多属性，这些属性的值可以在创建实例时用关键字参数指定（未 指定值的属性都有缺省值）：
 
-```
+```py
 <构件类>(<父构件>,<属性>=<值>,...) 
 ```
 
 也可以在创建对象之后的任何时候通过调用对象的 configure（或简写为 config）方法来更改 属性值：
 
-```
+```py
 <构件实例>.config(<属性>=<值>,...) 
 ```
 
 构件类还实现了一个字典接口，可使用下列语法来设置和查询属性：
 
-```
+```py
 <构件实例>["<属性>"] = <值> value = <构件实例>["<属性>"] 
 ```
 
@@ -211,7 +211,7 @@ Tkinter 为所有构件提供了一套标准属性，用来设置构件的外观
 
 通过 RGB 分量值来指定颜色需使用特定格式的字符串："#RGB"、"#RRGGBB"、 "#RRRGGGBBB"和"#RRRRGGGGBBBB"，它们分别用 1～4 个十六进制位来表示红绿蓝分 量值，即分别将某颜色分量细化为 16、256、4096 和 65536 级。如果读者不熟悉十六进制， 可以用下面这个方法将十进制数值转换成颜色格式字符串，其中宽度可选用 01～04：
 
-```
+```py
 my_color = "#%02x%02x%02x" % (128,192,200) 
 ```
 
@@ -221,7 +221,7 @@ my_color = "#%02x%02x%02x" % (128,192,200)
 
 字体描述符是一个三元组，包含字体族名称、尺寸（单位为磅）和字形修饰，其中尺寸 和字形修饰是可选的。当省略尺寸和字形修饰时，如果字体族名称不含空格，则可简单地用 字体族名称字符串作为字体描述符，否则必须用元组形式（名称后跟一个逗号）。例如下列 字体描述符都是合法的：
 
-```
+```py
 ("Times",10,"bold") ("Helvetica",10,"bold italic") ("Symbol",8) ("MS Serif",) "Courier" 
 ```
 
@@ -249,7 +249,7 @@ image 属性需要一个图像对象作为属性值。图像对象可以用 Phot
 
 例如：
 
-```
+```py
 >>> root = Tk()
 >>> img ＝ PhotoImage(file="d:\mypic.gif")
 >>> Button(root,image=img).pack() 
@@ -328,7 +328,7 @@ tkMessageBox 模块
 
 本模块定义了若干种简单的标准对话框和消息框，它们可通过调用以下函数来创建：askokcancel、askquestion、askretrycancel、askyesno、showerror、showinfo 和 showwarning。 这些函数的调用语法是：
 
-```
+```py
 function(title, message, options) 
 ```
 
@@ -338,19 +338,19 @@ function(title, message, options)
 
 参数 options 可设置以下选项：
 
-```
+```py
 default = constant 
 ```
 
 指定缺省按钮。其中 constant 的值可以取 CANCEL、IGNORE、NO、OK、RETRY 或 YES。如果未指定，则第一个按钮（"OK"、"Yes"或"Retry"）将成为缺省按钮。
 
-```
+```py
 icon = constant 
 ```
 
 指定用什么图标。其中 constant 的值可以取 ERROR、INFO、QUESTION 或 WARNING。
 
-```
+```py
 parent = window 
 ```
 
@@ -360,43 +360,43 @@ tkFileDialog 模块
 
 本模块定义了两种弹出式对话框，分别用于打开文件和保存文件的场合。通过调用函数 askopenfilename 和 asksaveasfilename 来创建所需对话框，调用语法是：
 
-```
+```py
 function(options) 
 ```
 
 如果用户选择了一个文件，则函数的返回值是所选文件的完整路径；如果用户选择了“取 消”按钮，则返回一个空串。参数 options 可用的选项包括：
 
-```
+```py
 defaultextension = string 
 ```
 
 缺省文件扩展名。string 是以"."开头的字符串。
 
-```
+```py
 filetypes = [(filetype,pattern),...] 
 ```
 
 用若干个二元组来限定出现在对话框中的文件类型。每个二元组中的 filetype 指定文件 类型（即扩展名），pattern 指定文件名模式。这些信息将出现在对话框中的“文件类型”下 拉框中。
 
-```
+```py
 initialdir = dir 
 ```
 
 指定初始显示的目录路径。缺省值为当前工作目录。
 
-```
+```py
 initialfile = file 
 ```
 
 指定在“文件名”域初始显示的文件名。
 
-```
+```py
 parent = window 
 ```
 
 指定对话框的父窗口。缺省值为根窗口。
 
-```
+```py
 title = string 
 ```
 
@@ -406,25 +406,25 @@ tkSimpleDialog 模块
 
 本模块用于从用户输入数据。通过调用函数 askinteger、askfloat 和 askstring 弹出输入对 话框。这些函数的调用语法是：
 
-```
+```py
 function(title, prompt, options) 
 ```
 
 其中 title 指定对话框窗口的标题，prompt 指定对话框中的提示信息，options 是一些选项。 返回值是用户输入的数据。参数 options 可设置的一些选项包括：
 
-```
+```py
 initialvalue = value 
 ```
 
 指定对话框输入域中的初始值。
 
-```
+```py
 minvalue = value 
 ```
 
 指定合法输入的最小值。
 
-```
+```py
 maxvalue = value 
 ```
 
@@ -434,19 +434,19 @@ tkColorChooser 模块
 
 本模块提供选择颜色的对话框。通过调用函数 askcolor 即可弹出颜色对话框：
 
-```
+```py
 result = askcolor(color,options) 
 ```
 
 其中参数 color 指定显示的初始颜色，缺省值为淡灰色。参数 options 可设置的选项包括：
 
-```
+```py
 title = text 
 ```
 
 指定对话框窗口的标题，缺省为“颜色”。
 
-```
+```py
 parent = window 
 ```
 
@@ -458,7 +458,7 @@ parent = window
 
 事件描述符是一个字符串，由修饰符、类型符和细节符三个部分构成：
 
-```
+```py
 <修饰符>-<类型符>-<细节符> 
 ```
 

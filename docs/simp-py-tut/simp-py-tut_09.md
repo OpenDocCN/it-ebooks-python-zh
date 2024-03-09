@@ -25,7 +25,7 @@
 
 函数通过`def`关键字**定义**。def 关键字后跟一个函数的 标识符 名称，然后跟一对圆括号。圆括号之中可以包括一些变量名，该行以冒号结尾。接下来是一块语句，它们是函数体。下面这个例子将说明这事实上是十分简单的：
 
-```
+```py
 #!/usr/bin/python
 # Filename: function1.py
 
@@ -39,7 +39,7 @@ sayHello() # call the function
 
 ## 输出
 
-```
+```py
 $ python function1.py
 Hello World! 
 ```
@@ -56,7 +56,7 @@ Hello World!
 
 参数在函数定义的圆括号对内指定，用逗号分割。当我们调用函数的时候，我们以同样的方式提供值。注意我们使用过的术语——函数中的参数名称为 形参 而你提供给函数调用的值称为 实参 。
 
-```
+```py
 #!/usr/bin/python
 # Filename: func_param.py
 
@@ -78,7 +78,7 @@ printMax(x, y) # give variables as arguments
 
 ## 输出
 
-```
+```py
 $ python func_param.py
 4 is maximum
 7 is maximum 
@@ -96,7 +96,7 @@ $ python func_param.py
 
 当你在函数定义内声明变量的时候，它们与函数外具有相同名称的其他变量没有任何关系，即变量名称对于函数来说是 局部 的。这称为变量的 作用域 。所有变量的作用域是它们被定义的块，从它们的名称被定义的那点开始。
 
-```
+```py
 #!/usr/bin/python
 # Filename: func_local.py
 
@@ -114,7 +114,7 @@ print 'x is still', x
 
 ## 输出
 
-```
+```py
 $ python func_local.py
 x is 50
 Changed local x to 2
@@ -133,7 +133,7 @@ x is still 50
 
 你可以使用定义在函数外的变量的值（假设在函数内没有同名的变量）。然而，我并不鼓励你这样做，并且你应该尽量避免这样做，因为这使得程序的读者会不清楚这个变量是在哪里定义的。使用`global`语句可以清楚地表明变量是在外面的块定义的。
 
-```
+```py
 #!/usr/bin/python
 # Filename: func_global.py
 
@@ -153,7 +153,7 @@ print 'Value of x is', x
 
 ## 输出
 
-```
+```py
 $ python func_global.py
 x is 50
 Changed global x to 2
@@ -174,7 +174,7 @@ Value of x is 2
 
 注意，默认参数值应该是一个参数。更加准确的说，默认参数值应该是不可变的——这会在后面的章节中做详细解释。从现在开始，请记住这一点。
 
-```
+```py
 #!/usr/bin/python
 # Filename: func_default.py
 
@@ -189,7 +189,7 @@ say('World', 5)
 
 ## 输出
 
-```
+```py
 $ python func_default.py
 Hello
 WorldWorldWorldWorldWorld 
@@ -211,7 +211,7 @@ WorldWorldWorldWorldWorld
 
 这样做有两个 优势 ——一，由于我们不必担心参数的顺序，使用函数变得更加简单了。二、假设其他参数都有默认值，我们可以只给我们想要的那些参数赋值。
 
-```
+```py
 #!/usr/bin/python
 # Filename: func_key.py
 
@@ -227,7 +227,7 @@ func(c=50, a=100)
 
 ## 输出
 
-```
+```py
 $ python func_key.py
 a is 3 and b is 7 and c is 10
 a is 25 and b is 5 and c is 24
@@ -250,7 +250,7 @@ a is 100 and b is 5 and c is 50
 
 `return`语句用来从一个函数 返回 即跳出函数。我们也可选从函数 返回一个值 。
 
-```
+```py
 #!/usr/bin/python
 # Filename: func_return.py
 
@@ -267,7 +267,7 @@ print maximum(2, 3)
 
 ## 输出
 
-```
+```py
 $ python func_return.py
 3 
 ```
@@ -280,7 +280,7 @@ $ python func_return.py
 
 除非你提供你自己的`return`语句，每个函数都在结尾暗含有`return None`语句。通过运行`print someFunction()`，你可以明白这一点，函数`someFunction`没有使用`return`语句，如同：
 
-```
+```py
 def someFunction():
     pass 
 ```
@@ -293,7 +293,7 @@ def someFunction():
 
 Python 有一个很奇妙的特性，称为 文档字符串 ，它通常被简称为 docstrings 。DocStrings 是一个重要的工具，由于它帮助你的程序文档更加简单易懂，你应该尽量使用它。你甚至可以在程序运行的时候，从函数恢复文档字符串！
 
-```
+```py
 #!/usr/bin/python
 # Filename: func_doc.py
 
@@ -317,7 +317,7 @@ print printMax.__doc__
 
 ## 输出
 
-```
+```py
 $ python func_doc.py
 5 is maximum
 Prints the maximum of two numbers.

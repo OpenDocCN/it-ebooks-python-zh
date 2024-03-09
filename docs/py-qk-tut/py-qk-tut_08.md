@@ -10,7 +10,7 @@
 
 上一讲我们已经提到，在定义方法时，必须有 self 这一参数，这个参数指的是对象。由于对象拥有类的所有性质，那么我们就可以在方法内部通过 self 来调用类的其它属性。
 
-```
+```py
 class Human(object):
     laugh = 'hahahaha'
     def show_laugh(self): print self.laugh def laugh_100th(self): for i in range(100): self.show_laugh()
@@ -29,7 +29,7 @@ __init__()是一个特殊方法(special method)。Python 里会有一些特殊�
 
 __init__()方法的特殊在于，如果你在类中定义了这个方法，一旦你根据这个类建立对象，Python 就会自动调用这个方法（这个过程也叫初始化）。（在上一讲中，我们手动调用了 move()方法）
 
-```
+```py
 class happyBird(Bird): def __init__(self,more_words): print 'We are happy birds.',more_words 
 summer = happyBird('Happy,Happy!')
 
@@ -39,7 +39,7 @@ summer = happyBird('Happy,Happy!')
 
 屏幕上打印出：
 
-```
+```py
 We are happy birds.Happy,Happy!
 
 ```
@@ -60,7 +60,7 @@ summer.__init__(more_words)
 
 这样，我们在类的属性统一的基础上，又给每个对象增添了各自特色的性质，从而能描述多样的世界。
 
-```
+```py
 class Human(object): def __init__(self, input_gender):
         self.gender = input_gender def printGender(self): print self.gender
 

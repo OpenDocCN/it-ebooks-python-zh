@@ -20,7 +20,7 @@ HTTP 协议以“请求－回复”的方式工作。客户发送请求时，可
 
 HTML 文件中可以包含表格标签。HTML 表格的目的是帮助用户构成 HTTP 请求，把数据用 GET 或者 POST 的方法，传递给某一 URL 地址。下面是一个表格的例子：
 
-```
+```py
 <form action="/west/investigate/" method="get">
   <input type="text" name="staff">
   <input type="submit" value="Submit">
@@ -34,7 +34,7 @@ HTML 文件中可以包含表格标签。HTML 表格的目的是帮助用户构�
 
 我们可以将上面的表格直接存入模板 form.html，并在 west/views.py 中定义一个视图 form()来显示表格:
 
-```
+```py
 from django.shortcuts import render def form(request): return render(request, 'form.html')
 
 ```
@@ -43,7 +43,7 @@ from django.shortcuts import render def form(request): return render(request, 'f
 
 最后，我们在 west/views.py 中定义 investigate()来处理该表格提交的数据:
 
-```
+```py
 from django.shortcuts import render def investigate(request):
     ctx ={} rlt = request.GET['staff'] return HttpResponse(rlt)
 
@@ -71,7 +71,7 @@ from django.shortcuts import render def investigate(request):
 
 先创建模板 investigate.html
 
-```
+```py
 <form action="/west/investigate/" method="post"> {% csrf_token %} <input type="text" name="staff">
   <input type="submit" value="Submit">
 </form>
@@ -86,7 +86,7 @@ from django.shortcuts import render def investigate(request):
 
 在 west/views.py 中，用 investigate()来处理表格：
 
-```
+```py
 from django.shortcuts import render from django.core.context_processors import csrf def investigate(request):
     ctx ={}
     ctx.update(csrf(request)) if request.POST:
@@ -110,7 +110,7 @@ from django.shortcuts import render from django.core.context_processors import c
 
 修改 west/views.py 的 investigate():
 
-```
+```py
 from django.shortcuts import render from django.core.context_processors import csrf from west.models import Character def investigate(request): if request.POST:
         submitted = request.POST['staff']
         new_record = Character(name = submitted)
@@ -128,7 +128,7 @@ from django.shortcuts import render from django.core.context_processors import c
 
 我们还需要修改模板 investigate.html，以更好的显示：
 
-```
+```py
 <form action="/west/investigate/" method="post"> {% csrf_token %} <input type="text" name="staff">
   <input type="submit" value="Submit">
 </form> {% for person in staff %} <p>{{ person }}</p> {% endfor %}
@@ -151,7 +151,7 @@ Django 提供的数据对象可以大大简化这一过程。该对象用于说�
 
 修改 west/views.py：
 
-```
+```py
 from django.shortcuts import render from django.core.context_processors import csrf from west.models import Character from django import forms class CharacterForm(forms.Form):
     name = forms.CharField(max_length = 200) def investigate(request): if request.POST:
         form = CharacterForm(request.POST) if form.is_valid():
@@ -176,7 +176,7 @@ from django.shortcuts import render from django.core.context_processors import c
 
 在模板 investigate.html 中，我们可以直接显示 form 对象：
 
-```
+```py
 <form action="/west/investigate/" method="post"> {% csrf_token %}
   {{ form.as_p }} <input type="submit" value="Submit">
 </form> {% for person in staff %} <p>{{ person }}</p> {% endfor %}
@@ -223,7 +223,7 @@ Django 为多种数据库后台提供了统一的调用 API。根据需求不同
 
 在 MySQL 中创立 Django 项目的数据库：
 
-```
+```py
 mysql> CREATE DATABASE villa DEFAULT CHARSET=utf8;
 
 ```
@@ -232,14 +232,14 @@ mysql> CREATE DATABASE villa DEFAULT CHARSET=utf8;
 
 在 MySQL 中为 Django 项目创立用户，并授予相关权限:
 
-```
+```py
 mysql> GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, CREATE TEMPORARY TABLES, LOCK TABLES ON villa.* TO 'vamei'@'localhost' IDENTIFIED BY 'vameiisgood';
 
 ```
 
 在 settings.py 中，将 DATABASES 对象更改为:
 
-```
+```py
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -263,7 +263,7 @@ MySQL 是关系型数据库。但在 Django 的帮助下，我们不用直接编
 
 在传统的 MySQL 中，数据模型是表。在 Django 下，一个表为一个类。表的每一列是该类的一个属性。在 models.py 中，我们创建一个只有一列的表，即只有一个属性的类：
 
-```
+```py
 from django.db import models class Character(models.Model):
     name = models.CharField(max_length=200) def __unicode__(self): return self.name
 
@@ -304,7 +304,7 @@ from django.db import models class Character(models.Model):
 
 查看数据模型：
 
-```
+```py
 USE villa;
 SHOW TABLES;
 SHOW COLUMNS FROM west_character;
@@ -329,14 +329,14 @@ SHOW COLUMNS FROM west_character;
 
 数据模型虽然建立了，但还没有数据输入。为了简便，我们手动添加记录。打开 MySQL 命令行,并切换到相应数据库。添加记录：
 
-```
+```py
 INSERT INTO west_character (name) Values ('Vamei'); INSERT INTO west_character (name) Values ('Django'); INSERT INTO west_character (name) Values ('John');
 
 ```
 
 查看记录：
 
-```
+```py
  SELECT * FROM west_character;
 
 ```
@@ -345,7 +345,7 @@ INSERT INTO west_character (name) Values ('Vamei'); INSERT INTO west_character (
 
 下面我们从数据库中取出数据，并返回给 http 请求。在 west/views.py 中，添加视图。对于对应的请求，我们将从数据库中读取所有的记录，然后返回给客户端：
 
-```
+```py
 # -*- coding: utf-8 -*-
 
 from django.http import HttpResponse from west.models import Character def staff(request):
@@ -358,7 +358,7 @@ from django.http import HttpResponse from west.models import Character def staff
 
 为了让 http 请求能找到上面的程序，在 west/urls.py 增加 url 导航：
 
-```
+```py
 from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('',

@@ -12,7 +12,7 @@
 
 比如下面的例子：
 
-```
+```py
 print("I'm %s. I'm %d year old" % ('Vamei', 99))
 
 ```
@@ -24,14 +24,14 @@ print("I'm %s. I'm %d year old" % ('Vamei', 99))
 
 整个"I'm %s. I'm %d year old" % ('Vamei', 99) 实际上构成一个字符串表达式。我们可以像一个正常的字符串那样，将它赋值给某个变量。比如:
 
-```
+```py
 a = "I'm %s. I'm %d year old" % ('Vamei', 99) print(a)
 
 ```
 
 我们还可以用词典来传递真实值。如下：
 
-```
+```py
 print("I'm %(name)s. I'm %(age)d year old" % {'name':'Vamei', 'age':99})
 
 ```
@@ -86,7 +86,7 @@ precision 表示小数点后精度
 
 比如：
 
-```
+```py
 print("%+10x" % 10) print("%04d" % 5) print("%6.3f" % 2.3)
 
 ```

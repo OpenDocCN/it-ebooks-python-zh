@@ -11,7 +11,7 @@ CPython 作为最流行的 Python 环境，对于 CPU 密集型任务（CPU boun
 
 使用稍作改动的 [David Beazley 的](http://www.dabeaz.com/GIL/gilvis/measure2.py) [http://www.dabeaz.com/GIL/gilvis/measure2.py] CPU 密集测试代码（增加了循环进行多轮测试）， 你可以看到 CPython 与 PyPy 之间的执行差距。
 
-```
+```py
 # PyPy
 $ ./pypy -V
 Python 2.7.1 (7773f8fc4223, Nov 18 2011, 18:47:10)
@@ -24,7 +24,7 @@ $ ./pypy measure2.py
 0.0695300102234 
 ```
 
-```
+```py
 # CPython
 $ ./python -V
 Python 2.7.1
@@ -58,7 +58,7 @@ David Beazley 有一个关于 GIL 如何工作的 [指导](http://www.dabeaz.com
 
 这是一个 Cython 中的强类型例子。
 
-```
+```py
 def primes(int kmax):
 """有一些 Cython 附加关键字的素数计算 """
 
@@ -83,7 +83,7 @@ def primes(int kmax):
 
 将这个有一些附加关键字的寻找素数算法实现与下面这个纯 Python 实现比较：
 
-```
+```py
 def primes(kmax):
 """标准 Python 语法下的素数计算"""
 
@@ -107,7 +107,7 @@ def primes(kmax):
 
 注意，在 Cython 版本，在创建一个 Python 列表时，你声明了会被编译为 C 类型的整型和整型数组。
 
-```
+```py
 def primes(int kmax):
     """有一些 Cython 附加关键字的素数计算 """
 
@@ -116,7 +116,7 @@ def primes(int kmax):
     result = [] 
 ```
 
-```
+```py
 def primes(kmax):
     """标准 Python 语法下的素数计算"""
 
@@ -130,7 +130,7 @@ def primes(kmax):
 
 速度上有什么差异呢？看看这个！
 
-```
+```py
 import time
 #启动 pyx 编译器
 import pyximport
@@ -155,14 +155,14 @@ print "Python time: %s" %(t2-t1)
 
 这两行代码需要一些说明：
 
-```
+```py
 import pyximport
 pyximport.install() 
 ```
 
 pyximport 使得你可以导入 *.pyx 文件，（像 primesCy.pyx 这样的）。 pyximport.install() 命令使 Python 解释器可以打开 Cython 编译器直接编译出 *.so 格式 的 C 库。Cython 之后可以导入这个库到你的 Python 代码中，简便而有效。使用 time.time() 函数 你可以比较两个不同的在查找 500 个素数的调用长的时间消耗差异。在一个标准笔记本中 （双核 AMD E-450 1.6GHz），测量值是这样的：
 
-```
+```py
 Cython time: 0.0054 seconds
 
 Python time: 0.0566 seconds 
@@ -170,7 +170,7 @@ Python time: 0.0566 seconds
 
 而这个是嵌入的 [ARM beaglebone](http://beagleboard.org/Products/BeagleBone) [http://beagleboard.org/Products/BeagleBone] 机的输出结果：
 
-```
+```py
 Cython time: 0.0196 seconds
 
 Python time: 0.3302 seconds 

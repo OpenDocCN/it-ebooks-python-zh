@@ -18,7 +18,7 @@
 
 首先需要安装 apache2 和 mod_wsgi。在 ubuntu 下，我们可以使用 apt-get 安装：
 
-```
+```py
 sudo apt-get install apache2 sudo apt-get install libapache2-mod-wsgi
 
 ```
@@ -27,7 +27,7 @@ sudo apt-get install apache2 sudo apt-get install libapache2-mod-wsgi
 
 在 apache 的配置文件/etc/apache2/apache2.conf 中增加下面的配置： 
 
-```
+```py
 # Django
 WSGIScriptAlias / /home/vamei/mysite/mysite/wsgi.py
 WSGIPythonPath /home/vamei/mysite <Directory /home/vamei/mysite/mysite>
@@ -43,7 +43,7 @@ WSGIPythonPath /home/vamei/mysite <Directory /home/vamei/mysite/mysite>
 
 配置好后，重启 apache2
 
-```
+```py
 sudo /etc/init.d/apache2 restart
 
 ```
@@ -60,7 +60,7 @@ Django 的主要功能是动态的生成 HTTP 回复。很多媒体文件是静�
 
 我们可以在 apache2.conf 中添加如下配置：
 
-```
+```py
 Alias /media/ /home/vamei/media/
 Alias /static/ /home/vamei/static/ <Directory /home/vamei/static/> Order deny,allow
 Require all granted </Directory>

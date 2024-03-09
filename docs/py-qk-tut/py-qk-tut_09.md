@@ -66,7 +66,7 @@ help()用来查询的说明文档。你可以尝试一下
 
 现在我们继承 list 类，添加对"-"的定义
 
-```
+```py
 class superList(list): def __sub__(self, b):
         a = self[:]     # 这里，self 是 supeList 的对象。由于 superList 继承于 list，它可以利用和 list[:]相同的引用方法来表示整个对象。
         b = b[:] while len(b) > 0:

@@ -8,15 +8,15 @@ The balanced parentheses problem shown above is a specific caseof a more general
 
 相对编程语言的应用情形来说，上一节所讲的圆括号匹配只算是一个特例。不同种类的左符号和右符号的平衡实在是很常见的普遍问题。比如在 Python，左右方括号[ ]用于列表，左右大括号｛｝用于字典，左右圆括号（）用于元组。多种符号的混合应用中也要保持符号的平衡关系。如符号组成的字符串：
 
-```
+```py
 { { ( [ ] [ ] ) } ( ) }
 ```
 
-```
+```py
 [ [ { { ( ( ) ) } } ] ]
 ```
 
-```
+```py
 [ ] [ ] [ ] ( ) { }
 ```
 
@@ -28,15 +28,15 @@ Compare those with the following strings that are not balanced:
 
 对比以下字符串就是不平衡的：
 
-```
+```py
 ( [ ) ]
 ```
 
-```
+```py
 ( ( ( ) ] ) )
 ```
 
-```
+```py
 [ { ( ) ]
 ```
 
@@ -48,7 +48,7 @@ The Python program to implement this is shown in [*ActiveCode 5*](http://intera
 
 Python 语言的实现方法如下。与上一节的不同仅仅是调用一个辅助函数，matches，帮助检查符号各类的匹配。每个从栈顶弹出的元素必须检查是否与当前的右符号同一种类。如果不匹配，变量 balanced 被赋值为 False.
 
-```
+```py
 from pythonds.basic.stack import Stack
 
 def parChecker(symbolString):

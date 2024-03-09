@@ -6,7 +6,7 @@
 
 这里的 get_poetry 已经再也不需要 callback 与 errback 参数了。相反，返回了一个用户可能根据需要添加 callbacks 和 errbacks 的新 deferred。
 
-```
+```py
 def get_poetry(host, port):
     """
     Download a poem from the given host and port. This function
@@ -22,7 +22,7 @@ def get_poetry(host, port):
 
 这里的工厂使用一个 deferred 而不是 callback/errback 来初始化。一旦我们获取到 poem 或者没有连接到服务器，deferred 就会以返回一首诗歌或一个 failure 的方式被激活。
 
-```
+```py
 class PoetryClientFactory(ClientFactory):
 
     protocol = PoetryProtocol
@@ -45,7 +45,7 @@ class PoetryClientFactory(ClientFactory):
 
 这里仍然不用去改变 poetryProtocol。我们只需要更新 poetry_main 函数即可：
 
-```
+```py
 def poetry_main():
     addresses = parse_args()
 
@@ -111,7 +111,7 @@ def poetry_main():
 
 来看看我们第一个回调激活时的跟踪栈信息。运行[twisted-client-4/get-poetry-stack.py](http://github.com/jdavisp3/twisted-intro/blob/master/twisted-client-4/get-poetry-stack.py)让其连接你打开的服务器：
 
-```
+```py
  File "twisted-client-4/get-poetry-stack.py", line 129, in
     poetry_main()
   File "twisted-client-4/get-poetry-stack.py", line 122, in poetry_main

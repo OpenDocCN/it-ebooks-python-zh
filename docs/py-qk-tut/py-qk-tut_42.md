@@ -16,7 +16,7 @@
 
 比如下面的程序:
 
-```
+```py
 import multiprocessing as mul def f(x): return x**2 pool = mul.Pool(5)
 rel  = pool.map(f,[1,2,3,4,5,6,7,8,9,10])
 print(rel)
@@ -35,7 +35,7 @@ join()   wait 进程池中的全部进程。必须对 Pool 先调用 close()�
 
 有下面一个文件 download.txt。
 
-```
+```py
 www.sina.com.cn
 www.163.com
 www.iciba.com
@@ -59,7 +59,7 @@ www.douban.com
 
 在[Linux 进程间通信](http://www.cnblogs.com/vamei/archive/2012/10/10/2715398.html)中，我们已经讲述了共享内存(shared memory)的原理，这里给出用 Python 实现的例子:
 
-```
+```py
 # modified from official documentation
 import multiprocessing def f(n, a):
     n.value = 3.14 a[0] = 5 num = multiprocessing.Value('d', 0.0)
@@ -77,7 +77,7 @@ p.join() print num.value print arr[:]
 
 Manager 对象类似于服务器与客户之间的通信 (server-client)，与我们在 Internet 上的活动很类似。我们用一个进程作为服务器，建立 Manager 来真正存放资源。其它的进程可以通过参数传递或者根据地址来访问 Manager，建立连接后，操作服务器上的资源。在防火墙允许的情况下，我们完全可以将 Manager 运用于多计算机，从而模仿了一个真实的网络情境。下面的例子中，我们对 Manager 的使用类似于 shared memory，但可以共享更丰富的对象类型。 
 
-```
+```py
 import multiprocessing def f(x, arr, l):
     x.value = 3.14 arr[0] = 5 l.append('Hello')
 

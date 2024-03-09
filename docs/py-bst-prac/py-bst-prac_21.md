@@ -13,13 +13,13 @@
 
 安装 Fabric:
 
-```
+```py
 $ pip install fabric 
 ```
 
 下面的代码将会创建我们可以使用的两个任务： `memory_usage` 和 `deploy`。前者将会在每台机器上输出内存使用情况。后者将会 ssh 到每台服务器，cd 到我们的工程目录，激活虚拟环境，拉取最新的代码库，以及重启应用服务器。
 
-```
+```py
 from fabric.api import cd, env, prefix, run, task
 
 env.hosts = ['my_server1', 'my_server2']
@@ -38,7 +38,7 @@ def deploy():
 
 将上述代码保存到文件 `fabfile.py` 中，我们可以这样检查内存的使用：
 
-```
+```py
 $ fab memory_usage
 [my_server1] Executing task 'memory'
 [my_server1] run: free -m
@@ -57,7 +57,7 @@ $ fab memory_usage
 
 and we can deploy with:
 
-```
+```py
 $ fab deploy 
 ```
 
@@ -71,7 +71,7 @@ $ fab deploy
 
 Salt 支持 Python 2.6 和 2.7，并能通过 pip 安装：
 
-```
+```py
 $ pip install salt 
 ```
 
@@ -79,7 +79,7 @@ $ pip install salt
 
 下面的命令使用 ping 模块列出所有可用的从机：
 
-```
+```py
 $ salt '*' test.ping 
 ```
 
@@ -87,7 +87,7 @@ $ salt '*' test.ping
 
 下列命令行使用颗粒系统列举了所有可用的运行 CentOS 的从机：
 
-```
+```py
 $ salt -G 'os:CentOS' test.ping 
 ```
 
@@ -95,7 +95,7 @@ Salt 也提供状态系统。状态能够用来配置从机。
 
 例如，当一个从机接受读取下列状态文件的指令，他将会安装和启动 Apache 服务器：
 
-```
+```py
 apache:
   pkg:
     - installed
@@ -116,7 +116,7 @@ apache:
 
 下面是一个关注一些服务器过载的例子。如果任意一个测试（网络、CPU）失败，它将会发送一封邮件。
 
-```
+```py
 # 获取系统变量的函数:
 from psutil import cpu_percent, net_io_counters
 # 休眠函数:
@@ -166,7 +166,7 @@ server.quit()
 
 Ansible 支持 Python 2.6 和 2.7，并能使用 pip 安装：
 
-```
+```py
 $ pip install ansible 
 ```
 
@@ -174,14 +174,14 @@ Ansible requires an inventory file that describes the hosts to which it has acce
 
 清单文件示例如下： `hosts.yml`
 
-```
+```py
 [server_name]
 127.0.0.1 
 ```
 
 playbook 示例如下： `ping.yml`
 
-```
+```py
 ---
 - hosts: all
 
@@ -192,7 +192,7 @@ playbook 示例如下： `ping.yml`
 
 要运行 playbook：
 
-```
+```py
 $ ansible-playbook ping.yml -i hosts.yml --ask-pass 
 ```
 
@@ -210,7 +210,7 @@ Chef 通过使用定制的在 cookbook 中实现的食谱（配置元素）来�
 
 要创建一个简单的 cookbook，使用 [knife](https://docs.chef.io/knife.html) [https://docs.chef.io/knife.html] 命令：
 
-```
+```py
 knife cookbook create cookbook_name 
 ```
 
@@ -230,19 +230,19 @@ Puppet 代理安装于其状态需要被监控或者修改的节点上。作为�
 
 Facter 是一个有趣的工具，它用来传递 Puppet 获取到的基本系统信息。这些信息可以在编写 Puppet 模块的时候作为变量来引用。
 
-```
+```py
 $ facter kernel
 Linux 
 ```
 
-```
+```py
 $ facter operatingsystem
 Ubuntu 
 ```
 
 在 Puppet 中编写模块十分直截了当。Puppet 清单（manifest）组成了 Puppet 模块。Puppet 清单以扩展名 `.pp` 结尾。下面是一个 Puppet 中 ‘Hello World’的例子。
 
-```
+```py
 notify { 'This message is getting logged into the agent node': #As nothing is specified in the body the resource title
  #the notification message by default.
 } 
@@ -250,7 +250,7 @@ notify { 'This message is getting logged into the agent node': #As nothing is sp
 
 这里是另一个基于系统的逻辑的例子。注意操纵系统信息是如何作为变量使用的，变量前加了前缀符号 `$` 。类似的，其他信息比如说主机名就能用 `$hostname` 来引用。
 
-```
+```py
 notify{ 'Mac Warning':
     message => $operatingsystem ? {
         'Darwin' => 'This seems to be a Mac.',
@@ -261,7 +261,7 @@ notify{ 'Mac Warning':
 
 Puppet 有多种资源类型，需要时可以使用包-文件-服务（package-file-service）范式来承担配置管理的主要任务。下面的 Puppet 代码确保了系统中安装了 OpenSSH-Server 包，并且在每次 sshd 配置文件改变时重启 sshd 服务。
 
-```
+```py
 package { 'openssh-server':
     ensure => installed,
 }

@@ -23,7 +23,7 @@
 ![](img/364c49edf97f5a4555f88e920b802498.jpg)
 图 1 一棵小树
 
-```
+```py
 myTree = ['a',   #root
       ['b',  #left subtree
        ['d' [], []],
@@ -37,7 +37,7 @@ myTree = ['a',   #root
 
 有没有发现我们可以直接用列表的索引来访问子树。树根是 myTree[0],左子树是 myTree[1],右子树是 myTree[2]。下面的代码就是用列表创建了一棵树，完成之后，就可以访问它的根和子树，它的好处在于列表中的“元素列表”就代表了子树，与树有相同的结构，所以它的结构是递归的。如果一个子树有根节点，但是左右子树都是空列表，那么它就是叶子。另一个好处是这种方法产生的树可以推广到“多叉树”而不仅是二叉树，因为另一个子树也不过是一个列表而已。
 
-```
+```py
 myTree = ['a', ['b', ['d',[],[]], ['e',[],[]] ], ['c', ['f',[],[]], []] ]
 print(myTree)
 print('left subtree = ', myTree[1])
@@ -112,7 +112,7 @@ BinaryTree 函数简单地创建了一个列表，内中只有一个根节点和
 
 下面是完整的函数代码。
 
-```
+```py
 def BinaryTree(r):
     return [r, [], []]
 
@@ -172,23 +172,23 @@ print(getRightChild(getRightChild(r)))
 
 **Listing4**
 
-```
+```py
 classBinaryTree:
 ```
 
-```
+```py
     def__init__(self,rootObj):
 ```
 
-```
+```py
         self.key= rootObj
 ```
 
-```
+```py
         self.leftChild=None
 ```
 
-```
+```py
         self.rightChild=None
 ```
 
@@ -199,60 +199,60 @@ classBinaryTree:
 **Listing5**
 
 |  
-```
+```py
 1
 ```
 
-```
+```py
 2
 ```
 
-```
+```py
 3
 ```
 
-```
+```py
 4
 ```
 
-```
+```py
 5
 ```
 
-```
+```py
 6
 ```
 
-```
+```py
 7
 ```
 
  |  
-```
+```py
 definsertLeft(self,newNode):
 ```
 
-```
+```py
     ifself.leftChild==None:
 ```
 
-```
+```py
         self.leftChild= BinaryTree(newNode)
 ```
 
-```
+```py
     else:
 ```
 
-```
+```py
         t = BinaryTree(newNode)
 ```
 
-```
+```py
         t.leftChild=self.leftChild
 ```
 
-```
+```py
         self.leftChild= t
 ```
 
@@ -264,31 +264,31 @@ definsertLeft(self,newNode):
 
 **Listing6**
 
-```
+```py
 definsertRight(self,newNode):
 ```
 
-```
+```py
     ifself.rightChild==None:
 ```
 
-```
+```py
         self.rightChild= BinaryTree(newNode)
 ```
 
-```
+```py
     else:
 ```
 
-```
+```py
         t = BinaryTree(newNode)
 ```
 
-```
+```py
         t.rightChild=self.rightChild
 ```
 
-```
+```py
         self.rightChild= t
 ```
 
@@ -296,41 +296,41 @@ definsertRight(self,newNode):
 
 **Listing7**
 
-```
+```py
 defgetRightChild(self):
 ```
 
-```
+```py
     returnself.rightChild
 ```
 
-```
+```py
 defgetLeftChild(self):
 ```
 
-```
+```py
     returnself.leftChild
 ```
 
-```
+```py
 defsetRootVal(self,obj):
 ```
 
-```
+```py
     self.key= obj
 ```
 
-```
+```py
 defgetRootVal(self):
 ```
 
-```
+```py
     returnself.key
 ```
 
 现在我们完成了创建和操作树所需要的全部程序段，现在用它们来验证一下他们树的结构。我们先创建一个简单的树包含一个根和两个节点，b 和 c。下面的代码就是创建树，并为键，左孩子和右孩子赋值。注意左孩子和右孩子和根都是同一个类 BinaryTree 的不同对象，如同前面我们的递归定义一样，这使得我们可以象处理二叉树一样处理它的子树。
 
-```
+```py
 class BinaryTree:
     def __init__(self,rootObj):
         self.key = rootObj

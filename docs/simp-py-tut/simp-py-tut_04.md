@@ -12,7 +12,7 @@
 
 要测试你是否已经随着你的 Linux 包安装了 Python，你可以打开一个 shell 程序（就像 konsole 或 gnome-terminal）然后输入如下所示的命令**`python -V`**。
 
-```
+```py
 $ python -V
 Python 2.3.4 
 ```
@@ -23,7 +23,7 @@ Python 2.3.4
 
 如果你得到像这样的消息：
 
-```
+```py
 $ python -V
 bash: python: command not found 
 ```

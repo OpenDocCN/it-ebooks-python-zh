@@ -64,7 +64,7 @@ Twisted 内置了很多实现了通用协议的 Protocol。你可以在[twisted.
 
 在第二个版本中，sockets 不会再出现了。我们甚至不需要引入 socket 模块也不用引用 socket 对象和文件描述符。取而代之的是，我们告诉 reactor 来创建到诗歌服务器的连接，代码如下面所示：
 
-```
+```py
 factory = PoetryClientFactory(len(addresses))
 
 from twisted.internet import reactor
@@ -80,7 +80,7 @@ for address in addresses:
 
 我们同样利用了 Twisted 的 Factory 已经实现了 buildProtocol 方法这一优势来为我们所用。我们要在子类中调用基类中的实现：
 
-```
+```py
 def buildProtocol(self, address):
     proto = ClientFactory.buildProtocol(self, address)
     proto.task_num = self.task_num
@@ -90,7 +90,7 @@ def buildProtocol(self, address):
 
 基类怎么会知道我们要创建什么样的 Protocol 呢？注意，我们的 PoetryClientFactory 中有一个 protocol 类变量：
 
-```
+```py
 class PoetryClientFactory(ClientFactory):
 
     task_num = 1
@@ -112,7 +112,7 @@ class PoetryClientFactory(ClientFactory):
 
 一旦初始化到这一步后，Protocol 开始其真正的工作—将低层的数据流翻译成高层的协议规定格式的消息。处理接收到数据的主要方法是 dataReceived，我们的客户端是这样实现的：
 
-```
+```py
 def dataReceived(self, data):
     self.poem += data
     msg = 'Task %d: got %d bytes of poetry from %s'
@@ -125,7 +125,7 @@ def dataReceived(self, data):
 
 我们来看一下 dataReceved 运行时的快照。在 2.0 版本相同的目录下有一个 twisted-client-2/get-poetry-stack.py。它与 2.0 版本的不同之处只在于：
 
-```
+```py
 def dataReceived(self, data):
     traceback.print_stack()
     os._exit(0) 
@@ -133,13 +133,13 @@ def dataReceived(self, data):
 
 这样一改，我们就能打印出跟踪堆栈的信息，然后离开程序，可以用下面的命令来运行它：
 
-```
+```py
 python twisted-client-2/get-poetry-stack.py 10000 
 ```
 
 你会得到内容如下的跟踪堆栈：
 
-```
+```py
 File "twisted-client-2/get-poetry-stack.py", line 125, in
     poetry_main()
 
@@ -157,7 +157,7 @@ File "twisted-client-2/get-poetry-stack.py", line 58, in dataReceived
 
 一旦诗歌下载完成，PoetryProtocol 就会通知它的 PooetryClientFactory：
 
-```
+```py
 def connectionLost(self, reason):     
   self.poemReceived(self.poem) 
 def poemReceived(self, poem):    
@@ -168,7 +168,7 @@ def poemReceived(self, poem):
 
 工厂会在所有的诗歌都下载完毕后关闭 reactor。再次重申：我们代码的工作就是用来下载诗歌-这意味我们的 PoetryClientFactory 缺少复用性。我们将在下一部分修正这一缺陷。值得注意的是，poem_finish 回调函数是如何通过跟踪剩余诗歌数的：
 
-```
+```py
  ...
     self.poetry_count -= 1
 
@@ -180,7 +180,7 @@ def poemReceived(self, poem):
 
 新的客户端实现在处理错误上也比先前的优雅的多，下面是 PoetryClientFactory 处理错误连接的回调实现代码：
 
-```
+```py
 def clientConnectionFailed(self, connector, reason):
     print 'Failed to connect to:', connector.getDestination()
     self.poem_finished() 

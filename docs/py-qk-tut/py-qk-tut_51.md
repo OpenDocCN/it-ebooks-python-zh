@@ -16,7 +16,7 @@ Django 提供一个管理数据库的 app，即 django.contrib.admin。这是 Dj
 
 admin 界面位于[site]/admin 这个 URL。这通常在 mysite/urls.py 中已经设置好。比如，下面是我的 urls.py:
 
-```
+```py
 from django.conf.urls import patterns, include, url from django.contrib import admin
 
 admin.autodiscover() # admin
@@ -29,7 +29,7 @@ admin.autodiscover() # admin
 
 为了让 admin 界面管理某个数据模型，我们需要先注册该数据模型到 admin。比如，我们之前在 west 中创建的模型 Character。修改 west/admin.py:
 
-```
+```py
 from django.contrib import admin from west.models import Character # Register your models here.
 admin.site.register(Character)
 
@@ -49,7 +49,7 @@ admin.site.register(Character)
 
 先在 west/models.py 中增加一个更复杂的数据模型：
 
-```
+```py
 from django.db import models # Create your models here.
 class Contact(models.Model):
     name = models.CharField(max_length=200)
@@ -70,7 +70,7 @@ class Contact(models.Model):
 
 在 west/admin.py 注册多个模型并显示：
 
-```
+```py
 from django.contrib import admin from west.models import Character,Contact,Tag # Register your models here.
 admin.site.register([Character, Contact, Tag])
 
@@ -86,7 +86,7 @@ admin.site.register([Character, Contact, Tag])
 
 我们可以自定义管理页面，来取代默认的页面。比如上面的"add"页面。我们想只显示 name 和 email 部分。修改 west/admin.py:
 
-```
+```py
 from django.contrib import admin from west.models import Character,Contact,Tag # Register your models here.
 class ContactAdmin(admin.ModelAdmin):
     fields = ('name', 'email')
@@ -102,7 +102,7 @@ admin.site.register([Character, Tag])
 
 我们还可以将输入栏分块，给每一块输入栏以自己的显示格式。修改 west/admin.py 为：
 
-```
+```py
 from django.contrib import admin from west.models import Character,Contact,Tag # Register your models here.
 class ContactAdmin(admin.ModelAdmin):
     fieldsets = (
@@ -132,7 +132,7 @@ Advance 部分旁边有一个 Show 按钮，用于展开。
 
 修改 west/admin.py：
 
-```
+```py
 from django.contrib import admin from west.models import Character,Contact,Tag # Register your models here.
 class TagInline(admin.TabularInline):
     model = Tag class ContactAdmin(admin.ModelAdmin):
@@ -164,7 +164,7 @@ admin.site.register([Character])
 
 我们也可以自定义该页面的显示，比如在列表中显示更多的栏目，只需要在 ContactAdmin 中增加 list_display 属性:
 
-```
+```py
 from django.contrib import admin from west.models import Character,Contact,Tag # Register your models here.
 class ContactAdmin(admin.ModelAdmin):
     list_display = ('name','age', 'email') # list
@@ -179,7 +179,7 @@ admin.site.register([Character, Tag])
 
 我们还可以为该列表页增加搜索栏。搜索功能在管理大量记录时非常有用。使用 search_fields 说明要搜索的属性：
 
-```
+```py
 from django.contrib import admin from west.models import Character,Contact,Tag # Register your models here.
 class ContactAdmin(admin.ModelAdmin):
     list_display = ('name','age', 'email') 

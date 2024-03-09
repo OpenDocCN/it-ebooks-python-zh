@@ -19,7 +19,7 @@
 
 下面我们只涉及 `IService` 的某些方法, 跳过那些很显而易见的或者在简单的 Twisted 程序中用不到的高级方法. [startService](http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.0.0/twisted/application/service.py#L130) 和 [stopService](http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.0.0/twisted/application/service.py#L135) 是 `IService` 的两个关键方法：
 
-```
+```py
 def startService():
     """
     Start the service.
@@ -56,7 +56,7 @@ def stopService():
 
 服务可以被组织成集合以便一起启动和停止.下面来看看这里最后一个 `IService` 方法: [setServiceParent](http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.0.0/twisted/application/service.py#L107),它添加一个服务到集合:
 
-```
+```py
 def setServiceParent(parent):
     """
     Set the parent of the service.
@@ -96,7 +96,7 @@ Twisted 在其模块 [twistd.python.log](http://twistedmatrix.com/trac/browser/t
 
 好吧,让我们看看代码.我们已经将快诗服务器升级为使用 `twistd`. 源码在 [twisted-server-3/fastpoetry.py](https://github.com/jdavisp3/twisted-intro/blob/master/twisted-server-3/fastpoetry.py#L1). 首先我们有了 [诗歌协议](https://github.com/jdavisp3/twisted-intro/blob/master/twisted-server-3/fastpoetry.py#L9):
 
-```
+```py
 class PoetryProtocol(Protocol):
 
     def connectionMade(self):
@@ -111,7 +111,7 @@ class PoetryProtocol(Protocol):
 
 这里是 [工厂类](https://github.com/jdavisp3/twisted-intro/blob/master/twisted-server-3/fastpoetry.py#L19):
 
-```
+```py
 class PoetryFactory(ServerFactory):
 
     protocol = PoetryProtocol
@@ -122,7 +122,7 @@ class PoetryFactory(ServerFactory):
 
 正如你看到的，诗不再储存在工厂中，而是储存在一个被工厂引用的服务对象上。注意这边协议是如何通过工厂从服务获得诗歌.最后,看一下 [服务类](https://github.com/jdavisp3/twisted-intro/blob/master/twisted-server-3/fastpoetry.py#L27):
 
-```
+```py
 class PoetryService(service.Service):
 
     def __init__(self, poetry_file):
@@ -150,7 +150,7 @@ class PoetryService(service.Service):
 
 如果我们在同一个域运行多个诗歌服务,我们将为每一个服务准备一个 `tac` 文件(因此你可以明白为什么 `tac` 文件通常不包含任何一般目的的代码).在我们的例子中, `tac` 文件被配置为使 [poetry/ecstasy.txt](https://github.com/jdavisp3/twisted-intro/blob/master/poetry/ecstasy.txt) 运行在回环接口的 10000 号端口:
 
-```
+```py
 # configuration parameters
 port = 10000
 iface = 'localhost'
@@ -159,7 +159,7 @@ poetry_file = 'poetry/ecstasy.txt'
 
 注意 `twistd` 并不知道这些特定变量,我们仅仅将这些配置值统一的放在这里.事实上, `twistd` 只关心整个文件中的一个变量,我们即将看到.下面我们开始建立我们的应用:
 
-```
+```py
 # this will hold the services that combine to form the poetry server
 top_service = service.MultiService() 
 ```
@@ -168,7 +168,7 @@ top_service = service.MultiService()
 
 作为一个服务集合, `MultiService` 把我们的诗歌服务组织在一起.同时作为一个服务, `MultiService` 启动时将启动它的子服务,关闭时将关闭它的子服务.让我们向服务集合 [添加](https://github.com/jdavisp3/twisted-intro/blob/master/twisted-server-3/fastpoetry.py#L48) 第一个诗歌服务:
 
-```
+```py
 # the poetry service holds the poem. it will load the poem when it is
 # started
 poetry_service = PoetryService(poetry_file)
@@ -177,7 +177,7 @@ poetry_service.setServiceParent(top_service)
 
 这是非常简单的内容.我们仅创建了 `PoetryService`,然后用 `setServiceParent` 方法将其添加到服务集合.下面我们添加 **TCP** 监听器:
 
-```
+```py
 # the tcp service connects the factory to a listening socket. it will
 # create the listening socket when it is started
 factory = PoetryFactory(poetry_service)
@@ -191,7 +191,7 @@ Twisted 为创建连接到任意工厂的 **TCP** 监听套接字提供了 `TCPS
 
 既然我们已经将两个服务绑定到服务集合.现只需创建我们的应用,并且将它添加到集合:
 
-```
+```py
 # this variable has to be named 'application'
 application = service.Application("fastpoetry")
 
@@ -209,7 +209,7 @@ top_service.setServiceParent(application)
 
 让我们的新服务器运转起来.作为 `tac` 文件,我们需要用 `twistd` 启动它.当然,它仅仅是一个普通的 Python 文件.所以我们首先用 `python` 命令启动,再看看会发生什么:
 
-```
+```py
 python twisted-server-3/fastpoetry.py 
 ```
 
@@ -217,13 +217,13 @@ python twisted-server-3/fastpoetry.py
 
 让我们用 `twistd` 脚本来实际运行这个服务器:
 
-```
+```py
 twistd --nodaemon --python twisted-server-3/fastpoetry.py 
 ```
 
 运行以上命令后会看到如下输出:
 
-```
+```py
 2010-06-23 20:57:14-0700 [-] Log opened.
 2010-06-23 20:57:14-0700 [-] twistd 10.0.0 (/usr/bin/python 2.6.5) starting up.
 2010-06-23 20:57:14-0700 [-] reactor class: twisted.internet.selectreactor.SelectReactor.
@@ -240,13 +240,13 @@ twistd --nodaemon --python twisted-server-3/fastpoetry.py
 
 下面测试取诗服务器, 通过我们的诗歌代理或者 `netcat` 命令:
 
-```
+```py
 netcat localhost 10000 
 ```
 
 这将从服务器抓取诗歌,并且你可以看到一行如下的日志:
 
-```
+```py
 2010-06-27 22:17:39-0700 [__builtin__.PoetryFactory] sending 3003 bytes 
     of poetry to IPv4Address(TCP, '127.0.0.1', 58208) 
 ```
@@ -255,7 +255,7 @@ netcat localhost 10000
 
 现在可以用 `Ctrl-C` 来终止这个服务器. 你可以看到如下输出:
 
-```
+```py
 2010-06-29 21:32:59-0700 [-] Received SIGINT, shutting down.
 2010-06-29 21:32:59-0700 [-] (Port 10000 Closed)
 2010-06-29 21:32:59-0700 [-] Stopping factory <__builtin__.PoetryFactory instance at 0x28d38c0>
@@ -267,13 +267,13 @@ netcat localhost 10000
 
 好啦, 现在再次启动服务器:
 
-```
+```py
 twistd --nodaemon --python twisted-server-3/fastpoetry.py 
 ```
 
 现在打开另一个 shell 并切换到 `twisted-intro` 目录. 其中有一个叫 `twistd.pid` 的文件. 它是被 `twistd` 创建的, 包含我们这个运行服务器进程号. 试一下下面的方法来关闭服务器:
 
-```
+```py
 kill `cat twistd.pid` 
 ```
 
@@ -283,7 +283,7 @@ kill `cat twistd.pid`
 
 现在让我们以守护进程的方式启动服务器, 这是 `twistd` 的默认方式:
 
-```
+```py
 twistd --python twisted-server-3/fastpoetry.py 
 ```
 
@@ -295,7 +295,7 @@ twistd --python twisted-server-3/fastpoetry.py
 
 由于这个服务器不再与 shell 相连(或者除了 [init](http://en.wikipedia.org/wiki/Init) 的任何其他进程), 你不能通过 `Ctrl-C` 关闭它. 作为一个真的守护进程, 即使你登出它也继续运行.但是你可以通过 `twistd.pid` 文件终止这个进程:
 
-```
+```py
 kill `cat twistd.pid` 
 ```
 
@@ -315,7 +315,7 @@ kill `cat twistd.pid`
 
 Twisted 插件通过定义 `Application` 提供了一种方法, 可以实现个性化的命令行选项, 进而 `twistd` 动态的发现和运行. Twisted 本身具有一套插件,你可以通过运行不带参数的 `twistd` 命令来查看它们. 现在就试一试, 在 `twisted-intro` 目录外. 在帮助部分后面,你可以看到如下输出:
 
-```
+```py
 ...
 ftp                An FTP server.
 telnet             A simple, telnet-based remote debugging service.
@@ -327,7 +327,7 @@ socks              A SOCKSv4 proxy service.
 
 每个插件同样有它们自己的选项,你可以通过 `--help` 来发现它们. 让我们看看 `ftp` 插件有什么选项:
 
-```
+```py
 twistd ftp --help 
 ```
 
@@ -335,7 +335,7 @@ twistd ftp --help
 
 我们可以像运行诗歌服务器一样运行 `ftp` 服务器. 但由于它是一个插件,我们可以仅仅通过它的名字运行:
 
-```
+```py
 twistd --nodaemon ftp --port 10001 
 ```
 
@@ -370,7 +370,7 @@ OK, 让我们把诗歌服务器转化为 Twisted 的插件. 首先我们需要�
 
 下面将 [声明](https://github.com/jdavisp3/twisted-intro/blob/master/twisted/plugins/fastpoetry_plugin.py#L45) 这个插件的命令行选项:
 
-```
+```py
 class Options(usage.Options):
 
       optParameters = [
@@ -384,7 +384,7 @@ class Options(usage.Options):
 
 这里就不必进一步解释上述选项的含义了,其含义很显然. 下面我们来看一下插件的主要部分 [服务制造类](https://github.com/jdavisp3/twisted-intro/blob/master/twisted/plugins/fastpoetry_plugin.py#L56):
 
-```
+```py
 class PoetryServiceMaker(object):
 
     implements(service.IServiceMaker, IPlugin)
@@ -414,7 +414,7 @@ class PoetryServiceMaker(object):
 
 定义了上述类, 还有 [一步](https://github.com/jdavisp3/twisted-intro/blob/master/twisted/plugins/fastpoetry_plugin.py#L81) :
 
-```
+```py
 service_maker = PoetryServiceMaker() 
 ```
 
@@ -426,19 +426,19 @@ service_maker = PoetryServiceMaker()
 
 现在让我们获取一些关于插件的帮助信息:
 
-```
+```py
 twistd fastpoetry --help 
 ```
 
 你可以看到关于 `fastpoetry` 插件选项的帮助性文字. 最后,运行这个插件:
 
-```
+```py
 twistd fastpoetry --port 10000 --poem poetry/ecstasy.txt 
 ```
 
 这将以守护进程方式启动 `fastpoetry` 服务器. 与前面例子一样, 你会在当期文件夹看到 `twistd.pid` 和 `twistd.log` 文件. 测试完我们的服务器, 用一下命令关闭:
 
-```
+```py
 kill `cat twistd.pid` 
 ```
 

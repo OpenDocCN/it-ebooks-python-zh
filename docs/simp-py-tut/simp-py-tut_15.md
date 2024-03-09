@@ -19,7 +19,7 @@
 
 考虑一个简单的`print`语句。假如我们把`print`误拼为`Print`，注意大写，这样 Python 会 引发 一个语法错误。
 
-```
+```py
 >>> Print 'Hello World'
     File "<stdin>", line 1
       Print 'Hello World'
@@ -37,7 +37,7 @@ Hello World
 
 我们**尝试**读取用户的一段输入。按**Ctrl-d**，看一下会发生什么。
 
-```
+```py
 >>> s = raw_input('Enter something --> ')
 Enter something --> Traceback (most recent call last):
   File "<stdin>", line 1, in ?
@@ -50,7 +50,7 @@ Python 引发了一个称为`EOFError`的错误，这个错误基本上意味着
 
 我们可以使用`try..except`语句来处理异常。我们把通常的语句放在 try-块中，而把我们的错误处理语句放在 except-块中。
 
-```
+```py
 #!/usr/bin/python
 # Filename: try_except.py
 
@@ -72,7 +72,7 @@ print 'Done'
 
 ## 输出
 
-```
+```py
 $ python try_except.py
 Enter something --&gt;
 Why did you do an EOF on me?
@@ -98,7 +98,7 @@ Done
 
 你可以使用`raise`语句 引发 异常。你还得指明错误/异常的名称和伴随异常 触发的 异常对象。你可以引发的错误或异常应该分别是一个`Error`或`Exception`类的直接或间接导出类。
 
-```
+```py
 #!/usr/bin/python
 # Filename: raising.py
 
@@ -127,7 +127,7 @@ else:
 
 ## 输出
 
-```
+```py
 $ python raising.py
 Enter something --&gt;
 Why did you do an EOF on me?
@@ -153,7 +153,7 @@ No exception was raised.
 
 假如你在读一个文件的时候，希望在无论异常发生与否的情况下都关闭文件，该怎么做呢？这可以使用`finally`块来完成。注意，在一个`try`块下，你可以同时使用`except`从句和`finally`块。如果你要同时使用它们的话，需要把一个嵌入另外一个。
 
-```
+```py
 #!/usr/bin/python
 # Filename: finally.py
 
@@ -176,7 +176,7 @@ finally:
 
 ## 输出
 
-```
+```py
 $ python finally.py
 Programming is fun
 When the work is done

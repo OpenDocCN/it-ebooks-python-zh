@@ -10,7 +10,7 @@ Python 具有良好的时间和日期管理功能。实际上，计算机只会�
 
 time 包基于 C 语言的库函数(library functions)。Python 的解释器通常是用 C 编写的，Python 的一些函数也会直接调用 C 语言的库函数。
 
-```
+```py
 import time print(time.time())   # wall clock time, unit: second
 print(time.clock())  # processor clock time, unit: second
 
@@ -18,7 +18,7 @@ print(time.clock())  # processor clock time, unit: second
 
 time.sleep()可以将程序置于休眠状态，直到某时间间隔之后再唤醒程序，让程序继续运行。
 
-```
+```py
 import time print('start')
 time.sleep(10)     # sleep for 10 seconds
 print('wake up')
@@ -29,7 +29,7 @@ print('wake up')
 
 time 包还定义了 struct_time 对象。该对象实际上是将挂钟时间转换为年、月、日、时、分、秒……等日期信息，存储在该对象的各个属性中(tm_year, tm_mon, tm_mday...)。下面方法可以将挂钟时间转换为 struct_time 对象:
 
-```
+```py
 st = time.gmtime()      # 返回 struct_time 格式的 UTC 时间
 st = time.localtime()   # 返回 struct_time 格式的当地时间, 当地时区根据系统环境决定。 
 s  = time.mktime(st)    # 将 struct_time 格式转换成 wall clock time
@@ -46,7 +46,7 @@ datetime 可以理解为 date 和 time 两个组成部分。date 是指年月日
 
 比如说我现在看到的时间，是 2012 年 9 月 3 日 21 时 30 分，我们可以用如下方式表达：
 
-```
+```py
 import datetime
 t = datetime.datetime(2012,9,3,21,30) print(t)
 
@@ -62,7 +62,7 @@ year, month, day, weekday   # weekday 表示周几
 
 datetime 包还定义了时间间隔对象(timedelta)。一个时间点(datetime)加上一个时间间隔(timedelta)可以得到一个新的时间点(datetime)。比如今天的上午 3 点加上 5 个小时得到今天的上午 8 点。同理，两个时间点相减会得到一个时间间隔。
 
-```
+```py
 import datetime
 t = datetime.datetime(2012,9,3,21,30)
 t_next = datetime.datetime(2012,9,5,23,30)
@@ -71,7 +71,7 @@ delta2 = datetime.timedelta(weeks = 3) print(t + delta1) print(t + delta2)
 
 ```
 
-```
+```py
 print(t_next - t)
 
 ```
@@ -86,7 +86,7 @@ print(t_next - t)
 
 一个方法是用上一讲的正则表达式来搜索字符串。但时间信息实际上有很明显的特征，我们可以用格式化读取的方式读取时间信息。
 
-```
+```py
 from datetime import datetime
 format = "output-%Y-%m-%d-%H%M%S.txt" str = "output-1997-12-23-030000.txt" t = datetime.strptime(str, format)
 
@@ -98,7 +98,7 @@ strptime, p = parsing
 
 反过来，我们也可以调用 datetime 对象的 strftime()方法，来将 datetime 对象转换为特定格式的字符串。比如上面所定义的 t_next,
 
-```
+```py
 print(t_next.strftime(format))
 
 ```

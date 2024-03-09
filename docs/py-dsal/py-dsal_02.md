@@ -61,7 +61,7 @@ The following stack implementation ([*ActiveCode1*](http://interactivepython.org
 
 代码段：
 
-```
+```py
 class Stack:
 
     def __init__(self):

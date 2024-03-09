@@ -90,7 +90,7 @@ reversed([1,5,3])                # 返回反序的序列，也就
 
 **类，对象，属性** 
 
-```
+```py
 # define class
 class Me(object): def test(self): print "Hello!" def new_test():
     print "New Hello!"

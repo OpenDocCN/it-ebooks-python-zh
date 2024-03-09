@@ -6,7 +6,7 @@
 
 找零问题是数值优化的经典问题之一，假设你是一个自动售货机厂商的程序员，公司决定，为每次找交易的找零，计算需要的最小的硬币数量，从而实现流程化。如果一个顾客投入了 1 美元，买了 37 美分的东西，需要最小的硬币是多少？答案是 6 个：2 个 25 美分（译者：不知道作者为什么不使用 50 美分的硬币），1 个 10 美分，3 个 1 美分。答案怎么来的？我们从最大的硬币开始，尽可能多地使用大额硬币，直到余额不够这个面值，然后再尽可能多地使用第二面额的硬币，以此类推。这种方法叫做“贪婪方法”，因为我们总是对正在计算的问题，作出当前看来最好的结果。
 
-```
+```py
 贪婪方法在美国硬币问题上回答正确，但如果你的公司要把自动售货机出口到 Lower Elbonia(译注：Elbonia 是系列漫画 Dilbert 中一个杜撰的原东欧共产主义国家。Lower Elbonia 指这国家的南部。)，那里除了平时所用的 1，5，10 和 25 美分硬币，还有一种 21 美分的。这时贪婪算法就失灵了，因为它仍然会算出 6 个硬币，但正确答案是 3 个 21 美分的硬币。
 ```
 
@@ -62,7 +62,7 @@ print(recMC([1,5,10,25],63))
 
 减少计算量的关键是记住已经得到的中间结果。一个简单方法是把已经计算出最小值的找钱保存在表里，每次计算之前，先查一下表看看这个结果是否已知。如果已知就直接套用不再计算。下面是优化的算法：
 
-```
+```py
 def recDC(coinValueList,change,knownResults):
   minCoins = change
   if change in coinValueList:
@@ -104,7 +104,7 @@ print(recDC([1,5,10,25],63,[0]*64))
 
 **Listing 8**
 
-```
+```py
 def dpMakeChange(coinValueList,change,minCoins):
    for centsinrange(change+1):
      coinCount = cents
@@ -123,7 +123,7 @@ def dpMakeChange(coinValueList,change,minCoins):
 
 注意我们打印硬币的时候，是从 coinsUsed 数组里直接输出的，例如查表 63 的位置，得到 21，然后 63-21=42，查找 42 的位置，再次得到 21，最后在 21 的位置也查到了 21，也就是说是 3 个 21 分的硬币。
 
-```
+```py
 def dpMakeChange(coinValueList,change,minCoins,coinsUsed):
   for cents in range(change+1):
      coinCount = cents

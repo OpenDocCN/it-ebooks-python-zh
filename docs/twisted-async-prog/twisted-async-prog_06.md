@@ -6,14 +6,14 @@
 
 我需要一种方式来将诗歌传给开始时请求它的函数。在同步程序中我们会声明这样的 API:
 
-```
+```py
 def get_poetry(host, post):
     """Return a poem from the poetry server at the given host and port.""" 
 ```
 
 当然了，我们不能这样做。诗歌在没有全部下载完前上面的程序是需要被阻塞的，否则的话，就无法按照上面的描述那样去工作。但是这是一个交互式的程序，因此对于阻塞在 socket 是不会允许的。我们需要一种方式来告诉调用者何时诗歌下载完毕，无需在诗歌传输过程中将其阻塞。这恰好又是 Twisted 要解决的问题。Twisted 需要告诉我们的代码何时 socket 上可以读写、何时超时等等。我们前面已经看到 Twisted 使用回调机制来解决问题。因此，我们也可以使用回调：
 
-```
+```py
 def get_poetry(host, port, callback):
     """
     Download a poem from the given host and port and invoke
@@ -32,7 +32,7 @@ def get_poetry(host, port, callback):
 
 可以在[twisted-client-3/get-poetry.py](http://github.com/jdavisp3/twisted-intro/blob/master/twisted-client-3/get-poetry.py)看到 3.0 版本。这个版本实现了 get_poetry 方法：
 
-```
+```py
 def get_poetry(host, port, callback):
     from twisted.internet import reactor
     factory = PoetryClientFactory(callback)
@@ -41,7 +41,7 @@ def get_poetry(host, port, callback):
 
 这个版本新的变动就是将一个回调函数传递给了 PoetryClientFactory。这个 Factory 用这个回调来将下载完毕的诗歌传回去。
 
-```
+```py
 class PoetryClientFactory(ClientFactory):
     protocol = PoetryProtocol
 
@@ -54,7 +54,7 @@ class PoetryClientFactory(ClientFactory):
 
 值得注意的是，这个版本中的工厂因其不用负责关闭 reactor 而比 2.0 版本的简单多了。它也将处理连接失败的工作除去了，后面我们会改正这一点。PoetryProtocol 无需进行任何变动，我们就直接复用 2.1 版本的：
 
-```
+```py
 class PoetryProtocol(Protocol):
     poem = ''
     def dataReceived(self, data):
@@ -67,7 +67,7 @@ class PoetryProtocol(Protocol):
 
 通过这一变动，get_poetry,PoetryClientFactory 与 PoetryProtocol 类都完全可以复用了。它们都仅仅与诗歌下载有关。所有启动与关闭 reactor 的逻辑都在 main 中实现：
 
-```
+```py
 def poetry_main():
     addresses = parse_args()
     from twisted.internet import reactor
@@ -108,7 +108,7 @@ def poetry_main():
 
 貌似大部分 Python 程序与 Python 模块都是同步的。如果我们正在写一个同样需要下载诗歌的同步方式的程序，我可能会通过在我们的代码中添加下面几句来实现同步方式下载诗歌的客户端版本：
 
-```
+```py
 ...
 import poetrylib # I just made this module name up
 poem = poetrylib.get_poetry(host, port)
@@ -127,7 +127,7 @@ poem = poetrylib.get_poetry(host, port)
 
 因此，我们需要解决这一问题，在哪儿解决呢？连接失败的信息会通过 clientConnectionFailed 函数传递给工厂对象，因此我们就从这个函数入手。但这个工厂是需要设计成可复用的，因此如何合理处理这个错误是依赖于工厂所使用的场景的。在一些应用中，丢失诗歌是很糟糕的;但另外一些应用场景下，我们只是尽量尝试，不行就从其它地方下载 。换句话说，使用 get_poetry 的人需要知道会在何时出现这种问题，而不仅仅是什么情况下会正常运行。在一个同步程序中，get_poetry 可能会抛出一个异常并调用含有 try/excep 表达式的代码来处理异常。但在一个异步交互的程序中，错误信息也必须异步的传递出去。总之，在取得 get_poetry 之前，我们是不会发现连接失败这种错误的。下面是一种可能：
 
-```
+```py
 def get_poetry(host, port, callback):
     """
     Download a poem from the given host and port and invoke
@@ -144,7 +144,7 @@ def get_poetry(host, port, callback):
 
 通过检查回调函数的参数来判断我们是否已经完成诗歌下载。这样可能会避免客户端无休止运行下去的情况发生，但这样做仍会带来一些问题。首先，使用 None 来表示失败好像有点牵强。一些异步的 API 可能会将 None 而不是错误状态字作为默认返回值。其次，None 值所携带的信息量太少。它不能告诉我们出的什么错，更不用说可以在调试中为我呈现出一个跟踪对象了。好的，也可以尝试这样：
 
-```
+```py
 def get_poetry(host, port, callback):
     """
     Download a poem from the given host and port and invoke
@@ -169,7 +169,7 @@ Failure 的描述文档说明了如何创建它。将一个 Failure 对象付给
 
 在[twisted-failure/failure-examples.py](http://github.com/jdavisp3/twisted-intro/blob/master/twisted-failure/failure-examples.py)中有一些使用 Failure 对象的示例代码。它演示了 Failure 是如何从一个抛出的异常中保存跟踪栈信息的，即使在 except 块外部。我不用在创建一个 Failure 上花太多功夫。在第七部分中，我们将看到 Twisted 如何为我们完成这些工作。好了，看看下面这个尝试：
 
-```
+```py
 def get_poetry(host, port, callback):
     """
     Download a poem from the given host and port and invoke
@@ -184,7 +184,7 @@ def get_poetry(host, port, callback):
 
 大多数情况下，到这个就 OK 了，但我们曾经遇到过另外一个问题。使用相同的回调来处理正常的与不正常的结果是一件莫名奇妙的事。通常情况下，我们在处理失败信息和成功信息要进行不同的操作。在同步 Python 编程中，我们经常在处理失败与成功两种信息上采用不同的处理路径，即 try/except 处理方式：
 
-```
+```py
 try:
     attempt_to_do_something_with_poetry()
 except RhymeSchemeViolation:
@@ -195,7 +195,7 @@ else:
 
 如果我们想保留这种错误处理方式，那么我们需要独立的代码来处理错误信息。那么在异步方式中，这就意味着一个独立的回调：
 
-```
+```py
 def get_poetry(host, port, callback, errback):
     """
     Download a poem from the given host and port and invoke
@@ -210,7 +210,7 @@ def get_poetry(host, port, callback, errback):
 
 版本 3.1 实现位于[twisted-client-3/get-poetry-1.py](http://github.com/jdavisp3/twisted-intro/blob/master/twisted-client-3/get-poetry-1.py)。改变是很直观的。PoetryClientFactory，获得了 callback 和 errback 两个回调，并且其中我们实现了 clientConnectFailed：
 
-```
+```py
 class PoetryClientFactory(ClientFactory):
     protocol = PoetryProtocol
     def __init__(self, callback, errback):
@@ -224,13 +224,13 @@ class PoetryClientFactory(ClientFactory):
 
 由于[clientConnectionFailed](http://twistedmatrix.com/trac/browser/trunk/twisted/internet/protocol.py)已经收到一个 Failure 对象（其作为 reason 参数）来解释为什么会发生连接失败，我们直接将其交给了 errback 回调函数。 直接运行 3.1 版本（无需开启诗歌下载服务）的代码：
 
-```
+```py
 python twisted-client-3/get-poetry-1.py 10004 
 ```
 
 你会得到如下输出：
 
-```
+```py
 Poem failed: [Failure instance: Traceback (failure with no frames):: 
     Connection was refused by other side: 111: Connection refused. ] 
 ```

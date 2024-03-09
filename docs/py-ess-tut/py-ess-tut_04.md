@@ -22,26 +22,26 @@
 
 假如有一个人名列表如下：
 
-```
+```py
 >>> names = ["Alice", "Beth", "Cecil", "Dee-Dee", "Earl"] 
 ```
 
 如果要创建一个可以存储这些人的电话号码的小型数据库，应该怎么做呢？一种方法是建立一个新的列表。假设只存储四位的分机电话号码，那么可以得到与下面相似的列表：
 
-```
+```py
 >>> numbers = ["2341", "9102", "3158", "0142", "5551"] 
 ```
 
 建立了这些列表后，可以通过如下方式查找 Cecil 的电话号码：
 
-```
+```py
 >>> numbers[names.index("Cecil")] 
 '3158' 
 ```
 
 这样做虽然可行，但是并不实用。真正需要的效果应该类似以下面这样：
 
-```
+```py
 >>> phonebook["Cecil"] 
 '3158' 
 ```
@@ -52,14 +52,14 @@
 
 看到这里，读者可能会有疑问：为什么用字符串而不用整数表示电话号码呢？考虑一下 Dee-Dee 的电话号码会怎么样：
 
-```
+```py
 >>> 0142
 98 
 ```
 
 这并不是我们想要的结果，是吗？就像第一章曾经简略地提到的那样，八进制数字均以`0`开头。不能像那样表示十进制数字。
 
-```
+```py
 >>> 0912 File "<stdin>", line 1 0912
        ^ SyntaxError: invalid token 
 ```
@@ -70,7 +70,7 @@
 
 字典可以通过下面的方式创建：
 
-```
+```py
 >>> phonebook = {"Alice": "2341", "Beth": "9102", "Cecil": "3258"} 
 ```
 
@@ -82,7 +82,7 @@
 
 可以用`dict`函数(`dict`函数根本不是真正的函数，它是个类型，就像`list`、`tuple`和`str`一样)，通过其他映射(比如其他字典)或者(键，值)对的序列建立字典。
 
-```
+```py
 >>> items = [("name", "Gumby"), ("age", 42)] 
 >>> d = dict(items) >>> d
 {'age': 42, 'name': 'Gumby'} 
@@ -91,7 +91,7 @@
 
 `dict`函数也可以通过关键字参数来创建字典，如下例所示：
 
-```
+```py
 >>> d = dict(name="Gumby", age=42) 
 >>> d
 {'age': 42, 'name': 'Gumby'} 
@@ -125,7 +125,7 @@
 
 第一点——键可以是任意不可变类型——是字典最强大的地方。第二点也很重要。看看下面的区别：
 
-```
+```py
 >>> x = []  # 列表
 >>> x[42] = "Foobar" Traceback (most recent call last):
   File "<stdin>", line 1, in <module> 
@@ -140,7 +140,7 @@
 
 代码清单 4-1 所示是电话本例子的代码。
 
-```
+```py
  1 #!/usr/bin/env python
  2 # coding=utf-8
  3 
@@ -191,7 +191,7 @@ Code_Listing 4-1
 
 下面是程序的运行示例：
 
-```
+```py
 Name: Beth
 Phone number (p) or address (a)? a
 Beth's address is Bar street 42. 
@@ -201,7 +201,7 @@ Beth's address is Bar street 42.
 
 在第三章，已经见过如何使用字符串格式化功能来格式化元组中所有的值。如果使用的是字典(只以字符串作为键的)而不是元组，会使字符串格式化更酷一些。在每个转换说明符(conversion specifier)中的%字符后面，可以加上键(用圆括号括起来)，后面再跟上其他说明元素。
 
-```
+```py
 >>> phonebook
 {'Beth': '9102', 'Alice': '2341', 'Cecil': '3258'} 
 >>> "Cecil's phone number is %(Cecil)s." % phonebook 
@@ -210,7 +210,7 @@ Beth's address is Bar street 42.
 
 除了增加的字符串键之外，转换说明符还是像以前一样工作。当以这种方式使用字典的时候，只要所有给出的键都能在字典中找到，就可以使用任意数量的转换说明符。这类字符串格式化在模板系统中非常有用(本例中使用 HTML)。
 
-```
+```py
 >>> template = """<html>
 ... <head><title>%(title)s</title></head>
 ... <body>
@@ -237,7 +237,7 @@ Beth's address is Bar street 42.
 
 `clear`方法清除字典中所有的项。这是个原地操作(类似于`list.sort`)，所以无返回值(或者说返回`None`)。
 
-```
+```py
 >>> d = {} >>> d["name"] = "Gumby"
 >>> d["age"] = 42
 >>> d
@@ -251,7 +251,7 @@ None
 
 为什么这个方法有用呢？考虑以下两种情况。
 
-```
+```py
 >>> x = {}  # 第一种情况
 >>> y = x 
 >>> x["key"] = "value"
@@ -275,7 +275,7 @@ None
 
 `copy`方法返回一个具有相同键-值对的新字典(这个方法实现的是*浅复制*(shallow copy)，因为值本身就是相同的，而不是副本)。
 
-```
+```py
 >>> x = {"username": "admin", "machines": ["foo", "bar", "baz"]} 
 >>> y = x.copy() >>> y["username"] = "mlh"
 >>> y["machines"].remove("bar") 
@@ -289,7 +289,7 @@ None
 
 避免这种问题的一种方法就是使用*深复制*(deep copy)，复制其包含的所有值。可以使用`copy`模块的`deepcopy`函数来完成操作：
 
-```
+```py
 >>> from copy import deepcopy 
 >>> d = {} 
 >>> d["names"] = ["Alfred", "Bertrand"] 
@@ -306,21 +306,21 @@ None
 
 `fromkeys`方法使用给定的键建立新的字典，每个键都对应一个默认的值`None`。
 
-```
+```py
 >>> {}.fromkeys(["name", "age"])
 {'age': None, 'name': None} 
 ```
 
 刚才的例子中首先构造了一个空字典，然后调用它的`fromkeys`方法，建立另外一个字典——有些多余。此外，你还可以直接在`dict`上面调用该方法，前面讲过，`dict`是所有字典的类型(关于类型和类的概念在第七章中会深入讨论)。
 
-```
+```py
 >>> dict.fromkeys(["name", "age"])
 {'age': None, 'name': None} 
 ```
 
 如果不想使用`None`作为默认值，也可以自己提供默认值。
 
-```
+```py
 >>> dict.fromkeys(["name", "age"], "(unknown)")
 {'age': '(unknown)', 'name': '(unknown)'} 
 ```
@@ -329,7 +329,7 @@ None
 
 `get`方法是个更宽松的访问字典项的方法。一般来说，如果试图访问字典中不存在的项时会出错：
 
-```
+```py
 >>> d = {} >>> print d["name"]
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module> 
@@ -338,27 +338,27 @@ Traceback (most recent call last):
 
 而用`get`就不会：
 
-```
+```py
 >>> print d.get("name")
 None 
 ```
 
 可以看到，当使用`get`访问一个不存在的键时，没有任何异常，而得到了`None`值。还可以自定义“默认”值，替换`None`：
 
-```
+```py
 >>> d.get("name", "N/A") 'N/A' 
 ```
 
 如果键存在，`get`使用起来就像普通的字典查询一样：
 
-```
+```py
 >>> d["name"] = "Eric"
 >>> d.get("name") 'Eric' 
 ```
 
 代码清单 4-2 演示了一个代码清单 4-1 程序的修改版本，它使用`get`方法访问“数据库”实体。
 
-```
+```py
  1 #!/usr/bin/env python
  2 # coding=utf-8
  3 
@@ -412,7 +412,7 @@ Code_Listing 4-2
 
 以下是程序运行的输出。注意`get`方法带来的灵活性如何使得程序在用户输入我们并未准备的值时也能做出合理的反应。
 
-```
+```py
 Name: Gumby
 Phone number (p) or address (a)? batting average
 Gumby's batting average is not available. 
@@ -424,7 +424,7 @@ Gumby's batting average is not available.
 
 下面是一个使用`has_key`方法的例子：
 
-```
+```py
 >>> d = {} 
 >>> d.has_key("name")
 False 
@@ -437,7 +437,7 @@ True
 
 `items`方法将字典所有的项以列表方式返回，列表中的每一项都表示为(键, 值)对的形式。但是项在返回时并没有遵循特定的次序。
 
-```
+```py
 >>> d = {"title": "Python Web Site", "url": "http://www.python.org", "spam": "0"} 
 >>> d.items()
 [('url', 'http://www.python.org'), ('spam', '0'), ('title', 'Python Web Site')] 
@@ -445,7 +445,7 @@ True
 
 `iteritems`方法的作用大致相同，但是会返回一个*迭代器*对象而不是列表：
 
-```
+```py
 >>> it = d.iteritems() 
 >>> it <dictionary-itemiterator object at 0x00000000029BAEF8>
 >>> list(it)  # Convert the iterator to a list
@@ -462,7 +462,7 @@ True
 
 `pop`方法用来获得对应于给定键的值，然后将这个键-值对从字典中移除。
 
-```
+```py
 >>> d = {"x": 1, "y": 2} 
 >>> d.pop("x") 1
 >>> d
@@ -473,7 +473,7 @@ True
 
 `popitem`方法类似于`list.pop`，后者会弹出列表的最后一个元素。但不同的是，`popitem`弹出随机的项，因为字典并没有“最后的元素”或者其他有关顺序的概念。若想一个接一个地移除并处理项，这个方法就非常有效了(因为不用首先获取键的列表)。
 
-```
+```py
 >>> d
 {'url': 'http://www.python.org', 'spam': '0', 'title': 'Python Web Site'} 
 >>> d.popitem()
@@ -488,7 +488,7 @@ True
 
 `setdefault`方法在某种程度上类似于`get`方法，能够获得与给定键相关联的值，除此之外，`setdefault`还能在字典中不含有给定键的情况下设定相应的键值。
 
-```
+```py
 >>> d = {} 
 >>> d.setdefault("name", "N/A") 'N/A'
 >>> d
@@ -502,7 +502,7 @@ True
 
 可以看到，当键不存在的时候，`setdefault`返回默认值并且相应地更新字典。如果键存在，那么就返回与其对应的值，但不改变字典。默认值是可选的，这点和`get`一样。如果不设定，会默认使用`None`。
 
-```
+```py
 >>> d = {} 
 >>> print d.setdefault("name")
 None 
@@ -514,7 +514,7 @@ None
 
 `update`方法可以利用一个字典项更新另外一个字典：
 
-```
+```py
 >>> d = {
 ... "title": "Python Web Site",
 ... "url": "http://www.python.org",
@@ -533,7 +533,7 @@ None
 
 `values`方法以列表的形式返回字典中的值(`itervalues`返回值的迭代器)。与返回键的列表不同的是，返回值的列表中可以包含重复的元素：
 
-```
+```py
 >>> d = {} 
 >>> d[1] = 1
 >>> d[2] = 2
@@ -559,7 +559,7 @@ None
 
 表 4-1 本章的新函数
 
-```
+```py
 dict(seq)                        用(键、值)对(或者映射和关键字参数)建立字典。 
 ```
 

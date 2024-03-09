@@ -11,7 +11,7 @@
 
 想要获取已安装的 Python 版本号，可以通过终端运行命令：
 
-```
+```py
 $ python --version 
 ```
 
@@ -27,7 +27,7 @@ Python 2.7.9 以及之后版本(Python2 系列)，和 Python 3.4 以及之后版
 
 运行以下命令行代码检查 pip 是否已经安装：
 
-```
+```py
 $ command -v pip 
 ```
 

@@ -13,27 +13,27 @@
 
 创建下面包含 JSON 数据的字符串
 
-```
+```py
 json_string = '{"first_name": "Guido", "last_name":"Rossum"}' 
 ```
 
 它可以被这样解析：
 
-```
+```py
 import json
 parsed_json = json.loads(json_string) 
 ```
 
 然后它可以像一个常规的字典那样使用:
 
-```
+```py
 print(parsed_json['first_name'])
 "Guido" 
 ```
 
 你可以把下面这个对象转为 JSON：
 
-```
+```py
 d = {
     'first_name': 'Guido',
     'second_name': 'Rossum',
@@ -52,7 +52,7 @@ simplejson 类似 json 标准库，它使得使用老版本 Python 的开发者�
 
 如果 json 库不可用，你可以将 simplejson 取别名为 json 来使用：
 
-```
+```py
 import simplejson as json 
 ```
 

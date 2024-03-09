@@ -18,7 +18,7 @@
 
 输入这些代码：
 
-```
+```py
 1>2
 1<2<3
 42 != '42'
@@ -30,7 +30,7 @@ number is 12
 
 我们每输入一行代码就会立即得到结果，这几行代码的表达方式不同，但是返回结果却只有 True 和 False 这两种布尔类型，因此我们称**但凡能够产生一个布尔值的表达式为布尔表达式（Boolean Expressions）**。
 
-```
+```py
 1 > 2              # False
 1 < 2 <3           # True
 42 != '42'         # True
@@ -52,14 +52,14 @@ number is 12       # True
 
 *   多条件的比较。先给变量赋值，并在多条件下比较大小：
 
-    ```
+    ```py
     middle = 5
     1 < middle < 10
     ```
 
 *   变量的比较。将两个运算结果储存在不同的变量中，再进行比较：
 
-    ```
+    ```py
     two = 1 + 1
     three = 1 + 3
     two < three
@@ -67,13 +67,13 @@ number is 12       # True
 
 *   字符串的比较。其实就是对比左右两边的字符串是否完全一致，下面的代码就是不一致的，因为在 Python 中有着严格的大小写区分：
 
-    ```
+    ```py
     'Eddie Van Helen' == 'eddie van helen'
     ```
 
 *   两个函数产生的结果进行比较：比较运算符两边会先行调用函数后再进行比较， 真结果等价于 `10 > 19` ：
 
-    ```
+    ```py
     abs(-10) > len('length of this word')
     ```
 
@@ -83,7 +83,7 @@ number is 12       # True
 
 不同类型的对象不能使用“<,>,<=,>=”进行比较，却可以使用’==’和’!=’，例如字符串和数字：
 
-```
+```py
 42 > 'the answer'      #无法比较  
 42 == 'the answer'    #False
 42 != 'the answer'    #True
@@ -91,7 +91,7 @@ number is 12       # True
 
 需要注意的是，浮点和整数虽是不同类型，但是不影响到比较运算：
 
-```
+```py
 5.0 == 5              #True
 3.0 > 1               #True
 ```
@@ -100,14 +100,14 @@ number is 12       # True
 
 比较了字符串、浮点、整数……还差一个类型没有进行比较：布尔类型，那么现在实验一下：
 
-```
+```py
 True > False
 True + False > False + False
 ```
 
 这样的结果又怎么理解呢？还记得前面说过的吗，True 和 False 对于计算机就像是 1 和 0 一样，如果在命令行中敲入 True + True + False 查看结果不难发现，True ＝ 1， False ＝ 0 也就是说，上面这段代码实际上等价于：
 
-```
+```py
 1 > 0
 1 + 0 > 0 + 0
 ```
@@ -124,31 +124,31 @@ True + False > False + False
 
 创建一个列表，就像是创建变量一样，要给它起个名字：
 
-```
+```py
 album = []
 ```
 
 此时的列表是空的，我们随便放点东西进去，这样就创建了一个非空的列表：
 
-```
+```py
 album = ['Black Star','David Bowie',25,True]
 ```
 
 这个列表中所有的元素是我们一开始放好的，那当列表创建完成后，想再次往里面添加内容怎么办？使用列表的 `append` 方法可以向列表中添加新的元素，并且使用这种方式添加的元素会自动地排列到列表的尾部：
 
-```
+```py
 album.append('new song')
 ```
 
 接着就是列表的索引，如果在前面的童节你很好地掌握了字符串的索引，相信理解新的知识应该不难。下面代码的功能是打印列表中第一个和最后一个元素：
 
-```
+```py
 print(album[0],album[-1])
 ```
 
 接下来我们使用 `in` 来测试字符串 ‘Black Star’ 是否在列表 album 中。如果存在则会显示 True，不存在就会显示 False 了：
 
-```
+```py
 'Black Star' in album
 ```
 
@@ -158,7 +158,7 @@ print(album[0],album[-1])
 
 在 Python 中任何一个对象都要满足身份（Identity）、类型（Type）、值 （Value）这三个点，缺一不可。`is` 操作符号就是来进行身份的对比的。试试输入这段代码：
 
-```
+```py
 the_Eddie = 'Eddie'
 name = 'Eddie'  
 the_Eddie == name
@@ -169,7 +169,7 @@ the_Eddie is name
 
 其实在 Python 中任何对象都可判断其布尔值，除了 0、None 和所有空的序列与集合（列表，字典，集合）布尔值为 False 之外，其它的都为 True ，我们可以使用函数 `bool()` 进行判别：
 
-```
+```py
 bool(0)      #False
 bool([])     #False
 bool('')     #False
@@ -181,7 +181,7 @@ bool(None)   #False
 
 当你想设定一个变量，但又没想好它应该等于什么值时，你就可以这样：
 
-```
+```py
 a_thing = None
 ```
 
@@ -193,7 +193,7 @@ and、or 用于布尔值的之间的运算，具体规则如下：
 
 and 和 or 经常用于处理复合条件，类似于 1 < n < 3 ，也就是两个条件同时满足。
 
-```
+```py
 1 < 3 and 2 < 5  #True
 1 < 3 and 2 > 5  #False
 1 < 3 or 2 > 5   #True
@@ -212,7 +212,7 @@ and 和 or 经常用于处理复合条件，类似于 1 < n < 3 ，也就是两�
 
 我们结合函数的概念来创建这样一个函数，逐行分析它的原理：
 
-```
+```py
 def account_login(): 
     password = input('Password:') 
     if password == '12345': 
@@ -232,7 +232,7 @@ account_login()
 
 值得一提的是，如果 if 后面的布尔表达式过长或者难于理解，可以采取给变量赋值的办法来储存布尔表达式返回的布尔值 True 或 False。因此上面的代码可以写成这样：
 
-```
+```py
 def account_login():
     password = input('Password:')
     password_correct = password == '12345'     #HERE！
@@ -252,7 +252,7 @@ account_login()
 
 接下来我们使用 elif 语句给刚才设计的函数增加一个重置密码的功能：
 
-```
+```py
 password_list = ['*#*#','12345']  
 def account_login():   
     password = input('Password:')  
@@ -287,14 +287,14 @@ account_login()
 
 我们先来看一个例子，输入代码：
 
-```
+```py
 for every_letter in 'Hello world':
     print(every_letter)
 ```
 
 得到这样的结果：
 
-```
+```py
 H
 e
 l
@@ -320,7 +320,7 @@ d
 
 为了更深入了解 for 循环，试着思考以下问题，如何打印出这样的结果？
 
-```
+```py
 1 + 1 = 2  
 2 + 1 = 3
 .
@@ -330,14 +330,14 @@ d
 
 这需要用到一个内置函数一一 range。我们只需要在 range 函数后面的括号中填上数字，就可以得到一个具有连续整数的序列，输入代码：
 
-```
+```py
 for num in range(1,11): #不包含 11，因此实际范围是 1～10
     print(str(num) + ' + 1 =',num + 1)
 ```
 
 这段代码表达的是：将 1～10 范围内的每一个数字依次装入变量 `num` 中，每次展示一个 `num +1` 的结果。在这个过程中，变量 `num` 被循环赋值 10 次，你可以理解成等同于：
 
-```
+```py
 num = 1
 print(str(num) + ' + 1 =',num + 1)
 num = 2
@@ -352,7 +352,7 @@ print(str(num) + ' + 1 =',num + 1)
 
 代码如下：
 
-```
+```py
 songslist = ['Holy Diver', 'Thunderstruck', 'Rebel Rebel']
 for song in songslist:
     if song == 'Holy Diver':
@@ -373,7 +373,7 @@ for song in songslist:
 
 接下来我们就用嵌套循环实现它：
 
-```
+```py
 for i in range(1,10):
     for j in range(1,10):
         print('{} X {} = {}'.format(i,j,i*j))
@@ -389,7 +389,7 @@ Python 中有两种循环，第一种 for 循环我们已经介绍过了，第�
 
 看一个简单的例子：
 
-```
+```py
 while 1 < 3:
     print('1 is smaller than 3')
 ```
@@ -404,7 +404,7 @@ while 1 < 3:
 
 但如果 while 循环不像 for 循环那样，在集合被穷尽之后停下来，我们怎样才能控制 while 循环呢？其中一种方式就是：**在循环过程中制造某种可以使循环停下来的条件**，例如：
 
-```
+```py
 count = 0
 while True:
     print('Repeat this line !')
@@ -421,7 +421,7 @@ while True:
 
 除此之外，让 while 循环停下来的另外一种方法是：**改变使循环成立的条件**。为了解释这个例子，我们在前面登录函数的基础上来实现，给登录函数增加一个新功能：输入密码错误超过 3 次就禁止再次输入密码。你可以尝试写一下，答案在下面揭晓。
 
-```
+```py
 password_list = ['*#*#','12345']
 
 def account_login():
@@ -480,7 +480,7 @@ account_login()
 
 首先，创建一个列表，放入数字，再使用 sum() 函数对列表中的所有整数求和，然后打印：
 
-```
+```py
 a_list = [1,2,3]
 print(sum(a_list))
 ```
@@ -489,7 +489,7 @@ print(sum(a_list))
 
 接着，Python 中最方便的地方是有很多强大的库支持，现在我们导入一个 random 的内置库，然后使用它生成随机数：
 
-```
+```py
 import random
 
 point1 = random.randrange(1,7)
@@ -505,7 +505,7 @@ print(point1,point2,point3)
 
 游戏开始，首先玩家选择 Big or Small（押大小），选择完成后开始摇三个骰子计算总值，11 <= 总值 <=18 为 “大”，3 <= 总值 <= 10 为 “小”。然后告诉玩家猜对或是猜错的结果。看起来就像是这样：
 
-```
+```py
 <<<<< GAME STARTS! >>>>>
 Big or Small:Big
 <<<<< ROLE THE DICE!>>>>>
@@ -530,7 +530,7 @@ The points are [2, 6, 3] You Lose!
 
 首先，我们先来构造可以摇骰子的函数 `roll_dice` 。这个函数其实并不需要输入任何参数，调用后会返回储存着摇出来三个点数结果的列表。
 
-```
+```py
 import random
 def roll_dice(numbers=3, points=None):   
     print('<<<<< ROLL THE DICE! >>>>>')   
@@ -551,7 +551,7 @@ def roll_dice(numbers=3, points=None):
 
 接着，我们再用一个函数来将点数转化成大小，并使用 if 语句来定义什么是“大”，什么是“小”：
 
-```
+```py
 def roll_result(total):                                   
     isBig = 11 <= total <=18                                
     isSmall = 3 <= total <=10                               
@@ -567,7 +567,7 @@ def roll_result(total):
 
 最后，创建一个开始游戏的函数，让用户输入猜大小，并且定义什么是猜对，什么是猜错，并输出对应的输赢结果。
 
-```
+```py
 def start_game():  
     print('<<<<< GAME STARTS! >>>>>')  
     choices = ['Big','Small']  
@@ -616,7 +616,7 @@ start_game()
 *   因为是输入号码界面，输入除号码外其他字符的可能性可以忽略；
 *   移动号段，联通号段，电信号段如下：
 
-    ```
+    ```py
     CN_mobile = [134,135,136,137,138,139,150,151,152,157,158,159,182,183,184,187,188,147,178,1705]
     CN_union = [130,131,132,155,156,185,186,145,176,1709]
     CN_telecom = [133,153,180,181,189,177,1700]

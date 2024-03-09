@@ -18,7 +18,7 @@ Django 中自带的模板系统，可以将视图格式分离出来，作为模�
 
 我们拿一个独立的 templay.html 文件作为模板。它放在 templates/west/文件夹下。文件系统的结构现在是:
 
-```
+```py
 mysite/
 ├── mysite
 ├── templates
@@ -33,7 +33,7 @@ templay.html 文件的内容是：
 
 我们需要向 Django 说明模板文件的搜索路径，修改 mysite/settings.py，添加:
 
-```
+```py
 # Template dir
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates/west/'),
@@ -45,7 +45,7 @@ TEMPLATE_DIRS = (
 
 我们现在修改 west/views.py，增加一个新的对象，用于向模板提交数据：
 
-```
+```py
 # -*- coding: utf-8 -*-
 
 #from django.http import HttpResponse
@@ -78,7 +78,7 @@ context 中元素的键值为'label'，正对应刚才的“陌生人”的名�
 
 修改上次的 west/views.py 中的 staff:
 
-```
+```py
 def staff(request):
     staff_list = Character.objects.all()
     staff_str = map(str, staff_list)
@@ -100,7 +100,7 @@ Django 实际上提供了丰富的模板语言，可以在模板内部有限度�
 
 实际上，利用模板语言，我们可以直接传送数据容器本身，再循环显示。修改 staff()为:
 
-```
+```py
 def staff(request):
     staff_list = Character.objects.all() return render(request, 'templay.html', {'staffs': staff_list})
 
@@ -110,7 +110,7 @@ def staff(request):
 
 将模板 templay.html 修改为：
 
-```
+```py
 {% for item in staffs %} <p>{{ item.id }}, {{item}}</p> {% endfor %}
 
 ```
@@ -121,7 +121,7 @@ def staff(request):
 
 选择结构也与 Python 类似。根据传送来的数据是否为 True，Django 选择是否显示。使用方式如下：
 
-```
+```py
 {% if condition1 %}
    ... display 1
 {% elif condiiton2 %}
@@ -142,7 +142,7 @@ def staff(request):
 
 新建 templates/west/base.html:
 
-```
+```py
 <html>
   <head>
     <title>templay</title>
@@ -158,7 +158,7 @@ def staff(request):
 
 我们在下面的 templay.html 中继承 base.html，并替换特定 block：
 
-```
+```py
 {% extends "base.html" %}
 
 {% block mainbody %}

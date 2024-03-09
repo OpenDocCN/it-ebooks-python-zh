@@ -8,14 +8,14 @@
 
 下面是一个例子：
 
-```
+```py
 for counter, value in enumerate(some_list):
     print(counter, value) 
 ```
 
 不只如此，`enumerate`也接受一些可选参数，这使它更有用。
 
-```
+```py
 my_list = ['apple', 'banana', 'grapes', 'pear']
 for c, value in enumerate(my_list, 1):
     print(c, value)
@@ -30,7 +30,7 @@ for c, value in enumerate(my_list, 1):
 上面这个可选参数允许我们定制从哪个数字开始枚举。
 你还可以用来创建包含索引的元组列表， 例如：
 
-```
+```py
 my_list = ['apple', 'banana', 'grapes', 'pear']
 counter_list = list(enumerate(my_list, 1))
 print(counter_list)

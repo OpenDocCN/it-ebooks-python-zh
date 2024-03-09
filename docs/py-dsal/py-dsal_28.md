@@ -38,7 +38,7 @@ alist[j] = temp
 
 以下是上述描述的代码
 
-```
+```py
 def bubbleSort(alist):
    for passnum in range(len(alist)-1,0,-1):
        for i in range(passnum):
@@ -64,7 +64,7 @@ print(alist)
 
 一般认为冒泡排序是效率最差的排序方法，因为它在元素最终确定位置之前反复交换。这些浪费的交换操作很费资源。不过，因为冒泡排序对整个未排序部分遍历，它也能做到一些其他算法做不到的事情。在特殊情况下，如果一次遍历没有发生交换，我们知道这个列表一定是有序的，冒泡排序就可以提前停止。这意味着列表只需要一次遍历就知道自身是有序的从而提高效率。下面代码是利用了这个特点的修正版，通常称为短冒泡算法。
 
-```
+```py
 def shortBubbleSort(alist):
    exchanges = True
    passnum = len(alist)-1

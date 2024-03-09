@@ -41,7 +41,7 @@
 
 一个类也有**域**，它是仅仅为类而定义的变量。仅仅在你有一个该类的对象的时候，你才可以使用这些变量/名称。类也通过点号使用，例如`mylist.field`。
 
-```
+```py
 #!/usr/bin/python
 # Filename: using_list.py
 
@@ -73,7 +73,7 @@ print 'My shopping list is now', shoplist
 
 ## 输出
 
-```
+```py
 $ python using_list.py
 I have 4 items to purchase.
 These items are: apple mango carrot banana
@@ -108,7 +108,7 @@ My shopping list is now ['banana', 'carrot', 'mango', 'rice']
 
 元组和列表十分类似，只不过元组和字符串一样是 不可变的 即你不能修改元组。元组通过圆括号中用逗号分割的项目定义。元组通常用在使语句或用户定义的函数能够安全地采用一组值的时候，即被使用的元组的值不会改变。
 
-```
+```py
 #!/usr/bin/python
 # Filename: using_tuple.py
 
@@ -126,7 +126,7 @@ print 'Last animal brought from old zoo is', new_zoo[2][2]
 
 ## 输出
 
-```
+```py
 $ python using_tuple.py
 Number of animals in the zoo is 3
 Number of animals in the new zoo is 3
@@ -149,7 +149,7 @@ Last animal brought from old zoo is penguin
 
 元组最通常的用法是用在打印语句中，下面是一个例子：
 
-```
+```py
 #!/usr/bin/python
 # Filename: print_tuple.py
 
@@ -164,7 +164,7 @@ print 'Why is %s playing with that python?' % name
 
 ## 输出
 
-```
+```py
 $ python print_tuple.py
 Swaroop is 22 years old
 Why is Swaroop playing with that python? 
@@ -198,7 +198,7 @@ Python 在这里所做的是把元组中的每个项目转换成字符串并且�
 
 字典是`dict`类的实例/对象。
 
-```
+```py
 #!/usr/bin/python
 # Filename: using_dict.py
 
@@ -230,7 +230,7 @@ if 'Guido' in ab: # OR ab.has_key('Guido')
 
 ## 输出
 
-```
+```py
 $ python using_dict.py
 Swaroop's address is swaroopch@byteofpython.info
 
@@ -264,7 +264,7 @@ Guido's address is guido@python.org
 
 列表、元组和字符串都是序列，但是序列是什么，它们为什么如此特别呢？序列的两个主要特点是**索引**操作符和**切片**操作符。索引操作符让我们可以从序列中抓取一个特定项目。切片操作符让我们能够获取序列的一个切片，即一部分序列。
 
-```
+```py
 #!/usr/bin/python
 # Filename: seq.py
 
@@ -296,7 +296,7 @@ print 'characters start to end is', name[:]
 
 ## 输出
 
-```
+```py
 $ python seq.py
 Item 0 is apple
 Item 1 is mango
@@ -338,7 +338,7 @@ characters start to end is swaroop
 
 一般说来，你不需要担心这个，只是在参考上有些细微的效果需要你注意。这会通过下面这个例子加以说明。
 
-```
+```py
 #!/usr/bin/python
 # Filename: reference.py
 
@@ -366,7 +366,7 @@ print 'mylist is', mylist
 
 ## 输出
 
-```
+```py
 $ python reference.py
 Simple Assignment
 shoplist is ['mango', 'carrot', 'banana']
@@ -390,7 +390,7 @@ mylist is ['carrot', 'banana']
 
 你在程序中使用的字符串都是`str`类的对象。这个类的一些有用的方法会在下面这个例子中说明。如果要了解这些方法的完整列表，请参见`help(str)`。
 
-```
+```py
 #!/usr/bin/python
 # Filename: str_methods.py
 
@@ -414,7 +414,7 @@ print delimiter.join(mylist)
 
 ## 输出
 
-```
+```py
 $ python str_methods.py
 Yes, the string starts with "Swa"
 Yes, it contains the string "a"

@@ -38,7 +38,7 @@
 
 当我们基本完成程序的设计，我们就可以编写代码了，它是对我们的解决方案的**实施**。
 
-```
+```py
 #!/usr/bin/python
 # Filename: backup_ver1.py
 
@@ -70,7 +70,7 @@ else:
 
 ## 输出
 
-```
+```py
 $ python backup_ver1.py
 Successful backup to /mnt/e/backup/20041208073244.zip 
 ```
@@ -103,7 +103,7 @@ Successful backup to /mnt/e/backup/20041208073244.zip
 
 我认为优化之一是采用更好的文件名机制——使用 时间 作为文件名，而当前的 日期 作为目录名，存放在主备份目录中。这样做的一个优势是你的备份会以等级结构存储，因此它就更加容易管理了。另外一个优势是文件名的长度也可以变短。还有一个优势是采用各自独立的文件夹可以帮助你方便地检验你是否在每一天创建了备份，因为只有在你创建了备份，才会出现那天的目录。
 
-```
+```py
 #!/usr/bin/python
 # Filename: backup_ver2.py
 
@@ -145,7 +145,7 @@ else:
 
 ## 输出
 
-```
+```py
 $ python backup_ver2.py
 Successfully created directory /mnt/e/backup/20041208
 Successful backup to /mnt/e/backup/20041208/080020.zip
@@ -162,7 +162,7 @@ Successful backup to /mnt/e/backup/20041208/080428.zip
 
 第二个版本在我做较多备份的时候还工作得不错，但是如果有极多备份的时候，我发现要区分每个备份是干什么的，会变得十分困难！例如，我可能对程序或者演讲稿做了一些重要的改变，于是我想要把这些改变与 zip 归档的名称联系起来。这可以通过在 zip 归档名上附带一个用户提供的注释来方便地实现。
 
-```
+```py
 #!/usr/bin/python
 # Filename: backup_ver3.py
 
@@ -209,7 +209,7 @@ else:
 
 ## 输出
 
-```
+```py
 $ python backup_ver3.py
 File "backup_ver3.py", line 25
 target = today + os.sep + now + '_' +
@@ -223,7 +223,7 @@ SyntaxError: invalid syntax
 
 通过仔细的观察，我们发现一个逻辑行被分成了两个物理行，但是我们并没有指明这两个物理行属于同一逻辑行。基本上，Python 发现加法操作符（＋）在那一逻辑行没有任何操作数，因此它不知道该如何继续。记住我们可以使用物理行尾的反斜杠来表示逻辑行在下一物理行继续。所以，我们修正了程序。这被称为**修订**。
 
-```
+```py
 #!/usr/bin/python
 # Filename: backup_ver4.py
 
@@ -271,7 +271,7 @@ else:
 
 ## 输出
 
-```
+```py
 $ python backup_ver4.py
 Enter a comment --&gt; added new examples
 Successful backup to /mnt/e/backup/20041208/082156_added_new_examples.zip
@@ -295,7 +295,7 @@ Successful backup to /mnt/e/backup/20041208/082316.zip
 
 命令字符串现在将称为：
 
-```
+```py
 tar = 'tar -cvzf %s %s -X /home/swaroop/excludes.txt' % (target, ' '.join(srcdir)) 
 ```
 

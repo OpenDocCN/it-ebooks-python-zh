@@ -8,7 +8,7 @@
 
 ![](img/13e4b20a32b1ed04f079b99b50309b69.jpg)
 
-```
+```py
 def selectionSort(alist):
   for fillslot in range(len(alist)-1,0,-1):
       positionOfMax=0

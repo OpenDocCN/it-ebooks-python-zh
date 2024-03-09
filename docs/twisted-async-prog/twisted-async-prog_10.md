@@ -4,7 +4,7 @@
 
 现在我们将要向诗歌下载客户端添加一些新的处理逻辑，包括在第九部分提到要添加的功能。不过，首先我要说明一点：我并不知道如何实现 Byronification 引擎。那超出了我的编程能力范围。取而代之的，我想实现一个简单的功能，即 Cummingsifier。其只是将诗歌内容转换成小写字母：
 
-```
+```py
 def cummingsify(poem)
     return poem.lower() 
 ```
@@ -17,7 +17,7 @@ def cummingsify(poem)
 
 这样，我们便模拟出来一个会因为各种意料不到的问题而执行失败的复杂算法。其它部分的仅有的改变在方法 poetry_main 中：
 
-```
+```py
 def poetry_main():
     addresses = parse_args()
     from twisted.internet import reactor
@@ -101,7 +101,7 @@ def poetry_main():
 
 如果 cummingsify 是外部模块中一个真实存在的函数，那么其最好是通过另一个函数来捕获非 GibberishError 并抛出一个 CannotCummingsify 异常。这样，我们的 poetry_main 就成为：
 
-```
+```py
 def poetry_main():
     addresses = parse_args()
     from twisted.internet import reactor
@@ -136,7 +136,7 @@ def poetry_main():
 
 来看看 cummingsify_failed 的 errback 回调：
 
-```
+```py
 def cummingsify_failed(err):
     if err.check(CannotCummingsify):
         print 'Cummingsify failed!'

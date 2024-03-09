@@ -14,7 +14,7 @@
 ### ABI 交互
 
 |  
-```
+```py
 1
 2
 3
@@ -25,7 +25,7 @@
 ```
 
  |  
-```
+```py
 from cffi import FFI
 ffi = FFI()
 ffi.cdef("size_t strlen(const char*);")
@@ -46,7 +46,7 @@ print("{}".format(length))
 `MyStruct.h`
 
 |  
-```
+```py
 1
 2
 3
@@ -54,7 +54,7 @@ print("{}".format(length))
 ```
 
  |  
-```
+```py
 struct my_struct {
     int a;
     int b;
@@ -66,7 +66,7 @@ struct my_struct {
 `MyStruct.py`
 
 |  
-```
+```py
 1
 2
 3
@@ -74,7 +74,7 @@ struct my_struct {
 ```
 
  |  
-```
+```py
 import ctypes
 class my_struct(ctypes.Structure):
     _fields_ = [("a", c_int),
@@ -92,7 +92,7 @@ class my_struct(ctypes.Structure):
 `MyClass.h`
 
 |  
-```
+```py
 1
 2
 3
@@ -103,7 +103,7 @@ class my_struct(ctypes.Structure):
 ```
 
  |  
-```
+```py
 #include <string> class MyClass {
 private:
     std::string name;
@@ -117,7 +117,7 @@ public:
 `myclass.i`
 
 |  
-```
+```py
  1
  2
  3
@@ -137,7 +137,7 @@ public:
 ```
 
  |  
-```
+```py
 %include "string.i"
 
 %module myclass

@@ -28,7 +28,7 @@
 
 注意，>>>是你键入 Python 语句的提示符。
 
-```
+```py
 $ python
 Python 2.3.4 (#1, Oct 26 2004, 16:42:40)
 [GCC 3.4.2 20041017 (Red Hat 3.4.2-6.fc3)] on linux2
@@ -66,7 +66,7 @@ hello world
 
 启动你选择的编辑器，输入下面这段程序，然后把它保存为`helloworld.py。`
 
-```
+```py
 #!/usr/bin/python
 # Filename : helloworld.py
 print 'Hello World' 
@@ -76,7 +76,7 @@ print 'Hello World'
 
 为了运行这个程序，请打开 shell（Linux 终端或者 DOS 提示符），然后键入命令**python helloworld.py**。如果你使用 IDLE，请使用菜单 Edit->Run Script 或者使用键盘快捷方式**Ctrl-F5**。输出如下所示。
 
-```
+```py
 $ python helloworld.py
 Hello World 
 ```
@@ -101,7 +101,7 @@ Python 至少应当有第一行那样的特殊形式的注释。它被称作 组
 
 这部分内容只对 Linux/Unix 用户适用，不过 Windows 用户可能也对程序的第一行比较好奇。首先我们需要通过**chmod**命令，给程序可执行的许可，然后 运行 程序。
 
-```
+```py
 $ chmod a+x helloworld.py
 $ ./helloworld.py
 Hello World 
@@ -113,7 +113,7 @@ chmod 命令用来 改变 文件的 模式 ，给系统中所有用户这个源�
 
 只要知道程序的确切位置，你现在就可以运行程序了——但是如果你希望你的程序能够从各个位置运行呢？那样的话，你可以把你的程序保存在 PATH 环境变量中的目录之一。每当你运行任何程序，系统会查找列在 PATH 环境变量中的各个目录。然后运行那个程序。你只要简单地把这个源文件复制到 PATH 所列目录之一就可以使你的程序在任何位置都可用了。
 
-```
+```py
 $ echo $PATH
 /opt/mono/bin/:/usr/local/bin:/usr/bin:/bin:/usr/X11R6/bin:/home/swaroop/bin
 $ cp helloworld.py /home/swaroop/bin/helloworld
@@ -139,7 +139,7 @@ Hello World
 
 如果你想要获取关于如`print`那样操作符的帮助，那么你需要正确的设置 PYTHONDOCS 环境变量。这可以在 Linux/Unix 中轻松地通过**env**命令完成。
 
-```
+```py
 $ env PYTHONDOCS=/usr/share/doc/python-docs-2.3.4/html/ python
 Python 2.3.4 (#1, Oct 26 2004, 16:42:40)
 [GCC 3.4.2 20041017 (Red Hat 3.4.2-6.fc3)] on linux2

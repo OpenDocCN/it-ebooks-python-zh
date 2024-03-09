@@ -62,27 +62,27 @@
 
 对于字符类元素也能创建哈希函数，单词 cat 可以看成一个数字串
 
-```
+```py
 >>> ord('c')
 ```
 
-```
+```py
 99
 ```
 
-```
+```py
 >>> ord('a')
 ```
 
-```
+```py
 97
 ```
 
-```
+```py
 >>> ord('t')
 ```
 
-```
+```py
 116
 ```
 
@@ -90,23 +90,23 @@
 
 **Listing 1**
 
-```
+```py
 defhash(astring, tablesize):
 ```
 
-```
+```py
     sum=0
 ```
 
-```
+```py
     for pos inrange(len(astring)):
 ```
 
-```
+```py
         sum=sum+ord(astring[pos])
 ```
 
-```
+```py
     returnsum%tablesize
 ```
 

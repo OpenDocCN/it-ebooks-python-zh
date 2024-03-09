@@ -24,7 +24,7 @@ Python 中通过使用类(class)和对象(object)来实现面向对象（object-
 
 先定义鸟类
 
-```
+```py
 class Bird(object):
     have_feather = True
     way_of_reproduction = 'egg'
@@ -35,7 +35,7 @@ class Bird(object):
 
 假设我养了一只小鸡，叫 summer。它是个对象，属于鸟类。使用前面定义的类。
 
-```
+```py
 summer = Bird() print summer.way_of_reproduction
 
 ```
@@ -50,7 +50,7 @@ summer = Bird() print summer.way_of_reproduction
 
 为了酷起见，我们叫这样的一些属性为方法（method）。Python 中通过在类的内部定义函数，来说明方法。
 
-```
+```py
 class Bird(object):
  have_feather = True
     way_of_reproduction = 'egg' def move(self, dx, dy):
@@ -65,7 +65,7 @@ return position
 
 summer = Bird()
 
-```
+```py
 print 'after move:',summer.move(5,8)
 
 ```
@@ -88,7 +88,7 @@ print 'after move:',summer.move(5,8)
 
 在 OOP 中，我们通过继承(inheritance)来表达上述概念。
 
-```
+```py
 class Chicken(Bird):
     way_of_move = 'walk'
     possible_in_KFC = True class Oriole(Bird):
@@ -124,7 +124,7 @@ self 代表了根据该类定义而创建的对象。
 
 定义类：
 
-```
+```py
 class class_name(parent_class):
     a = ...
     b = ... def method1():

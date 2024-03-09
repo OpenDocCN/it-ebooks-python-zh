@@ -18,7 +18,7 @@
 
 表 12-1 一些支持 Python 的流行 GUI 工具包
 
-```
+```py
 Tkinter          使用 Tk 平台，很容易得到，半标准。                     http://wiki.python.org/moin/TkInter
 wxpython         基于 wxWindows，跨平台越来越流行。　　　　　        　http://wxpython.org
 PythonWin　　　　只能在 Windows 上使用，使用了本机的 Windows GUI 功能　　 http://starship.python.net/crew/mhammond
@@ -87,13 +87,13 @@ PyQt　　　　　　 使用 Qt 平台，跨平台。　　　　　　　　�
 
 开始需要导入`wx`模块：
 
-```
+```py
 import wx 
 ```
 
 编写 wxPython 程序的方法很多，但不可避免的事情是创建应用程序对象。基本的应用程序类叫做 ex.App，它负责幕后所有的初始化。最简单的 wxPython 程序应该像下面这样：
 
-```
+```py
 import wx
 
 app = wx.App()
@@ -110,7 +110,7 @@ app.MainLoop()
 
 窗口(Windows)也成为*框架*(`frame`)，它只是`wx.Frame`类的实例。`wx`框架中的部件都是由它们的*父部件*作为构造函数的第一个参数创建的。如果正在创建一个单独的窗口，就不需要考虑父部件，使用 None 即可，如代码清单 12-1 所示。而且在调用`app.MainLoop`前需要调用窗口的`Show`方法——否则它会一直隐藏(可以在事例处理程序中调用`win.Show`，后面会介绍)。
 
-```
+```py
 # 代码清单 12-1 创建并且显示一个框架
 
 import wx
@@ -129,7 +129,7 @@ app.MainLoop()
 
 在框架上增加按钮也很简单——只要使用 win 作为符参数实例化`wx.Button`即可，如代码清单 12-2 所示。
 
-```
+```py
 # 代码清单 12-2 在框架上增加按钮
 
 import wx
@@ -153,7 +153,7 @@ app.MainLoop()
 
 可以在创建部件的时候使用构造函数的 label 参数设定它们的标签。同样，也可以用`title`参数设定框架的标题。我发现最实用的做法是为`wx`构造函数使用关键字参数，所以我不用记住参数的顺序。代码清单 12-3 演示了一个例子。
 
-```
+```py
 # 代码清单 12-3 使用关键字参数增加标签和标题
 
 import wx
@@ -176,7 +176,7 @@ app.MainLoop()
 
 ![](img/57e70b83.png)
 
-```
+```py
 # 代码清单 12-4 设置按钮位置
 
 import wx
@@ -215,7 +215,7 @@ app.MainLoop()
 
 尺寸器会管理组件的尺寸。只要将部件添加到尺寸器上，再加上一些布局参数，然后让尺寸器自己去管理父组件的尺寸。在刚才的例子中，需要增加背景组件(`wx.Panel`)，创建一些嵌套的`wx.BoxSizer`，然后使用面板的`SetSizer`方法设定它的尺寸器，如代码清单 12-5 所示。
 
-```
+```py
 import wx
 
 app = wx.App()
@@ -260,7 +260,7 @@ app.MainLoop()
 
 假设写了一个负责打开文件的函数，并将其命名为`load`。然后就可以像下面这样将该函数作为 loadButton 的事件处理函数：
 
-```
+```py
 loadButton.Bind(wx.EVT_BUTTON, load) 
 ```
 
@@ -274,7 +274,7 @@ loadButton.Bind(wx.EVT_BUTTON, load)
 
 让我们来完成剩下的工作。现在需要的就是两个事件处理函数：`load`和`save`。当事件处理函数被调用时，它会收到一个事件对象作为它唯一的参数，其中包括发生了什么事情的信息，但是在这里可以忽略这方面的事情，因为程序只关心点击时发生的事情。
 
-```
+```py
 def load(event):
     file = open(filename.GetValue())
     contents.SetValue(file.read())
@@ -285,7 +285,7 @@ def load(event):
 
 `save`函数也很简单：几乎和`load`一样——除了它有个`"w"`标志，以及用于文件处理部分的`write`方法。`GetValue`用于从文本区获得信息。
 
-```
+```py
 def save(event):
     file = open(filename.GetValue(), "w")
     file.write(contents.GetValue())
@@ -294,7 +294,7 @@ def save(event):
 
 就是这样了。现在我将这些函数绑定到相应的按钮上，程序已经可以运行了。最终的程序如代码清单 12-6 所示。
 
-```
+```py
 #!/usr/bin/env python # coding=utf-8
 
 import wx def load(event):
@@ -372,7 +372,7 @@ Python 的 GUI 工具包是在太多，所以我没办法将所有工具包都�
 
 为了演示不同的包，我创建了一个简单的程序——很简单，比刚才的编辑器例子还简单。只有一个窗口，该窗口包含一个带有`"Hello"`标签的按钮。当点击按钮时，它会打印出文本`"Hello, world!"`，为了简单，我没有使用任何特殊的布局特性。下面是一个 wxPython 版本的示例。
 
-```
+```py
 import wx
 
 def hello(event):
@@ -404,7 +404,7 @@ Tkinter 是个老牌的 Python GUI 程序。它由 Tk GUI 工具包(用于 Tcl �
 
 下面是使用 Tkinter 实现的 GUI 程序。
 
-```
+```py
 from Tkinter import *
 
 def hello():
@@ -430,7 +430,7 @@ mainloop()
 
 下面是使用 Jython 和 Swing 实现的 GUI 示例。
 
-```
+```py
 from javax.swing import *
 import sys
 def hello(event):

@@ -12,7 +12,7 @@
 
 我们先定义两个简单的数学函数，一个用来计算平方和，一个用来计算平方差：
 
-```
+```py
 # get square sum
 def square_sum(a, b): return a**2 + b**2
 
@@ -21,14 +21,14 @@ def square_diff(a, b): return a**2 - b**2
 
 ```
 
-```
+```py
 print(square_sum(3, 4)) print(square_diff(3, 4))
 
 ```
 
 在拥有了基本的数学功能之后，我们可能想为函数增加其它的功能，比如打印输入。我们可以改写函数来实现这一点：
 
-```
+```py
 # modify: print input
 
 # get square sum
@@ -39,7 +39,7 @@ def square_diff(a, b): print("input", a, b) return a**2 - b**2
 
 ```
 
-```
+```py
 print(square_sum(3, 4)) print(square_diff(3, 4))
 
 ```
@@ -48,7 +48,7 @@ print(square_sum(3, 4)) print(square_diff(3, 4))
 
 现在，我们使用装饰器来实现上述修改：
 
-```
+```py
 def decorator(F): def new_F(a, b): print("input", a, b) return F(a, b) return new_F # get square sum
 @decorator def square_sum(a, b): return a**2 + b**2
 
@@ -63,7 +63,7 @@ print(square_sum(3, 4)) print(square_diff(3, 4))
 
 定义好装饰器后，我们就可以通过@语法使用了。在函数 square_sum 和 square_diff 定义之前调用@decorator，我们实际上将 square_sum 或 square_diff 传递给 decorator，并将 decorator 返回的新的可调用对象赋给原来的函数名(square_sum 或 square_diff)。 所以，当我们调用 square_sum(3, 4)的时候，就相当于：
 
-```
+```py
 square_sum = decorator(square_sum)
 square_sum(3, 4)
 
@@ -79,7 +79,7 @@ square_sum(3, 4)
 
 在上面的装饰器调用中，比如@decorator，该装饰器默认它后面的函数是唯一的参数。装饰器的语法允许我们调用 decorator 时，提供其它参数，比如@decorator(a)。这样，就为装饰器的编写和使用提供了更大的灵活性。
 
-```
+```py
 # a new wrapper layer
 def pre_str(pre=''): # old decorator
     def decorator(F): def new_F(a, b): print(pre + "input", a, b) return F(a, b) return new_F return decorator # get square sum
@@ -94,7 +94,7 @@ print(square_sum(3, 4)) print(square_diff(3, 4))
 
 上面的 pre_str 是允许参数的装饰器。它实际上是对原有装饰器的一个函数封装，并返回一个装饰器。我们可以将它理解为一个含有环境参量的[闭包](http://www.cnblogs.com/vamei/archive/2012/12/15/2772451.html)。当我们使用@pre_str('^_^')调用的时候，Python 能够发现这一层的封装，并把参数传递到装饰器的环境中。该调用相当于:
 
-```
+```py
 square_sum = pre_str('^_^') (square_sum)
 
 ```
@@ -103,7 +103,7 @@ square_sum = pre_str('^_^') (square_sum)
 
 在上面的例子中，装饰器接收一个函数，并返回一个函数，从而起到加工函数的效果。在 Python 2.6 以后，装饰器被拓展到类。一个装饰器可以接收一个类，并返回一个类，从而起到加工类的效果。
 
-```
+```py
 def decorator(aClass): class newClass: def __init__(self, age):
             self.total_display = 0
             self.wrapped = aClass(age) def display(self):

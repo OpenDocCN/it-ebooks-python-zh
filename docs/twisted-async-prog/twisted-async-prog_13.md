@@ -28,7 +28,7 @@
 
 我们将使用新学的 deferred 嵌套来重写我们的客户端来使用由服务器提供的样式转换服务。其实现代码在[twisted-client-6/get-poetry.py](http://github.com/jdavisp3/twisted-intro/blob/master/twisted-client-6/get-poetry.py)中。与前几个版本一样，协议与工厂都没有改变。但我们添加了进行格式转换服务请求的协议与工厂实现。下面是协议实现代码：
 
-```
+```py
 class TransformClientProtocol(NetstringReceiver):
     def connectionMade(self):
         self.sendRequest(self.factory.xform_name, self.factory.poem)
@@ -43,7 +43,7 @@ class TransformClientProtocol(NetstringReceiver):
 
 使用 NetstringReceiver 作为基类可以很简单地实现我们的协议。只要连接一旦建立我们就发出格式转换服务的请求。当我们得到格式转换之后的诗歌后交给工厂进行处理，下面是工厂代码：
 
-```
+```py
 class TransformClientFactory(ClientFactory):
     protocol = TransformClientProtocol
     def __init__(self, xform_name, poem):
@@ -68,7 +68,7 @@ class TransformClientFactory(ClientFactory):
 
 除了格式转换工厂外，还有一个 Proxy 类包装了具体创建一个 TCP 连接到格式转换服务器：
 
-```
+```py
 class TransformProxy(object):
     """
     I proxy requests to a transformation service.
@@ -87,7 +87,7 @@ class TransformProxy(object):
 
 剩下的代码除了 try_to_cummingsify 外都没有改变：
 
-```
+```py
 def try_to_cummingsify(poem):
     d = proxy.xform('cummingsify', poem)
     def fail(err):
@@ -100,7 +100,7 @@ def try_to_cummingsify(poem):
 
 你可能注意到 return d.addErrback(fail)这句，其等价于
 
-```
+```py
 d.addErrback(fail)
 return d 
 ```
@@ -109,19 +109,19 @@ return d
 
 新版客户端的启动和老版的稍微有点不同，如果有 1 个带诗歌转换服务的服务器运行 10001 端口，2 个诗歌下载服务器分别运行在 10002 和 10003 端口， 你可以这样启动客户端：
 
-```
+```py
 python twisted-client-6/get-poetry.py 10001 10002 10003 
 ```
 
 它会从诗歌下载服务器下载 2 首诗歌，然后通过诗歌转换服务器转换它们。你可以这样启动诗歌转换服务器：
 
-```
+```py
 python twisted-server-1/transformedpoetry.py --port 10001 
 ```
 
 启动 2 个诗歌下载服务器：
 
-```
+```py
 python twisted-server-1/fastpoetry.py --port 10002 poetry/fascination.txt
 python twisted-server-1/fastpoetry.py --port 10003 poetry/science.txt 
 ```

@@ -36,15 +36,15 @@
 
 **Listing 8**
 
-```
+```py
 classOrderedList:
 ```
 
-```
+```py
     def__init__(self):
 ```
 
-```
+```py
         self.head=None
 ```
 
@@ -61,112 +61,112 @@ classOrderedList:
 **Listing 9**
 
 |  
-```
+```py
  1
 ```
 
-```
+```py
  2
 ```
 
-```
+```py
  3
 ```
 
-```
+```py
  4
 ```
 
-```
+```py
  5
 ```
 
-```
+```py
  6
 ```
 
-```
+```py
  7
 ```
 
-```
+```py
  8
 ```
 
-```
+```py
  9
 ```
 
-```
+```py
 10
 ```
 
-```
+```py
 11
 ```
 
-```
+```py
 12
 ```
 
-```
+```py
 13
 ```
 
-```
+```py
 14
 ```
 
  |  
-```
+```py
 defsearch(self,item):
 ```
 
-```
+```py
     current =self.head
 ```
 
-```
+```py
     found =False
 ```
 
-```
+```py
     stop =False
 ```
 
-```
+```py
     while current !=Noneandnot found andnot stop:
 ```
 
-```
+```py
         if current.getData()== item:
 ```
 
-```
+```py
             found =True
 ```
 
-```
+```py
         else:
 ```
 
-```
+```py
             if current.getData()> item:
 ```
 
-```
+```py
                 stop =True
 ```
 
-```
+```py
             else:
 ```
 
-```
+```py
                 current = current.getNext()
 ```
 
-```
+```py
     return found
 ```
 
@@ -187,144 +187,144 @@ defsearch(self,item):
 **Listing 10**
 
 |  
-```
+```py
  1
 ```
 
-```
+```py
  2
 ```
 
-```
+```py
  3
 ```
 
-```
+```py
  4
 ```
 
-```
+```py
  5
 ```
 
-```
+```py
  6
 ```
 
-```
+```py
  7
 ```
 
-```
+```py
  8
 ```
 
-```
+```py
  9
 ```
 
-```
+```py
 10
 ```
 
-```
+```py
 11
 ```
 
-```
+```py
 12
 ```
 
-```
+```py
 13
 ```
 
-```
+```py
 14
 ```
 
-```
+```py
 15
 ```
 
-```
+```py
 16
 ```
 
-```
+```py
 17
 ```
 
-```
+```py
 18
 ```
 
  |  
-```
+```py
 defadd(self,item):
 ```
 
-```
+```py
     current =self.head
 ```
 
-```
+```py
     previous =None
 ```
 
-```
+```py
     stop =False
 ```
 
-```
+```py
     while current !=Noneandnot stop:
 ```
 
-```
+```py
         if current.getData()> item:
 ```
 
-```
+```py
             stop =True
 ```
 
-```
+```py
         else:
 ```
 
-```
+```py
             previous = current
 ```
 
-```
+```py
             current = current.getNext()
 ```
 
-```
+```py
     temp = Node(item)
 ```
 
-```
+```py
     if previous ==None:
 ```
 
-```
+```py
         temp.setNext(self.head)
 ```
 
-```
+```py
         self.head= temp
 ```
 
-```
+```py
     else:
 ```
 
-```
+```py
         temp.setNext(current)
 ```
 
-```
+```py
         previous.setNext(temp)
 ```
 

@@ -23,13 +23,13 @@
 
 完成之后，直接执行：
 
-```
+```py
 $ pip install Pillow 
 ```
 
 ### 例子
 
-```
+```py
 from PIL import Image, ImageFilter
 #读取图像
 im = Image.open( 'image.jpg' )
@@ -65,13 +65,13 @@ OpenSource Computer Vision,其更广为人知的名字是 OpenCv，是一个在�
 
 NumPy 可以从 Python Package Index （PyPI）中下载：
 
-```
+```py
 $ pip install numpy 
 ```
 
 ### 例子
 
-```
+```py
 from cv2 import *
 import numpy as np
 #读取图像

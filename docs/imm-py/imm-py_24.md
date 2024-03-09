@@ -14,7 +14,7 @@
 
 我们来实现一个斐波那契计算器，并使用`lru_cache`。
 
-```
+```py
 from functools import lru_cache
 
 @lru_cache(maxsize=32)
@@ -31,7 +31,7 @@ def fib(n):
 
 我们也可以轻松地对返回值清空缓存，通过这样：
 
-```
+```py
 fib.cache_clear() 
 ```
 
@@ -42,7 +42,7 @@ fib.cache_clear()
 你可以创建任意种类的缓存机制，有若干种方式来达到相同的效果，这完全取决于你的需要。
 这里是一个一般的缓存：
 
-```
+```py
 from functools import wraps
 
 def memoize(function):

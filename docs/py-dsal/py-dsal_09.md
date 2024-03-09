@@ -64,7 +64,7 @@ In order to codethe algorithm in Python, we will use a dictionary called prec 
 
 终于到了算法实现的时候。代码中，我们用了一个名为 prec 的字典保存操作符的优先级，每个操作符映射一个整数以便作优先级的比较。注意左括号（也被定义为最低的优先级 1，这样每个操作符与之比较的时候，都会高于它。第 15 行定义了操作符为任意大写字母或数字。完整的代码如下：
 
-```
+```py
 from pythonds.basic.stack import Stack
 
 def infixToPostfix(infixexpr):

@@ -16,12 +16,12 @@
 
 下面是一个简单的库程序 TestLib.py。当直接运行 TestLib.py 时，__name__ 为"__main__"。如果被 import 的话，__name__ 为"TestLib"。
 
-```
+```py
 def lib_func(a): return a + 10 
 
 ```
 
-```
+```py
 def lib_func_another(b): return b + 20
 if __name__ == '__main__':
     test = 101
@@ -31,7 +31,7 @@ if __name__ == '__main__':
 
  我们在 user.py 中 import 上面的 TestLib。
 
-```
+```py
 import TestLib print(TestLib.lib_func(120))
 
 ```
@@ -44,7 +44,7 @@ import TestLib as test         # 引用 TestLib 模块，并将它改名
 
 比如: 
 
-```
+```py
 import TestLib as t print(t.lib_func(120))
 
 ```
@@ -55,7 +55,7 @@ from TestLib import lib_func   # 只引用 TestLib 中的 lib_func 对象，�
 
 比如： 
 
-```
+```py
 from TestLib import lib_func print(lib_func(120))
 
 ```
@@ -64,7 +64,7 @@ from TestLib import *          # 引用所有 TestLib 中的对象，�
 
 比如: 
 
-```
+```py
 from TestLib import *
 print(lib_func(120))
 
@@ -74,7 +74,7 @@ print(lib_func(120))
 
 当我们想要知道某个函数会接收哪些参数的时候，可以使用下面方法查询。
 
-```
+```py
 import inspect print(inspect.getargspec(func))
 
 ```
@@ -87,7 +87,7 @@ hasattr(obj, attr_name)   # attr_name 是一个字符串
 
 例如：
 
-```
+```py
 a = [1,2,3]
 print(hasattr(a,'append'))
 
@@ -105,7 +105,7 @@ cls.__base__
 
 在 Python 程序的第一行加入
 
-```
+```py
 #coding=utf8
 print("你好吗？")
 
@@ -113,7 +113,7 @@ print("你好吗？")
 
 也能用以下方式：
 
-```
+```py
 #-*- coding: UTF-8 -*-
 print("你好吗？")
 
@@ -123,7 +123,7 @@ print("你好吗？")
 
 在 2.6 以上版本，以如下方式表示 
 
-```
+```py
 print(0b1110)     # 二进制，以 0b 开头
 print(0o10)       # 八进制，以 0o 开头
 print(0x2A)       # 十六进制，以 0x 开头
@@ -132,7 +132,7 @@ print(0x2A)       # 十六进制，以 0x 开头
 
 如果是更早版本，可以用如下方式：
 
-```
+```py
 print(int("1110", 2))
 print(int("10", 8))
 print(int("2A", 16))
@@ -143,7 +143,7 @@ print(int("2A", 16))
 
 多行的注释可以以'''开始，以'''结束，比如
 
-```
+```py
 ''' This is demo '''
 
 def func(): # print something
@@ -160,7 +160,7 @@ func()
 
 我们可以通过下面方法来查看搜索路径：
 
-```
+```py
 import sys print(sys.path)
 
 ```

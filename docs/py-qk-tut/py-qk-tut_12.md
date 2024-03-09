@@ -12,14 +12,14 @@
 
 我们先写一个 first.py 文件，内容如下：
 
-```
+```py
 def laugh(): print 'HaHaHaHa'
 
 ```
 
 再写一个 second.py
 
-```
+```py
 import first for i in range(10):
     first.laugh()
 

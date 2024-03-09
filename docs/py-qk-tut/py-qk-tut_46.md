@@ -16,7 +16,7 @@
 
 ![复制代码](img/rdb_epub_4593197691164204437.jpg)
 
-```
+```py
 # Written by Vamei # A messy HTTP server based on TCP socket 
 
 import socket
@@ -96,7 +96,7 @@ SocketServer:
 
 ![复制代码](img/rdb_epub_4593197691164204437.jpg)
 
-```
+```py
 # Written by Vamei # use TCPServer
 
 import SocketServer
@@ -187,7 +187,7 @@ SimpleHTTPServer
 
 ![复制代码](img/rdb_epub_4593197691164204437.jpg)
 
-```
+```py
 <head>
 <title>WOW</title>
 </head>
@@ -209,7 +209,7 @@ SimpleHTTPServer:
 
 ![复制代码](img/rdb_epub_4593197691164204437.jpg)
 
-```
+```py
 # Written by Vamei # Simple HTTPsERVER
 
 import SocketServer
@@ -249,7 +249,7 @@ CGIHTTPServer:
 
 ![复制代码](img/rdb_epub_4593197691164204437.jpg)
 
-```
+```py
 # Written by Vamei # A messy HTTP server based on TCP socket 
 
 import BaseHTTPServer
@@ -270,7 +270,7 @@ CGIHTTPRequestHandler 默认当前目录下的 cgi-bin 和 ht-bin 文件夹中�
 
 ![复制代码](img/rdb_epub_4593197691164204437.jpg)
 
-```
+```py
 <head>
 <title>WOW</title>
 </head>
@@ -290,17 +290,17 @@ CGIHTTPRequestHandler 默认当前目录下的 cgi-bin 和 ht-bin 文件夹中�
 
 ![复制代码](img/rdb_epub_4593197691164204437.jpg)
 
-```
+```py
 #!/usr/bin/env python 
 
 ```
 
-```
+```py
 # Written by Vamei
 
 ```
 
-```
+```py
 import cgi
 form = cgi.FieldStorage()
 

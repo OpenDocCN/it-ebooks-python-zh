@@ -10,7 +10,7 @@
 
 ![复制代码](img/rdb_epub_4593197691164204437.jpg)
 
-```
+```py
 for i in iter([2, 4, 5, 6]):
     print(i)
 
@@ -22,7 +22,7 @@ for i in iter([2, 4, 5, 6]):
 
 ![复制代码](img/rdb_epub_4593197691164204437.jpg)
 
-```
+```py
 # import the tools
 from itertools import *
 
@@ -50,7 +50,7 @@ itertools 包含类似的工具。这些函数接收函数作为参数，并将�
 
 ![复制代码](img/rdb_epub_4593197691164204437.jpg)
 
-```
+```py
 from itertools import * rlt = imap(pow, [1, 2, 3], [1, 2, 3])
 
 for num in rlt:
@@ -72,7 +72,7 @@ ifilter 函数与 filter()函数类似，只是返回的是一个循环器。
 
 ![复制代码](img/rdb_epub_4593197691164204437.jpg)
 
-```
+```py
 ifilter(lambda x: x > 5, [2, 3, 5, 6, 7]
 
 ```
@@ -105,7 +105,7 @@ product('abc', [1, 2])   # 多个循环器集合的笛卡尔积。相当于嵌
 
 ![复制代码](img/rdb_epub_4593197691164204437.jpg)
 
-```
+```py
 for m, n in product('abc', [1, 2]):
     print m, n
 
@@ -131,7 +131,7 @@ combinations_with_replacement('abc', 2) # 与上面类似，但允许两次选�
 
 ![复制代码](img/rdb_epub_4593197691164204437.jpg)
 
-```
+```py
 def height_class(h):
     if h > 180:
         return "tall"

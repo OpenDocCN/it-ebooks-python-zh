@@ -34,7 +34,7 @@ Guido von Rossum
 
 Guido 希望有一种语言，这种语言能够像 C 语言那样，能够全面调用计算机的功能接口，又可以像 shell 那样，可以轻松的编程。ABC 语言让 Guido 看到希望。ABC 是由荷兰的 CWI (Centrum Wiskunde & Informatica, 数学和计算机研究所)开发的。Guido 在 CWI 工作，并参与到 ABC 语言的开发。ABC 语言以教学为目的。与当时的大部分语言不同，ABC 语言的目标是“让用户感觉更好”。ABC 语言希望让语言变得容易阅读，容易使用，容易记忆，容易学习，并以此来激发人们学习编程的兴趣。比如下面是一段来自 Wikipedia 的 ABC 程序，这个程序用于统计文本中出现的词(word)的总数：
 
-```
+```py
 HOW TO RETURN words document:
    PUT {} IN collection
    FOR line IN document:

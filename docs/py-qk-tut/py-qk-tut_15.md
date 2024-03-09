@@ -34,7 +34,7 @@ open()返回的实际上是一个循环对象，包含有 next()方法。而该 
 
 自动进行的话，就是：
 
-```
+```py
 for line in open('test.txt'): print line
 
 ```
@@ -55,7 +55,7 @@ for line in open('test.txt'): print line
 
 下面是一个生成器:
 
-```
+```py
 def gen():
     a = 100
     yield a
@@ -68,14 +68,14 @@ def gen():
 
 再考虑如下一个生成器:
 
-```
+```py
 def gen(): for i in range(4): yield i
 
 ```
 
 它又可以写成生成器表达式(Generator Expression):
 
-```
+```py
 G = (x for x in range(4))
 
 ```
@@ -86,7 +86,7 @@ G = (x for x in range(4))
 
 表理解是快速生成表的方法。假设我们生成表 L：
 
-```
+```py
 L = [] for x in range(10):
     L.append(x**2)
 
@@ -94,7 +94,7 @@ L = [] for x in range(10):
 
 以上产生了表 L，但实际上有快捷的写法，也就是表理解的方式:
 
-```
+```py
 L = [x**2 for x in range(10)]
 
 ```
@@ -105,7 +105,7 @@ L = [x**2 for x in range(10)]
 
 考虑下面的表理解会生成什么？
 
-```
+```py
 xl = [1,3,5]
 yl = [9,12,13]
 L = [ x**2 for (x,y) in zip(xl,yl) if y > 10]

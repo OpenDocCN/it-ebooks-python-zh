@@ -12,7 +12,7 @@
 
 下面我们看一下两段程序：
 
-```
+```py
 # without context manager
 f = open("new.txt", "w")
 print(f.closed)               # whether the file is open
@@ -23,7 +23,7 @@ f.close() print(f.closed)
 
 以及：
 
-```
+```py
 # with context manager
 with open("new.txt", "w") as f:
 print(f.closed)
@@ -42,7 +42,7 @@ print(f.closed)
 
 下面，我们自定义用于上下文管理器的对象，就是下面的 myvow：
 
-```
+```py
 # customized object
 
 class VOW(object): def __init__(self, text):
@@ -57,7 +57,7 @@ class VOW(object): def __init__(self, text):
 
 我们的运行结果如下:
 
-```
+```py
 I say: I'm fine
 I say: I'm fine!
 
@@ -73,7 +73,7 @@ __enter__()返回一个对象。上下文管理器会使用这一对象作为 as
 
 通过上下文管理器，我们控制对象在程序不同区间的特性。上下文管理器(with EXPR as VAR)大致相当于如下流程:
 
-```
+```py
 # with EXPR as VAR:
  VAR = EXPR
 VAR = VAR.__enter__() try:

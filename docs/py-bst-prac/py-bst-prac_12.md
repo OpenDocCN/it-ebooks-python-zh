@@ -17,7 +17,7 @@
 
 ### 你所写的
 
-```
+```py
 def append_to(element, to=[]):
     to.append(element)
     return to 
@@ -25,7 +25,7 @@ def append_to(element, to=[]):
 
 ### 你所期望的
 
-```
+```py
 my_list = append_to(12)
 print my_list
 
@@ -39,7 +39,7 @@ print my_other_list
 
 ### 而事实是
 
-```
+```py
 [12]
 [12, 42] 
 ```
@@ -52,7 +52,7 @@ print my_other_list
 
 在每次函数调用中，通过使用指示没有提供参数的默认参数（[`None`](http://docs.python.org/library/constants.html#None "(在 Python v2.7)") [http://docs.python.org/library/constants.html#None] 通常是 个好选择），来创建一个新的对象。
 
-```
+```py
 def append_to(element, to=None):
     if to is None:
         to = []
@@ -70,21 +70,21 @@ def append_to(element, to=None):
 
 ### 你所写的
 
-```
+```py
 def create_multipliers():
     return [lambda x : i * x for i in range(5)] 
 ```
 
 ### 你所期望的
 
-```
+```py
 for multiplier in create_multipliers():
     print multiplier(2) 
 ```
 
 一个包含五个函数的列表，每个函数有它们自己的封闭变量 `i` 乘以它们的参数，得到:
 
-```
+```py
 0
 2
 4
@@ -94,7 +94,7 @@ for multiplier in create_multipliers():
 
 ### 而事实是
 
-```
+```py
 8
 8
 8
@@ -110,7 +110,7 @@ Python 的闭包是 *迟绑定* 。 这意味着闭包中用到的变量的值�
 
 关于这个陷阱有一个普遍严重的误解，它被认为是和 Python 的 [lambdas](http://docs.python.org/reference/expressions.html#lambda "(在 Python v2.7)") [http://docs.python.org/reference/expressions.html#lambda] 有关。 由 `lambda` 表达式创建的函数并没什么特别， 而且事实上，同样的问题也出现在使用普通的 `定义` 上：
 
-```
+```py
 def create_multipliers():
     multipliers = []
 
@@ -126,14 +126,14 @@ def create_multipliers():
 
 最一般的解决方案可以说是有点取巧（hack）。由于 Python 拥有在前文提到的为函数默认参数 赋值的行为（参见 可变默认参数 ）,你可以创建一个立即绑定参数的闭包,像下面这样：
 
-```
+```py
 def create_multipliers():
     return [lambda x, i=i : i * x for i in range(5)] 
 ```
 
 或者，你可以使用 functools.partial 函数：
 
-```
+```py
 from functools import partial
 from operator import mul
 

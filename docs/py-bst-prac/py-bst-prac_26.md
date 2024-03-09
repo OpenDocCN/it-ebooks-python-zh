@@ -13,7 +13,7 @@
 
 作为例子，一个像这样的 XML 文件：
 
-```
+```py
 <?xml version="1.0"?>
 <root>
     <child name="child1">
@@ -22,14 +22,14 @@
 
 可以被这样载入：
 
-```
+```py
 import untangle
 obj = untangle.parse('path/to/file.xml') 
 ```
 
 然后你可以像这样获取 child 元素名称：
 
-```
+```py
 obj.root.child['name'] 
 ```
 
@@ -41,7 +41,7 @@ untangle 也支持从字符串或 URL 中载入 XML。
 
 对于一个像这样的 XML 文件：
 
-```
+```py
 <mydocument has="an attribute">
   <and>
     <many>elements</many>
@@ -55,7 +55,7 @@ untangle 也支持从字符串或 URL 中载入 XML。
 
 可以装载进一个 Python 字典里，像这样：
 
-```
+```py
 import xmltodict
 
 with open('path/to/file.xml') as fd:
@@ -64,7 +64,7 @@ with open('path/to/file.xml') as fd:
 
 你可以访问元素，属性以及值，像这样：
 
-```
+```py
 doc['mydocument']['@has'] # == u'an attribute'
 doc['mydocument']['and']['many'] # == [u'elements', u'more elements']
 doc['mydocument']['plus']['@a'] # == u'complex'

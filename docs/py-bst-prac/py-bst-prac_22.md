@@ -39,7 +39,7 @@ Martin Fowler 和 Kent Beck 首次提出 [Continuous Integration](http://martinf
 
 作为开始，将 `.travis.yml` 文件加入到你的仓库中，内容如下:
 
-```
+```py
 language: python
 python:
   - "2.6"

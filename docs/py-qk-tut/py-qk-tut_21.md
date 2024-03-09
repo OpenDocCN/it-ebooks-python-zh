@@ -12,7 +12,7 @@ Python 一切皆对象(object)，每个对象都可能有多个属性(attribute)
 
 对象的属性储存在对象的 __dict__ 属性中。__dict__ 为一个词典，键为属性名，对应的值为属性本身。我们看下面的类和对象。chicken 类继承自 bird 类，而 summer 为 chicken 类的一个对象。
 
-```
+```py
 class bird(object):
     feather = True
 
@@ -31,7 +31,7 @@ print(summer.__dict__)
 
 下面为我们的输出结果：
 
-```
+```py
 {'__dict__': <attribute '__dict__' of 'bird' objects>, '__module__': '__main__', '__weakref__': <attribute '__weakref__' of 'bird' objects>, 'feather': True, '__doc__': None}
 
 {'fly': False, '__module__': '__main__', '__doc__': None, '__init__': <function __init__ at 0x2b91db476d70>}
@@ -46,7 +46,7 @@ print(summer.__dict__)
 
 当我们有一个 summer 对象的时候，分别查询 summer 对象、chicken 类、bird 类以及 object 类的属性，就可以知道 summer 对象所有的 __dict__，就可以找到通过对象 summer 可以调用和修改的所有属性了。下面两种属性修改方法等效：
 
-```
+```py
 summer.__dict__['age'] = 3
 print(summer.__dict__['age'])
 
@@ -61,7 +61,7 @@ print(summer.age)
 
 同一个对象的不同属性之间可能存在依赖关系。当某个属性被修改时，我们希望依赖于该属性的其他属性也同时变化。这时，我们不能通过 __dict__ 的方式来静态的储存属性。Python 提供了多种即时生成属性的方法。其中一种称为特性(property)。特性是特殊的属性。比如我们为 chicken 类增加一个特性 adult。当对象的 age 超过 1 时，adult 为 True；否则为 False：
 
-```
+```py
 class bird(object):
     feather = True
 
@@ -86,7 +86,7 @@ print(summer.adult)
 
 我们使用下面一个例子进一步说明:
 
-```
+```py
 class num(object):
     def __init__(self, value):
         self.value = value
@@ -114,7 +114,7 @@ del x.neg
 
 我们可以用 __getattr__(self, name)来查询即时生成的属性。当我们查询一个属性时，如果通过 __dict__ 方法无法找到该属性，那么 Python 会调用对象的 __getattr__ 方法，来即时生成该属性。比如:
 
-```
+```py
 class bird(object):
     feather = True
 

@@ -16,7 +16,7 @@
 
 你可以通过创建一个`file`类的对象来打开一个文件，分别使用`file`类的`read`、`readline`或`write`方法来恰当地读写文件。对文件的读写能力依赖于你在打开文件时指定的模式。最后，当你完成对文件的操作的时候，你调用`close`方法来告诉 Python 我们完成了对文件的使用。
 
-```
+```py
 #!/usr/bin/python
 # Filename: using_file.py
 
@@ -46,7 +46,7 @@ f.close() # close the file
 
 ## 输出
 
-```
+```py
 $ python using_file.py
 Programming is fun
 When the work is done
@@ -74,7 +74,7 @@ Python 提供一个标准的模块，称为`pickle`。使用它你可以在一�
 
 还有另一个模块称为`cPickle`，它的功能和`pickle`模块完全相同，只不过它是用 C 语言编写的，因此要快得多（比`pickle`快 1000 倍）。你可以使用它们中的任一个，而我们在这里将使用`cPickle`模块。记住，我们把这两个模块都简称为`pickle`模块。
 
-```
+```py
 #!/usr/bin/python
 # Filename: pickling.py
 
@@ -103,7 +103,7 @@ print storedlist
 
 ## 输出
 
-```
+```py
 $ python pickling.py
 ['apple', 'mango', 'carrot'] 
 ```

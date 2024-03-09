@@ -74,7 +74,7 @@ random.expovariate(*lambd*) # 随机生成符合指数分布的随机数，lambd
 
 假设我们有一群人参加舞蹈比赛，为了公平起见，我们要随机排列他们的出场顺序。我们下面利用 random 包实现： 
 
-```
+```py
 import random
 all_people = ['Tom', 'Vivian', 'Paul', 'Liya', 'Manu', 'Daniel', 'Shawn']
 random.shuffle(all_people) for i,name in enumerate(all_people): print(i,':'+name)

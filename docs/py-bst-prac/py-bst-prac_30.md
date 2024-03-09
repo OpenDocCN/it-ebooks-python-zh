@@ -49,20 +49,20 @@ Use [pip](http://pypi.python.org/pypi/pip) [http://pypi.python.org/pypi/pip]. Mo
 
 打开你的命令行并且输入：
 
-```
+```py
 $ cd archive
 $ python -m SimpleHTTPServer 9000 
 ```
 
 这运行了一个简单的 http 服务器，其监听端口 9000 并且将列出所有包（比如 **MyPackage**）。现在 你可以使用任何 Python 包安装器从你的服务器中安装 **MyPackage** 。若使用 Pip,你可以这样做：
 
-```
+```py
 $ pip install --extra-index-url=http://127.0.0.1:9000/ MyPackage 
 ```
 
 你的文件夹名字与你的包名相同是 **必须**的。我曾经被这个坑过一次。但是如果你但觉得 创建一个叫做 :file:`MyPackage`的文件夹然后里面又有一个:file:`MyPackage.tar.gz`文件 是*多余*的，你可以这样共享 MyPackage:
 
-```
+```py
 $ pip install  http://127.0.0.1:9000/MyPackage.tar.gz 
 ```
 

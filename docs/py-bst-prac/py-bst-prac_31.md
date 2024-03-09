@@ -62,7 +62,7 @@
 1.  下载并且安装 [`sourceforge.net/projects/py2exe/files/py2exe/`](http://sourceforge.net/projects/py2exe/files/py2exe/)
 2.  编写 `setup.py` ([配置选项清单](http://www.py2exe.org/index.cgi/ListOfOptions) [http://www.py2exe.org/index.cgi/ListOfOptions]):
 
-```
+```py
 from distutils.core import setup
 import py2exe
 
@@ -75,7 +75,7 @@ setup(
 4.  (可选) [单文件模式](http://stackoverflow.com/questions/112698/py2exe-generate-single-executable-file#113014) [http://stackoverflow.com/questions/112698/py2exe-generate-single-executable-file#113014]
 5.  生成 :file: .exe 到 `dist` 目录:
 
-```
+```py
 $ python setup.py py2exe 
 ```
 

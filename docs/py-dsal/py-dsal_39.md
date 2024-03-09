@@ -91,7 +91,7 @@
 
 使用以上规则，加上 Stack 和 BinaryTree 的操作，现在我们可以写分析树的代码了。如下：
 
-```
+```py
 from pythonds.basic.stack import Stack
 from pythonds.trees.binaryTree import BinaryTree
 
@@ -140,7 +140,7 @@ pt.postorder()  #下节讲到
 
 **Listing 1**
 
-```
+```py
 def evaluate(parseTree):
     opers = {'+':operator.add, '-':operator.sub, '*':operator.mul, '/':operator.truediv}
 

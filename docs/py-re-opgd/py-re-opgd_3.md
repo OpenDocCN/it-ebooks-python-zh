@@ -10,7 +10,7 @@
 
 正则表达式被编译成 `RegexObject` 实例，可以为不同的操作提供方法，如模式匹配搜索或字符串替换。
 
-```
+```py
 #python
 >>> import re
 >>> p = re.compile('ab*')
@@ -20,7 +20,7 @@
 
 re.compile() 也接受可选的标志参数，常用来实现不同的特殊功能和语法变更。我们稍后将查看所有可用的设置，但现在只举一个例子：
 
-```
+```py
 #!python
 >>> p = re.compile('ab*', re.IGNORECASE) 
 ```
@@ -72,7 +72,7 @@ RE 被做为一个字符串发送给 re.compile()。REs 被处理成字符串是
 
 首先，运行 Python 解释器，导入 re 模块并编译一个 RE：
 
-```
+```py
 #!python
 Python 2.2.2 (#1, Feb 10 2003, 12:57:01)
 >>> import re
@@ -83,7 +83,7 @@ Python 2.2.2 (#1, Feb 10 2003, 12:57:01)
 
 现在，你可以试着用 RE 的 [a-z]+ 去匹配不同的字符串。一个空字符串将根本不能匹配，因为 + 的意思是 “一个或更多的重复次数”。 在这种情况下 match() 将返回 None，因为它使解释器没有输出。你可以明确地打印出 match() 的结果来弄清这一点。
 
-```
+```py
 #!python
 >>> p.match("")
 >>> print p.match("")
@@ -92,7 +92,7 @@ None
 
 现在，让我们试着用它来匹配一个字符串，如 "tempo"。这时，match() 将返回一个 MatchObject。因此你可以将结果保存在变量里以便後面使用。
 
-```
+```py
 #!python
 >>> m = p.match( 'tempo')
 >>> print m
@@ -110,7 +110,7 @@ None
 
 试试这些方法不久就会清楚它们的作用了：
 
-```
+```py
 #!python
 >>> m.group()
 'tempo'
@@ -122,7 +122,7 @@ None
 
 group() 返回 RE 匹配的子串。start() 和 end() 返回匹配开始和结束时的索引。span() 则用单个元组把开始和结束时的索引一起返回。因为匹配方法检查到如果 RE 在字符串开始处开始匹配，那么 start() 将总是为零。然而， `RegexObject` 实例的 search 方法扫描下面的字符串的话，在这种情况下，匹配开始的位置就也许不是零了。
 
-```
+```py
 #!python
 >>> print p.match('::: message')
 None
@@ -136,7 +136,7 @@ None
 
 在实际程序中，最常见的作法是将 `MatchObject` 保存在一个变量里，然後检查它是否为 None，通常如下所示：
 
-```
+```py
 #!python
 p = re.compile( ... )
 m = p.match( 'string goes here' )
@@ -148,7 +148,7 @@ print 'No match'
 
 两个 `RegexObject` 方法返回所有匹配模式的子串。findall()返回一个匹配字符串行表：
 
-```
+```py
 #!python
 >>> p = re.compile('\d+')
 >>> p.findall('12 drummers drumming, 11 pipers piping, 10 lords a-leaping')
@@ -157,7 +157,7 @@ print 'No match'
 
 findall() 在它返回结果时不得不创建一个列表。在 Python 2.2 中，也可以用 finditer() 方法。
 
-```
+```py
 #!python
 >>> iterator = p.finditer('12 drummers drumming, 11 ... 10 ...')
 >>> iterator
@@ -176,7 +176,7 @@ findall() 在它返回结果时不得不创建一个列表。在 Python 2.2 中�
 
 你不一定要产生一个 `RegexObject` 对象然后再调用它的方法；re 模块也提供了顶级函数调用如 match()、search()、sub() 等等。这些函数使用 RE 字符串作为第一个参数，而后面的参数则与相应 `RegexObject` 的方法参数相同，返回则要么是 None 要么就是一个 `MatchObject` 的实例。
 
-```
+```py
 #!python
 >>> print re.match(r'From\s+', 'Fromage amk')
 None
@@ -188,7 +188,7 @@ Under the hood, 这些函数简单地产生一个 RegexOject 并在其上调用�
 
 你将使用这些模块级函数，还是先得到一个 `RegexObject` 再调用它的方法呢？如何选择依赖于怎样用 RE 更有效率以及你个人编码风格。如果一个 RE 在代码中只做用一次的话，那么模块级函数也许更方便。如果程序包含很多的正则表达式，或在多处复用同一个的话，那么将全部定义放在一起，在一段代码中提前编译所有的 REs 更有用。从标准库中看一个例子，这是从 xmllib.py 文件中提取出来的：
 
-```
+```py
 #!python
 ref = re.compile( ... )
 entityref = re.compile( ... )
@@ -240,7 +240,7 @@ locales 是 C 语言库中的一项功能，是用来为需要考虑不同语言
 
 举个例子，这里有一个使用 re.VERBOSE 的 RE；看看读它轻松了多少？
 
-```
+```py
 #!python
 charref = re.compile(r"""&[[]]           # Start of a numeric entity reference|||here has wrong.i can't fix
 (
@@ -253,7 +253,7 @@ charref = re.compile(r"""&[[]]           # Start of a numeric entity reference||
 
 没有 verbose 设置， RE 会看起来象这样：
 
-```
+```py
 #!python
 charref = re.compile("&#([0-9]+[⁰-9]"
 "|0[0-7]+[⁰-7]"

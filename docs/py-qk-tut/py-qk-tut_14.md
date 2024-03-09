@@ -12,7 +12,7 @@
 
 之前我们已经使用过 range 来控制 for 循环。现在，我们继续开发 range 的功能，以实现下标对循环的控制：
 
-```
+```py
 S = ‘abcdefghijk’ for i in range(0,len(S),2): print S[i]
 
 ```
@@ -23,7 +23,7 @@ S = ‘abcdefghijk’ for i in range(0,len(S),2): print S[i]
 
 利用 enumerate()函数，可以在每次循环中同时得到下标和元素：
 
-```
+```py
 S = 'abcdefghijk'
 for (index,char) in enumerate(S): print index print char
 
@@ -35,7 +35,7 @@ for (index,char) in enumerate(S): print index print char
 
 如果你多个等长的序列，然后想要每次循环时从各个序列分别取出一个元素，可以利用 zip()方便地实现：
 
-```
+```py
 ta = [1,2,3]
 tb = [9,8,7]
 tc = ['a','b','c'] for (a,b,c) in zip(ta,tb,tc): print a,b,c

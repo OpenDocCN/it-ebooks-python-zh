@@ -20,7 +20,7 @@ Process.PID 中保存有 PID，如果进程还没有 start()，则 PID 为 None�
 
 我们可以从下面的程序中看到 Thread 对象和 Process 对象在使用上的相似性与结果上的不同。各个线程和进程都做一件事：打印 PID。但问题是，所有的任务在打印的时候都会向同一个标准输出(stdout)输出。这样输出的字符会混合在一起，无法阅读。使用 Lock 同步，在一个任务输出完成之后，再允许另一个任务输出，可以避免多个任务同时向终端输出。
 
-```
+```py
 # Similarity and difference of multi thread vs. multi process # Written by Vamei
 
 import os import threading import multiprocessing # worker function
@@ -55,7 +55,7 @@ lock = multiprocessing.Lock() for i in range(5):
 
 下面的程序展示了 Pipe 的使用:
 
-```
+```py
 # Multiprocessing with Pipe # Written by Vamei
 
 import multiprocessing as mul def proc1(pipe):
@@ -79,7 +79,7 @@ Pipe 对象建立的时候，返回一个含有两个元素的表，每个元素
 
 下面的程序展示了 Queue 的使用:
 
-```
+```py
 # Written by Vamei
 import os import multiprocessing import time #================== # input worker
 def inputQ(queue):

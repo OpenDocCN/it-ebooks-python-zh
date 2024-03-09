@@ -46,7 +46,7 @@
 
 在 Python 中， *docstrings* 用来描述模块、类和函数：
 
-```
+```py
 def square_and_rooter(x):
     """Returns the square root of self times self."""
     ... 
@@ -66,7 +66,7 @@ def square_and_rooter(x):
 
 这些不可互换。对于函数或类，开头的注释区是程序员的注解。而文档字符串 描述了函数或类的 *操作*:
 
-```
+```py
 # 因为某种原因这个函数减慢程序执行。
 def square_and_rooter(x):
     """返回自己乘以自己的平方根。"""

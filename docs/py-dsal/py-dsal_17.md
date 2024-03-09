@@ -20,65 +20,65 @@
 
 **Listing 1**
 
-```
+```py
 classNode:
 ```
 
-```
+```py
     def__init__(self,initdata):
 ```
 
-```
+```py
         self.data= initdata
 ```
 
-```
+```py
         self.next=None
 ```
 
-```
+```py
     defgetData(self):
 ```
 
-```
+```py
         returnself.data
 ```
 
-```
+```py
     defgetNext(self):
 ```
 
-```
+```py
         returnself.next
 ```
 
-```
+```py
     defsetData(self,newdata):
 ```
 
-```
+```py
         self.data= newdata
 ```
 
-```
+```py
     defsetNext(self,newnext):
 ```
 
-```
+```py
         self.next= newnext
 ```
 
 用上述类创建一个节点对象
 
-```
+```py
 >>> temp= Node(93)
 ```
 
-```
+```py
 >>> temp.getData()
 ```
 
-```
+```py
 93
 ```
 
@@ -98,21 +98,21 @@ classNode:
 
 **Listing 2**
 
-```
+```py
 classUnorderedList:
 ```
 
-```
+```py
     def__init__(self):
 ```
 
-```
+```py
         self.head=None
 ```
 
 创建列表的时候进行初始化，这里没有数据项，赋值语句
 
-```
+```py
 >>> mylist= UnorderedList()
 ```
 
@@ -130,11 +130,11 @@ classUnorderedList:
 
 **Listing 3**
 
-```
+```py
 defisEmpty(self):
 ```
 
-```
+```py
     returnself.head==None
 ```
 
@@ -144,27 +144,27 @@ defisEmpty(self):
 
 图 6 显示了通过 add 方法几次形成的链表。
 
-```
+```py
 >>> mylist.add(31)
 ```
 
-```
+```py
 >>> mylist.add(77)
 ```
 
-```
+```py
 >>> mylist.add(17)
 ```
 
-```
+```py
 >>> mylist.add(93)
 ```
 
-```
+```py
 >>> mylist.add(26)
 ```
 
-```
+```py
 >>> mylist.add(54)
 ```
 
@@ -178,19 +178,19 @@ Add 方法在代码 4 中实现。每个数据项都在节点对象内部。第 
 
 **代码 4**
 
-```
+```py
 defadd(self,item):
 ```
 
-```
+```py
     temp = Node(item)
 ```
 
-```
+```py
     temp.setNext(self.head)
 ```
 
-```
+```py
     self.head= temp
 ```
 
@@ -211,31 +211,31 @@ defadd(self,item):
 **Listing 5**
 
 |  
-```
+```py
 defsize(self):
 ```
 
-```
+```py
     current =self.head
 ```
 
-```
+```py
     count =0
 ```
 
-```
+```py
     while current !=None:
 ```
 
-```
+```py
         count = count +1
 ```
 
-```
+```py
         current = current.getNext()
 ```
 
-```
+```py
     return count
 ```
 
@@ -252,39 +252,39 @@ List6 显示了查找方法的实现。象在 size 方法中一样，遍历从 h
 **Listing 6**
 
 |  
-```
+```py
 defsearch(self,item):
 ```
 
-```
+```py
     current =self.head
 ```
 
-```
+```py
     found =False
 ```
 
-```
+```py
     while current !=Noneandnot found:
 ```
 
-```
+```py
         if current.getData()== item:
 ```
 
-```
+```py
             found =True
 ```
 
-```
+```py
         else:
 ```
 
-```
+```py
             current = current.getNext()
 ```
 
-```
+```py
     return found
 ```
 
@@ -292,11 +292,11 @@ defsearch(self,item):
 
 试着查找一下 17
 
-```
+```py
 >>> mylist.search(17)
 ```
 
-```
+```py
 True
 ```
 
@@ -320,59 +320,59 @@ Listing7 显示了 remove 方法的全部代码。2-3 行为两个引用分配�
 **Listing 7**
 
 |  
-```
+```py
 defremove(self,item):
 ```
 
-```
+```py
     current =self.head
 ```
 
-```
+```py
     previous =None
 ```
 
-```
+```py
     found =False
 ```
 
-```
+```py
     whilenot found:
 ```
 
-```
+```py
         if current.getData()== item:
 ```
 
-```
+```py
             found =True
 ```
 
-```
+```py
         else:
 ```
 
-```
+```py
             previous = current
 ```
 
-```
+```py
             current = current.getNext()
 ```
 
-```
+```py
     if previous ==None:
 ```
 
-```
+```py
         self.head= current.getNext()
 ```
 
-```
+```py
     else:
 ```
 
-```
+```py
         previous.setNext(current.getNext())
 ```
 
@@ -402,7 +402,7 @@ defremove(self,item):
 
 以下是无序列表的全部代码及测试代码
 
-```
+```py
 class Node:
     def __init__(self, initdata):
         self.data = initdata

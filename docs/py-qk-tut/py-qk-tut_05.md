@@ -14,7 +14,7 @@ for 循环需要预先设定好循环的次数(n)，然后执行隶属于 for �
 
 举例来说，我们编辑一个叫 forDemo.py 的文件
 
-```
+```py
 for a in [3,4.4,'life']: print a
 
 ```
@@ -29,7 +29,7 @@ for a in [3,4.4,'life']: print a
 
 (关于 range()，还有丰富用法，有兴趣可以查阅， python 3 中， range()用法有变化，见评论区)
 
-```
+```py
 for a in range(10): print a**2
 
 ```
@@ -41,7 +41,7 @@ while 的用法是
 while 会不停地循环执行隶属于它的语句，直到条件为假(False)
 举例
 
-```
+```py
 while i < 10: print i
     i = i + 1
 
@@ -55,7 +55,7 @@ continue   # 在同一循环的某一环，如果遇到 continue, 那么跳过
 
 break      # 停止执行整个循环
 
-```
+```py
 for i in range(10): if i == 2: 
  continue
     print i
@@ -64,7 +64,7 @@ for i in range(10): if i == 2:
 
 当循环执行到 i = 2 的时候，if 条件成立，触发 continue, 跳过本环(不执行 print)，继续进行下一环(i = 3)
 
-```
+```py
 for i in range(10): if i == 2: break
     print i
 

@@ -21,7 +21,7 @@ Python 标准库是随 Python 附带安装的，它包含大量极其有用的�
 
 `sys`模块包含系统对应的功能。我们已经学习了`sys.argv`列表，它包含命令行参数。
 
-```
+```py
 #!/usr/bin/python
 # Filename: cat.py
 
@@ -66,7 +66,7 @@ else:
 
 ## 输出
 
-```
+```py
 $ python cat.py
 No action specified.
 
@@ -104,7 +104,7 @@ if you wanna make your work also fun:
 
 `sys.version`字符串给你提供安装的 Python 的版本信息。`sys.version_info`元组则提供一个更简单的方法来使你的程序具备 Python 版本要求功能。
 
-```
+```py
 [swaroop@localhost code]$ python
 >>> import sys
 >>> sys.version
@@ -139,7 +139,7 @@ if you wanna make your work also fun:
 
 *   `os.path.split()`函数返回一个路径的目录名和文件名。
 
-    ```
+    ```py
     >>> os.path.split('/home/swaroop/byte/code/poem.txt')
     ('/home/swaroop/byte/code', 'poem.txt') 
     ```

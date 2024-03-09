@@ -15,7 +15,7 @@
 
 Vim 是一个使用键盘快捷键而不是菜单或图标来编辑的文本编辑器。有许多增强 Vim 编辑器中 Python 开发环境的插件和设置。如果你只开发 Python，使用缩进和换行均符合 [**PEP 8**](https://www.python.org/dev/peps/pep-0008) [https://www.python.org/dev/peps/pep-0008] 要求的默认设置是一个好的开始。在你的 home 目录中，打开 `.vimrc` 文件，添加下面这些内容:
 
-```
+```py
 set textwidth=79  " lines longer than 79 columns will be broken
 set shiftwidth=4  " operation >> indents 4 columns; << unindents 4 columns
 set tabstop=4     " a hard TAB displays as 4 columns
@@ -33,13 +33,13 @@ set autoindent    " align the new line indent with the previous line
 
 对于 PEP8 检查和 pyflakes，你可以安装 [vim-flake8](https://github.com/nvie/vim-flake8) [https://github.com/nvie/vim-flake8] 。然后你就可以在 Vim 中把 `Flake8` 映射到任何热键或你想要的行为上。这个插件将会在屏幕下方显示出错误，并且提供一个简单的方式跳转到相关行。在保存文件的时候调用这个功能会是非常方便的。要这么做，就把下面一行加入到你的 `.vimrc`:
 
-```
+```py
 autocmd BufWritePost *.py call Flake8() 
 ```
 
 如果你已经在使用 [syntastic](https://github.com/scrooloose/syntastic) [https://github.com/scrooloose/syntastic] ，你可以设置它来运行 Pyflakes，并在 quickfix 窗口中显示错误和警告。一个这样做并还会在状态栏中显示状态和警告信息的样例是:
 
-```
+```py
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -164,13 +164,13 @@ pyenv 不是管理虚拟环境的工具，但是有一个叫做 [pyenv-virtualen
 *   灵活、嵌入的解释器载入到你的工程工程中。
 *   支持高级可交互的并行计算的工具。
 
-```
+```py
 $ pip install ipython 
 ```
 
 下载和安装带有所有可选依赖（notebook、qtconsol、tests 和其他功能）的 IPython
 
-```
+```py
 $ pip install ipython[all] 
 ```
 
@@ -187,7 +187,7 @@ $ pip install ipython[all]
 *   自动缩进。
 *   支持 Python 3。
 
-```
+```py
 $ pip install bpython 
 ```
 
@@ -204,7 +204,7 @@ $ pip install bpython
 *   Tab 页
 *   通过安装 Ipython `pip install ipython` 并运行 `ptipython` ，支持集成 [IPython](http://ipython.org/) [http://ipython.org/] 的 shell
 
-```
+```py
 $ pip install ptpython 
 ```
 

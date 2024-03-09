@@ -12,7 +12,7 @@ Python 主要通过标准库中的 threading 包来实现多线程。在当今�
 
 我们使用 Python 来实现[Linux 多线程与同步](http://www.cnblogs.com/vamei/archive/2012/10/09/2715393.html)文中的售票程序。我们使用 mutex (也就是 Python 中的 Lock 类对象) 来实现线程的同步:
 
-```
+```py
 # A program to simulate selling tickets in multi-thread way # Written by Vamei
 
 import threading import time import os # This function could be any function to do other chores.
@@ -47,7 +47,7 @@ for k in range(10):
 
 上面的 Python 程序非常类似于一个面向过程的 C 程序。我们下面介绍如何通过面向对象 (OOP， object-oriented programming，参看[Python 面向对象的基本概念](http://www.cnblogs.com/vamei/archive/2012/06/02/2531515.html)和[Python 面向对象的进一步拓展](http://www.cnblogs.com/vamei/archive/2012/06/02/2532018.html)) 的方法实现多线程，其核心是继承 threading.Thread 类。我们上面的 for 循环中已经利用了 threading.Thread()的方法来创建一个 Thread 对象，并将函数 booth()以及其参数传递给改对象，并调用 start()方法来运行线程。OOP 的话，通过修改 Thread 类的 run()方法来定义线程所要执行的命令。
 
-```
+```py
 # A program to simulate selling tickets in multi-thread way # Written by Vamei
 
 import threading import time import os # This function could be any function to do other chores.

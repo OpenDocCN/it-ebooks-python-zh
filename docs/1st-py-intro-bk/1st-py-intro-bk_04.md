@@ -48,7 +48,7 @@
 
 现在我们看一下之前提到的摄氏度转化公式，按照上面定义函数的方法来实现一遍。我们把摄氏度转化定义为函数 `fahrenheit_Converter()` ，那么将输入进去的必然是摄氏度（Celsius）的数值，我们把 C 设为参数，最后返回的是华氏度（fahrenheit）的数值，我们用下面的函数来表达，输入代码：
 
-```
+```py
 def fahrenheit_converter(C):
      fahrenheit = C * 9/5 + 32
      return str(fahrenheit) + '˚F'
@@ -58,14 +58,14 @@ def fahrenheit_converter(C):
 
 输入完以上代码后，函数定义完成，那么我们开始使用它。我们把使用函数这种行为叫做**“调用”（call）**，你可以简单地理解成你请求 Python 帮你去做一件事情，就像是我们之前学习到的函数 len()一样：“请帮我测量这个（对象）的长度，并将结果打印出来。”
 
-```
+```py
 lyric_length = len('I Cry Out For Magic!')
 print(lyric_length)
 ```
 
 就像我们使用 len() 函数一样，下面这段代码意味着——“请使用摄氏度转换器将 35 摄氏度转换成华氏度，将结果储存在名为 C2F 的变量并打印出来。”这样我们就完成了函数的调用同时打印了结果。
 
-```
+```py
 C2F = fahrenheit_converter(35)
 print(C2F)
 ```
@@ -78,7 +78,7 @@ print(C2F)
 
 我们把刚才的函数按照如下进行修改：
 
-```
+```py
 def fahrenheit_converter(C):
      fahrenheit = C * 9/5 + 32
      print(str(fahrenheit) + '˚F')
@@ -86,14 +86,14 @@ def fahrenheit_converter(C):
 
 怎么样？看上去很相似吧？没错，我们仅仅就是把最后一行的 `return` 换成了 `print` 函数，一个很小的改动，而且似乎 IDE 也并没有对语法进行报错预警，那么我们来试一下调用函数会是什么情况吧：
 
-```
+```py
 C2F = fahrenheit_converter(35)
 print(C2F)
 ```
 
 运行起来的结果是这样的：
 
-```
+```py
 95.0˚F 
 None
 ```
@@ -112,7 +112,7 @@ None
 
 二、中级难度：设计一个求直角三角形斜边长的函数（两条直角边为参数，求最长边） 如果直角边边长分分别为 3 和 4，那么返回的结果应该像这样：
 
-```
+```py
 The right triangle third side's length is 5.0
 ```
 
@@ -124,7 +124,7 @@ The right triangle third side's length is 5.0
 
 前面大刀阔斧地说了关于函数定义和使用，在这一节我们谈论一些细节但是重要的问题一一参数。对于在一开始就设定了必要参数的函数来说，我们是通过打出函数的名称并向括号中传递参数实现对函数的调用（call），即只要把参数放进函数的括号中即可，就像是这样：
 
-```
+```py
 fahrenheit_converter(35)
 fahrenheit_converter(15)
 fahrenheit_converter(0)
@@ -139,14 +139,14 @@ fahrenheit_converter(-3)
 
 我们把函数的名称定为 `trapezoid_area`，也就是梯形面积，设定参数为 `base_up`（上底），`base_down`（下底），`height`（高），每一个都用英文输入法的逗号隔开。梯形的面积需要知道这三个值才能求得，因此对于构造梯形面积的函数来说，这三个参数缺一不可。
 
-```
+```py
 def trapezoid_area(base_up, base_down, height):
      return 1/2 * (base_up + base_down) * height
 ```
 
 接下来我们开始调用函数。
 
-```
+```py
 trapezoid_area(1,2,3)
 ```
 
@@ -154,7 +154,7 @@ trapezoid_area(1,2,3)
 
 接着是第二种传入方式：
 
-```
+```py
 trapezoid_area(base_up=1, base_down=2, height=3)
 ```
 
@@ -166,7 +166,7 @@ trapezoid_area(base_up=1, base_down=2, height=3)
 
 避免混乱的最好方法就是先制造混乱，我们试着解决一个更复杂的问题，按照下面几种方式调用函数并打印结果：
 
-```
+```py
 trapezoid_area(height=3, base_down=2, base_up=1)   # RIGHT!
 trapezoid_area(height=3, base_down=2, 1)           # WRONG!
 trapezoid_area(base_up=1, base_down=2, 3)          # RIGHT!
@@ -182,7 +182,7 @@ trapezoid_area(1, 2, height=3)                     # RIGHT!
 
 我们现在给一组变量赋值，然后再调用函数：
 
-```
+```py
 base_up = 1
 base_down = 2
 height = 3
@@ -194,14 +194,14 @@ trapezoid_area(height, base_down, base_up)
 
 如果你有这样的困惑，说明你已经被参数的命名和变量的命名搞晕，我们来把这两者区分清晰。首先，我们在定义函数的时候会定义参数的名称，其作用是使用函数时指导我们传入什么参数，它们从哪里来，是什么类型等，提供与使用函数相关的上下文。下面这段代码也许能够帮助你摆脱函数来自参数名称的困扰：
 
-```
+```py
 def flashlight (battery1, battery2):
     return 'Light!'
 ```
 
 我们定义一个叫做手电筒（flashlight）的函数，它需要两个参数 `battery1` 和 `battery2` 意为电池。这时候你去商店买电池，买回了两节 600 毫安时的南孚电池，于是：
 
-```
+```py
 nanfu1 = 600
 nanfu2 = 600
 
@@ -218,20 +218,20 @@ flashlight(nanfu1, nanfu2)
 
 你只需要这样输入代码：
 
-```
+```py
 def trapezoid_area(base_up, base_down, height=3):
      return 1/2 * (base_up + base_down) * height
 ```
 
 给一个参数设定默认值非常简单，我们只需要在**定义参数的时候给参数赋值即可**。这个也许跟传入参数的方式有点像，但是干万别记混了！这可是在定义的时候做的事情！这样一来，我们只需要传入两个参数就可以正常进行了：
 
-```
+```py
 trapezoid_area(1, 2)
 ```
 
 你肯定会疑惑，如果设定默认值的话，那么所有梯形的高岂不是都固定成 3 了啊？ 然而并没有，默认值的理念就是让使用函数尽可能的简单、省力。正如同我们安装软件都会有默认目录，但是如果你又想安装在其他地方，你可以选择自定义修改。之前看到的 print 函数的小把戏也正是如此，print 的可选参数 sep（意为每个打印的结果以…分开）的默认值为‘ ’空格，但是我们将其重新传入`‘／n’`也就是换行的意思，一句话说，也就是将每个打印的数以换行符号进行分割。下面我们来调用自己的参数：
 
-```
+```py
 trapezoid_area(1, 2, height=15)
 ```
 
@@ -239,13 +239,13 @@ trapezoid_area(1, 2, height=15)
 
 默认值并非是你掌握参数使用的必要知识，却是能帮助我们节省时间的小技巧。在实际项目中也经常会看见这样：
 
-```
+```py
 requests.get(url, headers=header)
 ```
 
 > 注：请求网站时 header，可填可不填
 
-```
+```py
 img.save(img_new, img_format, quality=100)
 ```
 
@@ -259,19 +259,19 @@ img.save(img_new, img_format, quality=100)
 
 先在桌面上创建一个名为 text.txt 的文件。Windows 用户在桌面点击右键唤出菜单创建即可，Mac 用户则打开 Pages 创建文件后点击导出格式选择 txt 格式即可。现在我们使用 open 函数打开它：
 
-```
+```py
 open('/Users/Hou/Desktop/text.txt')
 ```
 
 如果是 Windows 用户，应该像这样写你的路径：
 
-```
+```py
 open('C://Users/Hou/Desktop/')
 ```
 
 如果你照着代码敲入的话其实这时候文件应该已经是打开的了，但是……貌似我们看不出来，所以，我们再认识一个新的方法一一`write` 。在第一章我们已经提到过如何使用方法（如果你现在困惑函数和方法到底是什么关系的话，为了顺利地往后进行，我可以告诉你方法就是函数的一种，只不过在不同的位置而已，使用原理和函数非常相似），在这里我们就照抄第三章的 replace 用法来学着使用 write 方法：
 
-```
+```py
 file = open('/Users/Hou/Desktop/text.txt','w')
 file.write('Hello World')
 ```
@@ -282,7 +282,7 @@ file.write('Hello World')
 
 掌握了 open 与 write 的基本用法之后，我们就可以开始着手设计函数了，需求是这样的：传入参数 name 与 msg 就可以在桌面写入文件名称和内容的函数 text_create，并且如果当桌面上没有这个可以写入的文件时，就要创建一个之后再写入。现在我们开搞吧！
 
-```
+```py
 def text_create(name, msg):   
     desktop_path = '/Users/Hou/Desktop/'    
     full_path = desktop_path + name + '.txt' 
@@ -304,7 +304,7 @@ text_create('hello','hello world') # 调用函数
 
 这样一来敏感词过滤器的第一部分我们就完成了。顺带一提，这个函数就是我们在前面提及到的并不需要 `return` 也能发挥作用的函数，最后的 `print` 仅仅是为了表明上面的所有语句均已执行，一个提示而已。接下来我们实现第二部分，敏感词过滤，需求是这样的：定义一个为函数 text_filter 的函数，传入参数 word，cencored_word 和 changed_word 实现过滤，敏感词 cencored_word 默认为‘lame’，替换词 changed_word 默认为‘Awesome’。现在继续：
 
-```
+```py
 def text_filter(word,censored_word = 'lame',changed_word = 'Awesome'):
     return word.replace(censored_word, changed_word)
 text_filter('Python is lame!')     # 调用函数
@@ -314,7 +314,7 @@ text_filter('Python is lame!')     # 调用函数
 
 现在我们试着解决一个更复杂的问题，把两个函数进行合并：创建一个名为 text_censored_create 的函数，功能是在桌面上创建一个文本，可以在其中输入文字， 但是如果信息中含有敏感词的话将会被默认过滤后写入文件。其中文本的文件名参数为 name，信息参数为 msg，你可以先试着自己写一下，写完了再对照看下：
 
-```
+```py
 def censored_text_create(name, msg):
     clean_msg = text_filter(msg)
     text_create(name,clean_msg)

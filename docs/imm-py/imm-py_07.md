@@ -14,7 +14,7 @@
 
 首先我们来理解下 Python 中的函数
 
-```
+```py
 def hi(name="yasoob"):
     return "hi " + name
 
@@ -44,7 +44,7 @@ print(greet())
 
 刚才那些就是函数的基本知识了。我们来让你的知识更进一步。在 Python 中我们可以在一个函数中定义另一个函数：
 
-```
+```py
 def hi(name="yasoob"):
     print("now you are inside the hi() function")
 
@@ -79,7 +79,7 @@ greet()
 
 其实并不需要在一个函数里去执行另一个函数，我们也可以将其作为输出返回出来：
 
-```
+```py
 def hi(name="yasoob"):
     def greet():
         return "now you are in the greet() function"
@@ -113,7 +113,7 @@ print(a())
 
 # 将函数作为参数传给另一个函数
 
-```
+```py
 def hi():
     return "hi yasoob!"
 
@@ -134,7 +134,7 @@ doSomethingBeforeHi(hi)
 
 在上一个例子里，其实我们已经创建了一个装饰器！现在我们修改下上一个装饰器，并编写一个稍微更有用点的程序：
 
-```
+```py
 def a_new_decorator(a_func):
 
     def wrapTheFunction():
@@ -163,7 +163,7 @@ a_function_requiring_decoration()
 
 你看明白了吗？我们刚刚应用了之前学习到的原理。这正是 python 中装饰器做的事情！它们封装一个函数，并且用这样或者那样的方式来修改它的行为。现在你也许疑惑，我们在代码里并没有使用@符号？那只是一个简短的方式来生成一个被装饰的函数。这里是我们如何使用@来运行之前的代码：
 
-```
+```py
 @a_new_decorator
 def a_function_requiring_decoration():
     """Hey you! Decorate me!"""
@@ -181,14 +181,14 @@ a_function_requiring_decoration = a_new_decorator(a_function_requiring_decoratio
 
 希望你现在对 Python 装饰器的工作原理有一个基本的理解。如果我们运行如下代码会存在一个问题：
 
-```
+```py
 print(a_function_requiring_decoration.__name__)
 # Output: wrapTheFunction 
 ```
 
 这并不是我们想要的！Ouput 输出应该是“a_function_requiring_decoration”。这里的函数被 warpTheFunction 替代了。它重写了我们函数的名字和注释文档(docstring)。幸运的是 Python 提供给我们一个简单的函数来解决这个问题，那就是 functools.wraps。我们修改上一个例子来使用 functools.wraps：
 
-```
+```py
 from functools import wraps
 
 def a_new_decorator(a_func):
@@ -213,7 +213,7 @@ print(a_function_requiring_decoration.__name__)
 
 蓝本规范:
 
-```
+```py
 from functools import wraps
 def decorator_name(f):
  @wraps(f)
@@ -250,7 +250,7 @@ print(func())
 
 装饰器能有助于检查某个人是否被授权去使用一个 web 应用的端点(endpoint)。它们被大量使用于 Flask 和 Django web 框架中。这里是一个例子来使用基于装饰器的授权：
 
-```
+```py
 from functools import wraps
 
 def requires_auth(f):
@@ -269,7 +269,7 @@ def requires_auth(f):
 
 日志是装饰器运用的另一个亮点。这是个例子：
 
-```
+```py
 from functools import wraps
 
 def logit(func):
@@ -304,7 +304,7 @@ result = addition_func(4)
 
 我们回到日志的例子，并创建一个包裹函数，能让我们指定一个用于输出的日志文件。
 
-```
+```py
 from functools import wraps
 
 def logit(logfile='out.log'):
@@ -348,7 +348,7 @@ myfunc2()
 
 幸运的是，类也可以用来构建装饰器。那我们现在以一个类而不是一个函数的方式，来重新构建`logit`。
 
-```
+```py
 class logit(object):
     def __init__(self, logfile='out.log'):
         self.logfile = logfile
@@ -370,7 +370,7 @@ class logit(object):
 
 这个实现有一个附加优势，在于比嵌套函数的方式更加整洁，而且包裹一个函数还是使用跟以前一样的语法：
 
-```
+```py
 @logit()
 def myfunc1():
     pass 
@@ -378,7 +378,7 @@ def myfunc1():
 
 现在，我们给`logit`创建子类，来添加 email 的功能(虽然 email 这个话题不会在这里展开)。
 
-```
+```py
 class email_logit(logit):
     '''
     一个 logit 的实现版本，可以在函数调用时发送 email 给管理员

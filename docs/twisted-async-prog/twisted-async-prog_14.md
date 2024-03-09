@@ -28,7 +28,7 @@
 
 首先我们先来看看 ProxyService 的实现部分：
 
-```
+```py
 class ProxyService(object):
     poem = None # the cached poem
     def __init__(self, host, port):
@@ -53,7 +53,7 @@ class ProxyService(object):
 
 我们如何来处理这样一个返回值不确定的函数呢，让我们来看看实现服务器角色的协议/工厂：
 
-```
+```py
 class PoetryProxyProtocol(Protocol):
     def connectionMade(self):
         d = maybeDeferred(self.factory.service.get_poem)
@@ -72,13 +72,13 @@ class PoetryProxyFactory(ServerFactory):
 
 启动诗歌下载服务器：
 
-```
+```py
 python twisted-server-1/fastpoetry.py --port 10001 poetry/fascination.txt 
 ```
 
 启动代理服务器：
 
-```
+```py
 python twisted-server-1/poetry-proxy.py --port 10000 10001 
 ```
 
@@ -86,7 +86,7 @@ python twisted-server-1/poetry-proxy.py --port 10000 10001
 
 开一个客户端：
 
-```
+```py
 python twisted-client-4/get-poetry.py 10000 
 ```
 
@@ -96,7 +96,7 @@ python twisted-client-4/get-poetry.py 10000
 
 前面我们已经提到，有另一种替代方法来实现这一机制。这在 [twisted-server-2/poetry-proxy.py](http://github.com/jdavisp3/twisted-intro/blob/master/twisted-server-2/poetry-proxy.py) 中很好的说明了。即我们可以返回一个已经激活的 defer，放在这儿就是如果缓存代理中有请求的诗歌，那么就通过返回一个激活的 deferred：
 
-```
+```py
 def get_poem(self):
     if self.poem is not None:
         print 'Using cached poem.'
@@ -114,7 +114,7 @@ def get_poem(self):
 
 在这个版本中，由于 get_poem 返回的是 deferred 而不像前一个版本存在不确定性因素。因此协议实现就无需使用 maybeDeferred(当然也可以使用)：
 
-```
+```py
 class PoetryProxyProtocol(Protocol):
     def connectionMade(self):
         d = self.factory.service.get_poem()

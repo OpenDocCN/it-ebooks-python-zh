@@ -21,7 +21,7 @@
 
 模块可以从其他程序 输入 以便利用它的功能。这也是我们使用 Python 标准库的方法。首先，我们将学习如何使用标准库模块。
 
-```
+```py
 #!/usr/bin/python
 # Filename: using_sys.py
 
@@ -38,7 +38,7 @@ print '\n\nThe PYTHONPATH is', sys.path, '\n'
 
 ## 输出
 
-```
+```py
 $ python using_sys.py we are arguments
 The command line arguments are:
 using_sys.py
@@ -88,7 +88,7 @@ The PYTHONPATH is ['/home/swaroop/byte/code', '/usr/lib/python23.zip',
 
 每个模块都有一个名称，在模块中可以通过语句来找出模块的名称。这在一个场合特别有用——就如前面所提到的，当一个模块被第一次输入的时候，这个模块的主块将被运行。假如我们只想在程序本身被使用的时候运行主块，而在它被别的模块输入的时候不运行主块，我们该怎么做呢？这可以通过模块的**name**属性完成。
 
-```
+```py
 #!/usr/bin/python
 # Filename: using_name.py
 
@@ -102,7 +102,7 @@ else:
 
 ## 输出
 
-```
+```py
 $ python using_name.py
 This program is being run by itself
 $ python
@@ -121,7 +121,7 @@ I am being imported from another module
 
 创建你自己的模块是十分简单的，你一直在这样做！每个 Python 程序也是一个模块。你已经确保它具有`.py`扩展名了。下面这个例子将会使它更加清晰。
 
-```
+```py
 #!/usr/bin/python
 # Filename: mymodule.py
 
@@ -139,7 +139,7 @@ version = '0.1'
 
 记住这个模块应该被放置在我们输入它的程序的同一个目录中，或者在`sys.path`所列目录之一。
 
-```
+```py
 #!/usr/bin/python
 # Filename: mymodule_demo.py
 
@@ -153,7 +153,7 @@ print 'Version', mymodule.version
 
 ## 输出
 
-```
+```py
 $ python mymodule_demo.py
 Hi, this is mymodule speaking.
 Version 0.1 
@@ -165,7 +165,7 @@ Version 0.1
 
 下面是一个使用`from..import`语法的版本。
 
-```
+```py
 #!/usr/bin/python
 # Filename: mymodule_demo2.py
 
@@ -189,7 +189,7 @@ print 'Version', version
 
 当你为`dir()`提供一个模块名的时候，它返回模块定义的名称列表。如果不提供参数，它返回当前模块中定义的名称列表。
 
-```
+```py
 $ python
 >>> import sys
 >>> dir(sys) # get list of attributes for sys module

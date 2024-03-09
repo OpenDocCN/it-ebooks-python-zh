@@ -34,7 +34,7 @@
 
 以下是来自 [资源请求](https://github.com/kennethreitz/requests) [https://github.com/kennethreitz/requests] 的一个例子–把它放置在你的 `__init__.py` 文件中
 
-```
+```py
 # 设置默认日志处理方式，避免“未找到处理方法”的警告。
 import logging
 try:  # Python 2.7+
@@ -72,7 +72,7 @@ logging.getLogger(__name__).addHandler(NullHandler())
 
 我们假设文件名为 `logging_config.ini` 。关于文件格式的更多细节，请参见 [日志指南](http://docs.python.org/howto/logging.html) [http://docs.python.org/howto/logging.html] 中的 [日志配置](https://docs.python.org/howto/logging.html#configuring-logging) [https://docs.python.org/howto/logging.html#configuring-logging] 部分。
 
-```
+```py
 [loggers]
 keys=root
 
@@ -98,7 +98,7 @@ format=%(asctime)s %(name)-12s %(levelname)-8s %(message)s
 
 然后在源码中调用 `logging.config.fileConfig()` 方法：
 
-```
+```py
 import logging
 from logging.config import fileConfig
 
@@ -111,7 +111,7 @@ logger.debug('often makes a very good meal of %s', 'visiting tourists')
 
 Python 2.7 中，你可以使用字典实现详细配置。[**PEP 391**](https://www.python.org/dev/peps/pep-0391) [https://www.python.org/dev/peps/pep-0391] 包含了一系列字典配置的强制和 非强制的元素。
 
-```
+```py
 import logging
 from logging.config import dictConfig
 
@@ -140,7 +140,7 @@ logger.debug('often makes a very good meal of %s', 'visiting tourists')
 
 ### 通过源码直接配置的例子
 
-```
+```py
 import logging
 
 logger = logging.getLogger()

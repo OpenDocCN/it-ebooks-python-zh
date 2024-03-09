@@ -24,23 +24,23 @@
 
 **Listing 2**
 
-```
+```py
 classHashTable:
 ```
 
-```
+```py
     def__init__(self):
 ```
 
-```
+```py
         self.size=11
 ```
 
-```
+```py
         self.slots= [None]*self.size
 ```
 
-```
+```py
         self.data= [None]*self.size
 ```
 
@@ -48,91 +48,91 @@ Hashfunction 函数是简单地用了余数法，冲突解决采用了+1 线性�
 
 **Listing 3**
 
-```
+```py
 defput(self,key,data):
 ```
 
-```
+```py
   hashvalue =self.hashfunction(key,len(self.slots))
 ```
 
-```
+```py
   ifself.slots[hashvalue]==None:
 ```
 
-```
+```py
     self.slots[hashvalue]= key
 ```
 
-```
+```py
     self.data[hashvalue]= data
 ```
 
-```
+```py
   else:
 ```
 
-```
+```py
     ifself.slots[hashvalue]== key:
 ```
 
-```
+```py
       self.data[hashvalue]= data  *#replace*
 ```
 
-```
+```py
     else:
 ```
 
-```
+```py
       nextslot =self.rehash(hashvalue,len(self.slots))
 ```
 
-```
+```py
       whileself.slots[nextslot]!=Noneand \
 ```
 
-```
+```py
                       self.slots[nextslot]!= key:
 ```
 
-```
+```py
         nextslot =self.rehash(nextslot,len(self.slots))
 ```
 
-```
+```py
       ifself.slots[nextslot]==None:
 ```
 
-```
+```py
         self.slots[nextslot]=key
 ```
 
-```
+```py
         self.data[nextslot]=data
 ```
 
-```
+```py
       else:
 ```
 
-```
+```py
         self.data[nextslot]= data *#replace*
 ```
 
-```
+```py
 defhashfunction(self,key,size):
 ```
 
-```
+```py
      return key%size
 ```
 
-```
+```py
 defrehash(self,oldhash,size):
 ```
 
-```
+```py
     return (oldhash+1)%size
 ```
 
@@ -140,79 +140,79 @@ Listing4 中，get 函数从计算哈希值开始，如果这个值不是一个�
 
 HashTable 类的最后一个方法提供了一个附加的字典函数。我们重载了 __getitem__ 和 __setitem__ 方法来实现“[ ]”符号的使用。这也意味着，一旦 HashTable 对象创建，熟悉的索引方法就可用了。其他方法用作练习。
 
-```
+```py
 defget(self,key):
 ```
 
-```
+```py
   startslot =self.hashfunction(key,len(self.slots))
 ```
 
-```
+```py
   data =None
 ```
 
-```
+```py
   stop =False
 ```
 
-```
+```py
   found =False
 ```
 
-```
+```py
   position = startslot
 ```
 
-```
+```py
   whileself.slots[position]!=Noneand  \
 ```
 
-```
+```py
                        not found andnot stop:
 ```
 
-```
+```py
      ifself.slots[position]== key:
 ```
 
-```
+```py
        found =True
 ```
 
-```
+```py
        data =self.data[position]
 ```
 
-```
+```py
      else:
 ```
 
-```
+```py
        position=self.rehash(position,len(self.slots))
 ```
 
-```
+```py
        if position == startslot:
 ```
 
-```
+```py
            stop =True
 ```
 
-```
+```py
   return data
 ```
 
-```
+```py
 def__getitem__(self,key):
 ```
 
-```
+```py
     returnself.get(key)
 ```
 
-```
+```py
 def__setitem__(self,key,data):
 ```
 
@@ -220,119 +220,119 @@ def__setitem__(self,key,data):
 
 对下会话显示了 HashTable 类的使用，先创建一个哈希表，存入一些数据。
 
-```
+```py
 >>> H=HashTable()
 ```
 
-```
+```py
 >>> H[54]="cat"
 ```
 
-```
+```py
 >>> H[26]="dog"
 ```
 
-```
+```py
 >>> H[93]="lion"
 ```
 
-```
+```py
 >>> H[17]="tiger"
 ```
 
-```
+```py
 >>> H[77]="bird"
 ```
 
-```
+```py
 >>> H[31]="cow"
 ```
 
-```
+```py
 >>> H[44]="goat"
 ```
 
-```
+```py
 >>> H[55]="pig"
 ```
 
-```
+```py
 >>> H[20]="chicken"
 ```
 
-```
+```py
 >>> H.slots
 ```
 
-```
+```py
 [77, 44, 55, 20, 26, 93, 17, None, None, 31, 54]
 ```
 
-```
+```py
 >>> H.data
 ```
 
-```
+```py
 ['bird', 'goat', 'pig', 'chicken', 'dog', 'lion',
 ```
 
-```
+```py
        'tiger', None, None, 'cow', 'cat']
 ```
 
 然后访问并修改一些元素，注意键值为 20 的数据被替换。
 
-```
+```py
 >>> H[20]
 ```
 
-```
+```py
 'chicken'
 ```
 
-```
+```py
 >>> H[17]
 ```
 
-```
+```py
 'tiger'
 ```
 
-```
+```py
 >>> H[20]='duck'
 ```
 
-```
+```py
 >>> H[20]
 ```
 
-```
+```py
 'duck'
 ```
 
-```
+```py
 >>> H.data
 ```
 
-```
+```py
 ['bird', 'goat', 'pig', 'duck', 'dog', 'lion',
 ```
 
-```
+```py
        'tiger', None, None, 'cow', 'cat']
 ```
 
-```
+```py
 >> print(H[99])
 ```
 
-```
+```py
 None
 ```
 
 完全的哈希表例子代码：
 
-```
+```py
 
 ```
 class HashTable:
@@ -412,6 +412,6 @@ H[20]='duck'
 print(H[20])
 print(H[99])
 
-```
+```py
 
 ```

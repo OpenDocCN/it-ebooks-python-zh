@@ -23,19 +23,19 @@ OS X 自带的 Python 版本更适合用于学习而不是开发。因为版本�
 
 [安装 Homebrew](http://brew.sh/#install) [http://brew.sh/#install] 只需打开 `终端` 或个人常用的终端模拟器并运行：
 
-```
+```py
 $ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" 
 ```
 
 运行这段脚本将列出它会引起的改变，并在安装开始前提示你。 安装完成 Homebrew 后，需将其所在路径插入到 `PATH` 环境变量的最前面，即在你所登录用户的 `~/.profile` 文件末尾加上这一行：
 
-```
+```py
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH 
 ```
 
 接下来可以开始安装 Python 2.7：
 
-```
+```py
 $ brew install python 
 ```
 

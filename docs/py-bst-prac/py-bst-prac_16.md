@@ -19,14 +19,14 @@ Web 站点使用 HTML 描述，这意味着每个 web 页面是一个结构化�
 
 让我们以下面的导入开始：
 
-```
+```py
 from lxml import html
 import requests 
 ```
 
 下一步我们将使用 `requests.get` 来从 web 页面中取得我们的数据， 通过使用 `html` 模块解析它，并将结果保存到 `tree` 中。
 
-```
+```py
 page = requests.get('http://econpy.pythonanywhere.com/ex/001.html')
 tree = html.fromstring(page.text) 
 ```
@@ -39,14 +39,14 @@ XPath 是一种在结构化文档（如 HTML 或 XML）中定位信息的方式�
 
 在进行一次快速分析后，我们看到在页面中的数据保存在两个元素中，一个是 title 是 ‘buyer-name’ 的 div，另一个 class 是 ‘item-price’ 的 span：
 
-```
+```py
 <div title="buyer-name">Carson Busses</div>
 <span class="item-price">$29.95</span> 
 ```
 
 知道这个后，我们可以创建正确的 XPath 查询并且使用 lxml 的 `xpath` 函数， 像下面这样：
 
-```
+```py
 #这将创建 buyers 的列表：
 buyers = tree.xpath('//div[@title="buyer-name"]/text()')
 #这将创建 prices 的列表：
@@ -55,12 +55,12 @@ prices = tree.xpath('//span[@class="item-price"]/text()')
 
 让我们看看我们得到了什么：
 
-```
+```py
 print 'Buyers: ', buyers
 print 'Prices: ', prices 
 ```
 
-```
+```py
 Buyers:  ['Carson Busses', 'Earl E. Byrd', 'Patty Cakes',
 'Derri Anne Connecticut', 'Moe Dess', 'Leda Doggslife', 'Dan Druff',
 'Al Fresco', 'Ido Hoe', 'Howie Kisses', 'Len Lease', 'Phil Meup',

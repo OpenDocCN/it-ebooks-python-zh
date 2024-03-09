@@ -38,7 +38,7 @@ Django 有管理用户的模块，即 django.contrib.auth。你可以在 mysite/
 
 我们首先增加一个登录表格：
 
-```
+```py
 <form role="form" action="/login" method="post">
       <label>Username</label>
       <input type="text" name='username'>
@@ -51,7 +51,7 @@ Django 有管理用户的模块，即 django.contrib.auth。你可以在 mysite/
 
 我们在 views.py 中，定义处理函数 user_login()，来登入用户：
 
-```
+```py
 # -*- coding: utf-8 -*-
 from django.shortcuts import render, redirect from django.core.context_processors import csrf from django.contrib.auth import *
 
@@ -79,7 +79,7 @@ def user_login(request): ''' login '''
 
 有时用户希望能销毁会话。我们可以提供一个登出的 URL，即/users/logout。登入用户访问该 URL，即可登出。在 views.py 中，增加该 URL 的处理函数：
 
-```
+```py
 # -*- coding: utf-8 -*-
 from django.shortcuts import redirect def user_logout(request): ''' logout
     URL: /users/logout ''' logout(request) return redirect('/')
@@ -96,7 +96,7 @@ from django.shortcuts import redirect def user_logout(request): ''' logout
 
 在 Django 中，对用户身份的检验，主要是在 views.py 中进行。views.py 是连接模型和视图的中间层。HTTP 请求会转给 views.py 中的对应处理函数处理，并发回回复。在 views.py 的某个处理函数准备 HTTP 回复的过程中，我们可以检验用户是否登陆。根据用户是否登陆，我们可以给出不同的回复。最原始的方式，是使用 if 式的选择结构： 
 
-```
+```py
 # -*- coding: utf-8 -*-
 from django.http import HttpResponse def diff_response(request): if request.user.is_authenticated():
         content = "<p>my dear user</p>"
@@ -119,7 +119,7 @@ from django.http import HttpResponse def diff_response(request): if request.user
 
 在 Django 中，我们还可以利用装饰器，根据用户的登录状况，来决定 views.py 中处理函数的显示效果。相对于上面的 if 结构，装饰器使用起来更加方便。下面的 user_only()是 views.py 中的一个处理函数。
 
-```
+```py
 from django.contrib.auth.decorators import login_required from django.http import HttpResponse
 
 @login_required def user_only(request): return HttpResponse("<p>This message is for logged in user only.</p>")
@@ -130,12 +130,12 @@ from django.contrib.auth.decorators import login_required from django.http impor
 
 Django 中还有其它的装饰器，用于修饰处理函数。相应的 http 回复，只能被特殊的用户看到。比如 user_passes_test，允许的用户必须满足特定标准，而这一标准是可以用户自定义的。比如下面，在 views.py 中增添：
 
-```
+```py
 from django.contrib.auth.decorators import user_passes_test from django.http import HttpResponse
 
 ```
 
-```
+```py
 def name_check(user): return user.get_username() == 'vamei' @user_passes_test(name_check) def specific_user(request): return HttpResponse("<p>for Vamei only</p>")
 
 ```
@@ -148,7 +148,7 @@ def name_check(user): return user.get_username() == 'vamei' @user_passes_test(na
 
 进一步，用户是否登陆这一信息，也可以直接用于模板。比较原始的方式是把用户信息直接作为环境数据，提交给模板。然而，这并不是必须的。事实上，Django 为此提供了捷径：我们可以直接在模板中调用用户信息。比如下面的模板：
 
-```
+```py
 {% if user.is_authenticated %} <p>Welcome, my genuine user, my true love.</p> {% else %} <p>Sorry, not login, you are not yet my sweetheart. </p> {% endif %}
 
 ```
@@ -167,7 +167,7 @@ def name_check(user): return user.get_username() == 'vamei' @user_passes_test(na
 
 我们可以利用 Django 中的 UserCreationForm，比较简洁的生成表格，并在 views.py 中处理表格：
 
-```
+```py
 from django.contrib.auth.forms import UserCreationForm from django.shortcuts import render, redirect from django.core.context_processors import csrf def register(request): if request.method == 'POST': 
         form = UserCreationForm(request.POST) if form.is_valid(): 
             new_user = form.save() return redirect("/") else:
@@ -179,7 +179,7 @@ from django.contrib.auth.forms import UserCreationForm from django.shortcuts imp
 
 相应的模板 register.html 如下：
 
-```
+```py
 <form action="" method="post"> {% csrf_token %}
    {{ form.as_p }} <input type="submit" value="Register">
 </form>

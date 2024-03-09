@@ -14,7 +14,7 @@
 
 Python 用*异常对象*(exception object)来表示异常情况。遇到错误后，会引发异常。如果异常对象并未被处理或捕捉，程序就会用所谓的*回溯*(traceback， 一种错误信息)终止执行：
 
-```
+```py
 >>> 1 / 0
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module> 
@@ -31,7 +31,7 @@ Traceback (most recent call last):
 
 为了引发异常，可以使用一个类(应该是`Exception`的子类)或者实例参数调用`raise`语句。使用类时，程序会自动创建类的一个实例。下面是一些简单的例子，使用了内建的`Exception`的异常类：
 
-```
+```py
 >>> raise Exception
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module> 
@@ -46,7 +46,7 @@ Traceback (most recent call last):
 
 内建的异常类有很多。Python 库参考手册的 Built-in Exceptions 一节中有关与它们的描述。用交互式解释器也可以分析它们，这些内建异常都可以在`exceptions`模块(和内建的命名空间)中找到。可以使用`dir`函数列出模块内容，这部分会在第十章中讲到：
 
-```
+```py
 >>> import exceptions 
 >>> dir(exceptions)
 ['ArithmeticError', 'AssertionError', 'AttributeError', ...] 
@@ -54,7 +54,7 @@ Traceback (most recent call last):
 
 读者的解释器中，这个名单可能要长得多——出于对易读性的考虑，这里删除了大部分名字，所有这些异常都可以用在`raise`语句中：
 
-```
+```py
 >>> raise ArithmeticError
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module> 
@@ -65,7 +65,7 @@ Traceback (most recent call last):
 
 表 8-1 一些内建异常类
 
-```
+```py
 Exception　　　　　　　　　　　　所有异常的基类
 AttributeError　　　　　　　　　 特性引用或赋值失败时引发
 IOError　　　　　　　　　　　　　试图打开不存在文件(包括其他情况)时引发
@@ -84,7 +84,7 @@ ZeroDivisionError　　　　　　　　在除法或者模除操作的第二个
 
 那么如何创建自己的异常类呢？就像其他类一样，只是要确保从`Exception`类继承(不管是间接还是直接，也就是说继承其他的内建异常类也是可以的)。那么编写一个自定义异常类基本上就像下面这样：
 
-```
+```py
 class SomeCustomException(Exception): 
     pass 
 ```
@@ -95,7 +95,7 @@ class SomeCustomException(Exception):
 
 前面曾经提到过，关于异常的最有意思的地方就是可以处理它们(通常叫做诱捕或者捕捉异常)。这个功能可以使用`try/except`语句来实现。假设创建了一个让用户输入两个数，然后进行相除的程序，像下面这样：
 
-```
+```py
 x = input("Enter the first number: ")
 y = input("Enter the second number: ") 
 print x / y 
@@ -103,7 +103,7 @@ print x / y
 
 程序工作正常，假如用户输入 0 作为第二个数
 
-```
+```py
 Enter the first number: 10 Enter the second number: 0
 Traceback (most recent call last):
   File "/home/marlowes/MyPython/My_Exception.py", line 6, in <module>
@@ -113,7 +113,7 @@ ZeroDivisionError: integer division or modulo by zero
 
 为了捕捉异常并且做出一些错误处理(本例中只是输出一些更友好的错误信息)，可以这样重写程序：
 
-```
+```py
 try:
     x = input("Enter the first number: ")
     y = input("Enter the second number: ") 
@@ -132,7 +132,7 @@ except ZeroDivisionError:
 
 举个例子吧，看看这么做多么有用：考虑一下一个能“屏蔽”`ZeroDivisionError`(除零错误)的计算器类。如果这个行为被激活，那么计算器就打印错误信息，而不是让异常传播。如果在与用户交互的过程中使用，那么这就有用了，但是如果是在程序内部使用，引发异常会更好些。因此“屏蔽”机制就可以关掉了，下面是这样一个类的代码：
 
-```
+```py
 class MuffledCalculator():
 
     muffled = False 
@@ -150,7 +150,7 @@ class MuffledCalculator():
 
 下面是这个类的用法示例，分别打开和关闭了屏蔽：
 
-```
+```py
 >>> calculator = MuffledCalculator() 
 >>> calculator.calc("10 / 2") 
 5
@@ -168,7 +168,7 @@ Division by zero is illegal
 
 如果运行上一节的程序并且在提示符后面输入非数字类型的值，就会产生另一个异常：
 
-```
+```py
 Enter the first number: 10 
 Enter the second number: "Hello, world!" 
 Traceback (most recent call last):
@@ -179,7 +179,7 @@ TypeError: unsupported operand type(s) for /: 'int' and 'str'
 
 因为`except`子句只寻找`ZeroDivisionError`异常，这次的错误就溜过了检查并导致程序终止。为了捕捉这个异常，可以直接在同一个`try/except`语句后面加上另一个`except`子句：
 
-```
+```py
 try:
     x = input("Enter the first number: ")
     y = input("Enter the second number: ") 
@@ -198,7 +198,7 @@ except TypeError:
 
 如果需要用一个块捕捉多个类型异常，那么可以将它们作为元组列出，像下面这样：
 
-```
+```py
 try:
     x = input("Enter the first number: ")
     y = input("Enter the second number: ") 
@@ -215,7 +215,7 @@ except (ZeroDivisionError, TypeError, NameError):
 
 如果希望在`except`子句中访问异常对象本身，可以使用两个参数(注意，就算要捕捉到多个异常，也只需向`except`子句提供一个参数——一个元组)。比如，如果想让程序继续运行，但是又因为某种原因想记录下错误(比如只是打印给用户看)，这个功能就很有用。下面的示例程序会打印异常(如果发生的话)，但是程序会继续运行：
 
-```
+```py
 try:
     x = input("Enter the first number: ")
     y = input("Enter the second number: ") 
@@ -232,7 +232,7 @@ except (ZeroDivisionError, TypeError), e:
 
 就算程序能处理好几种类型的异常，但是有些异常还会从眼皮地下溜走。比如还用那个除法程序来举例，在提示符下面直接按回车，不输入任何东西，会的到一个类似下面这样的错误信息(*栈跟踪*)：
 
-```
+```py
 Traceback (most recent call last):
   File "/home/marlowes/MyPython/My_Exception.py", line 33, in <module> x = input("Enter the first number: ")
   File "<string>", line 0 
@@ -243,7 +243,7 @@ Traceback (most recent call last):
 
 但是如果真的想用一段代码捕捉所有异常，那么可以在 except 子句中忽略所有的异常类：
 
-```
+```py
 try:
     x = input("Enter the first number: ")
     y = input("Enter the second number: ") 
@@ -254,7 +254,7 @@ except:
 
 现在可以做任何事情了：
 
-```
+```py
 Enter the first number: "This" is *completely* illegal 123 Something wrong happened... 
 ```
 
@@ -264,7 +264,7 @@ Enter the first number: "This" is *completely* illegal 123 Something wrong happe
 
 有些情况中，没有坏事发生时执行一段代码是很有用的；可以像对条件和循环语句那样，给`try/except`语句加个`else`子句：
 
-```
+```py
 try: 
     print "A simple task"
 except: 
@@ -275,14 +275,14 @@ else:
 
 运行之后会的到如下输出：
 
-```
+```py
 A simple task
 Ah... It went as planned. 
 ```
 
 使用`else`子句可以实现在 8.5 节中提到的循环：
 
-```
+```py
 while True: 
     try:
         x = input("Enter the first number: ")
@@ -297,7 +297,7 @@ while True:
 
 这里的循环只有在没有异常引发的情况下才会退出(由`else`子句中的`break`语句退出)。换句话说，只要有错误发生，程序会不断要求重新输入。下面是一个例子的运行情况：
 
-```
+```py
 Enter the first number: 1 
 Enter the second number: 0
 Invalid input. Please try again.
@@ -313,7 +313,7 @@ x / y is 5
 
 之前提到过，可以使用空的`except`子句来捕捉所有`Exception`类的异常(也会捕捉其所有子类的异常)。百分之百捕捉到所有的异常是不可能的，因为`try/except`语句中的代码可能会出现问题，比如使用旧风格的字符串异常或者自定义的异常类不是`Exception`类的子类。不过如果需要使用`except Exception`的话，可以使用 8.6 节中的技巧在除法程序中打印更加有用的错误信息：
 
-```
+```py
 while True: 
     try:
         x = input("Enter the first number: ")
@@ -329,7 +329,7 @@ while True:
 
 下面是示例运行：
 
-```
+```py
 Enter the first number: 1 Enter the second number: 0
 Invalid input: integer division or modulo by zero
 Please try again
@@ -348,7 +348,7 @@ x / y is 5
 
 最后，是`finally`子句。它可以用来在可能的异常后进行清理。它和`try`子句联合使用：
 
-```
+```py
 x = None 
 try:
     x = 1 / 0 
@@ -361,7 +361,7 @@ finally:
 
 运行这段代码，在程序崩溃之前，对于变量`x`的清理就完成了：
 
-```
+```py
 Cleaning up...
   File "/home/marlowes/MyPython/My_Exception.py", line 36, in <module> x = 1 / 0
 ZeroDivisionError: integer division or modulo by zero 
@@ -373,7 +373,7 @@ ZeroDivisionError: integer division or modulo by zero
 
 异常和函数能很自然地一起工作。如果异常在函数内引发而不被处理，它就会传播至(浮到)函数调用的地方。如果在那里也没有处理异常，它就会继续传播，一直到达主程序(全局作用域)。如果那里没有异常处理程序，程序会带着栈跟踪中止。看个例子：
 
-```
+```py
 >>> def faulty():
 ...     raise Exception("Something is wrong")
 ... 
@@ -405,7 +405,7 @@ Exception handled
 
 假设有一个字典，我们希望打印出存储在特定的键下面的值。如果该键不存在，那么什么也不做。代码可能像下面这样写：
 
-```
+```py
 def describePerson(person): 
     print "Description of", person["name"] 
     print "Age:", person["age"] 
@@ -415,14 +415,14 @@ def describePerson(person):
 
 如果给程序提供包含名字`Throatwobbler Mangrove`和年龄`42`(没有职业)的字典的函数，会得到如下输出：
 
-```
+```py
 Description of Throatwobbler Mangrove
 Age: 42 
 ```
 
 如果添加了职业`camper`，会的到如下输出：
 
-```
+```py
 Description of Throatwobbler Mangrove
 Age: 42 
 Occupation: camper 
@@ -430,7 +430,7 @@ Occupation: camper
 
 代码非常直观，但是效率不高(尽管这里主要关心的是代码的简洁性)。程序会两次查找`"occupation"`键，其中一次用来检查键是否存在(在条件语句中)，另外一次获得值(打印)。另外一个解决方案如下：
 
-```
+```py
 def describePerson(person): 
     print "Description of", person["name"] 
     print "Age:", person["age"] 
@@ -446,7 +446,7 @@ def describePerson(person):
 
 在查看对象是否存在特定特性时，`try/except`也很有用。假设想要查看某对象是否有`write`特性，那么可以使用如下代码：
 
-```
+```py
 try:
     obj.write 
 except AttributeError: 
@@ -485,7 +485,7 @@ else:
 
 表 8-2 本章的新函数
 
-```
+```py
 warnings,filterwarnings(action, ...)  用于过滤警告 
 ```
 

@@ -6,7 +6,7 @@
 
 让我们一部分一部分地来看服务端的实现，首先是 poetryProtocol：
 
-```
+```py
 class PoetryProtocol(Protocol):
     def connectionMade(self):
         self.transport.write(self.factory.poem)
@@ -19,7 +19,7 @@ class PoetryProtocol(Protocol):
 
 也许你看到了，Protocol 是从 Factory 中获得诗歌内容的：
 
-```
+```py
 class PoetryFactory(ServerFactory):
     protocol = PoetryProtocol
     def __init__(self, poem):
@@ -32,7 +32,7 @@ class PoetryFactory(ServerFactory):
 
 我们在 main 函数中调用了 listenTCP 函数：
 
-```
+```py
 def main():
     options, poetry_file = parse_args()
     poem = open(poetry_file).read()

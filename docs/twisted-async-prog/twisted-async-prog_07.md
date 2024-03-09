@@ -8,7 +8,7 @@
 
 分析下 3.1 版本中的 get_poetry 函数：
 
-```
+```py
 ...
 def got_poem(poem):
     print poem
@@ -32,7 +32,7 @@ reactor.run()
 
 同步程序中处理上面的情况会采用如下方式：
 
-```
+```py
 ...
 try:
     poem = get_poetry(host, port) # the synchronous version of get_poetry
@@ -64,7 +64,7 @@ else:
 
 从另一个视角来看，两个版本都有代码重复。异步的版本中含有两次 reactor.stop，同步版本中含有两次 sys.exit 调用。我们可以重构同步版本如下：
 
-```
+```py
 ...
 try:
     poem = get_poetry(host, port) # the synchronous version of get_poetry
@@ -100,7 +100,7 @@ sys.exit()
 
 下面是我们看看第一个使用 deferred 的例子[twisted-deferred/defer-1.py](http://github.com/jdavisp3/twisted-intro/blob/master/twisted-deferred/defer-1.py):
 
-```
+```py
 from twisted.internet.defer import Deferred
 
 def got_poem(res):
@@ -123,7 +123,7 @@ print "Finished"
 
 代码开始创建了一个新 deferred，然后使用 addCallbacks 添加了 callback/errback 对，然后使用 callback 函数激活了其正常结果处理回调链。当然了，由于只含有一个回调函数还算不上链，但不要紧，运行它：
 
-```
+```py
 Your poem is served:
 This poem is short.
 Finished 
@@ -138,7 +138,7 @@ Finished
 
 好了，让我们来试试另外一种情况，[twisted-deferred/defer-2.py](http://github.com/jdavisp3/twisted-intro/blob/master/twisted-deferred/defer-2.py)激活了错误处理回调：
 
-```
+```py
 from twisted.internet.defer import Deferred
 from twisted.python.failure import Failure
 
@@ -162,7 +162,7 @@ print "Finished"
 
 运行它打印出的结果为：
 
-```
+```py
 No poetry for you.
 Finished 
 ```
@@ -171,7 +171,7 @@ Finished
 
 在前面的例子中，我们将一个 Failure 对象传给了 errback。deferred 会将一个 Exception 对象转换成 Failure，因此我们可以这样写[twisted-deferred/defer-3.py](http://github.com/jdavisp3/twisted-intro/blob/master/twisted-deferred/defer-3.py)：
 
-```
+```py
 from twisted.internet.defer import Deferred
 
 def got_poem(res):
@@ -194,7 +194,7 @@ d.errback(Exception('I have failed.'))
 
 运行结果如下：
 
-```
+```py
 twisted.python.failure.Failure
 [Failure instance: Traceback (failure with no frames): : I have failed.
 ]
@@ -205,7 +205,7 @@ No poetry for you.
 
 下面我们来运行代码[twisted-deferred/defer4.py](http://github.com/jdavisp3/twisted-intro/blob/master/twisted-deferred/defer-4.py)看看会出现什么结果：
 
-```
+```py
 from twisted.internet.defer import Deferred
 def out(s): print s
 d = Deferred()
@@ -217,7 +217,7 @@ print 'Finished'
 
 输出结果：
 
-```
+```py
 First result
 Traceback (most recent call last):
   ...
@@ -235,7 +235,7 @@ twisted.internet.defer.AlreadyCalledError
 
 那 deferred 能帮助我们重构异步代码吗？考虑下面[twisted-deferred/defer-8.py](http://github.com/jdavisp3/twisted-intro/blob/master/twisted-deferred/defer-8.py)这个例子：
 
-```
+```py
 import sys
 
 from twisted.internet.defer import Deferred
@@ -265,7 +265,7 @@ reactor.run()
 
 这基本上与我们上面的代码相同，唯一不同的是加进了 reactor。我们在启动 reactor 后调用了 callWhenRunning 函数来激活 deferred。我们利用了 callWhenRunning 函数可以接收一个额外的参数给回调函数。多数 Twisted 的 API 都以这样的方式注册回调函数，包括向 deferred 添加 callback 的 API。下面我们给 deferred 回调链添加第二个回调：
 
-```
+```py
 import sys
 
 from twisted.internet.defer import Deferred

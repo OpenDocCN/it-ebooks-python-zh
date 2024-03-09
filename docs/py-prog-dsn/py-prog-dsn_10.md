@@ -20,7 +20,7 @@
 
 【程序 9.1】chaos.py
 
-```
+```py
 def main():
     x = input("Enter a number between 0 and 1: ") 
     for i in range(10):
@@ -31,7 +31,7 @@ main()
 
 运行这个程序，可得如下输出：
 
-```
+```py
 Enter a number between 0 and 1: 0.2
 0.624
 0.9150336
@@ -47,7 +47,7 @@ Enter a number between 0 and 1: 0.2
 
 再次运行这个程序，但换一个输入数据 0.21，可得如下输出：
 
-```
+```py
 Enter a number between 0 and 1: 0.21
 0.64701
 0.89071343361
@@ -75,7 +75,7 @@ Enter a number between 0 and 1: 0.21
 
 既然现实问题中存在随机事件，用计算机解决这类问题时就需要为随机事件建模，即程 序能够模拟随机事件的发生。例如，假设程序 P 能够模拟抛硬币并显示每次抛硬币的结果（“正”或“反”），则 P 应该具有这样的特性：每一次显示的结果是不可预测的，但多次运 行 P 之后“正”、“反”出现的次数应该是差不多的。可以设想 P 中有这样的语句：
 
-```
+```py
 if 模拟抛硬币的结果是正面: 
     print "正"
 else:
@@ -96,7 +96,7 @@ Python 语言提供了一个标准库模块 random，该模块中定义了若干
 
 randrange 函数生成一个给定范围内的整型伪随机数，范围由 randrange 的参数指定，具 体格式和 range 函数一样。例如，randrange(1,3)随机地产生 1 或 2，randrange(1,7)返回范围 [1,2,3,4,5,6]中的某个数值，而 randrange(2,100,2)返回小于 100 的某个偶数。例如：
 
-```
+```py
 >>> from random import randrange
 >>> for i in range(20):
 print randrange(1,3),
@@ -112,7 +112,7 @@ random 函数可用来生成浮点型伪随机数，确切地说，该函数生�
 
 random 不需要提供参数。例如：
 
-```
+```py
 >>> from random import random
 >>> for i in range(5):
 print random()
@@ -129,7 +129,7 @@ print random()
 
 有了随机数生成函数，我们就可以来模拟随机事件了。以抛硬币问题为例，前面我们给 出了如下形式的代码：
 
-```
+```py
 if 模拟抛硬币的结果是正面: 
     print "正"
 else:
@@ -140,7 +140,7 @@ else:
 
 考虑 randrange(1,3)：该函数产生随机数 1 或 2，每一次调用到底生成什么值是不可预测 的，并且大量调用后两个数值出现的机会是一样的。据此，randrange(1,3) == 1 正是我们所 需要的条件，此条件每一次计算时的真假是随机的，但长远来看真假情形各占 50%。将这 个条件代入上面的条件语句，即得
 
-```
+```py
 if randrange(1,3) == 1: 
     print "正"
 else:
@@ -149,13 +149,13 @@ else:
 
 这样，我们就通过调用合适的随机数生成函数的方式模拟了随机事件，这种模拟方法称为蒙特卡洛方法。 类似地，掷骰子也是现实中常见的随机问题，如果希望在程序中模拟掷骰子，可以这样做：
 
-```
+```py
 value = randrange(1,7) print "你掷出的点数是:",value 
 ```
 
 再看个例子，两个运动员打乒乓球，谁能赢呢？胜负自然取决于球员的技术水平，但又 并非水平高的人必然赢，毕竟体育比赛和天时地利人和等各种因素有关。既然比赛结果有随 机性，我们就可以利用蒙特卡洛方法来模拟比赛。假设 A、B 两个球员相互之间的胜率大致 是 55%对 45%，那么他们打一次比赛（比赛的单位可以是 1 分、1 局或 1 盘，在此并不重要） 的结果可以用如下代码模拟：
 
-```
+```py
 if random() &lt; 0.55: 
     print "A wins."
 else:
@@ -178,7 +178,7 @@ else:
 
 设 A、B 两球员比赛时，各自得分的概率为 prob 和 1-prob。利用蒙特卡洛方法，下面 的代码即模拟了得到 1 分的一回合比赛，这是整个模拟程序的核心功能。
 
-```
+```py
 if random() < prob: 
     pointA = pointA + 1
 else:
@@ -187,7 +187,7 @@ else:
 
 我们可以立刻来测试这个核心功能。假设 A 的得分概率是 0.55，让 A、B 进行 10000 分的较量，看看各自得分情况如何。测试代码如下：
 
-```
+```py
 >>> from random import random
 >>> pointA = pointB = 0
 >>> for i in range(10000): if random() &lt; 0.55:
@@ -202,7 +202,7 @@ pointB = pointB + 1
 
 乒乓球比赛不是按比赛回合来判定胜负的，而是采用将若干回合组成一局的方式，以局 为单位来判定胜负。老规则采用每局 21 分制，新规则采用每局 11 分制。我们利用上述模拟一回合比赛及得分的代码，改成以局为单位进行比赛（假设采用 21 分制）。
 
-```
+```py
 >>> def oneGame():
 pointA = pointB = 0
 while pointA != 21 and pointB != 21: if random() &lt; 0.55:
@@ -216,7 +216,7 @@ pointB = pointB + 1 return pointA, pointB
 
 下面我们来测试 oneGame 函数，让两个球员进行 1000 局较量，看看胜负如何。
 
-```
+```py
 >>> gameA = gameB = 0
 >>> for i in range(1000):
         pointA, pointB = oneGame() 
@@ -234,7 +234,7 @@ pointB = pointB + 1 return pointA, pointB
 
 一场乒乓球比赛也不是无限制地打很多局才能定胜负，一般都是采取 3 局 2 胜、5 局 3 胜或 7 局 4 胜的方式来完成比赛。下面我们采用 21 分制、3 局 2 胜的赛制，来编写模拟一 场比赛的程序 oneMatch，并通过模拟 100 场比赛来测试 oneMatch。
 
-```
+```py
 >>> def oneMatch():
         gameOver = [(3,0),(0,3),(3,1),(1,3),(3,2),(2,3)]
         gameA = gameB = 0
@@ -264,7 +264,7 @@ pointB = pointB + 1 return pointA, pointB
 
 【程序 9.2】pingpong.py
 
-```
+```py
 from random import random
 def getInputs():
     p = input("Player A's winning prob: ")
@@ -314,7 +314,7 @@ main()
 
 下面是本程序的一次运行结果：
 
-```
+```py
 Player A's winning prob: 0.52
 How many matches to simulate? 100
 Rule: 21 points, best of 3 games. Wins for A: 74 (74.0%)
@@ -353,7 +353,7 @@ Wins for B: 32 (32.0%)
 
 我们在 9.1.3 中就采用了原型法来设计实现乒乓球比赛的模拟程序。 解决问题的关键是模拟乒乓球比赛，而比赛的最基本动作是打一个回合及记分，因此我们一开始就考虑如何模拟一个回合的比赛并给胜方得分。即：
 
-```
+```py
 if random() < prob: 
     pointA = pointA + 1
 else:
@@ -470,7 +470,7 @@ thread 模块提供了一个函数 start_new_thread 用于创建和启动新线�
 
 【程序 9.3】eg9_3.py
 
-```
+```py
 # -*- coding: cp936 -*- import thread
 def task(tName,n): 
     for i in range(n):
@@ -487,7 +487,7 @@ while True:
 
 程序执行后，孙悟空（主线程）先说了两句话，然后创建小猴子，最后进入一个无穷循 环。小猴子创建后就立即启动，执行函数 task，该函数的任务只是显示简单的信息。task 函 数的最后一行调用 thread 模块中定义的 interrupt_main 函数，该函数的功能是在主线程中引 发 KeyboardInterrupt 异常，从而中断主线程的执行。如果没有这条语句，主线程将一直处于 无穷循环之中而无法结束。下面是程序的执行效果：
 
-```
+```py
 <老孙>:我是孙悟空!
 <老孙>:我拔根毫毛变个小猴儿~~~
 <老孙>:我睡会儿,小猴儿干完活再叫醒我~~~
@@ -506,7 +506,7 @@ KeyboardInterrupt
 
 从输出结果可见，主线程和子线程确实是在以交叉方式并行执行。 顺便说一下，由于程序 9.3 中使用了汉字，所以要在程序的第一行使用
 
-```
+```py
 # -*- coding: cp936 -*- 
 ```
 
@@ -514,7 +514,7 @@ KeyboardInterrupt
 
 【程序 9.4】eg9_4.py
 
-```
+```py
 # -*- coding: cp936 -*- import thread
 import time
 def task(tName,n,delay): 
@@ -531,7 +531,7 @@ print "<老孙>:不管你们喽,俺老孙去也~~~\n"
 
 下面是程序 9.4 的一次执行结果：
 
-```
+```py
 <老孙>:我是孙悟空!
 <老孙>:我拔根毫毛变个小猴儿<哼>
 <老孙>:我再拔根毫毛变个小猴儿<哈>
@@ -559,7 +559,7 @@ threading 模块的用法
 
 Thread 类的使用有两种方式。第一种用法是：直接利用 Thread 类来创建线程对象，并 在创建时向 Thread 构造器传递线程将要执行的函数；创建后通过调用线程对象的 start()方法 来启动线程，以执行指定的任务。这是使用 threading 模块来创建线程的最简单方式。具体 语法如下：
 
-```
+```py
 t = Thread(target=&lt;函数&gt;,args=&lt;参数&gt;) 
 t.start() 
 ```
@@ -570,7 +570,7 @@ t.start()
 
 【程序 9.5】eg9_5.py
 
-```
+```py
 # -*- coding: cp936 -*-
 from threading import Thread from time import sleep
 def task(tName,n,delay): 
@@ -601,7 +601,7 @@ print "<老孙>:不管你们喽,俺老孙去也~~~\n"
 
 程序 9.6 是采用上述方法的一个例子。
 
-```
+```py
 # -*- coding: cp936 -*-
 from threading import Thread 
 from time import sleep
@@ -637,7 +637,7 @@ print "<老孙>:小猴儿们都回了,俺老孙去也~~~"
 
 以下是程序 9.6 的一次执行结果：
 
-```
+```py
 <老孙>:我是孙悟空!
 <老孙>:我拔根毫毛变个小猴儿<哼>
 <哼>: 上场...

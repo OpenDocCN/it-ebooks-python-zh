@@ -58,7 +58,7 @@ Once you agree that a stack is the appropriate data structure forkeeping the par
 
 一旦你明白栈的数据结构适合保存括号，算法就很简单了。创建一个空栈，从左到右读入括号串，如果遇到符号是左括号，把它压栈，标志着后面需要一个右括号与之匹配。另一方面，遇到一个右括号，就弹出栈顶数据。只要栈内还有数据可以弹出与右括号匹配，这些括号就仍然是平衡的。任何时候，栈内没有左括号用来匹配了，这个字符串就没有平衡好。到字符串的最后，所有的字符都处理过了，栈应该是空的。这个算法的 python 代码如下：
 
-```
+```py
 from pythonds.basic.stack import Stack
 
 def parChecker(symbolString):

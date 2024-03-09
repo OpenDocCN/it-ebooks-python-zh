@@ -20,7 +20,7 @@ Django 为多种数据库后台提供了统一的调用 API。根据需求不同
 
 在 MySQL 中创立 Django 项目的数据库：
 
-```
+```py
 mysql> CREATE DATABASE villa DEFAULT CHARSET=utf8;
 
 ```
@@ -29,14 +29,14 @@ mysql> CREATE DATABASE villa DEFAULT CHARSET=utf8;
 
 在 MySQL 中为 Django 项目创立用户，并授予相关权限:
 
-```
+```py
 mysql> GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, CREATE TEMPORARY TABLES, LOCK TABLES ON villa.* TO 'vamei'@'localhost' IDENTIFIED BY 'vameiisgood';
 
 ```
 
 在 settings.py 中，将 DATABASES 对象更改为:
 
-```
+```py
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -60,7 +60,7 @@ MySQL 是关系型数据库。但在 Django 的帮助下，我们不用直接编
 
 在传统的 MySQL 中，数据模型是表。在 Django 下，一个表为一个类。表的每一列是该类的一个属性。在 models.py 中，我们创建一个只有一列的表，即只有一个属性的类：
 
-```
+```py
 from django.db import models class Character(models.Model):
     name = models.CharField(max_length=200) def __unicode__(self): return self.name
 
@@ -101,7 +101,7 @@ from django.db import models class Character(models.Model):
 
 查看数据模型：
 
-```
+```py
 USE villa;
 SHOW TABLES;
 SHOW COLUMNS FROM west_character;
@@ -126,14 +126,14 @@ SHOW COLUMNS FROM west_character;
 
 数据模型虽然建立了，但还没有数据输入。为了简便，我们手动添加记录。打开 MySQL 命令行,并切换到相应数据库。添加记录：
 
-```
+```py
 INSERT INTO west_character (name) Values ('Vamei'); INSERT INTO west_character (name) Values ('Django'); INSERT INTO west_character (name) Values ('John');
 
 ```
 
 查看记录：
 
-```
+```py
  SELECT * FROM west_character;
 
 ```
@@ -142,7 +142,7 @@ INSERT INTO west_character (name) Values ('Vamei'); INSERT INTO west_character (
 
 下面我们从数据库中取出数据，并返回给 http 请求。在 west/views.py 中，添加视图。对于对应的请求，我们将从数据库中读取所有的记录，然后返回给客户端：
 
-```
+```py
 # -*- coding: utf-8 -*-
 
 from django.http import HttpResponse from west.models import Character def staff(request):
@@ -155,7 +155,7 @@ from django.http import HttpResponse from west.models import Character def staff
 
 为了让 http 请求能找到上面的程序，在 west/urls.py 增加 url 导航：
 
-```
+```py
 from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('',

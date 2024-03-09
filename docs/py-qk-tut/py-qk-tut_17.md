@@ -12,7 +12,7 @@
 
 一个包含错误的程序:
 
-```
+```py
 re = iter(range(5)) for i in range(100): print re.next() print 'HaHaHaHa'
 
 ```
@@ -23,7 +23,7 @@ re = iter(range(5)) for i in range(100): print re.next() print 'HaHaHaHa'
 
 我们可以修改以上错误程序，直到完美的没有 bug。但另一方面，如果我们在写程序的时候，知道这里可能犯错以及可能的犯错类型，我们可以针对该错误类型定义好”应急预案“。
 
-```
+```py
 re = iter(range(5)) try: for i in range(100): print re.next() except StopIteration: print 'here is end ',i print 'HaHaHaHa'
 
 ```
@@ -34,7 +34,7 @@ re = iter(range(5)) try: for i in range(100): print re.next() except StopIterati
 
 完整的语法结构如下：
 
-```
+```py
 try:
     ... except error1:
     ... except error2:
@@ -48,7 +48,7 @@ else 是指所有其它的错误。finally 是无论何种情况，最后都要�
 
 我们也可以自己写一个举出错误的例子:
 
-```
+```py
 print 'Lalala'
 raise StopIteration print 'Hahaha'
 

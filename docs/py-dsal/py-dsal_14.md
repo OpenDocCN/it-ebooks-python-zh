@@ -16,7 +16,7 @@
 
 下面是实现代码，最后面是用 7 个名字和数字 3 来调用这个方法，最后剩下那个叫 Susan。
 
-```
+```py
 from pythonds.basic.queue import Queue
 
 def hotPotato(namelist, num):

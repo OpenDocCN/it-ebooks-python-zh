@@ -10,7 +10,7 @@
 
 signal 包定义了各个信号名及其对应的整数，比如
 
-```
+```py
 import signal print signal.SIGALRM print signal.SIGCONT
 
 ```
@@ -27,7 +27,7 @@ singnal.signal(signalnum, handler)
 
 signalnum 为某个信号，handler 为该信号的处理函数。我们在信号基础里提到，进程可以无视信号，可以采取默认操作，还可以自定义操作。当 handler 为 signal.SIG_IGN 时，信号被无视(ignore)。当 handler 为 singal.SIG_DFL，进程采取默认操作(default)。当 handler 为一个函数名时，进程采取函数中定义的操作。
 
-```
+```py
 import signal # Define signal handler function
 def myHandler(signum, frame): print('I received: ', signum) # register signal.SIGTSTP's handler 
 signal.signal(signal.SIGTSTP, myHandler)
@@ -52,7 +52,7 @@ $python test.py
 
 一个有用的函数是 signal.alarm()，它被用于在一定时间之后，向进程自身发送 SIGALRM 信号:
 
-```
+```py
 import signal # Define signal handler function
 def myHandler(signum, frame): print("Now, it's the time")  exit() # register signal.SIGALRM's handler 
 signal.signal(signal.SIGALRM, myHandler)

@@ -22,7 +22,7 @@
 
 match() 函数只检查 RE 是否在字符串开始处匹配，而 search() 则是扫描整个字符串。记住这一区别是重要的。记住，match() 只报告一次成功的匹配，它将从 0 处开始；如果匹配不是从 0 开始的，match() 将不会报告它。
 
-```
+```py
 #!python
 >>> print re.match('super', 'superstition').span()
 (0, 5)
@@ -32,7 +32,7 @@ None
 
 另一方面，search() 将扫描整个字符串，并报告它找到的第一个匹配。
 
-```
+```py
 #!python
 >>> print re.search('super', 'superstition').span()
 (0, 5)
@@ -50,7 +50,7 @@ None
 
 当重复一个正则表达式时，如用 a*，操作结果是尽可能多地匹配模式。当你试着匹配一对对称的定界符，如 HTML 标志中的尖括号时这个事实经常困扰你。匹配单个 HTML 标志的模式不能正常工作，因为 .* 的本质是“贪婪”的
 
-```
+```py
 #!python
 >>> s = '<html><head><title>Title</title>'
 >>> len(s)
@@ -65,7 +65,7 @@ RE 匹配 在 "`&lt;html&gt;`" 中的 "<"，.* 消耗掉字符串的剩余部分
 
 在这种情况下，解决方案是使用不贪婪的限定符 *?、+?、?? 或 {m,n}?，尽可能匹配小的文本。在上面的例子里， ">" 在第一个 "<" 之后被立即尝试，当它失败时，引擎一次增加一个字符，并在每步重试 ">"。这个处理将得到正确的结果：
 
-```
+```py
 #!python
 >>> print re.match('<.*?>', s).group()
 <html> 
@@ -83,7 +83,7 @@ RE 匹配 在 "`&lt;html&gt;`" 中的 "<"，.* 消耗掉字符串的剩余部分
 
 re.VERBOSE 标志有这么几个作用。在正则表达式中不在字符类中的空白符被忽略。这就意味着象 dog | cat 这样的表达式和可读性差的 dog|cat 相同，但 [a b] 将匹配字符 "a"、"b" 或 空格。另外，你也可以把注释放到 RE 中；注释是从 "#" 到下一行。当使用三引号字符串时，可以使 REs 格式更加干净：
 
-```
+```py
 #!python
 pat = re.compile(r"""
 \s*                 # Skip leading whitespace
@@ -97,7 +97,7 @@ pat = re.compile(r"""
 
 这个要难读得多：
 
-```
+```py
 #!python
 pat = re.compile(r"\s*(?P<header>[^:]+)\s*:(?P<value>.*?)\s*$") 
 ```

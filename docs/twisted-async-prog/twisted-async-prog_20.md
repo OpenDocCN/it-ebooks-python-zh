@@ -24,7 +24,7 @@
 
 以一个 Protocol 实例的角度考虑这张图.记住每个 Protocol 只有一个连接(一首诗). 这个实例可“看到”一个方法调用流,每个方法接收着诗歌的下一部分,如下:
 
-```
+```py
 dataReceived(self, "When I have fears")
 dataReceived(self, " that I may cease to be")
 dataReceived(self, "Before my pen has glea")
@@ -34,7 +34,7 @@ dataReceived(self, "n'd my teeming brain")
 
 然而这不是严格意义上的 Python 循环,我们可以将其概念化为一个循环:
 
-```
+```py
 for data in poetry_stream(): # pseudo-code
     dataReceived(data) 
 ```
@@ -77,7 +77,7 @@ Erlang 客户端位于 [erlang-client-1/get-poetry](https://github.com/jdavisp3/
 
 下面代码是 `main` 函数代码,与 Python 客户端中的 `main` 函数具有相同的目的:
 
-```
+```py
 main([]) ->
     usage();
 
@@ -93,7 +93,7 @@ main(Args) ->
 
 Erlang 函数中的每条语句以逗号分隔,函数以句号结尾.让我们看一看第二个句群,第一行仅仅分析命令行参数并且将它们绑定到一个变量(Erlang 中所有变量必须大写).第二行使用 `self` 函数来获取当下正在运行的 Erlang 进程(而非 OS 进程)的 ID.由于这是主函数,你可以认为它等价于 Python 中的 `__main__` 模块. 第三行是最有趣的:
 
-```
+```py
 [erlang:spawn_monitor(fun () -> get_poetry(TaskNum, Addr, Main) end)
      || {TaskNum, Addr} <- enumerate(Addresses)], 
 ```
@@ -104,7 +104,7 @@ Erlang 函数中的每条语句以逗号分隔,函数以句号结尾.让我们�
 
 现在让我们看一下 Erlang 中的 `get_poetry` 函数.事实上在我们的脚本中有两个函数叫 `get_poetry`.在 Erlang 中,一个函数被名字和元数同时确定,所以我们的脚本包含两个不同的函数, `get_poetry/3` 和 `get_poetry/4`,它们分别接收 3 个或 4 个参数.这里是 [get_poetry/3](https://github.com/jdavisp3/twisted-intro/blob/master/erlang-client-1/get-poetry#L79),它是被 `main` 生成的:
 
-```
+```py
 get_poetry(Tasknum, Addr, Main) ->
     {Host, Port} = Addr,
     {ok, Socket} = gen_tcp:connect(Host, Port,
@@ -114,7 +114,7 @@ get_poetry(Tasknum, Addr, Main) ->
 
 这个函数首先创建一个 TCP 连接,就像 Twisted 客户端中的 `get_poetry`.但之后,不是返回,而是继续使用那个 TCP 连接,通过调用 [get_poetry/4](https://github.com/jdavisp3/twisted-intro/blob/master/erlang-client-1/get-poetry#L85),如下:
 
-```
+```py
 get_poetry(Tasknum, Socket, Main, Packets) ->
     case gen_tcp:recv(Socket, 0) of
         {ok, Packet} ->
@@ -136,7 +136,7 @@ get_poetry(Tasknum, Socket, Main, Packets) ->
 
 我们 Erlang 客户端中剩下的关键函数是 [collect_poems](https://github.com/jdavisp3/twisted-intro/blob/master/erlang-client-1/get-poetry#L58):
 
-```
+```py
 collect_poems(0, Poems) ->
     [io:format("~s\n", [P]) || P <- Poems];
 collect_poems(N, Poems) ->
@@ -154,7 +154,7 @@ collect_poems(N, Poems) ->
 
 OK,让我们运行一下 Erlang 客户端.首先启动 3 个慢速服务器:
 
-```
+```py
 python blocking-server/slowpoetry.py --port 10001 poetry/fascination.txt
 python blocking-server/slowpoetry.py --port 10002 poetry/science.txt
 python blocking-server/slowpoetry.py --port 10003 poetry/ecstasy.txt --num-bytes 30 
@@ -162,13 +162,13 @@ python blocking-server/slowpoetry.py --port 10003 poetry/ecstasy.txt --num-bytes
 
 现在我们可以运行 Erlang 客户端了,与 Python 客户端有相似的命令行语法.如果你在 Linux 或其他 UNIX-样的系统,你应该可以直接运行客户端(假设你安装了 Erlang 并使得它在你的 PATH 上).在 Windows 中,你可能需要运行 `escript` 程序,将指向 Erlang 客户端的路径作为第一个参数(其他参数留给 Erlang 客户端自身的参数).
 
-```
+```py
 ./erlang-client-1/get-poetry 10001 10002 10003 
 ```
 
 之后,你可以看到如下输出:
 
-```
+```py
 Task 3: got 30 bytes of poetry from 127:0:0:1:10003
 Task 2: got 10 bytes of poetry from 127:0:0:1:10002
 Task 1: got 10 bytes of poetry from 127:0:0:1:10001
@@ -185,13 +185,13 @@ Task 1: got 10 bytes of poetry from 127:0:0:1:10001
 
 那么当一个服务器失败了会发生什么呢? 让我们试试:
 
-```
+```py
 ./erlang-client-1/get-poetry 10001 10005 
 ```
 
 上面命令包含一个活动的端口(假设你没有终止之前的诗歌服务器)和一个未激活的端口(假设你没有在 10005 端口运行任一服务器). 我们得到如下输出:
 
-```
+```py
 Task 1: got 10 bytes of poetry from 127:0:0:1:10001
 
 =ERROR REPORT==== 25-Sep-2010::21:02:10 ===

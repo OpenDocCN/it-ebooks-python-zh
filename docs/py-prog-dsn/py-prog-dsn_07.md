@@ -12,7 +12,7 @@
 
 下面以字符串数据为例来说明上面这段话的含义。夸张一点说，字符串数据——如 "HELLO"——也是复杂数据，因为它是由一些更简单的数据项（5 个字符"H"、"E"、"L"、 "L"和"O"）组成的。为了在程序中能够方便、高效地处理字符串"HELLO"，我们将这 5 个字符视为以“连续存储的序列结构”组织在一起，因为这种存储结构最恰当地反映了 5 个字符之间的逻辑关系，从而最有利于数据处理的实现。反之，如果将 5 个字符东一个西一个地分散存储，比如用几个独立的变量来分别存储这 5 个字符：
 
-```
+```py
 c1 = "H"
 c2 = "E"
 c3 = "L"
@@ -89,7 +89,7 @@ Python 中的字符串、列表和元组数据类型都是序列，第二章中�
 
 不要忘了，字符串数据是不可修改的，因此表 6.2 中没有修改字符串 s 的方法。 下面通过一些例子来演示字符串对象的方法的使用。
 
-```
+```py
 >>> s = "I think, therefore I am."
 >>> s.count('I')
 2
@@ -124,7 +124,7 @@ False
 
 本节要引入的是面向对象方式的列表操作。和字符串一样，Python 列表实际上也是对 象，提供了很多有用的方法。例如，append()方法用于向列表尾部添加成员数据：
 
-```
+```py
 >>> a = ['hi']
 >>> a.append('there')
 >>> a
@@ -133,7 +133,7 @@ False
 
 利用 append()方法，我们可以将用户输入的一批数据存储到一个列表中：
 
-```
+```py
 data = []
 x = raw_input('Enter a number: ') 
 while x != "":
@@ -162,7 +162,7 @@ while x != "":
 
 下面通过例子来说明对列表对象的处理：
 
-```
+```py
 >>> a = ['Irrational',[3.14,2.718],'pi and e']
 >>> a.sort()
 >>> a
@@ -183,7 +183,7 @@ while x != "":
 
 “总和”是可以累积计算的，即可以先计算部分数据的和 sum，当有了新数据再加入 sum 并形成新的 sum。重复上述步骤直至所有数据都已加入 sum，这时所得即总和。利用我 们介绍过的累积算法模式，很容易实现求总和的代码：
 
-```
+```py
 sum = 0
 data = raw_input("输入新数据: ") 
 while data != "":
@@ -203,7 +203,7 @@ while data != "":
 
 > ① 若数据个数为偶数，则取处于中间位置的两个数据的平均值。
 
-```
+```py
 def getInput(): data = []
 x = raw_input("Enter a number (&lt;Enter&gt; to quit): ") 
 while x != "":
@@ -214,7 +214,7 @@ return data
 
 接着设计三个统计指标的函数。这些函数的参数都是列表 aList，调用时将存储输入数 据的 data 作为实参传递给 aList 即可。总和及算术平均值很容易计算，只要先对输入列表利 用累积求得总和，然后再除以列表长度即得平均值。列表长度可以用 len()直接求得，不需 要另外写一个累积循环。代码如下：
 
-```
+```py
 def sum(aList): 
     s = 0.0
     for x in aList: 
@@ -226,7 +226,7 @@ def mean(aList):
 
 中位数的计算没有代数公式可用，我们先将全体数据从小到大排序，然后取中间位置的 数据值。当数据个数为奇数时，有唯一的中间位置，故中位数很容易找到；当数据个数为偶 数时，中位数是处于中间位置的两个数据的平均值。列表数据的排序可以利用现成的列表对 象方法 sort()实现，而奇偶性可以利用余数运算的结果来判断。代码如下：
 
-```
+```py
 def median(aList): 
     aList.sort()
     size = len(aList) 
@@ -242,7 +242,7 @@ def median(aList):
 
 【程序 6.1】statistics.py
 
-```
+```py
 def getInputs(): d = []
     x = raw_input("Enter a number (&lt;Enter&gt; to quit): ") 
     while x != "":
@@ -283,7 +283,7 @@ main()
 
 元组的括号有时可以省略，例如用在赋值语句中。我们熟悉的为多个变量同时赋值其实 是元组赋值。下面是一些例子：
 
-```
+```py
 >>> 1,2,3
 (1, 2, 3)
 >>> x = 1,2,3
@@ -298,7 +298,7 @@ main()
 
 元组也可以嵌套，即元组的成员本身可以是元组，例如：
 
-```
+```py
 >>> t = ("Lucy",("Math",90))
 >>> t[1][1]
 90 
@@ -315,7 +315,7 @@ Python 是以面向对象的方式实现元组类型的，元组对象支持的�
 
 元组类型的名字 tuple 可以用作构造器，将一个字符串或列表转换成元组对象。例如：
 
-```
+```py
 >>> tuple('hello')
 ('h', 'e', 'l', 'l', 'o')
 >>> tuple([1,2,3])
@@ -342,7 +342,7 @@ Python 提供了集合类型 set，用于表示大量数据的无序集合体。
 
 > ① 当然 Python 集合并不完全等同于数学中的集合，例如数学中的集合可能是无穷集。
 
-```
+```py
 >>> {1,2,3}
 set([1, 2, 3])
 >>> s = {1,1,2,2,2,3,3}
@@ -384,7 +384,7 @@ set([])
 
 下面是集合运算的例子：
 
-```
+```py
 >>> s1 = {1,2,3,4,5}
 >>> s2 = {2,4,6,8}
 >>> 6 in s1
@@ -406,7 +406,7 @@ set([1, 2, 3, 4, 5, 6, 8])
 
 和序列一样，集合与 for 循环语句结合使用，可实现对集合中每个元素的遍历。例如， 接着上面的例子继续执行语句：
 
-```
+```py
 >>> for x in s2:
         print x,
 8 2 4 6 
@@ -414,7 +414,7 @@ set([1, 2, 3, 4, 5, 6, 8])
 
 Python 集合是可修改的数据类型，例如上面例子中修改了集合 s1 的值。但是，Python 集合中的元素必须是不可修改的！因此，集合的元素不能是列表、字典等，只能是数值、字 符串、元组之类。同样，集合的元素不能是集合，因为集合是可修改的。然而，Python 另 外提供了 frozenset()函数，可用来创建不可修改的集合，这种集合可以作为另一个集合的元 素。下面的语句展示了 set 和 frozenset 的区别：
 
-```
+```py
 >>> a = set(['hi','there'])
 >>> b = set([a,3])
 Traceback (most recent call last):
@@ -448,7 +448,7 @@ Python 以面向对象方式实现集合类型，集合对象的方法如表 6.7
 
 接着前面的例子，下面通过集合对象方法的调用来处理集合数据：
 
-```
+```py
 >>> s2.union([1,2,3])
 set([1, 2, 3, 4, 6, 8])
 >>> s2.intersection((1,2,3,4))
@@ -480,13 +480,13 @@ set([2, 4, 10, 6])
 
 字典的字面值是用一对花括号括起的、以逗号分隔的一些键值对，形如：
 
-```
+```py
 {k1:v1,k2:v2,...,kn:vn} 
 ```
 
 其中，键值对的“键”可以是任何不可修改类型的数据，如数值、字符串和元组等；而键值 对的“值”则可以是任何类型的数据。不含任何键值对的字典是空字典，表示为{}。例如：
 
-```
+```py
 >>> d = {'Lucy':1234,'Tom':5678,'Mary':1357}
 >>> print d
 {'Mary': 1357, 'Lucy': 1234, 'Tom': 5678} 
@@ -496,7 +496,7 @@ set([2, 4, 10, 6])
 
 除了字面值之外，还可以利用类型构造器 dict()来创建字典，创建时需要将字典的键值 对信息作为参数传递给 dict()。参数的形式有两种：一种是关键字参数形式（参见 4.2.4）， 一种是序列（列表或元组）形式，例如：
 
-```
+```py
 >>> d1 = dict(name="Lucy",age=8,hobby=("bk","gm"))
 >>> d1
 {'hobby': ('bk', 'gm'), 'age': 8, 'name': 'Lucy'}
@@ -509,13 +509,13 @@ set([2, 4, 10, 6])
 
 字典的主要用途是查找与特定键相关联的值，具体操作形式如下：
 
-```
+```py
 <字典>[<键>] 
 ```
 
 其返回值就是字典中与给定的键相关联的值。如果指定的键在字典中不存在，则报错（KeyError）。例如：
 
-```
+```py
 >>> d1["name"]
 'Lucy'
 >>> d1["age"] 8
@@ -529,7 +529,7 @@ KeyError: 'gender'
 
 前面创建的字典 d2 是以元组为键的，访问时当然要提供一个元组，且元组括号可省略。 例如：
 
-```
+```py
 >>> d2[(6,1)]
 'Child'
 >>> d2[7,1]
@@ -538,13 +538,13 @@ KeyError: 'gender'
 
 字典类型的数据是可以修改的。与某个键相关联的值可以通过赋值语句来修改，形如：
 
-```
+```py
 <字典>[<键>] = <新值> 
 ```
 
 如果指定的键不存在，则相当于向字典中添加新的键值对。例如：
 
-```
+```py
 >>> d1["age"] = 9
 >>> d1
 {'hobby': ('bk', 'gm'), 'age': 9, 'name': 'Lucy'}
@@ -557,7 +557,7 @@ KeyError: 'gender'
 
 del 命令可以用来删除字典条目，形如：
 
-```
+```py
 del <字典>[<键>] 
 ```
 
@@ -575,7 +575,7 @@ Python 将字典实现为对象，表 6.8 给出了字典对象的方法。
 
 下面的会话过程演示了对象方法的用法：
 
-```
+```py
 >>> d1.keys()
 ['hobby', 'age', 'name', 'gender']
 >>> d1.values()
@@ -602,7 +602,7 @@ True
 
 为了指定唯一的文件，必须提供详细的路径。事实上，一个完整的文件标识由磁盘驱动 器、目录层次和文件名三部分构成。各部分之间用特定字符进行分隔，分隔字符在不同操作系统中可能是不同的，例如 Windows 使用“\”，而 Unix、Linux 使用“/”。在 Python 程序 中，路径分隔字符既可以使用“\”，也可以使用“/”。例如，Python 安装目录中有个文件 misc.py，其路径可以用字符串
 
-```
+```py
 "C:\Python27\Lib\compiler\misc.py" 
 ```
 
@@ -610,13 +610,13 @@ True
 
 注意：我们在第二章讨论字符串数据时说过，反斜杠字符“\”在 Python 中可作为转义 符，用于表示特殊字符，如"\n"（换行字符）、"\t"（Tab 字符）和"\xc4"（编码为十六进制 c4 的字符）等。文件路径中如果在反斜杠后出现了 n、t、x 等字符，就可能被解释成特殊字符， 从而导致错误。例如，试图用语句
 
-```
+```py
 >>> f = open("C:\Python27\Lib\compiler\transformer.py") 
 ```
 
 打开文件 transformer.py 时，Python 会将字符串中的\t 解释为 Tab 字符，从而报错。避免这 种错误的简单方法是使用正斜杠字符“/”或者使用两个反斜杠“\”表示单个反斜杠，即形 如
 
-```
+```py
 "C:/Python27/Lib/compiler/transformer.py" "C:\\Python27\\Lib\\compiler\\transformer.py" 
 ```
 
@@ -646,7 +646,7 @@ True
 
 Python 提供了函数 open 用于文件打开，用法如下：
 
-```
+```py
 f = open(<文件名>,<打开方式>) 
 ```
 
@@ -656,7 +656,7 @@ f = open(<文件名>,<打开方式>)
 
 为了读取一个文件的内容，需要以读方式打开文件。例如：
 
-```
+```py
 f = open("oldfile.dat","r") 
 ```
 
@@ -664,7 +664,7 @@ f = open("oldfile.dat","r")
 
 为了向一个文件中写入内容，需要以写方式打开文件。例如：
 
-```
+```py
 f = open("newfile.txt","w") 
 ```
 
@@ -676,7 +676,7 @@ f = open("newfile.txt","w")
 
 Python 中的文件对象提供了 read()、readline()和 readlines()方法用于读取文件内容。 read()的用法如下：
 
-```
+```py
 <变量> = <文件对象>.read() 
 ```
 
@@ -684,7 +684,7 @@ Python 中的文件对象提供了 read()、readline()和 readlines()方法用�
 
 read()方法也可以带有参数：
 
-```
+```py
 <变量> = <文件对象>.read(n) 
 ```
 
@@ -692,13 +692,13 @@ read()方法也可以带有参数：
 
 假设有一个文件 rhyme.txt，其文本内容是：
 
-```
+```py
 Good, better, best, Never let it rest, Till good is better, And better, best. 
 ```
 
 下面的语句序列对此文件进行读取
 
-```
+```py
 >>> f = open("rhyme.txt","r")
 >>> s = f.read(8)
 >>> s
@@ -713,13 +713,13 @@ Till good is better, And better, best.
 
 readline()的用法如下：
 
-```
+```py
 <变量> = <文件对象>.readline() 
 ```
 
 含义是读取从当前位置到行末（即下一个换行字符）的所有字符，并以此字符串作为返回值， 赋值给变量。通常用此方法来读取文件的当前行。如果当前处于文件末尾，则 readline 返回 空串。例如：
 
-```
+```py
 >>> f = open("rhyme.txt","r")
 >>> s = f.readline()
 >>> s
@@ -733,13 +733,13 @@ Till good is better,
 
 readlines()的用法如下：
 
-```
+```py
 <变量> = <文件对象>.readlines() 
 ```
 
 其含义是读取从当前位置直到文件末尾的所有行，并将这些行构成一个字符串列表作为返回 值，列表中的每个元素都是文件的一行。如果当前处于文件末尾，则 readlines 返回空列表。 例如：
 
-```
+```py
 >>> f = open("rhyme.txt","r")
 >>> f.readline()
 'Good, better, best,\n'
@@ -755,14 +755,14 @@ readlines()的用法如下：
 
 当文件以写方式打开时，可以向文件中写入文本内容。与读文件一样，写入位置也是由 “当前读写位置”决定的。Python 文件对象提供两种写文件的方法：
 
-```
+```py
 <文件对象>.write(<字符串>)
 <文件对象>.writelines(<字符串列表>) 
 ```
 
 其中，write 的含义是在文件当前位置处写入字符串，writelines 的含义是在文件当前位置处依次写入列表中的所有字符串。 下面的语句序列创建了一个新文件，并向其中写入了李白的名诗：
 
-```
+```py
 >>> f = open("d:/libai.txt","w")
 >>> f.write("窗前明月光")
 >>> f.write("疑是地上霜\n")
@@ -778,7 +778,7 @@ readlines()的用法如下：
 
 再次强调，写方式打开文件会导致要么创建一个新文件，要么清除一个旧文件，总之文件的内容是全新的。那么有没有办法在现有文件内容基础上再写入一些新内容呢？答案是肯 定的。Python 还提供一种文件打开方式"a"，表示“追加”。以追加方式打开文件后，当前位 置被定位在文件末尾，可以继续写入文本而不改变原有的文件内容。例如：
 
-```
+```py
 >>> f = open("d:/libai.txt","a")
 >>> f.write("\n---- 李白《静夜思》")
 >>> f.close() 
@@ -794,7 +794,7 @@ readlines()的用法如下：
 
 文件处理结束后需要关闭文件，这个步骤大体上涉及释放分配给文件的系统资源，以便 分配给其他文件使用。通过调用文件对象的 close 方法来关闭文件：
 
-```
+```py
 <文件对象>.close() 
 ```
 
@@ -802,7 +802,7 @@ readlines()的用法如下：
 
 然而好的做法是由程序自己关闭文件，否则有可能因程序意外终止而导致文件数据丢失。例 如，以写方式打开文件时，如果向文件中写入了文本但还没有关闭文件，那么所写内容是不 会存盘的。这时再以读方式打开同一文件，read()命令返回的是空串。下面的语句序列演示 了这种情况。
 
-```
+```py
 >>> f = open("d:/test","w")
 >>> f.write("some words")
 >>> g = open("d:/test","r")
@@ -820,7 +820,7 @@ readlines()的用法如下：
 
 许多应用程序的算法结构都属于直接了当的 IPO（输入－处理－输出）模式，当输入输 出都是文件时，程序的结构大体如下：
 
-```
+```py
 infile = open("input.dat","r") 
 outfile = open("output.dat","w") 
 while True:
@@ -837,7 +837,7 @@ outfile.close()
 
 除了“while 循环+readline()”的结构，还可以利用“for 循环+readlines()”的结构。readlines() 一次性读出所有行，形成一个列表，然后针对这个列表进行循环。
 
-```
+```py
 for line in infile.readlines():
     do something with line 
     ... 
@@ -845,7 +845,7 @@ for line in infile.readlines():
 
 实际上，Python 语言甚至允许直接将打开的文件与 for 循环结合使用，达到和“for 循 环+readlines()”同样的效果。代码如下：
 
-```
+```py
 infile = open("input.dat","r") 
 for line in infile:
     do something with line 
@@ -862,7 +862,7 @@ for line in infile:
 
 其实 Python 还提供了一种打开方式"a"，称为“追加”方式，可以用于在现存文件的尾 部追加新数据。当然，如果请求打开的文件不存在，"a"方式就和"w"方式一样，创建一个新 文件。下面的语句演示了追加方式的用法：
 
-```
+```py
 >>> f = open("oldfile.txt","a")
 >>> f.write("something new\n")
 >>> f.close() 
@@ -876,7 +876,7 @@ for line in infile:
 
 分析程序的算法设计是直接了当的，其核心是对多个指标进行累积计数。其中，对字符 数和行数的计数可以利用文件操作的结果直接得到：read()可将整个文件的内容作为一个字 符串返回，字符串长度就是字符总数；readlines()将文件的所有行构成一个列表返回，列表 长度就是行数。至于单词总数，需要先将文件内容（字符串）划分成单词，这可以利用 string 库中的 split 函数实现。既可以对 read()返回的整个字符串分词，也可以通过循环来对 readlines() 返回的每一行字符串分词，我们将采用更简单的前一种方法。下面是实现这一部分工作的示 意代码，其中 f 表示被分析的文件对象：
 
-```
+```py
 numchars = len(f.read()) 
 numlines = len(f.readlines())
 numwords = len(string.split(f.read())) 
@@ -886,13 +886,13 @@ numwords = len(string.split(f.read()))
 
 我们将建立一个字典 worddict，其关键字是文件中出现的单词，值是该单词在文件中出 现的次数，即 worddict[w]等于 w 在文件中出现的次数。在读文件单词的过程中，每当遇到 单词 w，就用下面的语句递增 w 的计数值：
 
-```
+```py
 worddict[w] = worddict[w] + 1 
 ```
 
 不过这里还有一个小麻烦：当首次遇到单词 w 时，字典 worddict 中尚未建立相应的词条， 即 worddict[w]无定义，因此上述递增计数的语句将导致错误（KeyError）。为解决这个小麻 烦，最容易想到的是用条件语句来检测单词 w 是否已经存在于字典中，代码如下：
 
-```
+```py
 if worddict.has_key(w): 
     worddict[w] = worddict[w] + 1
 else:
@@ -901,7 +901,7 @@ else:
 
 另一种做法是利用例外处理，通过捕获关键字错误（KeyError）来决定是递增计数还是 首次建立词条。代码如下：
 
-```
+```py
 try:
     worddict[w] = worddict[w] + 1 
 except KeyError:
@@ -910,7 +910,7 @@ except KeyError:
 
 这个做法在使用字典的程序中很常用，我们的分析程序也采用了这个做法。 除了核心代码，还需补充一些在分词之前对文件字符串进行预处理的代码。其一，将文件内容中的字母都转换成小写，以使单词"WORD"和"word"被识别为同一单词；其二，将文 件内容中的各种标点符号都替换成空格，以使单词"one,two"能被正确地划分为两个单词 "one"和"two"，以及"one, two"不被划分为"one,"和"two"①。做这两件事的代码如下：
 
-```
+```py
 text = string.lower(text)
 for ch in "`~!@#$%^&*()-_=+[{]}\\|;:'\",&lt;.&gt;/?": 
     text = string.replace(text,ch," ") 
@@ -918,7 +918,7 @@ for ch in "`~!@#$%^&*()-_=+[{]}\\|;:'\",&lt;.&gt;/?":
 
 接下来即可划分单词，并对所有单词进行循环，在循环过程中构造字典 worddict。代码如下：
 
-```
+```py
 wordlist = string.split(text) 
 worddict = {}
 for w in wordlist: 
@@ -936,7 +936,7 @@ for w in wordlist:
 
 【程序 6.2】textanalysis.py
 
-```
+```py
 import string
 def main():
     fname = raw_input("File to analyze: ") f = open(fname,"r")
@@ -960,7 +960,7 @@ main()
 
 假设有文件 yours.txt，其内容如下：
 
-```
+```py
 The life that I have Is all that I have,
 And the life that I have Is yours.
 The love that I have Of the life that I have
@@ -973,7 +973,7 @@ Will be yours, and yours, and yours.
 
 则运行程序 6.2 后，将得到如下结果：
 
-```
+```py
 File to analyze: yours.txt Number of characters: 315
 Number of lines: 14 Number of words: 70
 ('and', 5) ('all', 1) ('peace', 1) ('love', 1) ('is', 3) 
@@ -995,7 +995,7 @@ Number of lines: 14 Number of words: 70
 
 【程序 6.3】buffer.py
 
-```
+```py
 def main():
     fname = raw_input("Enter file name: ") 
     f = open(fname,"r")
@@ -1025,7 +1025,7 @@ Python 语言支持对二进制文件的处理，处理过程仍然是“打开�
 
 示读打开、写打开和追加打开。例如：
 
-```
+```py
 >>> bf1 = open("c:/windows/notepad.exe","rb")
 >>> bf1.read(10)
 'MZ\x90\x00\x03\x00\x00\x00\x04\x00'
@@ -1048,7 +1048,7 @@ Python 语言支持对二进制文件的处理，处理过程仍然是“打开�
 
 Python 文件对象提供的 seek()方法可用于文件的随机存取，其用法形如
 
-```
+```py
 <文件对象>.seek(n)
 <文件对象>.seek(n,m) 
 ```
@@ -1059,7 +1059,7 @@ Python 文件对象提供的 seek()方法可用于文件的随机存取，其用
 
 下面的语句序列首先创建一个汉字文本文件 ccfile.txt，其中每个汉字（包括标点符号） 占用 2 字节。其次，以读方式打开 ccfile.txt，然后文件当前位置移到偏移 12 处（即略过前 5 个汉字和 1 个逗号）并读取 4 个字节（即“处处”）；然后倒退 16 个字节并读取 2 个字节（即“春”）；最后向前移动 26 个字节并读 2 个字节（即“风”），最后显示三次读的内容所联接 而成的字符串“处处春风”。
 
-```
+```py
 >>> f = open("ccfile.txt","w")
 >>> f.write("春眠不觉晓，处处闻啼鸟。夜来风雨声，花落知多少。")
 >>> f.close()
@@ -1134,7 +1134,7 @@ Python 文件对象提供的 seek()方法可用于文件的随机存取，其用
 
 如图 6.8 所示，为了在结点 L 和结点 M 之间插入结点 N，需要调整 L 和 N 的 link 值， 为此需要在查找链表的过程中记下连续两个结点 L 和 M 的地址，这正是下列代码中变量 p 和 q 的任务。插入结点的主要代码如下：
 
-```
+```py
 p = head 
 q = -1
 while True:
@@ -1158,7 +1158,7 @@ while True:
 
 【程序 6.4】linkedlist.py
 
-```
+```py
 from string import split
 def insert(llist,head,tail): 
     p = head
@@ -1200,7 +1200,7 @@ main()
 
 主程序首先创建空链表（实际上包含特殊的链表尾结点），然后由用户按“姓氏，笔画”格 式输入数据，程序在 people 末尾建立对应的新结点（相对于为新结点分配存储空间），接着 调用 insert 函数将新结点插入到链表中。重复输入数据、存储新结点、插入新结点的过程直 至输入为空，最后分别按 people 中的结点次序（物理存储次序）和链接的次序（逻辑次序） 显示所有结点的姓氏。下面是程序的一次执行过程和结果：
 
-```
+```py
 Enter name and strokes: 赵,9 
 Enter name and strokes: 钱,10 
 Enter name and strokes: 孙,6 
@@ -1248,21 +1248,21 @@ Logical order: 王 孙 李 吴 周 郑 赵 钱
 
 在具体应用中，可以采用多种不同的方式来实现堆栈这个抽象数据类型。例如，可以采 用列表来实现堆栈。令列表 stack 是存放数据的堆栈，按照堆栈的要求，对 stack 只能执行 push 和 pop 操作，不能像列表那样可以随机存取任何一个元素。假设以列表头为栈底，以 列表尾为栈顶，那么向堆栈中放入元素就只能在尾部添加，Python 列表对象提供的 append 方法正好提供堆栈所需的功能，因此可以用 append 来实现 push()，形如：
 
-```
+```py
 def push(stack,x): 
     stack.append(x) 
 ```
 
 另外，Python 列表对象的 pop()方法的功能是取出列表的最后一个元素，恰好符合堆栈的 pop()方法的要求，因此可以这样实现堆栈 pop 操作：
 
-```
+```py
 def pop(stack): 
     return stack.pop() 
 ```
 
 为了防止从空堆栈中取数据的错误，我们定义一个检测堆栈是否为空的函数：
 
-```
+```py
 def isEmpty(stack): 
     return (stack == []) 
 ```
@@ -1271,7 +1271,7 @@ def isEmpty(stack):
 
 【程序 6.5】stack.py
 
-```
+```py
 def push(stack,x): 
     stack.append(x)
 def pop(stack): 
@@ -1293,7 +1293,7 @@ main()
 
 下面是程序 6.5 的一次执行情况：
 
-```
+```py
 Pushing...
 Enter a string: 1st 
 Enter a string: 2nd 

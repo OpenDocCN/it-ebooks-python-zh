@@ -34,7 +34,7 @@ setenviron()：更改进程的环境变量
 
 例 1，进程的 real UID 和 real GID
 
-```
+```py
 import os print(os.getuid()) print(os.getgid())
 
 ```
@@ -65,7 +65,7 @@ $sudo chmod 6755 /usr/bin/python
 
 随后，我们运行文件下面 test.py 文件，这个文件可以是由普通用户 vamei 所有:
 
-```
+```py
 import os print(os.getresuid())
 
 ```

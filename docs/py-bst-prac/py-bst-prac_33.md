@@ -17,7 +17,7 @@
 
 通过 pip 安装 virtualenv：
 
-```
+```py
 $ pip install virtualenv 
 ```
 
@@ -25,7 +25,7 @@ $ pip install virtualenv
 
 1.  为一个工程创建一个虚拟环境：
 
-```
+```py
 $ cd my_project_folder
 $ virtualenv venv 
 ```
@@ -36,7 +36,7 @@ $ virtualenv venv
 
 你可以选择使用一个 Python 解释器：
 
-```
+```py
 $ virtualenv -p /usr/bin/python2.7 venv 
 ```
 
@@ -44,7 +44,7 @@ $ virtualenv -p /usr/bin/python2.7 venv
 
 2.  要开始使用虚拟环境，其需要被激活：
 
-```
+```py
 $ source venv/bin/activate 
 ```
 
@@ -52,13 +52,13 @@ $ source venv/bin/activate
 
 像平常一样安装包，比如：
 
-```
+```py
 $ pip install requests 
 ```
 
 3.  如果你在虚拟环境中暂时完成了工作，则可以停用它：
 
-```
+```py
 $ deactivate 
 ```
 
@@ -74,13 +74,13 @@ $ deactivate
 
 为了保持你的环境的一致性，“冷冻住（freeze）”环境包当前的状态是个好主意。要这么做，请运行：
 
-```
+```py
 $ pip freeze > requirements.txt 
 ```
 
 这将会创建一个 `requirements.txt` 文件，其中包含了当前环境中所有包及各自的版本的简单列表。你可以使用 “pip list”在不产生 requirements 文件的情况下，查看已安装包的列表。这将会使另一个不同的开发者（或者是你，如果你需要重新创建这样的环境）在以后安装相同版本的相同包变得容易。
 
-```
+```py
 $ pip install -r requirements.txt 
 ```
 
@@ -94,7 +94,7 @@ $ pip install -r requirements.txt
 
 安装（确保 **virtualenv** 已经安装了）：
 
-```
+```py
 $ pip install virtualenvwrapper
 $ export WORKON_HOME=~/Envs
 $ source /usr/local/bin/virtualenvwrapper.sh 
@@ -106,7 +106,7 @@ $ source /usr/local/bin/virtualenvwrapper.sh
 
 To install (make sure **virtualenv** is already installed): 安装（确保 **virtualenv** 已经安装了）：
 
-```
+```py
 $ pip install virtualenvwrapper-win 
 ```
 
@@ -116,7 +116,7 @@ $ pip install virtualenvwrapper-win
 
 1.  创建一个虚拟环境：
 
-```
+```py
 $ mkvirtualenv venv 
 ```
 
@@ -124,13 +124,13 @@ $ mkvirtualenv venv
 
 2.  在虚拟环境上工作：
 
-```
+```py
 $ workon venv 
 ```
 
 或者，你可以创建一个项目，它会创建虚拟环境，并在 `$PROJECT_HOME` 中创建一个项目目录。当你使用 `workon myproject` 时，会 `cd` -ed 到项目目录中。
 
-```
+```py
 $ mkproject myproject 
 ```
 
@@ -140,13 +140,13 @@ $ mkproject myproject
 
 3.  停止是一样的：
 
-```
+```py
 $ deactivate 
 ```
 
 4.  删除：
 
-```
+```py
 $ rmvirtualenv venv 
 ```
 
@@ -180,13 +180,13 @@ $ rmvirtualenv venv
 
 使用 `brew` 在 Mac OS X 上安装它：
 
-```
+```py
 $ brew install autoenv 
 ```
 
 在 Linux 上:
 
-```
+```py
 $ git clone git://github.com/kennethreitz/autoenv.git ~/.autoenv
 $ echo 'source ~/.autoenv/activate.sh' >> ~/.bashrc 
 ```

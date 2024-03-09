@@ -40,7 +40,7 @@ f.close()
 
 3\. 循环读入文件：
 
-```
+```py
 for line in file(文件名): print line
 
 ```

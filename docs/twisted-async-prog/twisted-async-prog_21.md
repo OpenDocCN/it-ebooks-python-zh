@@ -16,13 +16,13 @@
 
 这里有一个使用 Haskell `head` 语句的简单例子,这是一个提取列表第一个元素的函数,对于列表 1,2,3:
 
-```
+```py
 head [1,2,3] 
 ```
 
 如果你安装了 GHC Haskell 运行时,你可以自己试一试:
 
-```
+```py
 [~] ghci
 GHCi, version 6.12.1: http://www.haskell.org/ghc/  : ? for help
 Loading package ghc-prim ... linking ... done.
@@ -37,7 +37,7 @@ Prelude>
 
 Haskell 列表的语法包含从前几个元素定义列表的使用功能.例如,列表[2,4,..]是从 2 开始的偶数序列.到哪结束呢?实际上并不会结束.Haskell 列表[2,4,..]和其他如此表述的都是(概念上)无限列表.你可以在交互式 Haskell 提示符下计算它,这将试图打印这个表达式的结果如下:
 
-```
+```py
 Prelude> [2,4 ..]
 [2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60,62,64,66,68,70,72,74,76,78,80,82,84,86,88,90,92,94,96,98,100,102,104,106,108,110,112,114,116,118,120,122,124,126,128,130,132,134,136,138,140,142,144,146,
 ... 
@@ -45,7 +45,7 @@ Prelude> [2,4 ..]
 
 你不得不按 `Ctrl-C` 终止计算，因为它自己不会停下来.但由于是惰性计算,在 Haskell 中应用无限列表是没有问题的:
 
-```
+```py
 Prelude> head [2,4 ..]
 2
 Prelude> head (tail [2,4 ..])
@@ -60,7 +60,7 @@ Prelude> head (tail (tail [2,4 ..]))
 
 这里是一些部分计算无限列表的 Haskell 代码：
 
-```
+```py
 Prelude> let x = [1..]
 Prelude> let y = [2,4 ..]
 Prelude> let z = [3,6 ..]
@@ -88,7 +88,7 @@ Haskell 同样支持轻量级线程或进程,尽管它们不是 Haskell 的核�
 
 `getPoetry` 函数包含如下行:
 
-```
+```py
 poem <- hGetContents h 
 ```
 
@@ -98,7 +98,7 @@ poem <- hGetContents h
 
 启动一些慢诗歌服务器:
 
-```
+```py
 python blocking-server/slowpoetry.py --port 10001 poetry/fascination.txt
 python blocking-server/slowpoetry.py --port 10002 poetry/science.txt
 python blocking-server/slowpoetry.py --port 10003 poetry/ecstasy.txt --num-bytes 30 
@@ -106,20 +106,20 @@ python blocking-server/slowpoetry.py --port 10003 poetry/ecstasy.txt --num-bytes
 
 现在编译 Haskell 客户端:
 
-```
+```py
 cd haskell-client-1/
 ghc --make get-poetry.hs 
 ```
 
 这将创建一个二进制 `get-poetry`.最后,针对我们的服务器运行客户端:
 
-```
+```py
 /get-poetry 10001 10002 1000 
 ```
 
 你将看到如下输出:
 
-```
+```py
 Task 3: got 12 bytes of poetry from localhost:10003
 Task 3: got 1 bytes of poetry from localhost:10003
 Task 3: got 30 bytes of poetry from localhost:10003
@@ -138,14 +138,14 @@ Task 1: got 1 bytes of poetry from localhost:10001
 
 OK,让我们编译新的客户端：
 
-```
+```py
 cd haskell-client-2/
 ghc --make get-poetry.hs 
 ```
 
 针对相同的诗歌服务器组运行它:
 
-```
+```py
 ./get-poetry 10001 10002 10003 
 ```
 

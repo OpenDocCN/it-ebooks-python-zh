@@ -22,7 +22,7 @@
 
 【程序 7.1】eg7_1.py
 
-```
+```py
 x = 1
 y = 2
 z = x + y 
@@ -39,7 +39,7 @@ print z
 
 在以操作为中心的设计理念下，程序中的数据有时对整个操作过程都是公开的，可以被 操作过程中的每个步骤访问、处理。例如，假设程序 7.1 的操作不是单一的加法，而是在加法操作（第 3 行）之后还有两个操作：
 
-```
+```py
 w = x – y 
 z = z * w 
 ```
@@ -50,7 +50,7 @@ z = z * w
 
 【程序 7.2】eg7_2.py
 
-```
+```py
 def op1(a,b):
     return a * a - b * b
 def op2(a,b):
@@ -155,7 +155,7 @@ OOP 的特色包括抽象、封装、消息、模块化、多态性、继承等�
 
 抽象可以是在多个层次上进行的。例如，当抽象出学生、教师、职工等类别之后，可以 从他们进一步抽象出“师生员工”类；当建立了汽车、火车、飞机等类别之后，可以从他们 进一步抽象出“交通工具”类。如此进行，最终可以形成一个抽象层次，称为类层次。这种 抽象方法在各学科中都是常用的，最典型的如生物学中的分类层次：
 
-```
+```py
 智人 → 人科 → 灵长目 → 哺乳纲 → 脊索动物门 → 动物界 
 ```
 
@@ -173,7 +173,7 @@ Python 类定义
 
 如前所述，类是用来刻划对象的数据特性和行为特性的。Python 中类定义形如：
 
-```
+```py
 class <类名>:
     <方法定义 1>:
         ...
@@ -184,7 +184,7 @@ class <类名>:
 
 每个方法定义其实都是一个函数定义，即形如：
 
-```
+```py
 def <方法名>(<参数>):
     ... 
 ```
@@ -197,7 +197,7 @@ def <方法名>(<参数>):
 
 【程序 7.3】person.py
 
-```
+```py
 class Person:
     def __init__ (self,n,y): 
         self.name = n self.year = y
@@ -217,7 +217,7 @@ Person 对象的数据就是在 init__ 方法中定义的 self.name 和 self.yea
 
 > ① 注意，这个名称中 init 前后各是两个下划线字符！Python 常用这种形式的标识符来命名内部对象。
 
-```
+```py
 class Person1:
     def __init__ (self,n,y): 
         self.name = n 
@@ -251,7 +251,7 @@ class Person1:
 
 则是具体的，就好比“人”是抽象概念，而“张三”是个具体的人。一个类可以创建任意多 个实例（对象），所有实例都具有相同的行为（这是由类中定义的方法决定的），但各自的数 据值可以不同。创建类的实例采用如下形式：
 
-```
+```py
 <变量> = <类名>(<参数>) 
 ```
 
@@ -267,20 +267,20 @@ class Person1:
 
 例如，下面的语句先导入 Person 类，然后创建一个 Person 对象，并使变量 p1 引用该对象：
 
-```
+```py
 >>> from person import Person
 >>> p1 = Person("Lucy",2005) 
 ```
 
 创建对象时自动调用 init__ 方法，该方法所需的三个参数 self、n、y 分别用实参 p1、"Lucy"和 2005 代入，这相当于函数调用
 
-```
+```py
 __init__ (p1,"Lucy",2005) 
 ```
 
 从而导致执行 __init__ 的函数体，为新对象进行初始化：
 
-```
+```py
 p1.name = "Lucy" 
 p1.year = 2005 
 ```
@@ -293,19 +293,19 @@ p1.year = 2005
 
 注意， init 方法中对变量 name 和 year 所赋的值"Lucy"和 2005，是专属于新实例 p1 的，它们与同一个类的其他实例（例如下面将创建的 p2）没有关系。这两个变量都属于实例 变量（instance variable），意即它们的值是随实例的不同而不同的。下面再创建一个 Person 对象，并使变量 p2 引用这个新对象：
 
-```
+```py
 >>> p2 = Person("Tom",1990) 
 ```
 
 同样地，Python 自动调用 init 方法，只不过这次传递给该方法的参数是 p2、"Tom"和 1990， 即相当于函数调用
 
-```
+```py
 __init__ (p2,"Tom",1990) 
 ```
 
 从而导致执行 __init__ 的函数体，为新对象 p2 进行初始化：
 
-```
+```py
 p2.name = "Tom" 
 p2.year = 1990 
 ```
@@ -324,7 +324,7 @@ p2.year = 1990
 
 一旦创建了对象，就可以通过向对象发消息来调用对象的方法。消息的格式如下：
 
-```
+```py
 <对象>.<方法>(<实参>) 
 ```
 
@@ -332,7 +332,7 @@ p2.year = 1990
 
 例如，接着前面的例子执行如下语句：
 
-```
+```py
 >>> p1.whatName()
 My name is Lucy
 >>> p2.whatName()
@@ -361,7 +361,7 @@ My age in 2013 is 23
 
 炮弹在每一时段所处的位置可以利用简单的中学物理知识求得。将炮弹速度分解成水平 分量和垂直分量，则炮弹在水平方向的运动是匀速直线运动（忽略空气阻力），在垂直方向的 运动是加速运动（因为重力的影响，炮弹先向上减速飞行，减到向上速度为 0 后改为自由落 体运动）。算法伪代码如下：
 
-```
+```py
 算法：模拟炮弹飞行。
 输入：角度 angle（度）、初速度 v（米/秒）、高度 h0（米）、时间间隔 t（秒） 
 输出：射程（米）
@@ -385,25 +385,25 @@ My age in 2013 is 23
 
 炮弹都飞行 xv * t 距离，因此炮弹在水平方向从 xpos 运动到了新位置
 
-```
+```py
 xpos = xpos + xv * t 
 ```
 
 炮弹垂直方向位置的变化稍微复杂点：由于重力的影响，炮弹向上速度每秒减少 9.8 米/ 秒，经过时段 t，向上速度变成了
 
-```
+```py
 yv1 = yv - 9.8 * t 
 ```
 
 而炮弹在时段 t 内垂直方向位移可以用这段时间的平均速度乘 t 来计算，因为时段 t 内的平均 速度为起点速度 yv 与终点速度 yv1 之和的一半，故时段 t 内的垂直方向位移为
 
-```
+```py
 (yv + yv1) / 2.0 * t 
 ```
 
 于是，经过时段 t 后，炮弹在垂直方向的新位置为
 
-```
+```py
 ypos = ypos + (yv + yv1) / 2.0 * t 
 ```
 
@@ -413,7 +413,7 @@ ypos = ypos + (yv + yv1) / 2.0 * t
 
 【程序 7.4】cball1.py
 
-```
+```py
 # -*- coding: cp936 -*- 
 from math import pi,sin,cos
 def main():
@@ -437,7 +437,7 @@ main()
 
 以下是程序 7.4 的一次执行结果：
 
-```
+```py
 输入发射角度(度): 56
 输入初速度(米/秒): 300
 输入初始高度(米): 2
@@ -449,7 +449,7 @@ main()
 
 【程序 7.5】cball2.py
 
-```
+```py
 # -*- coding: cp936 -*- from math import pi,sin,cos
 def getInputs():
     a = input("输入发射角度(度): ")
@@ -478,7 +478,7 @@ def main():
 
 然而，尽管模块化编程改善了程序的结构，使程序易读易理解，但程序 7.5 的主程序仍 然比较复杂。为了描述炮弹的飞行状态，需要 xpos、ypos、xv 和 yv 等 4 个数据，其中 xpos、 ypos 和 yv 是随时间 t 而变的，需要时时更新，这就导致了主循环中的那个复杂、累赘的函数 调用：
 
-```
+```py
 xpos,ypos,yv = update(t,xpos,ypos,xv,yv) 
 ```
 
@@ -486,7 +486,7 @@ xpos,ypos,yv = update(t,xpos,ypos,xv,yv)
 
 最后，我们用 OOP 来编写炮弹模拟程序。炮弹原本是现实世界中的一个对象，传统编 程方法却用 xpos、ypos、xv 和 yv 等四个分离的数据来描述它，这是典型的“只见树木不见 森林”。假如有一个 Projectile 类来描述炮弹对象，有关炮弹的一切信息和行为都封装在这个 类中，那么在主程序中要做的就是创建一个炮弹对象，然后由这个对象自己完成所有的计算 任务，代码形如：
 
-```
+```py
 def main():
     angle, vel, h0, time = getInputs() 
     cball = Projectile(angle, vel, h0) 
@@ -501,7 +501,7 @@ def main():
 
 构造器 __init__ 用于初始化新创建的对象，比如为对象的实例变量赋初值。炮弹对象的实 例变量显然应该包括描述炮弹状态的四个数据：xpos、ypos、xv 和 yv。初始化代码如下：
 
-```
+```py
 def __init (self, angle, velocity, height): 
     self.xpos = 0.0
     self.ypos = height
@@ -516,7 +516,7 @@ def __init (self, angle, velocity, height):
 
 update 方法是最核心的方法，它的任务是更新炮弹在某个时间间隔后的状态。只需传递 一个时间间隔参数 t 给 update 即可，这比程序 7.5 中的 update 简单多了。代码如下：
 
-```
+```py
 def update(self,time):
     self.xpos = self.xpos + time * self.xv 
     yv1 = self.yv - time * 9.8
@@ -530,7 +530,7 @@ def update(self,time):
 
 【程序 7.6】cball3.py
 
-```
+```py
 from math import pi,sin,cos 
 class Projectile:
     def __init__ (self,angle,velocity,height): 
@@ -585,7 +585,7 @@ def main():
 
 既然类是一种具有独立性的程序模块，就可以单独存储在模块文件中，无需与使用类的 代码（主程序）存储在一个程序文件中。这样做的好处是类模块可以重用，任何想使用这个 类的程序都可以导入类模块。例如，我们可以将 Projectile 类定义单独保存在模块 proj.py 中， 任何希望使用 Projectile 类的程序只需导入它，导入后即可创建对象、执行对象方法。就像下 面这样：
 
-```
+```py
 from proj import Projectile
 def main():
     angle, vel, h0, time = getInputs() 
@@ -607,13 +607,13 @@ def main():
 
 可以推想，如果将集合体类型与类相结合，就能表示现实中的任意复杂的信息。即，用 集合体表示大量的数据成员，而每个数据成员是一个具有复杂内部结构的对象。我们不妨用 下面的公式来表达这个思想：
 
-```
+```py
 类 + 集合体 ＝ 任意复杂的数据 
 ```
 
 例如，如果程序中要处理的数据是“一群人”，那么我们可以利用一个 Person 对象的列表来表示这一群人。假设我们已经创建了若干个 Person 对象，如 7.2.2 中创建的 p1 和 p2，下 面的代码将这两个对象存储在一个列表 people 中。现在 people 就是一个非常复杂的数据，既 有大量的成员，而且每个成员本身又是复杂的对象。我们可以利用循环语句对复杂数据 people 中的所有成员进行特定处理（如显示姓名和年龄）：
 
-```
+```py
 >>> people = [p1, p2]
 >>> for p in people:
         p.whatName() 
@@ -649,7 +649,7 @@ My age in 2013 : 23
 
 Python 中定义子类采用如下形式：
 
-```
+```py
 class <子类名>(<超类名>):
     <特殊属性 1>
     ...
@@ -658,14 +658,14 @@ class <子类名>(<超类名>):
 
 注意，超类与子类的定义一般置于同一个模块中。如果超类在另一个模块中定义，则定义子 类时必须指明模块信息，形如：
 
-```
+```py
 class <子类名>(<模块名>.<超类名>):
     ... 
 ```
 
 下面通过具体例子来说明超类、子类以及继承概念。程序 7.3 中定义了一个 Person 类， 它在最一般的层次上刻划了“人”对象：每个人有姓名和出生年份数据，并且能回答外界提 出的“叫什么名字”、“今年多大了”之类的问题。为便于阅读、比较，我们将 Person 类的定 义复制于此：
 
-```
+```py
 class Person:
 def __init__ (self,n,y): 
     self.name = n 
@@ -682,7 +682,7 @@ def howOld(self,y):
 
 下面以 Person 作为超类，来定义几种具有特殊属性（数据和行为）的人。 首先定义“学生”。学生是人，因此拥有 Person 类的所有信息。学生还具有一些特殊属性，比如学校、学号信息。按照子类的定义方式，我们可以定义如下的 Student 类：
 
-```
+```py
 class Student(Person):
     def __init__ (self,n,y,u,id): 
         Person.__init__ (self,n,y) 
@@ -696,7 +696,7 @@ class Student(Person):
 
 Student 类定义的第一行表明，Student 类是 Person 类的子类。作为特殊的人，学生拥有 普通人不一定有的 self.univ（学校）和 self.snum（学号）数据，因此 Student 类的构造器与 Person 不同，需要四个初始参数：姓名、出生年份、学校和学号。创建 Student 对象时要进 行的初始化工作包括：首先作为 Person 对象要执行 Person 对象的初始化，即 Person.__init ()； 然后再执行 Student 对象特有的初始化工作，即对 self.univ 和 self.snum 两个实例变量进行赋 值。可见，子类的构造器一般是在超类构造器的基础上另外执行一些初始化工作。Student 对象除了能响应 Person 对象都能响应的 whatName 和 howOld 之外，还具有两个特有的方法： getUniv 和 getNum。 我们再来定义另一种特殊的人——教师。假设教师拥有指导的学生人数信息，以及设置和获取这个信息的方法，则可定义 Teacher 类如下：
 
-```
+```py
 class Teacher(Person): 
     def setNum(self,n):
         self.snum = n 
@@ -708,7 +708,7 @@ Teacher 类没有定义自己的初始化方法 init**，因此创建 Teacher �
 
 定义了以上各种类之后，就可以编写使用这些类的程序了。假设 Person、Student 和 Teacher 类定义都存储在模块文件 person.py 之中，下面以交互方式演示对这些类的使用：
 
-```
+```py
 >>> from person import *
 >>> tom = Student("Tom",1995,"SJTU","S001")
 >>> tom.whatName()
@@ -744,7 +744,7 @@ AttributeError: Person instance has no attribute 'getUniv'
 
 例如，我们来定义另一类特殊的人——娱乐圈明星。娱乐圈明星当然是人，所以他们都 具有 Person 的属性。但明星们一般都很忌讳被问年龄，他们才不会像普通人那样直接回答 howOld 问题。因此，我们在定义 Star 类时需要重新实现 howOld 方法，不能直接使用 Person 中定义的 howOld 的代码。Star 定义如下：
 
-```
+```py
 class Star(Person): 
 def howOld(self,y):
     print "You guess?" 
@@ -754,7 +754,7 @@ def setYear(self,y):
 
 类 Star 中重新定义了 howOld()方法，将来向 Star 对象发送 howOld 信息时，它就会执行自己 独特的 howOld 方法。当然，如果向 Star 对象发送 whatName 消息，由于明星们在这个问题 上与常人无异，该对象就会去执行原样继承来的超类 Person 中的 whatName 方法。顺便指出， 上述 Star 类定义中还定义了一个特殊方法 setYear，这是为了满足某些明星直接修改自己出生 年份的需求:-)，同时也是为了说明子类既可以覆写从超类继承来的行为，也可以干脆定义新 的行为。下面是 Star 类的使用例子（假设 Star 类定义已经导入）：
 
-```
+```py
 >>> liu = Star("Liu",1955)
 >>> liu.whatName()
 My name is Liu
@@ -764,7 +764,7 @@ You guess?
 
 注意，覆写是指在子类中重新实现超类的方法，该方法的调用界面（参数和返回值）是 不能改变的。另外，子类中覆写的方法仅适用于子类对象，并不能取代超类中的对应方法。 还用上述例子，当向 Person 类的实例发送 howOld 消息时，仍会执行原来的 howOld 代码。 有趣的是，由于 Star 对象也是 person 对象，我们甚至能强迫 Star 对象执行 Person 中的 howOld 方法来如实回答年龄，做法如下（参见图 7.8）：
 
-```
+```py
 >>> Person.howOld(liu,2013)
 My age in 2013 is 58 
 ```
@@ -781,7 +781,7 @@ My age in 2013 is 58
 
 多态性的一种典型用法是，让处于同一层次的多种对象都能响应同一个消息，但导致的 行为由各对象决定。例如，如果“人”有学生、教师、官员等子类，这些子类就是处于同一 层次的，假设他们都能响应消息 getNum：学生返回自己的学号，教师返回学生人数，官员返 回工资数额。尽管对象行为各不相同，但在编程时我们可以不管这些差别，以一种统一的方 式来处理他们。假设 tom 是个学生，huck 是个教师，jerry 是个官员，则我们可能写出下列代 码来统一处理这些对象：
 
-```
+```py
 >>> people = [tom,huck,jerry]
 >>> for p in people:
 print p.getNum() 
@@ -859,7 +859,7 @@ print p.getNum()
 
 9\. 读下列代码，给出其执行结果。
 
-```
+```py
 class Toy:
     def __init__ (self, value):
         print "Creating a Toy from:", value self.value = 2 * value
